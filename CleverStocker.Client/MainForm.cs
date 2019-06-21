@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleverStocker.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace CleverStocker.Client
     {
         public MainForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

@@ -111,10 +111,17 @@
       <Project>{886675d5-9316-4561-80b8-9325681abd95}</Project>
       <Name>CleverStocker.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Utils\CleverStocker.Utils.csproj">
+      <Project>{8E74F163-1469-40F0-A594-924FB8D822F5}</Project>
+      <Name>CleverStocker.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
       <Version>4.9.2</Version>
+    </PackageReference>
+    <PackageReference Include="StyleCop">
+      <Version>6.1.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

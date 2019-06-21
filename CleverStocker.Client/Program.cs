@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleverStocker.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace CleverStocker.Client
         static void Main()
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -48,7 +50,7 @@ namespace CleverStocker.Client
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            throw new NotImplementedException();
+            LogHelper<Exception>.ErrorException(e.ExceptionObject as Exception, $"当前应用于遇到未捕捉异常 {(e.IsTerminating ? "(程序即将退出)" : string.Empty)}：");
         }
     }
 }
