@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Services", "CleverStocker.Services\CleverStocker.Services.csproj", "{886675D5-9316-4561-80B8-9325681ABD95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Utils", "CleverStocker.Utils\CleverStocker.Utils.csproj", "{8E74F163-1469-40F0-A594-924FB8D822F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{1EBCCB12-5E25-47ED-B2CC-37D48DC98781}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EBCCB12-5E25-47ED-B2CC-37D48DC98781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EBCCB12-5E25-47ED-B2CC-37D48DC98781}.Release|Any CPU.Build.0 = Release|Any CPU
+		{886675D5-9316-4561-80B8-9325681ABD95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{886675D5-9316-4561-80B8-9325681ABD95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{886675D5-9316-4561-80B8-9325681ABD95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{886675D5-9316-4561-80B8-9325681ABD95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E74F163-1469-40F0-A594-924FB8D822F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E74F163-1469-40F0-A594-924FB8D822F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E74F163-1469-40F0-A594-924FB8D822F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E74F163-1469-40F0-A594-924FB8D822F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

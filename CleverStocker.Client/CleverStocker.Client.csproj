@@ -106,5 +106,19 @@
   <ItemGroup>
     <None Include="Resources\bull.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Services\CleverStocker.Services.csproj">
+      <Project>{886675d5-9316-4561-80b8-9325681abd95}</Project>
+      <Name>CleverStocker.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>4.9.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

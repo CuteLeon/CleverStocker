@@ -14,7 +14,8 @@ namespace CleverStocker.Client
     {
         public LaunchForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
+
             this.Shown += this.LaunchForm_Shown;
         }
 
