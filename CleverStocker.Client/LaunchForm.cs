@@ -14,6 +14,9 @@ namespace CleverStocker.Client
     {
         public LaunchForm()
         {
+            this.Icon = AppResource.Icon;
+            this.Text = $"{Application.ProductName} 正在启动 ...";
+
             this.InitializeComponent();
 
             this.Shown += this.LaunchForm_Shown;

@@ -15,6 +15,9 @@ namespace CleverStocker.Client
     {
         public MainForm()
         {
+            this.Icon = AppResource.Icon;
+            this.Text = Application.ProductName;
+
             this.InitializeComponent();
         }
     }
