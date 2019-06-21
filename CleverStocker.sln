@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Client", "CleverStocker.Client\CleverStocker.Client.csproj", "{1EBCCB12-5E25-47ED-B2CC-37D48DC98781}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{4E8E9061-1907-40FB-8A80-34BF9066699D}"
+	ProjectSection(SolutionItems) = preProject
+		Document.md = Document.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
