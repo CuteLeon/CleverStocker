@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Microsoft 托管建议规则 的副本" Description="这些规则专注于代码中最关键的问题，包括潜在的安全漏洞、应用程序崩溃和其他重要的逻辑和设计错误。你应在为项目创建的任何自定义规则集中包含此规则集。" ToolsVersion="16.0">
+<RuleSet Name="CleverStocker.Client 的规则" Description="CleverStocker.Client.csproj 的代码分析规则。" ToolsVersion="16.0">
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1001" Action="Warning" />
     <Rule Id="CA1009" Action="Warning" />
@@ -66,5 +66,9 @@
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1614" Action="None" />
+    <Rule Id="SA1616" Action="None" />
+    <Rule Id="SA1629" Action="None" />
+    <Rule Id="SA1633" Action="None" />
   </Rules>
 </RuleSet>
