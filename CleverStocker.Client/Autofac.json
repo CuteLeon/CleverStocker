@@ -1,0 +1,13 @@
+{
+  "components": [
+    {
+      "type": "CleverStocker.Spider.XueQiu.XueQiuStockSpider, CleverStocker.Spider.XueQiu",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IStockerService, CleverStocker.Services"
+        }
+      ],
+      "injectProperties": true
+    },
+  ]
+}

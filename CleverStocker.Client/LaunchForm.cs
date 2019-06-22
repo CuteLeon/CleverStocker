@@ -107,14 +107,12 @@ namespace CleverStocker.Client
         /// 启动应用程序
         /// </summary>
         private async Task LaunchApplication()
-        {
-            await Task.Factory.StartNew(() =>
+            => await Task.Factory.StartNew(() =>
             {
                 this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
                 DIContainer.Call();
 
                 System.Threading.Thread.Sleep(2000);
             });
-        }
     }
 }
