@@ -109,6 +109,7 @@ namespace CleverStocker.Client
         {
             await Task.Factory.StartNew(() =>
             {
+                System.Threading.Thread.Sleep(2000);
             });
         }
     }

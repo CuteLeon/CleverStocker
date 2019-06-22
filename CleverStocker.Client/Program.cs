@@ -1,16 +1,19 @@
-﻿using CleverStocker.Utils;
-using System;
+﻿using System;
 using System.Windows.Forms;
+using CleverStocker.Utils;
 
 namespace CleverStocker.Client
 {
-    static class Program
+    /// <summary>
+    /// Program
+    /// </summary>
+    internal static class Program
     {
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             LogHelper<Application>.Debug("程序启动 ...");
 
@@ -45,6 +48,7 @@ namespace CleverStocker.Client
 
                         break;
                     }
+
                 case DialogResult.Cancel:
                 case DialogResult.Abort:
                 case DialogResult.Retry:
@@ -55,6 +59,7 @@ namespace CleverStocker.Client
 
                         break;
                     }
+
                 default:
                     break;
             }
