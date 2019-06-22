@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.TestButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // TestButton
+            // 
+            this.TestButton.Location = new System.Drawing.Point(198, 130);
+            this.TestButton.Name = "TestButton";
+            this.TestButton.Size = new System.Drawing.Size(188, 62);
+            this.TestButton.TabIndex = 0;
+            this.TestButton.Text = "测试";
+            this.TestButton.UseVisualStyleBackColor = true;
+            this.TestButton.Click += new System.EventHandler(this.TestButton_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TestButton);
             this.DoubleBuffered = true;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -43,5 +55,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button TestButton;
     }
 }

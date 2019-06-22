@@ -33,6 +33,7 @@
     <CodeAnalysisRuleSet>..\cleverstocker.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.11.7.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XueQiuStockSpider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\CleverStocker.ruleset">
@@ -54,6 +56,20 @@
   <ItemGroup>
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
+      <Project>{55376275-2E0E-400C-A06E-E36DD181D763}</Project>
+      <Name>CleverStocker.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Services\CleverStocker.Services.csproj">
+      <Project>{886675D5-9316-4561-80B8-9325681ABD95}</Project>
+      <Name>CleverStocker.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Spider\CleverStocker.Spider.csproj">
+      <Project>{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}</Project>
+      <Name>CleverStocker.Spider</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
