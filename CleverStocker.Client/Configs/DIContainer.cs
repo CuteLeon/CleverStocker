@@ -78,7 +78,16 @@ namespace CleverStocker.Client.Configs
         /// </summary>
         private static void RegistServices()
         {
-            DIContainerBuilder.RegisterType<XueQiuStockSpider>().As<IStockerService>();
+            /* 生命周期
+             * IRegistrationBuilder.SingleInstance();   单实例
+             * IRegistrationBuilder.InstancePerLifetimeScope(); 每个 LifetimeScope 内唯一
+             * IRegistrationBuilder.InstancePerDependency();    每次获取时新建
+             * IRegistrationBuilder.InstancePerMatchingLifetimeScope(); 多个标记匹配的 LifetimeScope 内唯一
+             * IRegistrationBuilder.InstancePerOwned<T>();  对每个拥有者类型唯一
+             */
+
+            LogHelper<DefaultLogSource>.Debug("开始注册服务 ...");
+            DIContainerBuilder.RegisterType<XueQiuStockSpider>().As<IStockerService>().InstancePerDependency();
         }
     }
 }

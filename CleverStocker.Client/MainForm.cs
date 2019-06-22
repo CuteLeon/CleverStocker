@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.Configs;
 using CleverStocker.Services;
@@ -25,6 +26,7 @@ namespace CleverStocker.Client
         {
             var stockService = DIContainer.Resolve<IStockerService>();
             var stocks = stockService.GetStocks();
+            MessageBox.Show(stocks.Count().ToString());
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Spider.HtmlAgilityPack;
@@ -16,7 +17,7 @@ namespace CleverStocker.Spider.XueQiu
         /// <returns></returns>
         public IEnumerable<Stock> GetStocks()
         {
-            throw new System.NotImplementedException();
+            return Enumerable.Range(0, 10).Select(index => new Stock());
         }
     }
 }
