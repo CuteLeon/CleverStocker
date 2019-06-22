@@ -60,6 +60,7 @@
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Configs\DIContainer.cs" />
+    <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="LaunchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,9 +149,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Icon.ico" />
   </ItemGroup>

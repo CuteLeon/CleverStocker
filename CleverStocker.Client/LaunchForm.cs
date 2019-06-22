@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Client.Configs;
+using CleverStocker.Client.Extensions;
 using CleverStocker.Utils;
 
 namespace CleverStocker.Client
@@ -23,6 +24,9 @@ namespace CleverStocker.Client
             this.InitializeComponent();
             this.Icon = AppResource.Icon;
             this.Text = $"{Application.ProductName} 正在启动 ...";
+
+            this.SetWindowShadow(true);
+            this.AllowMouseDrag();
 
             LogHelper<LaunchForm>.Debug("启动窗口构造完成");
         }
@@ -54,6 +58,7 @@ namespace CleverStocker.Client
             }
             finally
             {
+                this.SetWindowShadow(false);
                 this.DialogResult = dialogResult;
             }
         }
