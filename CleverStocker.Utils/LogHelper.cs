@@ -1,5 +1,5 @@
-﻿using NLog;
-using System;
+﻿using System;
+using NLog;
 
 namespace CleverStocker.Utils
 {
@@ -13,7 +13,7 @@ namespace CleverStocker.Utils
         /// <summary>
         /// 日志记录器
         /// </summary>
-        private readonly static ILogger Logger = null;
+        private static readonly ILogger Logger = null;
 
         /// <summary>
         /// 静态构造函数
@@ -26,7 +26,7 @@ namespace CleverStocker.Utils
         #region 日志开关
 
         /// <summary>
-        /// Trace 日志开关
+        /// Gets a value indicating whether trace 日志开关
         /// </summary>
         public static bool IsTraceEnabled
         {
@@ -34,7 +34,7 @@ namespace CleverStocker.Utils
         }
 
         /// <summary>
-        /// Debug 日志开关
+        /// Gets a value indicating whether debug 日志开关
         /// </summary>
         public static bool IsDebugEnabled
         {
@@ -42,7 +42,7 @@ namespace CleverStocker.Utils
         }
 
         /// <summary>
-        /// Info 日志开关
+        /// Gets a value indicating whether info 日志开关
         /// </summary>
         public static bool IsInfoEnabled
         {
@@ -50,7 +50,7 @@ namespace CleverStocker.Utils
         }
 
         /// <summary>
-        /// Warn 日志开关
+        /// Gets a value indicating whether warn 日志开关
         /// </summary>
         public static bool IsWarnEnabled
         {
@@ -58,7 +58,7 @@ namespace CleverStocker.Utils
         }
 
         /// <summary>
-        /// Error 日志开关
+        /// Gets a value indicating whether error 日志开关
         /// </summary>
         public static bool IsErrorEnabled
         {
@@ -66,7 +66,7 @@ namespace CleverStocker.Utils
         }
 
         /// <summary>
-        /// Fatal 日志开关
+        /// Gets a value indicating whether fatal 日志开关
         /// </summary>
         public static bool IsFatalEnabled
         {

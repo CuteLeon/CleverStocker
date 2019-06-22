@@ -17,20 +17,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Build\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>CleverStocker.Services.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\cleverstocker.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>CleverStocker.Services.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>..\cleverstocker.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -48,7 +48,9 @@
     <Compile Include="StockerServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="CleverStocker.Services.ruleset" />
+    <None Include="..\CleverStocker.ruleset">
+      <Link>CleverStocker.ruleset</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
