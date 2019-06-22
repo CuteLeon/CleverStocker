@@ -6,7 +6,9 @@ namespace CleverStocker.Utils
     /// <summary>
     /// 日志助手
     /// </summary>
-    public static class LogHelper<T>
+    /// <typeparam name="TSource">日志来源类型</typeparam>
+    /// <remarks>自动为每个泛型类型创建不同的单实例懒加载类型</remarks>
+    public static class LogHelper<TSource>
     {
         /// <summary>
         /// 日志记录器
@@ -16,10 +18,9 @@ namespace CleverStocker.Utils
         /// <summary>
         /// 静态构造函数
         /// </summary>
-        /// <remarks>泛型类型自动为每个类型单实例懒加载</remarks>
         static LogHelper()
         {
-            Logger = new LogFactory().GetLogger(typeof(T).FullName);
+            Logger = new LogFactory().GetLogger(typeof(TSource).FullName);
         }
 
         #region 日志开关
