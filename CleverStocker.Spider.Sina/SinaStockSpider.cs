@@ -4,7 +4,7 @@ using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Spider.HtmlAgilityPack;
 
-namespace CleverStocker.Spider.XueQiu
+namespace CleverStocker.Spider.Sina
 {
     /// <summary>
     /// 新浪股票爬虫

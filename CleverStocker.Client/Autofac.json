@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "type": "CleverStocker.Spider.XueQiu.XueQiuStockSpider, CleverStocker.Spider.XueQiu",
+      "type": "CleverStocker.Spider.Sina.SinaStockSpider, CleverStocker.Spider.Sina",
       "services": [
         {
           "type": "CleverStocker.Services.IStockerService, CleverStocker.Services"
