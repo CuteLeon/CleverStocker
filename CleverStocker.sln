@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider.XueQiu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Model", "CleverStocker.Model\CleverStocker.Model.csproj", "{55376275-2E0E-400C-A06E-E36DD181D763}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider.Sina", "CleverStocker.Spider.Sina\CleverStocker.Spider.Sina.csproj", "{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{55376275-2E0E-400C-A06E-E36DD181D763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55376275-2E0E-400C-A06E-E36DD181D763}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55376275-2E0E-400C-A06E-E36DD181D763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
