@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CleverStocker.ruleset" />
+    <None Include="Sina-API.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
