@@ -3,13 +3,14 @@ using System.Windows.Forms;
 using CleverStocker.Client.Configs;
 using CleverStocker.Model;
 using CleverStocker.Services;
+using DarkUI.Forms;
 
 namespace CleverStocker.Client
 {
     /// <summary>
     /// 主窗口
     /// </summary>
-    public partial class MainForm : Form
+    public partial class MainForm : DarkForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
