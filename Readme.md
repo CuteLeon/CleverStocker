@@ -2,6 +2,10 @@
 
 ![](./CleverStocker.Client/Resources/bull.png)
 
-</div>
-
 # Clever Stocker
+
+## UML
+
+![](./Documents/UML.png)
+
+</div>
