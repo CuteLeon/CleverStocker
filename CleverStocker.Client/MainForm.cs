@@ -26,8 +26,8 @@ namespace CleverStocker.Client
         {
             var stockService = DIContainer.Resolve<IStockerSpiderService>();
             var stocks = stockService.GetStocks();
-            // MessageBox.Show(stocks.Count().ToString());
 
+            // MessageBox.Show(stocks.Count().ToString());
             var service = new StockerService();
             service.AddStock(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
         }

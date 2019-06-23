@@ -18,14 +18,16 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 代码
         /// </summary>
-        [Key, Column(Order = 0)]
+        [Key]
+        [Column(Order = 0)]
         [Required]
         public string Code { get; set; }
 
         /// <summary>
         /// Gets or sets 市场
         /// </summary>
-        [Key, Column(Order = 1)]
+        [Key]
+        [Column(Order = 1)]
         [Required]
         public string Market { get; set; }
 
