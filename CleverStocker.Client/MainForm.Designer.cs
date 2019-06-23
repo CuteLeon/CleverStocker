@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TestButton = new System.Windows.Forms.Button();
+            this.TestButton = new DarkUI.Controls.DarkButton();
             this.SuspendLayout();
             // 
             // TestButton
             // 
-            this.TestButton.Location = new System.Drawing.Point(198, 130);
+            this.TestButton.Location = new System.Drawing.Point(172, 156);
             this.TestButton.Name = "TestButton";
-            this.TestButton.Size = new System.Drawing.Size(188, 62);
-            this.TestButton.TabIndex = 0;
+            this.TestButton.Padding = new System.Windows.Forms.Padding(5);
+            this.TestButton.Size = new System.Drawing.Size(246, 67);
+            this.TestButton.TabIndex = 1;
             this.TestButton.Text = "测试";
-            this.TestButton.UseVisualStyleBackColor = true;
             this.TestButton.Click += new System.EventHandler(this.TestButton_Click);
             // 
             // MainForm
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button TestButton;
+        private DarkUI.Controls.DarkButton TestButton;
     }
 }
