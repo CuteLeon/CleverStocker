@@ -17,8 +17,10 @@ namespace CleverStocker.Client
         {
             LogHelper<Application>.Debug("程序启动 ...");
 
+#if !DEBUG
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             Application.ThreadException += Application_ThreadException;
+#endif
             Application.ApplicationExit += Application_ApplicationExit;
 
             Application.EnableVisualStyles();
@@ -83,6 +85,12 @@ namespace CleverStocker.Client
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
             LogHelper<Exception>.ErrorException(e.Exception, $"应用遇到未捕捉异常：");
+
+            MessageBox.Show(
+                $"应用遇到未捕捉异常：\n{e.Exception.Message}",
+                "应用遇到未捕捉异常",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
 
         /// <summary>
@@ -93,6 +101,12 @@ namespace CleverStocker.Client
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             LogHelper<Exception>.ErrorException(e.ExceptionObject as Exception, $"当前应用域遇到未捕捉异常 {(e.IsTerminating ? "(程序即将退出)" : string.Empty)}：");
+
+            MessageBox.Show(
+                $"当前应用域遇到未捕捉异常：\n{(e.ExceptionObject as Exception)?.Message}",
+                "当前应用域遇到未捕捉异常",
+                MessageBoxButtons.OK,
+                e.IsTerminating ? MessageBoxIcon.Error : MessageBoxIcon.Warning);
         }
     }
 }

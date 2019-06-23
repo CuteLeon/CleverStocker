@@ -9,6 +9,7 @@ namespace CleverStocker.Client.Configs
     /// <summary>
     /// 依赖注入容器
     /// </summary>
+    /// <see cref="https://autofac.readthedocs.io/en/latest/configuration/xml.html#quick-start"/>
     public static class DIContainer
     {
         /// <summary>

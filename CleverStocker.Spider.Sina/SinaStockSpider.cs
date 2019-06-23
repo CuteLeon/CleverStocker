@@ -9,7 +9,7 @@ namespace CleverStocker.Spider.Sina
     /// <summary>
     /// 新浪股票爬虫
     /// </summary>
-    public class SinaStockSpider : HAPSpiderClient, IStockerService
+    public class SinaStockSpider : HAPSpiderClient, IStockerSpiderService
     {
         /// <summary>
         /// 获取股票集合

@@ -4,7 +4,7 @@ using CleverStocker.Model;
 namespace CleverStocker.Services
 {
     /// <summary>
-    /// 服务接口
+    /// 股票接口
     /// </summary>
     public interface IStockerService
     {
@@ -13,5 +13,11 @@ namespace CleverStocker.Services
         /// </summary>
         /// <returns></returns>
         IEnumerable<Stock> GetStocks();
+
+        /// <summary>
+        /// 添加股票
+        /// </summary>
+        /// <param name="stock"></param>
+        void AddStock(Stock stock);
     }
 }

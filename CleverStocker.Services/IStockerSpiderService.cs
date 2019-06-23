@@ -4,14 +4,14 @@ using CleverStocker.Model;
 namespace CleverStocker.Services
 {
     /// <summary>
-    /// 服务抽象基类
+    /// 服务接口
     /// </summary>
-    public abstract class StockerServiceBase : IStockerService
+    public interface IStockerSpiderService
     {
         /// <summary>
         /// 获取股票集合
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<Stock> GetStocks();
+        IEnumerable<Stock> GetStocks();
     }
 }

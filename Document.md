@@ -10,5 +10,5 @@
 	..\Build\Release
 
 注册服务
-	Autofac.json> 新建 components 块> 配置 type 和 services
+	Autofac.json> 新建 components 内的 {} 块> 配置 type 和 services
 	类型跨多个项目时，type 属性需要指定程序集

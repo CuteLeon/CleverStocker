@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.Configs;
+using CleverStocker.Model;
 using CleverStocker.Services;
 
 namespace CleverStocker.Client
@@ -24,9 +24,12 @@ namespace CleverStocker.Client
 
         private void TestButton_Click(object sender, EventArgs e)
         {
-            var stockService = DIContainer.Resolve<IStockerService>();
+            var stockService = DIContainer.Resolve<IStockerSpiderService>();
             var stocks = stockService.GetStocks();
-            MessageBox.Show(stocks.Count().ToString());
+            // MessageBox.Show(stocks.Count().ToString());
+
+            var service = new StockerService();
+            service.AddStock(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
         }
     }
 }
