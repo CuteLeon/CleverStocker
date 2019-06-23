@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.Configs;
 using CleverStocker.Model;
@@ -30,7 +31,8 @@ namespace CleverStocker.Client
 
             // MessageBox.Show(stocks.Count().ToString());
             var service = new StockerService();
-            service.AddStock(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
+            var count = service.Transact<Func<int>, int>(() => service.AsQueryable().Count());
+            service.Add(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
         }
     }
 }
