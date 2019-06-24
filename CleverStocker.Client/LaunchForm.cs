@@ -112,7 +112,7 @@ namespace CleverStocker.Client
         /// </summary>
         private async Task LaunchApplication()
             => await Task.WhenAll(
-                    Task.Delay(2000),
+                    Task.Delay(1000),
                     Task.Factory.StartNew(() =>
                         {
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
