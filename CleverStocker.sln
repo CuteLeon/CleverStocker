@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider.Sina",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.DataAccess", "CleverStocker.DataAccess\CleverStocker.DataAccess.csproj", "{3CDFA8C3-B7FA-4303-9009-6DC48E1F0060}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.UtilsTests", "CleverStocker.UtilsTests\CleverStocker.UtilsTests.csproj", "{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,9 +67,16 @@ Global
 		{3CDFA8C3-B7FA-4303-9009-6DC48E1F0060}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CDFA8C3-B7FA-4303-9009-6DC48E1F0060}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CDFA8C3-B7FA-4303-9009-6DC48E1F0060}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {481A7383-9379-475F-9FD7-D8931C66D53D}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Autofac;
 using Autofac.Builder;
 using Autofac.Configuration;
@@ -12,17 +13,6 @@ namespace CleverStocker.Utils
     /// <see cref="https://autofac.readthedocs.io/en/latest/configuration/xml.html#quick-start"/>
     public static class DIContainerHelper
     {
-        #region 开始
-
-        /// <summary>
-        /// Initializes static members of the <see cref="DIContainerHelper"/> class.
-        /// </summary>
-        static DIContainerHelper()
-        {
-            RegistServicesFromConfig();
-        }
-        #endregion
-
         /// <summary>
         /// 生命周期
         /// </summary>
@@ -95,7 +85,7 @@ namespace CleverStocker.Utils
             LifetimeScopes scopes = LifetimeScopes.PerDependency,
             params Type[] abstractTypes)
         {
-            var register = Builder.RegisterType<TImplementer>().AsSelf();
+            var register = Builder.RegisterType<TImplementer>();
 
             if (abstractTypes.Length > 0)
             {
@@ -118,7 +108,7 @@ namespace CleverStocker.Utils
             LifetimeScopes scopes,
             string name = "")
         {
-            var register = Builder.RegisterGeneric(implemeterType).AsSelf();
+            var register = Builder.RegisterGeneric(implemeterType);
 
             if (string.IsNullOrEmpty(name))
             {
@@ -138,11 +128,9 @@ namespace CleverStocker.Utils
         /// <typeparam name="TInstance">实例类型</typeparam>
         /// <typeparam name="TAbstract">接口类型</typeparam>
         /// <param name="instance"></param>
-        /// <param name="scopes">生命周期</param>
         /// <param name="name">名称</param>
         public static void RegisteInstanceAsType<TInstance, TAbstract>(
             TInstance instance,
-            LifetimeScopes scopes = LifetimeScopes.PerDependency,
             string name = "")
             where TInstance : class
         {
@@ -150,14 +138,12 @@ namespace CleverStocker.Utils
 
             if (string.IsNullOrEmpty(name))
             {
-                register = register.As<TAbstract>();
+                _ = register.As<TAbstract>();
             }
             else
             {
-                register = register.Named<TAbstract>(name);
+                _ = register.Named<TAbstract>(name);
             }
-
-            SetLifetimeScope(register, scopes);
         }
 
         /// <summary>
@@ -165,22 +151,18 @@ namespace CleverStocker.Utils
         /// </summary>
         /// <typeparam name="TInstance">实例类型</typeparam>
         /// <param name="instance"></param>
-        /// <param name="scopes">生命周期</param>
         /// <param name="abstractTypes">抽象类型</param>
         public static void RegisteInstanceAsTypes<TInstance>(
             TInstance instance,
-            LifetimeScopes scopes = LifetimeScopes.PerDependency,
             params Type[] abstractTypes)
             where TInstance : class
         {
-            var register = Builder.RegisterInstance(instance).AsSelf();
+            var register = Builder.RegisterInstance(instance);
 
             if (abstractTypes.Length > 0)
             {
-                register = register.As(abstractTypes);
+                _ = register.As(abstractTypes);
             }
-
-            SetLifetimeScope(register, scopes);
         }
         #endregion
 
@@ -206,17 +188,19 @@ namespace CleverStocker.Utils
         /// 是否注册服务类型
         /// </summary>
         /// <typeparam name="TService">服务类型</typeparam>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static bool IsRegisteredWithName<TService>()
-            => Container.IsRegistered<TService>();
+        public static bool IsRegisteredWithName<TService>(string name)
+            => Container.IsRegisteredWithName<TService>(name);
 
         /// <summary>
         /// 是否注册服务类型
         /// </summary>
         /// <param name="serviceType">服务类型</param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static bool IsRegisteredWithName(Type serviceType)
-            => Container.IsRegistered(serviceType);
+        public static bool IsRegisteredWithName(Type serviceType, string name)
+            => Container.IsRegisteredWithName(name, serviceType);
         #endregion
 
         #region 判决
@@ -228,7 +212,17 @@ namespace CleverStocker.Utils
         /// <returns></returns>
         public static TService Resolve<TService>()
         {
-            TService service = default;
+            return (TService)Resolve(typeof(TService));
+        }
+
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <param name="serviceType"></param>
+        /// <returns></returns>
+        public static object Resolve(Type serviceType)
+        {
+            object service = default;
 
             try
             {
@@ -236,17 +230,17 @@ namespace CleverStocker.Utils
 
                 lock (Container)
                 {
-                    result = Container.TryResolve(out service);
+                    result = Container.TryResolve(serviceType, out service);
                 }
 
                 if (!result)
                 {
-                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{typeof(TService).FullName}");
+                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{serviceType.FullName}");
                 }
             }
             catch (Exception ex)
             {
-                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {typeof(TService).FullName} 失败：");
+                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {serviceType.FullName} 失败：");
             }
 
             return service;
@@ -260,6 +254,17 @@ namespace CleverStocker.Utils
         /// <returns></returns>
         public static TService Resolve<TService>(string name)
         {
+            return (TService)Resolve(typeof(TService), name);
+        }
+
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <param name="serviceType"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static object Resolve(Type serviceType, string name)
+        {
             object service = default;
 
             try
@@ -268,20 +273,70 @@ namespace CleverStocker.Utils
 
                 lock (Container)
                 {
-                    result = Container.TryResolveNamed(name, typeof(TService), out service);
+                    result = Container.TryResolveNamed(name, serviceType, out service);
                 }
 
                 if (!result)
                 {
-                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{typeof(TService).FullName}");
+                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{serviceType.FullName}");
                 }
             }
             catch (Exception ex)
             {
-                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {typeof(TService).FullName} 失败：");
+                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {serviceType.FullName} 失败：");
             }
 
-            return (TService)service;
+            return service;
+        }
+        #endregion
+
+        #region 建造
+
+        /// <summary>
+        /// 创建容器
+        /// </summary>
+        public static void Build()
+        {
+            Container = Builder.Build();
+        }
+
+        /// <summary>
+        /// 清空
+        /// </summary>
+        public static void Clear()
+        {
+            try
+            {
+                Builder = new ContainerBuilder();
+                Container?.Disposer?.Dispose();
+                Container?.Dispose();
+            }
+            catch
+            {
+            }
+        }
+
+        /// <summary>
+        /// 从外部配置注册服务
+        /// </summary>
+        public static void RegistServicesFromConfig()
+        {
+            const string jsonFileName = "Autofac.json";
+
+            if (File.Exists(jsonFileName))
+            {
+                LogHelper<DefaultLogSource>.Debug("开始从外部配置注册服务 ...");
+                var config = new ConfigurationBuilder()
+                    .AddJsonFile(jsonFileName);
+                var configRoot = config.Build();
+                var module = new ConfigurationModule(configRoot);
+                Builder.RegisterModule(module);
+                LogHelper<DefaultLogSource>.Debug("从外部配置注册服务完成");
+            }
+            else
+            {
+                LogHelper<DefaultLogSource>.Warn($"不存在 Autofac 配置文件：{jsonFileName}");
+            }
         }
         #endregion
 
@@ -324,38 +379,5 @@ namespace CleverStocker.Utils
 
             return registration;
         }
-
-        #region 建造
-
-        /// <summary>
-        /// 创建容器
-        /// </summary>
-        public static void Build()
-        {
-            Container = Builder.Build();
-        }
-
-        /// <summary>
-        /// 从外部配置注册服务
-        /// </summary>
-        private static void RegistServicesFromConfig()
-        {
-            /* 生命周期
-             * builder.RegisterType<XueQiuStockSpider>().As<IStockerService>().InstancePerDependency();
-             *     IRegistrationBuilder.SingleInstance();   // 单实例
-             *     IRegistrationBuilder.InstancePerLifetimeScope(); // 每个生命周期内唯一
-             *     IRegistrationBuilder.InstancePerDependency();    // 每次获取时新建
-             *     IRegistrationBuilder.InstancePerOwned<T>();  // 对每个拥有者类型唯一
-             */
-
-            LogHelper<DefaultLogSource>.Debug("开始从外部配置注册服务 ...");
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("Autofac.json");
-            var configRoot = config.Build();
-            var module = new ConfigurationModule(configRoot);
-            Builder.RegisterModule(module);
-            LogHelper<DefaultLogSource>.Debug("从外部配置注册服务完成");
-        }
-        #endregion
     }
 }

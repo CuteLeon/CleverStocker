@@ -116,6 +116,7 @@ namespace CleverStocker.Client
                     Task.Factory.StartNew(() =>
                         {
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
+                            DIContainerHelper.RegistServicesFromConfig();
                             DIContainerHelper.Build();
                         })
                 );
