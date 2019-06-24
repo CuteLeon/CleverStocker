@@ -82,9 +82,9 @@ namespace CleverStocker.Utils
             /* 生命周期
              * builder.RegisterType<XueQiuStockSpider>().As<IStockerService>().InstancePerDependency();
              *     IRegistrationBuilder.SingleInstance();   // 单实例
-             *     IRegistrationBuilder.InstancePerLifetimeScope(); // 每个 LifetimeScope 内唯一
+             *     IRegistrationBuilder.InstancePerLifetimeScope(); // 每个生命周期内唯一
              *     IRegistrationBuilder.InstancePerDependency();    // 每次获取时新建
-             *     IRegistrationBuilder.InstancePerMatchingLifetimeScope(); // 多个标记匹配的 LifetimeScope 内唯一
+             *     IRegistrationBuilder.InstancePerMatchingLifetimeScope(); // 多个标记匹配的生命周期内唯一
              *     IRegistrationBuilder.InstancePerOwned<T>();  // 对每个拥有者类型唯一
              */
 
