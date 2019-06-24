@@ -12,6 +12,17 @@ namespace CleverStocker.Utils
     /// <see cref="https://autofac.readthedocs.io/en/latest/configuration/xml.html#quick-start"/>
     public static class DIContainerHelper
     {
+        #region 开始
+
+        /// <summary>
+        /// Initializes static members of the <see cref="DIContainerHelper"/> class.
+        /// </summary>
+        static DIContainerHelper()
+        {
+            RegistServicesFromConfig();
+        }
+        #endregion
+
         /// <summary>
         /// 生命周期
         /// </summary>
@@ -32,17 +43,6 @@ namespace CleverStocker.Utils
             /// </summary>
             SingleInstance = 2,
         }
-
-        #region 开始
-
-        /// <summary>
-        /// Initializes static members of the <see cref="DIContainerHelper"/> class.
-        /// </summary>
-        static DIContainerHelper()
-        {
-            RegistServicesFromConfig();
-        }
-        #endregion
 
         #region 属性
 
@@ -182,6 +182,108 @@ namespace CleverStocker.Utils
 
             SetLifetimeScope(register, scopes);
         }
+        #endregion
+
+        #region 判断
+
+        /// <summary>
+        /// 是否注册服务类型
+        /// </summary>
+        /// <typeparam name="TService">服务类型</typeparam>
+        /// <returns></returns>
+        public static bool IsRegistered<TService>()
+            => Container.IsRegistered<TService>();
+
+        /// <summary>
+        /// 是否注册服务类型
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <returns></returns>
+        public static bool IsRegistered(Type serviceType)
+            => Container.IsRegistered(serviceType);
+
+        /// <summary>
+        /// 是否注册服务类型
+        /// </summary>
+        /// <typeparam name="TService">服务类型</typeparam>
+        /// <returns></returns>
+        public static bool IsRegisteredWithName<TService>()
+            => Container.IsRegistered<TService>();
+
+        /// <summary>
+        /// 是否注册服务类型
+        /// </summary>
+        /// <param name="serviceType">服务类型</param>
+        /// <returns></returns>
+        public static bool IsRegisteredWithName(Type serviceType)
+            => Container.IsRegistered(serviceType);
+        #endregion
+
+        #region 判决
+
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <typeparam name="TService">服务类型</typeparam>
+        /// <returns></returns>
+        public static TService Resolve<TService>()
+        {
+            TService service = default;
+
+            try
+            {
+                bool result = false;
+
+                lock (Container)
+                {
+                    result = Container.TryResolve(out service);
+                }
+
+                if (!result)
+                {
+                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{typeof(TService).FullName}");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {typeof(TService).FullName} 失败：");
+            }
+
+            return service;
+        }
+
+        /// <summary>
+        /// 获取服务
+        /// </summary>
+        /// <typeparam name="TService">服务类型</typeparam>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static TService Resolve<TService>(string name)
+        {
+            object service = default;
+
+            try
+            {
+                bool result = false;
+
+                lock (Container)
+                {
+                    result = Container.TryResolveNamed(name, typeof(TService), out service);
+                }
+
+                if (!result)
+                {
+                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{typeof(TService).FullName}");
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {typeof(TService).FullName} 失败：");
+            }
+
+            return (TService)service;
+        }
+        #endregion
 
         /// <summary>
         /// 注册生命周期
@@ -222,44 +324,6 @@ namespace CleverStocker.Utils
 
             return registration;
         }
-        #endregion
-
-        #region 判决
-
-        // TODO: 实现 DI 容器的判决部分
-        // TODO: 测试 DI 容器的注册和判决
-
-        /// <summary>
-        /// 获取服务
-        /// </summary>
-        /// <typeparam name="TService">服务类型</typeparam>
-        /// <returns></returns>
-        public static TService Resolve<TService>()
-        {
-            TService service = default;
-
-            try
-            {
-                bool result = false;
-
-                lock (Container)
-                {
-                    result = Container.TryResolve(out service);
-                }
-
-                if (!result)
-                {
-                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{typeof(TService).FullName}");
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {typeof(TService).FullName} 失败：");
-            }
-
-            return service;
-        }
-        #endregion
 
         #region 建造
 
