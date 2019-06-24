@@ -12,7 +12,7 @@ namespace CleverStocker.DataAccess
         /// Initializes a new instance of the <see cref="DBContext"/> class.
         /// </summary>
         public DBContext()
-            : base("DBConnect")
+            : base("CleverStockerConnect")
         {
         }
 
