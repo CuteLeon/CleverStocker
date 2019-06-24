@@ -24,7 +24,7 @@ namespace CleverStocker.Utils.Tests
     public class DIContainerHelperTests
     {
         // 多个单元测试在同一个命名空间中同时访问静态类将导致冲突，lock 保证线程同步
-        object LockSeed = new object();
+        readonly object LockSeed = new object();
 
         [TestMethod()]
         public void RegisteTypeAsTypeTests()
