@@ -1,5 +1,5 @@
 代码规范：
-	1. 引用> 分析器> StyleCop.Analyzer
+	1. 引用> 分析器> StyleCop.Analyzer Nuget
 	2. 规则配置文件：CleverStocker.ruleset
 	3. 解决方案资源管理器：
 		3.1. 右击项目> 添加> 添加现有项> {找到 CleverStocker.ruleset 文件}> 添加为链接

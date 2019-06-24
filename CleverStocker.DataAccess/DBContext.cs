@@ -3,18 +3,21 @@ using CleverStocker.Model;
 
 namespace CleverStocker.DataAccess
 {
+    /// <summary>
+    /// 数据库交互
+    /// </summary>
     public class DBContext : DbContext
     {
         /// <summary>
-        /// 数据库交互
+        /// Initializes a new instance of the <see cref="DBContext"/> class.
         /// </summary>
-        public DBContext() :
-            base("DBConnect")
+        public DBContext()
+            : base("DBConnect")
         {
         }
 
         /// <summary>
-        /// 股票
+        /// Gets or sets 股票
         /// </summary>
         public DbSet<Stock> Stocks { get; set; }
 

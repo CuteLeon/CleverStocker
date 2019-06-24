@@ -6,6 +6,9 @@ using Microsoft.Extensions.Configuration;
 
 namespace CleverStocker.Client.Configs
 {
+    // TODO: 精修 DIContainer，迁移至 Utils
+    // TODO: 不同的服务注册到相同的接口，可以设置别名，并在具体的场景绑定别名，以在特定场景自动取到对应的服务
+
     /// <summary>
     /// 依赖注入容器
     /// </summary>

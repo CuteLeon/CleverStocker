@@ -13,15 +13,7 @@ namespace CleverStocker.Utils
         /// <summary>
         /// 日志记录器
         /// </summary>
-        private static readonly ILogger Logger = null;
-
-        /// <summary>
-        /// 静态构造函数
-        /// </summary>
-        static LogHelper()
-        {
-            Logger = new LogFactory().GetLogger(typeof(TSource).FullName);
-        }
+        private static readonly ILogger Logger = new LogFactory().GetLogger(typeof(TSource).FullName);
 
         #region 日志开关
 

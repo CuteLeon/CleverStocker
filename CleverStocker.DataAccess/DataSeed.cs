@@ -9,8 +9,14 @@ namespace CleverStocker.DataAccess
     /// </summary>
     public class DataSeed : SqliteDropCreateDatabaseWhenModelChanges<DBContext>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataSeed"/> class.
+        /// </summary>
+        /// <param name="modelBuilder"></param>
         public DataSeed(DbModelBuilder modelBuilder)
-            : base(modelBuilder) { }
+            : base(modelBuilder)
+        {
+        }
 
         /// <summary>
         /// 初始化数据库
