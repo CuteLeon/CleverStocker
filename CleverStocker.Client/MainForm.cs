@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using CleverStocker.Client.Configs;
 using CleverStocker.Model;
 using CleverStocker.Services;
+using CleverStocker.Utils;
 using DarkUI.Forms;
 
 namespace CleverStocker.Client
@@ -26,13 +26,14 @@ namespace CleverStocker.Client
 
         private void TestButton_Click(object sender, EventArgs e)
         {
-            var stockService = DIContainer.Resolve<IStockerSpiderService>();
+            var stockService = DIContainerHelper.Resolve<IStockerSpiderService>();
             var stocks = stockService.GetStocks();
 
-            // MessageBox.Show(stocks.Count().ToString());
             var service = new StockerService();
-            var count = service.Transact<Func<int>, int>(() => service.AsQueryable().Count());
             service.Add(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
+            var count = service.Transact<Func<int>, int>(() => service.AsQueryable().Count());
+
+            MessageBox.Show($"{stockService.GetType().FullName} => {stocks.Count()}\n{service.GetType().FullName} => {count}");
         }
     }
 }

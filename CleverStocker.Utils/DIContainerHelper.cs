@@ -1,19 +1,15 @@
 ﻿using System;
 using Autofac;
 using Autofac.Configuration;
-using CleverStocker.Utils;
 using Microsoft.Extensions.Configuration;
 
-namespace CleverStocker.Client.Configs
+namespace CleverStocker.Utils
 {
-    // TODO: 精修 DIContainer，迁移至 Utils
-    // TODO: 不同的服务注册到相同的接口，可以设置别名，并在具体的场景绑定别名，以在特定场景自动取到对应的服务
-
     /// <summary>
-    /// 依赖注入容器
+    /// DI 容器
     /// </summary>
     /// <see cref="https://autofac.readthedocs.io/en/latest/configuration/xml.html#quick-start"/>
-    public static class DIContainer
+    public static class DIContainerHelper
     {
         /// <summary>
         /// 依赖注入容器创建者
@@ -27,9 +23,9 @@ namespace CleverStocker.Client.Configs
         private static readonly IContainer Container = null;
 
         /// <summary>
-        /// Initializes static members of the <see cref="DIContainer"/> class.
+        /// Initializes static members of the <see cref="DIContainerHelper"/> class.
         /// </summary>
-        static DIContainer()
+        static DIContainerHelper()
         {
             LogHelper<DefaultLogSource>.Debug("创建依赖注入容器 ...");
 

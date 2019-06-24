@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CleverStocker.Client.Configs;
 using CleverStocker.Client.Extensions;
 using CleverStocker.Utils;
 
@@ -115,7 +114,7 @@ namespace CleverStocker.Client
             => await Task.Factory.StartNew(() =>
             {
                 this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
-                DIContainer.Call();
+                DIContainerHelper.Call();
 
                 System.Threading.Thread.Sleep(2000);
             });
