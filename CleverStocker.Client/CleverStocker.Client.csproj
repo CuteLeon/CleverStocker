@@ -137,9 +137,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DarkUI.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
