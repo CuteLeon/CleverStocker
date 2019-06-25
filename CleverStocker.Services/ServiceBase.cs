@@ -19,13 +19,6 @@ namespace CleverStocker.Services
     public abstract class ServiceBase<TEntity> : IService
         where TEntity : class
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceBase{TEntity}"/> class.
-        /// </summary>
-        public ServiceBase()
-        {
-        }
-
         #region 属性
 
         /// <summary>
@@ -586,7 +579,7 @@ namespace CleverStocker.Services
                 {
                     transaction.Rollback();
 
-                    return default;
+                    throw;
                 }
             }
         }
