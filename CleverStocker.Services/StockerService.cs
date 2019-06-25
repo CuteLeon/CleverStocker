@@ -3,7 +3,7 @@
 namespace CleverStocker.Services
 {
     /// <summary>
-    /// 服务抽象基类
+    /// 股票服务
     /// </summary>
     public class StockerService : ServiceBase<Stock>, IStockerService
     {
