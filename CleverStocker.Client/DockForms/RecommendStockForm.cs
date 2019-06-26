@@ -3,14 +3,14 @@
 namespace CleverStocker.Client.DockForms
 {
     /// <summary>
-    /// 自选股票窗口
+    /// 推荐股票窗口
     /// </summary>
-    public partial class SelfSelectStockForm : DockFormBase
+    public partial class RecommendStockForm : DockFormBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SelfSelectStockForm"/> class.
+        /// Initializes a new instance of the <see cref="RecommendStockForm"/> class.
         /// </summary>
-        public SelfSelectStockForm()
+        public RecommendStockForm()
             : base()
         {
             this.InitializeComponent();

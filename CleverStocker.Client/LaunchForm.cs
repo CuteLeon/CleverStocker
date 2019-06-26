@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Client.Extensions;
-using CleverStocker.Client.Interfaces;
 using CleverStocker.Utils;
 
 namespace CleverStocker.Client
@@ -131,17 +130,20 @@ namespace CleverStocker.Client
                             }
 
                             LogHelper<Application>.Debug("创建自选股票窗口 ...");
-                            this.RegisterDockFormInstance<SelfSelectStockForm>(mainForm);
+                            this.RegisterSingleDockFormInstance<SelfSelectStockForm>(mainForm);
+
+                            LogHelper<Application>.Debug("创建推荐股票窗口 ...");
+                            this.RegisterSingleDockFormInstance<RecommendStockForm>(mainForm);
 
                             DIContainerHelper.Build();
                         }));
 
         /// <summary>
-        /// 注册Dock窗口实例
+        /// 注册单实例停靠窗口实例
         /// </summary>
-        /// <typeparam name="TDockForm">Dock窗口类型</typeparam>
+        /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
         /// <param name="mainForm"></param>
-        private void RegisterDockFormInstance<TDockForm>(MainForm mainForm)
+        private void RegisterSingleDockFormInstance<TDockForm>(MainForm mainForm)
             where TDockForm : DockFormBase
         {
             TDockForm instance = null;

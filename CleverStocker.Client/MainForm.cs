@@ -175,6 +175,7 @@ namespace CleverStocker.Client
         {
             // TODO: 读取文件以尝试恢复布局
             DIContainerHelper.Resolve<SelfSelectStockForm>().Show(this.MainDockPanel);
+            DIContainerHelper.Resolve<RecommendStockForm>().Show(this.MainDockPanel.Panes[0], null);
         }
         #endregion
 
