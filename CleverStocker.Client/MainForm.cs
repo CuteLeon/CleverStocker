@@ -49,13 +49,15 @@ namespace CleverStocker.Client
         private void TestToolItem_Click(object sender, EventArgs e)
         {
             var stockService = DIContainerHelper.Resolve<IStockerSpiderService>();
-            var stocks = stockService.GetStocks();
+            var stock = stockService.GetStock(Markets.ShangHai, "600086");
 
+            /*
             var service = new StockerService();
             service.Add(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
             var count = service.Transact<Func<int>, int>(() => service.AsQueryable().Count());
             var test = service.AsQueryable().Where(s => s.Market == "sz").ToArray();
             MessageBox.Show($"{stockService.GetType().FullName} => {stocks.Count()}\n{service.GetType().FullName} => {count}");
+             */
         }
 
         #region 主题

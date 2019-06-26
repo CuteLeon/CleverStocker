@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Utils", "Clev
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider", "CleverStocker.Spider\CleverStocker.Spider.csproj", "{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider.XueQiu", "CleverStocker.Spider.XueQiu\CleverStocker.Spider.XueQiu.csproj", "{F7167E9E-8D97-43C0-9913-A75B570E4A6D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Model", "CleverStocker.Model\CleverStocker.Model.csproj", "{55376275-2E0E-400C-A06E-E36DD181D763}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider.Sina", "CleverStocker.Spider.Sina\CleverStocker.Spider.Sina.csproj", "{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}"
@@ -53,10 +51,6 @@ Global
 		{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7167E9E-8D97-43C0-9913-A75B570E4A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7167E9E-8D97-43C0-9913-A75B570E4A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7167E9E-8D97-43C0-9913-A75B570E4A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7167E9E-8D97-43C0-9913-A75B570E4A6D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55376275-2E0E-400C-A06E-E36DD181D763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55376275-2E0E-400C-A06E-E36DD181D763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55376275-2E0E-400C-A06E-E36DD181D763}.Release|Any CPU.ActiveCfg = Release|Any CPU

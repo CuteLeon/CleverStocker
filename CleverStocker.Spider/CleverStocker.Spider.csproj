@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SpiderClient\SpiderClientGenericBase.cs" />
-    <Compile Include="SpiderClient\ISpiderClientGeneric.cs" />
+    <Compile Include="SpiderClients\SpiderClient.cs" />
+    <Compile Include="SpiderClients\SpiderClientBase.cs" />
+    <Compile Include="SpiderClients\ISpiderClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="HtmlAgilityPack\HAPSpiderClient.cs" />
     <Compile Include="SpiderClientHelper.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -57,6 +57,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Common\CleverStocker.Common.csproj">
+      <Project>{199F6003-92B5-4726-8E80-6A470D8C7F58}</Project>
+      <Name>CleverStocker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CleverStocker.DataAccess\CleverStocker.DataAccess.csproj">
       <Project>{3cdfa8c3-b7fa-4303-9009-6dc48e1f0060}</Project>
       <Name>CleverStocker.DataAccess</Name>

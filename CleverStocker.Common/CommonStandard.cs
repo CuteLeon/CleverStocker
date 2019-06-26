@@ -58,7 +58,7 @@ namespace CleverStocker.Common
                 new Dictionary<Markets, (string Code, string Name)>()
                 {
                     { Markets.ShangHai, ("sh", "上交所") },
-                    { Markets.ShangHai, ("sz", "深交所") },
+                    { Markets.ShenZhen, ("sz", "深交所") },
                 });
     }
 }
