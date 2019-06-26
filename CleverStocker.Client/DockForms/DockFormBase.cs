@@ -12,6 +12,14 @@ namespace CleverStocker.Client.DockForms
     public class DockFormBase : DockContent, IInitializable
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="DockFormBase"/> class.
+        /// </summary>
+        public DockFormBase()
+            : base()
+        {
+        }
+
+        /// <summary>
         /// Gets or sets 标题
         /// </summary>
         public override string Text

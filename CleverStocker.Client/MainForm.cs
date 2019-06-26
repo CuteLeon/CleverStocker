@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
@@ -99,6 +100,7 @@ namespace CleverStocker.Client
             // 框架限制：切换主题需要关闭所有的 Pane (窗格)
             if (this.MainDockPanel.Panes.Count > 0)
             {
+                // TODO: 立即保存当前布局到文件，然后关闭所有 Pane ，再从文件读入以恢复布局，即可解决此限制
                 MessageBox.Show("请先关闭工作区内的所有窗格后再尝试切换主题。");
                 return;
             }
@@ -173,6 +175,39 @@ namespace CleverStocker.Client
         {
             // TODO: 读取文件以尝试恢复布局
             DIContainerHelper.Resolve<SelfSelectStockForm>().Show(this.MainDockPanel);
+        }
+        #endregion
+
+        #region 视图菜单
+
+        /// <summary>
+        /// 注册停靠窗口到视图菜单
+        /// </summary>
+        /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
+        /// <param name="text"></param>
+        /// <param name="image"></param>
+        public void RegisterDockFormToViewMenu<TDockForm>(string text, Image image)
+            where TDockForm : DockFormBase
+        {
+            var menuItem = this.ViewMenuItem.DropDownItems.Add(text, image);
+            menuItem.Tag = typeof(TDockForm);
+            menuItem.Click += this.ViewsMenuItem_Click;
+        }
+
+        /// <summary>
+        /// 点击显示对应的窗口
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ViewsMenuItem_Click(object sender, EventArgs e)
+        {
+            Type viewType = (sender as ToolStripItem)?.Tag as Type;
+            if (!(DIContainerHelper.Resolve(viewType) is DockFormBase dockForm))
+            {
+                throw new NullReferenceException();
+            }
+
+            dockForm.Activate();
         }
         #endregion
     }

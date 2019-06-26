@@ -44,6 +44,7 @@
             this.StateStatusItem = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgressStatusItem = new System.Windows.Forms.ToolStripProgressBar();
             this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTopMenuStrip.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             this.MainTopMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.StartMenuItem,
+            this.ViewMenuItem,
             this.ThemeMenuItem});
             this.MainTopMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MainTopMenuStrip.Name = "MainTopMenuStrip";
@@ -165,6 +167,12 @@
             this.MainDockPanel.Size = new System.Drawing.Size(800, 378);
             this.MainDockPanel.TabIndex = 4;
             // 
+            // ViewMenuItem
+            // 
+            this.ViewMenuItem.Name = "ViewMenuItem";
+            this.ViewMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.ViewMenuItem.Text = "视图";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -207,5 +215,6 @@
         private System.Windows.Forms.ToolStripMenuItem DarkThemeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ClassicsThemeMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem ViewMenuItem;
     }
 }

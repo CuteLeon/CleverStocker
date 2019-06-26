@@ -123,23 +123,38 @@ namespace CleverStocker.Client
                             DIContainerHelper.RegistServicesFromConfig();
 
                             LogHelper<Application>.Debug("创建主窗口 ...");
-                            this.RegisterInitializableInstance<MainForm>();
+                            MainForm mainForm = (MainForm)this.Invoke(new Func<MainForm>(() => new MainForm()));
+                            DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>(mainForm);
+                            foreach (var message in mainForm.Initialize())
+                            {
+                                this.UpdateProgressAsync(message);
+                            }
 
                             LogHelper<Application>.Debug("创建自选股票窗口 ...");
-                            this.RegisterInitializableInstance<SelfSelectStockForm>();
+                            this.RegisterDockFormInstance<SelfSelectStockForm>(mainForm);
 
                             DIContainerHelper.Build();
                         }));
 
         /// <summary>
-        /// 注册可初始化实例
+        /// 注册Dock窗口实例
         /// </summary>
-        /// <typeparam name="TInitializable">实例类型</typeparam>
-        private void RegisterInitializableInstance<TInitializable>()
-            where TInitializable : class, IInitializable
+        /// <typeparam name="TDockForm">Dock窗口类型</typeparam>
+        /// <param name="mainForm"></param>
+        private void RegisterDockFormInstance<TDockForm>(MainForm mainForm)
+            where TDockForm : DockFormBase
         {
-            TInitializable instance = (TInitializable)this.Invoke(new Func<TInitializable>(() => Activator.CreateInstance<TInitializable>()));
-            DIContainerHelper.RegisteInstanceAsType<TInitializable, TInitializable>(instance);
+            TDockForm instance = null;
+            this.Invoke(new Action(() =>
+            {
+                instance = Activator.CreateInstance<TDockForm>();
+
+                mainForm.RegisterDockFormToViewMenu<TDockForm>(
+                    instance.Text,
+                    Bitmap.FromHicon(instance.Icon.Handle));
+            }));
+
+            DIContainerHelper.RegisteInstanceAsType<TDockForm, TDockForm>(instance);
 
             foreach (var message in instance.Initialize())
             {
