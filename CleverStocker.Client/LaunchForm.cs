@@ -117,6 +117,11 @@ namespace CleverStocker.Client
                         {
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
                             DIContainerHelper.RegistServicesFromConfig();
+
+                            // 注册主窗口实例
+                            LogHelper<Application>.Debug("创建主窗口 ...");
+                            DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>(new MainForm());
+
                             DIContainerHelper.Build();
                         }));
     }

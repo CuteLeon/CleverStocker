@@ -42,8 +42,7 @@ namespace CleverStocker.Client
                 case DialogResult.Ignore:
                 case DialogResult.Yes:
                     {
-                        LogHelper<Application>.Debug("创建主窗口 ...");
-                        Form mainForm = new MainForm();
+                        Form mainForm = DIContainerHelper.Resolve<MainForm>();
 
                         LogHelper<Application>.Debug("运行主窗口 ...");
                         Application.Run(mainForm);
