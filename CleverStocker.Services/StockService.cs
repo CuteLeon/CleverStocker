@@ -5,7 +5,7 @@ namespace CleverStocker.Services
     /// <summary>
     /// 股票服务
     /// </summary>
-    public class StockerService : ServiceBase<Stock>, IStockerService
+    public class StockService : ServiceBase<Stock>, IStockService
     {
     }
 }

@@ -8,7 +8,7 @@ namespace CleverStocker.Services
     /// <summary>
     /// 服务接口
     /// </summary>
-    public interface IStockerSpiderService
+    public interface IStockSpiderService
     {
         IEnumerable<Stock> GetStocks();
 

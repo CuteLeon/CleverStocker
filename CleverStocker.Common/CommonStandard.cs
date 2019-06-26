@@ -40,14 +40,19 @@ namespace CleverStocker.Common
         public enum Markets
         {
             /// <summary>
+            /// 未知
+            /// </summary>
+            Unknown = 0,
+
+            /// <summary>
             /// 上交所
             /// </summary>
-            ShangHai = 0,
+            ShangHai = 1,
 
             /// <summary>
             /// 深交所
             /// </summary>
-            ShenZhen = 1,
+            ShenZhen = 2,
         }
 
         /// <summary>

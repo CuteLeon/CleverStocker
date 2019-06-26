@@ -4,7 +4,7 @@
       "type": "CleverStocker.Spider.Sina.SinaStockSpider, CleverStocker.Spider.Sina",
       "services": [
         {
-          "type": "CleverStocker.Services.IStockerSpiderService, CleverStocker.Services"
+          "type": "CleverStocker.Services.IStockSpiderService, CleverStocker.Services"
         }
       ],
       "injectProperties": true

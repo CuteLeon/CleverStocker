@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 	ProjectSection(SolutionItems) = preProject
 		Documents\Document.md = Documents\Document.md
 		Readme.md = Readme.md
+		Documents\全国中小企业股份转让系统-交易支持平台-数据接口规范-V1.1-20160118.doc = Documents\全国中小企业股份转让系统-交易支持平台-数据接口规范-V1.1-20160118.doc
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Services", "CleverStocker.Services\CleverStocker.Services.csproj", "{886675D5-9316-4561-80B8-9325681ABD95}"
@@ -28,6 +29,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.UtilsTests", "CleverStocker.UtilsTests\CleverStocker.UtilsTests.csproj", "{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Common", "CleverStocker.Common\CleverStocker.Common.csproj", "{199F6003-92B5-4726-8E80-6A470D8C7F58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Spider.SinaTests", "CleverStocker.Spider.SinaTests\CleverStocker.Spider.SinaTests.csproj", "{6AE3AF29-0038-4987-9547-8E9CF92A914A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.ModelTests", "CleverStocker.ModelTests\CleverStocker.ModelTests.csproj", "{6DED632F-46C8-45A4-A549-AA4CFB064A80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,12 +76,22 @@ Global
 		{199F6003-92B5-4726-8E80-6A470D8C7F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199F6003-92B5-4726-8E80-6A470D8C7F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199F6003-92B5-4726-8E80-6A470D8C7F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AE3AF29-0038-4987-9547-8E9CF92A914A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AE3AF29-0038-4987-9547-8E9CF92A914A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AE3AF29-0038-4987-9547-8E9CF92A914A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AE3AF29-0038-4987-9547-8E9CF92A914A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DED632F-46C8-45A4-A549-AA4CFB064A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DED632F-46C8-45A4-A549-AA4CFB064A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DED632F-46C8-45A4-A549-AA4CFB064A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DED632F-46C8-45A4-A549-AA4CFB064A80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A15C0DD0-0BE2-4EAB-95F0-BFFBAFA28BBB} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
+		{6AE3AF29-0038-4987-9547-8E9CF92A914A} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
+		{6DED632F-46C8-45A4-A549-AA4CFB064A80} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {481A7383-9379-475F-9FD7-D8931C66D53D}
