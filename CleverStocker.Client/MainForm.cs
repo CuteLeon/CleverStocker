@@ -51,7 +51,7 @@ namespace CleverStocker.Client
             var service = new StockerService();
             service.Add(new Stock() { Code = Guid.NewGuid().ToString(), Market = "sz", Name = "深圳123" });
             var count = service.Transact<Func<int>, int>(() => service.AsQueryable().Count());
-
+            var test = service.AsQueryable().Where(s => s.Market == "sz").ToArray();
             MessageBox.Show($"{stockService.GetType().FullName} => {stocks.Count()}\n{service.GetType().FullName} => {count}");
         }
     }

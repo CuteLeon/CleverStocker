@@ -14,6 +14,7 @@ namespace CleverStocker.DataAccess
         public DBContext()
             : base("CleverStockerConnect")
         {
+            // this.Database.Log = (sql) => CleverStocker.Utils.LogHelper<DBContext>.Trace($"执行SQL=> {sql}");
         }
 
         /// <summary>
