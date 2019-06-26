@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TestButton = new DarkUI.Controls.DarkButton();
+            this.TestButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // TestButton
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private DarkUI.Controls.DarkButton TestButton;
+        private System.Windows.Forms.Button TestButton;
     }
 }
