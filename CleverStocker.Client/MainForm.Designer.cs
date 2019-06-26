@@ -178,6 +178,7 @@
             this.MainMenuStrip = this.MainTopMenuStrip;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.MainTopMenuStrip.ResumeLayout(false);
             this.MainTopMenuStrip.PerformLayout();
             this.MainToolStrip.ResumeLayout(false);
