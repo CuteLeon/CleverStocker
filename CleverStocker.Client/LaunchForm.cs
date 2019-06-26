@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CleverStocker.Client.DockForms;
 using CleverStocker.Client.Extensions;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Utils;
@@ -121,16 +122,29 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
                             DIContainerHelper.RegistServicesFromConfig();
 
-                            // 注册主窗口实例
                             LogHelper<Application>.Debug("创建主窗口 ...");
-                            IInitializable mainForm = (IInitializable)this.Invoke(new Func<MainForm>(() => new MainForm()));
-                            DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>((MainForm)mainForm);
-                            foreach (var message in mainForm.Initialize())
-                            {
-                                this.UpdateProgressAsync(message);
-                            }
+                            this.RegisterInitializableInstance<MainForm>();
+
+                            LogHelper<Application>.Debug("创建自选股票窗口 ...");
+                            this.RegisterInitializableInstance<SelfSelectStockForm>();
 
                             DIContainerHelper.Build();
                         }));
+
+        /// <summary>
+        /// 注册可初始化实例
+        /// </summary>
+        /// <typeparam name="TInitializable">实例类型</typeparam>
+        private void RegisterInitializableInstance<TInitializable>()
+            where TInitializable : class, IInitializable
+        {
+            TInitializable instance = (TInitializable)this.Invoke(new Func<TInitializable>(() => Activator.CreateInstance<TInitializable>()));
+            DIContainerHelper.RegisteInstanceAsType<TInitializable, TInitializable>(instance);
+
+            foreach (var message in instance.Initialize())
+            {
+                this.UpdateProgressAsync(message);
+            }
+        }
     }
 }

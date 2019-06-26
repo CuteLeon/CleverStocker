@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using CleverStocker.Client.DockForms;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Model;
 using CleverStocker.Services;
@@ -41,14 +42,6 @@ namespace CleverStocker.Client
         /// <returns></returns>
         public IEnumerable<string> Initialize()
         {
-            for (int index = 0; index < 3; index++)
-            {
-                System.Threading.Thread.Sleep(1000);
-                yield return index.ToString();
-            }
-
-            // throw new InvalidOperationException("凉凉");
-
             yield break;
         }
 
@@ -103,6 +96,13 @@ namespace CleverStocker.Client
         /// <param name="theme">
         public void SwitchTheme(Themes theme)
         {
+            // 框架限制：切换主题需要关闭所有的 Pane (窗格)
+            if (this.MainDockPanel.Panes.Count > 0)
+            {
+                MessageBox.Show("请先关闭工作区内的所有窗格后再尝试切换主题。");
+                return;
+            }
+
             switch (theme)
             {
                 case Themes.Classics:
@@ -167,5 +167,13 @@ namespace CleverStocker.Client
         }
         #endregion
 
+        #region 显示
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            // TODO: 读取文件以尝试恢复布局
+            DIContainerHelper.Resolve<SelfSelectStockForm>().Show(this.MainDockPanel);
+        }
+        #endregion
     }
 }

@@ -62,6 +62,12 @@
     <Compile Include="DockForms\DockFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DockForms\SelfSelectStockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\SelfSelectStockForm.Designer.cs">
+      <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="Interfaces\IInitializable.cs" />
     <Compile Include="LaunchForm.cs">
@@ -81,6 +87,9 @@
     <EmbeddedResource Include="AppResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\SelfSelectStockForm.resx">
+      <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LaunchForm.resx">
       <DependentUpon>LaunchForm.cs</DependentUpon>

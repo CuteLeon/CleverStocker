@@ -88,33 +88,33 @@
             // ClassicsThemeMenuItem
             // 
             this.ClassicsThemeMenuItem.Name = "ClassicsThemeMenuItem";
-            this.ClassicsThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ClassicsThemeMenuItem.Size = new System.Drawing.Size(100, 22);
             this.ClassicsThemeMenuItem.Text = "经典";
             this.ClassicsThemeMenuItem.Click += new System.EventHandler(this.ClassicsThemeMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
             // 
             // LightThemeMenuItem
             // 
             this.LightThemeMenuItem.Name = "LightThemeMenuItem";
-            this.LightThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.LightThemeMenuItem.Size = new System.Drawing.Size(100, 22);
             this.LightThemeMenuItem.Text = "浅色";
             this.LightThemeMenuItem.Click += new System.EventHandler(this.LightThemeMenuItem_Click);
             // 
             // BlueThemeMenuItem
             // 
             this.BlueThemeMenuItem.Name = "BlueThemeMenuItem";
-            this.BlueThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.BlueThemeMenuItem.Size = new System.Drawing.Size(100, 22);
             this.BlueThemeMenuItem.Text = "蓝色";
             this.BlueThemeMenuItem.Click += new System.EventHandler(this.BlueThemeMenuItem_Click);
             // 
             // DarkThemeMenuItem
             // 
             this.DarkThemeMenuItem.Name = "DarkThemeMenuItem";
-            this.DarkThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DarkThemeMenuItem.Size = new System.Drawing.Size(100, 22);
             this.DarkThemeMenuItem.Text = "深色";
             this.DarkThemeMenuItem.Click += new System.EventHandler(this.DarkThemeMenuItem_Click);
             // 
@@ -179,6 +179,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.MainTopMenuStrip.ResumeLayout(false);
             this.MainTopMenuStrip.PerformLayout();
             this.MainToolStrip.ResumeLayout(false);
