@@ -9,6 +9,32 @@ namespace CleverStocker.Common
     public static class CommonStandard
     {
         /// <summary>
+        /// 主题
+        /// </summary>
+        public enum Themes
+        {
+            /// <summary>
+            /// 经典
+            /// </summary>
+            Classics = 0,
+
+            /// <summary>
+            /// 浅色
+            /// </summary>
+            Light = 1,
+
+            /// <summary>
+            /// 蓝色
+            /// </summary>
+            Blue = 2,
+
+            /// <summary>
+            /// 深色
+            /// </summary>
+            Dark = 3,
+        }
+
+        /// <summary>
         /// 交易市场
         /// </summary>
         public enum Markets

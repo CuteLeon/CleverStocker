@@ -123,8 +123,7 @@ namespace CleverStocker.Client
 
                             // 注册主窗口实例
                             LogHelper<Application>.Debug("创建主窗口 ...");
-
-                            IInitializable mainForm = new MainForm();
+                            IInitializable mainForm = (IInitializable)this.Invoke(new Func<MainForm>(() => new MainForm()));
                             DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>((MainForm)mainForm);
                             foreach (var message in mainForm.Initialize())
                             {

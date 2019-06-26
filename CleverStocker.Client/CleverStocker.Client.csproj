@@ -59,6 +59,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\DockFormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="Interfaces\IInitializable.cs" />
     <Compile Include="LaunchForm.cs">
@@ -114,6 +117,10 @@
     <None Include="Resources\bull.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Common\CleverStocker.Common.csproj">
+      <Project>{199F6003-92B5-4726-8E80-6A470D8C7F58}</Project>
+      <Name>CleverStocker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
       <Project>{55376275-2E0E-400C-A06E-E36DD181D763}</Project>
       <Name>CleverStocker.Model</Name>
