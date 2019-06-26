@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Client.Extensions;
+using CleverStocker.Client.Interfaces;
 using CleverStocker.Utils;
 
 namespace CleverStocker.Client
@@ -53,7 +54,9 @@ namespace CleverStocker.Client
             {
                 this.UpdateProgress(ex.Message);
                 LogHelper<LaunchForm>.ErrorException(ex, "启动应用程序失败：");
+
                 dialogResult = DialogResult.Abort;
+                throw;
             }
             finally
             {
@@ -120,7 +123,13 @@ namespace CleverStocker.Client
 
                             // 注册主窗口实例
                             LogHelper<Application>.Debug("创建主窗口 ...");
-                            DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>(new MainForm());
+
+                            IInitializable mainForm = new MainForm();
+                            DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>((MainForm)mainForm);
+                            foreach (var message in mainForm.Initialize())
+                            {
+                                this.UpdateProgressAsync(message);
+                            }
 
                             DIContainerHelper.Build();
                         }));

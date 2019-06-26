@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
+using CleverStocker.Client.Interfaces;
 using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
@@ -10,7 +13,7 @@ namespace CleverStocker.Client
     /// <summary>
     /// 主窗口
     /// </summary>
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IInitializable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -21,6 +24,23 @@ namespace CleverStocker.Client
             this.Text = Application.ProductName;
 
             this.InitializeComponent();
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<string> Initialize()
+        {
+            for (int index = 0; index < 3; index++)
+            {
+                Thread.Sleep(1000);
+                yield return index.ToString();
+            }
+
+            // throw new InvalidOperationException("凉凉");
+
+            yield break;
         }
 
         private void TestButton_Click(object sender, EventArgs e)

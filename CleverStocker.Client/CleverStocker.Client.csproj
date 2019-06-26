@@ -60,6 +60,7 @@
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Extensions\FormExtension.cs" />
+    <Compile Include="Interfaces\IInitializable.cs" />
     <Compile Include="LaunchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,5 +149,6 @@
   <ItemGroup>
     <None Include="Resources\BullSmall.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
