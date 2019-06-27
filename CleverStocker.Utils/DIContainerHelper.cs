@@ -235,12 +235,15 @@ namespace CleverStocker.Utils
 
                 if (!result)
                 {
-                    LogHelper<DefaultLogSource>.Error($"DI容器获取未注册的服务：{serviceType.FullName}");
+                    InvalidOperationException exception = new InvalidOperationException($"未注册的服务 {serviceType.FullName}");
+                    LogHelper<DefaultLogSource>.ErrorException(exception, $"获取注入服务失败：");
                 }
             }
             catch (Exception ex)
             {
                 LogHelper<DefaultLogSource>.ErrorException(ex, $"DI容器获取服务 {serviceType.FullName} 失败：");
+
+                throw;
             }
 
             return service;

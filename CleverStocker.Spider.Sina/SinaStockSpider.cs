@@ -18,10 +18,17 @@ namespace CleverStocker.Spider.Sina
     public class SinaStockSpider : SpiderClientBase, IStockSpiderService
     {
         /// <summary>
-        /// Gets 股票行情正则表达式
+        /// Gets 行情正则表达式
         /// </summary>
-        public Regex StockRegex { get; } = new Regex(
+        public static Regex QuotaRegex { get; } = new Regex(
             $@"var\s.*\=""(?<Name>.*?),{string.Join(",", Enumerable.Range(1, 7).Select(index => $@"(?<Price{index}>[\d\.]+?)"))},(?<Amount1>\d+?),(?<Amount2>[\d\.]+?),{string.Join(",", Enumerable.Range(1, 10).Select(index => $@"(?<Strand{index}>\d+?),(?<Quote{index}>[\d\.]+?)"))},(?<DateTime>\d{{4}}-\d{{2}}-\d{{2}},\d{{2}}:\d{{2}}:\d{{2}}),00"";",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets 大盘指数正则表达式
+        /// </summary>
+        public static Regex MarketQuotaRegex { get; } = new Regex(
+            $@"var\s.*\=""(?<Name>.*?),(?<Price>[\d\.]+?),(?<Range>-?[\d\.]+?),(?<Rate>-?[\d\.]+?),(?<Count>\d+?),(?<Amount>\d+?)"";",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
@@ -47,21 +54,21 @@ namespace CleverStocker.Spider.Sina
                 return default;
             }
 
-            var match = this.StockRegex.Match(result);
+            var match = QuotaRegex.Match(result);
             Stock stock = new Stock(code, market);
-            ConvertToStock(match, ref stock, out Quota quota);
+            ConvertToQuota(match, ref stock, out Quota quota);
 
             return (stock, quota);
         }
 
         /// <summary>
-        /// 正则匹配转换为实体
+        /// 正则匹配转换为行情
         /// </summary>
         /// <param name="match"></param>
         /// <param name="stock"></param>
         /// <param name="quota"></param>
         /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
-        public static void ConvertToStock(Match match, ref Stock stock, out Quota quota)
+        public static void ConvertToQuota(Match match, ref Stock stock, out Quota quota)
         {
             if (!match.Success)
             {
@@ -127,5 +134,87 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockQuota(code, market));
+
+        /// <summary>
+        /// 获取股票大盘指数
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        public (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market)
+        {
+            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
+               string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException();
+            }
+
+            string request = $@"http://hq.sinajs.cn/list=s_{marketInfo.Code}{code}";
+            var result = this.WebClient.DownloadString(request);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                return default;
+            }
+
+            var match = MarketQuotaRegex.Match(result);
+            Stock stock = new Stock(code, market);
+            ConvertToMarketQuota(match, ref stock, out MarketQuota marketQuota);
+
+            return (stock, marketQuota);
+        }
+
+        /// <summary>
+        /// 正则匹配转换为大盘指数
+        /// </summary>
+        /// <param name="match"></param>
+        /// <param name="stock"></param>
+        /// <param name="marketQuota"></param>
+        /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
+        public static void ConvertToMarketQuota(Match match, ref Stock stock, out MarketQuota marketQuota)
+        {
+            if (!match.Success)
+            {
+                marketQuota = null;
+                return;
+            }
+
+            if (stock == null)
+            {
+                throw new ArgumentNullException(nameof(stock));
+            }
+
+            if (stock.Quotas == null)
+            {
+                stock.Quotas = new List<Quota>();
+            }
+
+            if (stock.MarketQuotas == null)
+            {
+                stock.MarketQuotas = new List<MarketQuota>();
+            }
+
+            marketQuota = new MarketQuota(stock);
+            stock.MarketQuotas.Add(marketQuota);
+
+            stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
+            marketQuota.CurrentPrice = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            marketQuota.FluctuatingRange = match.TryGetValue("Range", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            marketQuota.FluctuatingRate = match.TryGetValue("Rate", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            marketQuota.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            marketQuota.Amount = match.TryGetValue("Amount", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+
+            marketQuota.UpdateTime = DateTime.Now;
+            stock.UpdateTime = marketQuota.UpdateTime;
+        }
+
+        /// <summary>
+        /// 异步获取股票大盘指数
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        public async Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
+            => await Task.Factory.StartNew(() => this.GetStockMarketQuota(code, market));
     }
 }

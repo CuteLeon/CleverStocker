@@ -60,9 +60,21 @@
     <Compile Include="SinaStockSpiderTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Common\CleverStocker.Common.csproj">
+      <Project>{199F6003-92B5-4726-8E80-6A470D8C7F58}</Project>
+      <Name>CleverStocker.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
+      <Project>{55376275-2E0E-400C-A06E-E36DD181D763}</Project>
+      <Name>CleverStocker.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CleverStocker.Spider.Sina\CleverStocker.Spider.Sina.csproj">
       <Project>{EE95AEB2-99F2-4E39-8A71-48DA1400A1EC}</Project>
       <Name>CleverStocker.Spider.Sina</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Spider\CleverStocker.Spider.csproj">
+      <Project>{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}</Project>
+      <Name>CleverStocker.Spider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

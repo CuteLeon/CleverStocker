@@ -50,32 +50,70 @@ namespace CleverStocker.Client
         {
             try
             {
-                var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
-                var (stock, quota) = stockSpiderService.GetStockQuota("600086", Markets.ShangHai);
-
-                if (quota == null)
-                {
-                    MessageBox.Show($"获取股票行情为空！");
-                    return;
-                }
-
-                using (var stockService = DIContainerHelper.Resolve<IStockService>())
-                {
-                    stockService.AddOrUpdate(stock);
-                    stock = stockService.Find(stock.Code, stock.Market);
-
-                    quota.Stock = stock;
-                    stock.Quotas.Add(quota);
-
-                    stockService.SaveChanges();
-                }
-
-                MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情ID：{quota.ID}");
+                this.GetStockMarketQuota();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"获取股票行情失败：\n{ex.Message}");
+                MessageBox.Show($"获取股票数据失败：\n{ex.Message}");
             }
+        }
+
+        private void GetStockQuota()
+        {
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var (stock, quota) = stockSpiderService.GetStockQuota("600086", Markets.ShangHai);
+
+            if (quota == null)
+            {
+                MessageBox.Show($"获取股票行情为空！");
+                return;
+            }
+
+            using (var stockService = DIContainerHelper.Resolve<IStockService>())
+            {
+                stockService.AddOrUpdate(stock);
+                stock = stockService.Find(stock.Code, stock.Market);
+
+                quota.Stock = stock;
+                stock.Quotas.Add(quota);
+
+                stockService.SaveChanges();
+            }
+
+            MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情ID：{quota.ID}");
+        }
+
+        private void GetStockMarketQuota()
+        {
+            /* <大盘指数>
+             * 上证指数：
+             * var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("000001", Markets.ShangHai);
+             * 深证成指：
+             * var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("399001", Markets.ShenZhen);
+             * 创业板指：
+             * var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("399006", Markets.ShenZhen);
+             */
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("600086", Markets.ShangHai);
+
+            if (marketQuote == null)
+            {
+                MessageBox.Show($"获取股票大盘指数为空！");
+                return;
+            }
+
+            using (var stockService = DIContainerHelper.Resolve<IStockService>())
+            {
+                stockService.AddOrUpdate(stock);
+                stock = stockService.Find(stock.Code, stock.Market);
+
+                marketQuote.Stock = stock;
+                stock.MarketQuotas.Add(marketQuote);
+
+                stockService.SaveChanges();
+            }
+
+            MessageBox.Show($"获取股票大盘指数成功：\n股票简称：{stock.Name}\n大盘指数ID：{marketQuote.ID}");
         }
 
         #region 主题

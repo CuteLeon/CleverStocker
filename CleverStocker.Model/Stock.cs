@@ -63,5 +63,10 @@ namespace CleverStocker.Model
         /// Gets or sets 行情
         /// </summary>
         public virtual List<Quota> Quotas { get; set; }
+
+        /// <summary>
+        /// Gets or sets 大盘指数
+        /// </summary>
+        public virtual List<MarketQuota> MarketQuotas { get; set; }
     }
 }
