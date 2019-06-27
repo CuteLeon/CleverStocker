@@ -121,7 +121,7 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
                             DIContainerHelper.RegistServicesFromConfig();
 
-                            LogHelper<Application>.Debug("创建主窗口 ...");
+                            this.UpdateProgressAsync("创建主窗口 ...");
                             MainForm mainForm = (MainForm)this.Invoke(new Func<MainForm>(() => new MainForm()));
                             DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>(mainForm);
                             foreach (var message in mainForm.Initialize())
@@ -129,12 +129,13 @@ namespace CleverStocker.Client
                                 this.UpdateProgressAsync(message);
                             }
 
-                            LogHelper<Application>.Debug("创建自选股票窗口 ...");
+                            this.UpdateProgressAsync("创建自选股票窗口 ...");
                             this.RegisterSingleDockFormInstance<SelfSelectStockForm>(mainForm);
 
-                            LogHelper<Application>.Debug("创建推荐股票窗口 ...");
+                            this.UpdateProgressAsync("创建推荐股票窗口 ...");
                             this.RegisterSingleDockFormInstance<RecommendStockForm>(mainForm);
 
+                            this.UpdateProgressAsync($"密封服务容器 ...");
                             DIContainerHelper.Build();
                         }));
 
