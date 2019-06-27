@@ -88,7 +88,7 @@ namespace CleverStocker.Client
         /// <param name="message"></param>
         private void UpdateProgress(string message)
         {
-            LogHelper<LaunchForm>.Debug($"进度 => {message}");
+            LogHelper<LaunchForm>.Debug($"更新进度 => {message}");
 
             this.LaunchLabel.Text = message;
             this.LaunchLabel.Refresh();
@@ -100,14 +100,13 @@ namespace CleverStocker.Client
         /// <param name="message"></param>
         private void UpdateProgressAsync(string message)
         {
-            if (this.LaunchLabel.InvokeRequired)
+            LogHelper<LaunchForm>.Debug($"异步更新进度 => {message}");
+
+            this.LaunchLabel.Invoke(new Action(() =>
             {
-                this.LaunchLabel.Invoke(new Action(() => this.UpdateProgress(message)));
-            }
-            else
-            {
-                this.UpdateProgress(message);
-            }
+                this.LaunchLabel.Text = message;
+                this.LaunchLabel.Refresh();
+            }));
         }
 
         /// <summary>
