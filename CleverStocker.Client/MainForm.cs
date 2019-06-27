@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Client.Interfaces;
-using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 using WeifenLuo.WinFormsUI.Docking;
@@ -48,23 +46,33 @@ namespace CleverStocker.Client
 
         private void TestToolItem_Click(object sender, EventArgs e)
         {
-            var stockService = DIContainerHelper.Resolve<IStockSpiderService>();
-            var stock = stockService.GetStock("600086", Markets.ShangHai);
-            _ = stock.Name;
-
-            using (var service = DIContainerHelper.Resolve<IStockService>())
+            try
             {
-                service.Add(new Stock()
+                var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+                var (stock, quota) = stockSpiderService.GetStockQuota("600086", Markets.ShangHai);
+
+                if (quota == null)
                 {
-                    Code = "000123",
-                    Market = Markets.ShangHai,
-                    Quotas = new List<Quota>()
-                    {
-                        new Quota() { UpdateTime = DateTime.Now },
-                        new Quota() { UpdateTime = DateTime.Now },
-                        new Quota() { UpdateTime = DateTime.Now },
-                    },
-                });
+                    MessageBox.Show($"获取股票行情为空！");
+                    return;
+                }
+
+                using (var stockService = DIContainerHelper.Resolve<IStockService>())
+                {
+                    stockService.AddOrUpdate(stock);
+                    stock = stockService.Find(stock.Code, stock.Market);
+
+                    quota.Stock = stock;
+                    stock.Quotas.Add(quota);
+
+                    stockService.SaveChanges();
+                }
+
+                MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情ID：{quota.ID}");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"获取股票行情失败：\n{ex.Message}");
             }
         }
 

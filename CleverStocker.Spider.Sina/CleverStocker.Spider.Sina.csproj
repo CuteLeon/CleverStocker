@@ -69,6 +69,10 @@
       <Project>{AC0C757E-7FE8-46BC-9FB4-F13F52B9C788}</Project>
       <Name>CleverStocker.Spider</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Utils\CleverStocker.Utils.csproj">
+      <Project>{8E74F163-1469-40F0-A594-924FB8D822F5}</Project>
+      <Name>CleverStocker.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="StyleCop.Analyzers">

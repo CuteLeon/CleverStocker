@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using CleverStocker.Common.Extensions;
 using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Spider.SpiderClients;
+using CleverStocker.Utils;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Spider.Sina
@@ -15,22 +17,21 @@ namespace CleverStocker.Spider.Sina
     /// </summary>
     public class SinaStockSpider : SpiderClientBase, IStockSpiderService
     {
-        // TODO: 实现 Sina 爬虫
-
         /// <summary>
-        /// Gets 股票正则
+        /// Gets 股票行情正则表达式
         /// </summary>
         public Regex StockRegex { get; } = new Regex(
-            $@"var\s.*\=""(?<Name>.*?),{string.Join(",", Enumerable.Range(1, 7).Select(index => $@"(?<Price{index}>[\d\.]+?)"))},(?<Amount1>\d+?),(?<Amount2>[\d\.]+?),{string.Join(",", Enumerable.Range(1, 10).Select(index => $@"(?<Strand{index}>\d+?),(?<Quote{index}>[\d\.]+?)"))},(?<DateTime>\d{{4}}-\d{{2}}-\d{{2}},\d{{2}}:\d{{2}}:\d{{2}}),00,"";",
+            $@"var\s.*\=""(?<Name>.*?),{string.Join(",", Enumerable.Range(1, 7).Select(index => $@"(?<Price{index}>[\d\.]+?)"))},(?<Amount1>\d+?),(?<Amount2>[\d\.]+?),{string.Join(",", Enumerable.Range(1, 10).Select(index => $@"(?<Strand{index}>\d+?),(?<Quote{index}>[\d\.]+?)"))},(?<DateTime>\d{{4}}-\d{{2}}-\d{{2}},\d{{2}}:\d{{2}}:\d{{2}}),00"";",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
-        public IEnumerable<Stock> GetStocks()
-            => Enumerable.Range(0, 10).Select(index => new Stock());
-
-        public async Task<IEnumerable<Stock>> GetStocksAsync()
-            => await Task.Factory.StartNew(() => this.GetStocks());
-
-        public Stock GetStock(string code, Markets market)
+        /// <summary>
+        /// 获取股票行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        /// <remarks>Sina 接口约每三秒更新一次</remarks>
+        public (Stock stock, Quota quota) GetStockQuota(string code, Markets market)
         {
             if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
                string.IsNullOrEmpty(code))
@@ -39,8 +40,7 @@ namespace CleverStocker.Spider.Sina
             }
 
             string request = $@"http://hq.sinajs.cn/list={marketInfo.Code}{code}";
-            // this.WebClient.DownloadString(request);
-            var result = @"var hq_str_sh600086=""东方金钰,4.380,4.510,4.400,4.450,4.320,4.390,4.400,24027903,105284470.000,108305,4.390,169929,4.380,371500,4.370,423400,4.360,434900,4.350,17200,4.400,58700,4.410,32500,4.420,37900,4.430,80700,4.440,2019-06-27,09:58:11,00"";";
+            var result = this.WebClient.DownloadString(request);
 
             if (string.IsNullOrEmpty(result))
             {
@@ -48,28 +48,85 @@ namespace CleverStocker.Spider.Sina
             }
 
             var match = this.StockRegex.Match(result);
-            if (!match.Success)
-            {
-                return default;
-            }
-
-            _ = match.Groups["Name"].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-            _ = match.Groups[""].Value;
-
             Stock stock = new Stock(code, market);
+            ConvertToStock(match, ref stock, out Quota quota);
 
-            return stock;
+            return (stock, quota);
         }
 
-        public async Task<Stock> GetStockAsync(string code, Markets market)
-            => await Task.Factory.StartNew(() => this.GetStock(code, market));
+        /// <summary>
+        /// 正则匹配转换为实体
+        /// </summary>
+        /// <param name="match"></param>
+        /// <param name="stock"></param>
+        /// <param name="quota"></param>
+        /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
+        public static void ConvertToStock(Match match, ref Stock stock, out Quota quota)
+        {
+            if (!match.Success)
+            {
+                quota = null;
+                return;
+            }
+
+            if (stock == null)
+            {
+                throw new ArgumentNullException(nameof(stock));
+            }
+
+            if (stock.Quotas == null)
+            {
+                stock.Quotas = new List<Quota>();
+            }
+
+            quota = new Quota(stock);
+            stock.Quotas.Add(quota);
+
+            string value;
+            stock.Name = match.TryGetValue("Name", out value) ? value : string.Empty;
+            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.CurrentPrice = match.TryGetValue("Price3", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.DayHighPrice = match.TryGetValue("Price4", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.DayLowPrice = match.TryGetValue("Price5", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.BiddingPrice = match.TryGetValue("Price6", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.AuctionPrice = match.TryGetValue("Price7", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.Count = match.TryGetValue("Amount1", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.Amount = match.TryGetValue("Amount2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+
+            quota.BuyStrand1 = match.TryGetValue("Strand1", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyPrice1 = match.TryGetValue("Quote1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand2 = match.TryGetValue("Strand2", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyPrice2 = match.TryGetValue("Quote2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand3 = match.TryGetValue("Strand3", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyPrice3 = match.TryGetValue("Quote3", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand4 = match.TryGetValue("Strand4", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyPrice4 = match.TryGetValue("Quote4", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand5 = match.TryGetValue("Strand5", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyPrice5 = match.TryGetValue("Quote5", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+
+            quota.SellStrand1 = match.TryGetValue("Strand6", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellPrice1 = match.TryGetValue("Quote6", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand2 = match.TryGetValue("Strand7", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellPrice2 = match.TryGetValue("Quote7", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand3 = match.TryGetValue("Strand8", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellPrice3 = match.TryGetValue("Quote8", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand4 = match.TryGetValue("Strand9", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellPrice4 = match.TryGetValue("Quote9", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand5 = match.TryGetValue("Strand10", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellPrice5 = match.TryGetValue("Quote10", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
+            stock.UpdateTime = quota.UpdateTime;
+        }
+
+        /// <summary>
+        /// 异步获取股票行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        public async Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market)
+            => await Task.Factory.StartNew(() => this.GetStockQuota(code, market));
     }
 }

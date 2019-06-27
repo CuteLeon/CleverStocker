@@ -44,11 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPersistService.cs" />
+    <Compile Include="IQuotaService.cs" />
     <Compile Include="IService.cs" />
     <Compile Include="IStockService.cs" />
     <Compile Include="IStockSpiderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceBase.cs" />
+    <Compile Include="QuotaService.cs" />
+    <Compile Include="PersistServiceBase.cs" />
     <Compile Include="StockService.cs" />
   </ItemGroup>
   <ItemGroup>

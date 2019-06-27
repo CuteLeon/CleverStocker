@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CleverStocker.Model;
 using static CleverStocker.Common.CommonStandard;
 
@@ -10,12 +9,20 @@ namespace CleverStocker.Services
     /// </summary>
     public interface IStockSpiderService
     {
-        IEnumerable<Stock> GetStocks();
+        /// <summary>
+        /// 获取股票行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        (Stock stock, Quota quota) GetStockQuota(string code, Markets market);
 
-        Task<IEnumerable<Stock>> GetStocksAsync();
-
-        Stock GetStock(string code, Markets market);
-
-        Task<Stock> GetStockAsync(string code, Markets market);
+        /// <summary>
+        /// 异步获取股票行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market);
     }
 }

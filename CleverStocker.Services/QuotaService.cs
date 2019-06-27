@@ -3,9 +3,9 @@
 namespace CleverStocker.Services
 {
     /// <summary>
-    /// 股票服务
+    /// 行情服务
     /// </summary>
-    public class StockService : PersistServiceBase<Stock>, IStockService
+    public class QuotaService : PersistServiceBase<Quota>, IQuotaService
     {
     }
 }

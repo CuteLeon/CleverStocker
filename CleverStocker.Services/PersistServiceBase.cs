@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -9,14 +10,14 @@ using CleverStocker.DataAccess;
 namespace CleverStocker.Services
 {
     /// <summary>
-    /// 服务基类
+    /// 数据持久化服务基类
     /// </summary>
     /// <typeparam name="TEntity">实体类型</typeparam>
     /// <remarks>
     /// 同步方法通过 System.Linq 内的 IQueryable<> 接口调用
     /// 服务基类封装 DbSet 和 QueryableExtensions 提供的方法
     /// </remarks>
-    public abstract class ServiceBase<TEntity> : IPersistService<TEntity>
+    public abstract class PersistServiceBase<TEntity> : IPersistService<TEntity>
         where TEntity : class
     {
         #region 属性
@@ -66,6 +67,27 @@ namespace CleverStocker.Services
             var results = this.Context.Set<TEntity>().AddRange(entities);
             this.Context.SaveChanges();
             return results;
+        }
+
+        /// <summary>
+        /// 增加或更新实体
+        /// </summary>
+        /// <param name="entities"></param>
+        public virtual void AddOrUpdate(params TEntity[] entities)
+        {
+            this.Context.Set<TEntity>().AddOrUpdate(entities);
+            this.Context.SaveChanges();
+        }
+
+        /// <summary>
+        /// 增加或更新实体
+        /// </summary>
+        /// <param name="identifierExpression"></param>
+        /// <param name="entities"></param>
+        public virtual void AddOrUpdate(Expression<Func<TEntity, object>> identifierExpression, params TEntity[] entities)
+        {
+            this.Context.Set<TEntity>().AddOrUpdate(identifierExpression, entities);
+            this.Context.SaveChanges();
         }
         #endregion
 

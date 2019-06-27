@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
-using CleverStocker.Client.Extensions;
+using CleverStocker.Common.Extensions;
 using CleverStocker.Utils;
 
 namespace CleverStocker.Client

@@ -74,7 +74,6 @@
     <Compile Include="DockForms\SelfSelectStockForm.Designer.cs">
       <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="Interfaces\IInitializable.cs" />
     <Compile Include="LaunchForm.cs">
       <SubType>Form</SubType>

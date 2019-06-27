@@ -51,6 +51,19 @@ namespace CleverStocker.Services
         /// <param name="entities"></param>
         /// <returns></returns>
         IEnumerable<TEntity> AddRange(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 增加或更新实体
+        /// </summary>
+        /// <param name="entities"></param>
+        void AddOrUpdate(params TEntity[] entities);
+
+        /// <summary>
+        /// 增加或更新实体
+        /// </summary>
+        /// <param name="identifierExpression"></param>
+        /// <param name="entities"></param>
+        void AddOrUpdate(Expression<Func<TEntity, object>> identifierExpression, params TEntity[] entities);
         #endregion
 
         #region 删除

@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace CleverStocker.Client.Extensions
+namespace CleverStocker.Common.Extensions
 {
     /// <summary>
     /// 窗口扩展
