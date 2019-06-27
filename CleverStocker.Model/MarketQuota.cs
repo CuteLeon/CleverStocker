@@ -56,7 +56,7 @@ namespace CleverStocker.Model
         public double FluctuatingRate { get; set; } = double.NaN;
 
         /// <summary>
-        /// Gets or sets 成交股票数量 (单位：股)
+        /// Gets or sets 成交股票数量 (单位：手)
         /// </summary>
         public long Count { get; set; } = long.MinValue;
 
