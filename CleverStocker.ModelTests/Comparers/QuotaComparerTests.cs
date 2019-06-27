@@ -27,6 +27,8 @@ namespace CleverStocker.Model.Comparers.Tests
 
             quota1.UpdateTime = DateTime.Now;
             Assert.IsFalse(comparer.Equals(quota1, quota2));
+
+            Assert.IsTrue(comparer.Compare(quota1, quota2) == 1);
         }
     }
 }

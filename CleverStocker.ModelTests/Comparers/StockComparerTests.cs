@@ -26,6 +26,8 @@ namespace CleverStocker.Model.Comparers.Tests
 
             stock1.Market = Markets.ShangHai;
             Assert.IsFalse(comparer.Equals(stock1, stock2));
+
+            Assert.IsTrue(comparer.Compare(stock1, stock2) == 1);
         }
     }
 }

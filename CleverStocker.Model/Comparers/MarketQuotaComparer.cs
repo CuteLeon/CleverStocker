@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace CleverStocker.Model.Comparers
 {
     /// <summary>
-    /// 行情比较器
+    /// 大盘指数比较器
     /// </summary>
-    public class QuotaComparer : IEqualityComparer<Quota>, IComparer<Quota>
+    public class MarketQuotaComparer : IEqualityComparer<MarketQuota>, IComparer<MarketQuota>
     {
         /// <summary>
         /// 股票比较器
@@ -14,12 +14,12 @@ namespace CleverStocker.Model.Comparers
         private readonly StockComparer stockComparer = new StockComparer();
 
         /// <summary>
-        /// 比较
+        /// 比较大小
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public int Compare(Quota x, Quota y)
+        public int Compare(MarketQuota x, MarketQuota y)
         {
             if (this.stockComparer.Equals(x?.Stock, y?.Stock))
             {
@@ -32,13 +32,12 @@ namespace CleverStocker.Model.Comparers
         }
 
         /// <summary>
-        /// 相等
+        /// 比较相等
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        /// <remarks>行情ID相同或同一债券同一时刻的更新</remarks>
-        public bool Equals(Quota x, Quota y)
+        public bool Equals(MarketQuota x, MarketQuota y)
             => ReferenceEquals(x, y) ||
                 (string.Compare(x?.ID, y?.ID, StringComparison.OrdinalIgnoreCase) == 0) ||
                 (this.stockComparer.Equals(x?.Stock, y?.Stock) &&
@@ -49,7 +48,7 @@ namespace CleverStocker.Model.Comparers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int GetHashCode(Quota obj)
+        public int GetHashCode(MarketQuota obj)
             => obj.GetHashCode();
     }
 }

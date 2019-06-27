@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace CleverStocker.Model.Comparers
 {
     /// <summary>
-    /// 股票相等比较器
+    /// 股票比较器
     /// </summary>
     public class StockComparer : IEqualityComparer<Stock>, IComparer<Stock>
     {
