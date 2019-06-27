@@ -65,6 +65,10 @@
     <Compile Include="DockForms\DockFormBase.Designer.cs">
       <DependentUpon>DockFormBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\FloatWindows\FloatedWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\FloatWindows\FloatedWindowFactory.cs" />
     <Compile Include="DockForms\RecommendStockForm.cs">
       <SubType>Form</SubType>
     </Compile>

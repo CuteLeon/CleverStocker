@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
+using CleverStocker.Client.DockForms.FloatWindows;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Services;
 using CleverStocker.Utils;
@@ -29,6 +30,7 @@ namespace CleverStocker.Client
             this.IsMdiContainer = true;
             this.MainDockPanel.DocumentStyle = DocumentStyle.DockingMdi;
             this.MainDockPanel.DocumentTabStripLocation = DocumentTabStripLocation.Top;
+            this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
             this.MainDockPanel.ShowDocumentIcon = true;
 
             this.ClassicsThemeMenuItem.Checked = true;
@@ -181,6 +183,10 @@ namespace CleverStocker.Client
                     break;
             }
 
+            // 应用浮动窗口工厂
+            this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
+
+            // 应用工具条主题
             this.MainDockPanel.Theme.ApplyTo(this.MainTopMenuStrip);
             this.MainDockPanel.Theme.ApplyTo(this.MainToolStrip);
             this.MainDockPanel.Theme.ApplyTo(this.MainStatusStrip);
