@@ -62,6 +62,9 @@
     <Compile Include="DockForms\DockFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DockForms\DockFormBase.Designer.cs">
+      <DependentUpon>DockFormBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\RecommendStockForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -82,8 +82,7 @@ namespace CleverStocker.Spider.Sina
             quota = new Quota(stock);
             stock.Quotas.Add(quota);
 
-            string value;
-            stock.Name = match.TryGetValue("Name", out value) ? value : string.Empty;
+            stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
             quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;

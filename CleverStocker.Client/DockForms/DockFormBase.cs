@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Client.Interfaces;
 using WeifenLuo.WinFormsUI.Docking;
@@ -10,7 +9,7 @@ namespace CleverStocker.Client.DockForms
     /// 停靠窗口基类
     /// </summary>
     /// <see cref="http://docs.dockpanelsuite.com/getting-started/index.html#"/>
-    public class DockFormBase : DockContent, IInitializable
+    public partial class DockFormBase : DockContent, IInitializable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DockFormBase"/> class.
@@ -18,7 +17,7 @@ namespace CleverStocker.Client.DockForms
         public DockFormBase()
             : base()
         {
-            this.BackColor = Color.FromArgb(37, 37, 38);
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -61,19 +60,6 @@ namespace CleverStocker.Client.DockForms
             }
 
             base.OnFormClosing(e);
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // DockFormBase
-            // 
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "DockFormBase";
-            this.ResumeLayout(false);
-
         }
     }
 }
