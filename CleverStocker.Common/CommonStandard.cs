@@ -56,6 +56,32 @@ namespace CleverStocker.Common
         }
 
         /// <summary>
+        /// 图表
+        /// </summary>
+        public enum Charts
+        {
+            /// <summary>
+            /// 分时
+            /// </summary>
+            Minute = 0,
+
+            /// <summary>
+            /// 日K
+            /// </summary>
+            DailyCandlestick = 1,
+
+            /// <summary>
+            /// 周K
+            /// </summary>
+            WeeklyCandlestick = 2,
+
+            /// <summary>
+            /// 月K
+            /// </summary>
+            MonthlyCandlestick = 3,
+        }
+
+        /// <summary>
         /// Gets 交易市场代码和名称字典
         /// </summary>
         public static ReadOnlyDictionary<Markets, (string Code, string Name)> MarketDictionary { get; } =

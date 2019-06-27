@@ -78,12 +78,6 @@ var hq_str_s_sh000001="上证指数,3094.668,-128.073,-3.97,436653,5458126";
 
 ## 图像
 
-### K线图
-
-```
-http://image.sinajs.cn/newchart/daily/n/sh601006.gif
-```
-
 ### 分时线
 
 ```
@@ -93,7 +87,7 @@ http://image.sinajs.cn/newchart/min/n/sh000001.gif
 ### 日K线
 
 ```
-http://image.sinajs.cn/newchart/min/n/sh000001.gif
+http://image.sinajs.cn/newchart/daily/n/sh601006.gif
 ```
 
 ### 周K线

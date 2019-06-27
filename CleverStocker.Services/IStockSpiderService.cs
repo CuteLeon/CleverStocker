@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Threading.Tasks;
 using CleverStocker.Model;
 using static CleverStocker.Common.CommonStandard;
 
@@ -40,5 +41,23 @@ namespace CleverStocker.Services
         /// <param name="market"></param>
         /// <returns></returns>
         Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market);
+
+        /// <summary>
+        /// 获取图表
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="chart"></param>
+        /// <returns></returns>
+        Image GetChart(string code, Markets market, Charts chart);
+
+        /// <summary>
+        /// 异步获取图表
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="chart"></param>
+        /// <returns></returns>
+        Task<Image> GetChartAsync(string code, Markets market, Charts chart);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -30,6 +31,17 @@ namespace CleverStocker.Spider.Sina
         public static Regex MarketQuotaRegex { get; } = new Regex(
             $@"var\s.*\=""(?<Name>.*?),(?<Price>[\d\.]+?),(?<Range>-?[\d\.]+?),(?<Rate>-?[\d\.]+?),(?<Count>\d+?),(?<Amount>\d+?)"";",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// 图表请求路径集合
+        /// </summary>
+        private static Dictionary<Charts, string> ChartsRequestAddresses = new Dictionary<Charts, string>()
+        {
+            { Charts.Minute, @"http://image.sinajs.cn/newchart/min/n/{0}.gif" },
+            { Charts.DailyCandlestick, @"http://image.sinajs.cn/newchart/daily/n/{0}.gif" },
+            { Charts.WeeklyCandlestick, @"http://image.sinajs.cn/newchart/weekly/n/{0}.gif" },
+            { Charts.MonthlyCandlestick, @"http://image.sinajs.cn/newchart/monthly/n/{0}.gif" },
+        };
 
         /// <summary>
         /// 获取股票行情
@@ -216,5 +228,44 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockMarketQuota(code, market));
+
+        /// <summary>
+        /// 获取图表
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="chart"></param>
+        /// <returns></returns>
+        public Image GetChart(string code, Markets market, Charts chart)
+        {
+            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
+                !ChartsRequestAddresses.TryGetValue(chart, out string request) ||
+                string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException();
+            }
+
+            request = string.Format(request, $"{marketInfo.Code}{code}");
+            var result = this.HttpClient.GetStreamAsync(request).Result;
+            if (result == null)
+            {
+                return default;
+            }
+
+            Image image = Bitmap.FromStream(result);
+            Stock stock = new Stock(code, market);
+
+            return image;
+        }
+
+        /// <summary>
+        /// 异步获取图表
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="chart"></param>
+        /// <returns></returns>
+        public async Task<Image> GetChartAsync(string code, Markets market, Charts chart)
+            => await Task.Factory.StartNew(() => this.GetChart(code, market, chart));
     }
 }

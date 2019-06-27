@@ -50,7 +50,7 @@ namespace CleverStocker.Client
         {
             try
             {
-                this.GetStockMarketQuota();
+                this.GetChart();
             }
             catch (Exception ex)
             {
@@ -114,6 +114,28 @@ namespace CleverStocker.Client
             }
 
             MessageBox.Show($"获取股票大盘指数成功：\n股票简称：{stock.Name}\n大盘指数ID：{marketQuote.ID}");
+        }
+
+        private void GetChart()
+        {
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var image = stockSpiderService.GetChart("600086", Markets.ShangHai, Charts.Minute);
+            if (image == null)
+            {
+                MessageBox.Show($"获取股票图表为空！");
+                return;
+            }
+
+            DockFormBase form = new DockFormBase()
+            {
+                Size = image.Size,
+                BackColor = Color.FromArgb(45, 45, 48),
+                BackgroundImage = image,
+                ShowHint = DockState.Document,
+                DockAreas = DockAreas.Float | DockAreas.Document,
+                BackgroundImageLayout = ImageLayout.Center,
+            };
+            form.Show(this.MainDockPanel);
         }
 
         #region 主题
