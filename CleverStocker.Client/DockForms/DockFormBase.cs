@@ -18,6 +18,8 @@ namespace CleverStocker.Client.DockForms
             : base()
         {
             this.InitializeComponent();
+
+            this.Icon = AppResource.Icon;
         }
 
         /// <summary>

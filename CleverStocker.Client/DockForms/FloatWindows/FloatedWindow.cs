@@ -17,7 +17,7 @@ namespace CleverStocker.Client.DockForms.FloatWindows
         public FloatedWindow(DockPanel dockPanel, DockPane pane)
             : base(dockPanel, pane)
         {
-            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.CustomeStyle();
         }
 
         /// <summary>
@@ -29,6 +29,17 @@ namespace CleverStocker.Client.DockForms.FloatWindows
         public FloatedWindow(DockPanel dockPanel, DockPane pane, Rectangle bounds)
             : base(dockPanel, pane, bounds)
         {
+            this.CustomeStyle();
+        }
+
+        /// <summary>
+        /// 自定义样式
+        /// </summary>
+        protected virtual void CustomeStyle()
+        {
+            this.Icon = AppResource.Icon;
+            this.ShowIcon = true;
+            this.ShowInTaskbar = true;
             this.FormBorderStyle = FormBorderStyle.Sizable;
         }
     }
