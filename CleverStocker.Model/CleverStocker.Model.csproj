@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparers\QuotaComparer.cs" />
     <Compile Include="Comparers\StockComparer.cs" />
     <Compile Include="Quota.cs" />
     <Compile Include="Stock.cs" />

@@ -30,6 +30,8 @@ namespace CleverStocker.DataAccess
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Stock>().HasIndex(stock => new { stock.Market, stock.Code }).IsUnique();
+
             Database.SetInitializer(new DataSeed(modelBuilder));
         }
     }

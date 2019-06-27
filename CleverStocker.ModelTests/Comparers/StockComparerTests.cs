@@ -13,6 +13,9 @@ namespace CleverStocker.Model.Comparers.Tests
             Stock stock1 = new Stock();
             Stock stock2 = new Stock();
 
+            Assert.IsFalse(comparer.Equals(stock1, null));
+            Assert.IsFalse(comparer.Equals(null, stock1));
+            Assert.IsTrue(comparer.Equals(stock1, stock1));
             Assert.IsTrue(comparer.Equals(stock1, stock2));
 
             stock1.Code = "0000001";

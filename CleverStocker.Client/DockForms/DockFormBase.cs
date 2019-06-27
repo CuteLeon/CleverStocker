@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Client.Interfaces;
 using WeifenLuo.WinFormsUI.Docking;
@@ -17,6 +18,7 @@ namespace CleverStocker.Client.DockForms
         public DockFormBase()
             : base()
         {
+            this.BackColor = Color.FromArgb(37, 37, 38);
         }
 
         /// <summary>
@@ -59,6 +61,19 @@ namespace CleverStocker.Client.DockForms
             }
 
             base.OnFormClosing(e);
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // DockFormBase
+            // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "DockFormBase";
+            this.ResumeLayout(false);
+
         }
     }
 }

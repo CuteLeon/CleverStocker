@@ -30,7 +30,7 @@ namespace CleverStocker.Spider.Sina
         public async Task<IEnumerable<Stock>> GetStocksAsync()
             => await Task.Factory.StartNew(() => this.GetStocks());
 
-        public Stock GetStock(Markets market, string code)
+        public Stock GetStock(string code, Markets market)
         {
             if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
                string.IsNullOrEmpty(code))
@@ -39,7 +39,9 @@ namespace CleverStocker.Spider.Sina
             }
 
             string request = $@"http://hq.sinajs.cn/list={marketInfo.Code}{code}";
-            var result = this.WebClient.DownloadString(request);
+            // this.WebClient.DownloadString(request);
+            var result = @"var hq_str_sh600086=""东方金钰,4.380,4.510,4.400,4.450,4.320,4.390,4.400,24027903,105284470.000,108305,4.390,169929,4.380,371500,4.370,423400,4.360,434900,4.350,17200,4.400,58700,4.410,32500,4.420,37900,4.430,80700,4.440,2019-06-27,09:58:11,00"";";
+
             if (string.IsNullOrEmpty(result))
             {
                 return default;
@@ -51,12 +53,23 @@ namespace CleverStocker.Spider.Sina
                 return default;
             }
 
-            Stock stock = new Stock();
+            _ = match.Groups["Name"].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+            _ = match.Groups[""].Value;
+
+            Stock stock = new Stock(code, market);
 
             return stock;
         }
 
-        public async Task<Stock> GetStockAsync(Markets market, string code)
-            => await Task.Factory.StartNew(() => this.GetStock(market, code));
+        public async Task<Stock> GetStockAsync(string code, Markets market)
+            => await Task.Factory.StartNew(() => this.GetStock(code, market));
     }
 }

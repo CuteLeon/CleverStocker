@@ -49,7 +49,7 @@ namespace CleverStocker.Client
         private void TestToolItem_Click(object sender, EventArgs e)
         {
             var stockService = DIContainerHelper.Resolve<IStockSpiderService>();
-            var stock = stockService.GetStock(Markets.ShangHai, "600086");
+            var stock = stockService.GetStock("600086", Markets.ShangHai);
             _ = stock.Name;
 
             using (var service = DIContainerHelper.Resolve<IStockService>())

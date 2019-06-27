@@ -14,8 +14,8 @@ namespace CleverStocker.Services
 
         Task<IEnumerable<Stock>> GetStocksAsync();
 
-        Stock GetStock(Markets market, string code);
+        Stock GetStock(string code, Markets market);
 
-        Task<Stock> GetStockAsync(Markets market, string code);
+        Task<Stock> GetStockAsync(string code, Markets market);
     }
 }

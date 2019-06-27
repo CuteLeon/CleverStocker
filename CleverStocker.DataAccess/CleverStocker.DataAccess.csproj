@@ -57,6 +57,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Common\CleverStocker.Common.csproj">
+      <Project>{199F6003-92B5-4726-8E80-6A470D8C7F58}</Project>
+      <Name>CleverStocker.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
       <Project>{55376275-2e0e-400c-a06e-e36dd181d763}</Project>
       <Name>CleverStocker.Model</Name>

@@ -94,6 +94,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\DockFormBase.resx">
+      <DependentUpon>DockFormBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DockForms\RecommendStockForm.resx">
       <DependentUpon>RecommendStockForm.cs</DependentUpon>
     </EmbeddedResource>

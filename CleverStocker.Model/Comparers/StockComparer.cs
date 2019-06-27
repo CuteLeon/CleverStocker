@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CleverStocker.Model.Comparers
 {
@@ -14,8 +15,9 @@ namespace CleverStocker.Model.Comparers
         /// <param name="y"></param>
         /// <returns></returns>
         public bool Equals(Stock x, Stock y)
-        => string.Compare(x?.Code, y.Code) == 0 &&
-            x?.Market == y?.Market;
+        => ReferenceEquals(x, y) ||
+            (string.Compare(x?.Code, y?.Code, StringComparison.OrdinalIgnoreCase) == 0 &&
+            x?.Market == y?.Market);
 
         /// <summary>
         /// GetHashCode
