@@ -1,120 +1,99 @@
-# Sina-API
-
-> **相关说明：**
->
-> 1. 手 = 100 * 股
-> 2. 元 = 10000 * 元
-
-
-## 查询股票
+## 债券信息：
 
 ### 请求：
 
 ```
-http://hq.sinajs.cn/list=sh601003,sh601001
+https://finance.sina.com.cn/otc/activity/sh600086_info.js
 ```
-
-> **说明：**
->
-> 1. 股票代码为交易所简称加代码；
-> 2. 多支股票代码用 ',' 分割；
 
 ### 响应：
 
-```js
-var hq_str_sh601006="大秦铁路, 27.55, 27.25, 26.91, 27.55, 26.20, 26.91, 26.92, 22114263, 589824680, 4695, 26.91, 57590, 26.90, 14700, 26.89, 14300, 26.88, 15100, 26.87, 3100, 26.92, 8900, 26.93, 14230, 26.94, 25150, 26.95, 15220, 26.96, 2008-01-11, 15:05:32";
+```
+var dongmi_info = {"id":"sh600086","stock":"sh600086","rank":1465,"vote":0,"ok":0,"nor":0,"name":"\u5b8b\u5b5d\u521a","position":"\u4e1c\u65b9\u91d1\u94b0","summary":"\u5b8b\u5b5d\u521a\uff0c\u7537\uff0c\u6c49\u65cf\uff0c1956\u5e7412\u6708\u51fa\u751f\uff0c\u4e2d\u5171\u515a\u5458\uff0c\u5927\u4e13\u6587\u5316\uff0c\u4f1a\u8ba1\u5e08\u3002\u66fe\u4efb\u89e3\u653e\u519b\u67d0\u90e8\u6218\u58eb\u3001\u6392\u957f\u3001\u526f\u8fde\u957f\u3001\u4f1a\u8ba1\uff0c\u6df1\u5733\u53d1\u5c55\u94f6\u884c\u7f57\u6e56\u5206\u7406\u5904\u4e3b\u4efb\uff0c1988\u5e74\u81f32012\u5e744\u6708\u4efb\u6df1\u5733\u5e02\u57ce\u5e02\u5efa\u8bbe\u5f00\u53d1\uff08\u96c6\u56e2\uff09\u516c\u53f8\u8d22\u52a1\u90e8\u526f\u90e8\u957f\u3001\u90e8\u957f\uff0c\u6df1\u5733\u4e16\u7eaa\u661f\u6e90\u80a1\u4efd\u6709\u9650\u516c\u53f8\u8463...","corp_brief":"    \u516c\u53f8\u7cfb\u7531\u539f\u9102\u5dde\u5e02\u670d\u88c5\u603b\u5382\u7b49\u4e8e1993\u5e744\u67082\u65e5\u5171\u540c\u53d1\u8d77\u8bbe\u7acb,\u4ee5\u5176\u7ecf\u8425\u6027\u51c0\u8d44\u4ea7\u6298\u53d1\u8d77\u4eba\u80a12860\u4e07\u80a1,\u5e76\u5b9a\u5411\u52df\u96c6\u804c\u5de5\u80a1300\u4e07\u80a1,1995\u5e746\u6708\u53ca10\u6708\u5206\u522b\u630910:3\u6bd4\u4f8b\u8fdb\u884c\u914d\u80a1\u548c\u8f6c\u589e\u80a1\u672c,1996\u5e743\u6708\u630910:4.5\u53ca10:1\u6bd4\u4f8b\u8fdb\u884c\u9001\u80a1\u548c\u8f6c\u589e,\u7ecf1997\u5e745\u670822\u65e5\u53d1\u884c\u540e,\u4e0a\u5e02\u65f6\u603b\u80a1\u672c\u8fbe11595.99\u4e07\u80a1,\u5176\u804c\u5de5\u80a1816.075\u4e07\u80a1\u5c06\u4e8e\u516c\u4f17\u80a13000\u4e07\u80a11997\u5e746\u67086\u65e5\u5728\u4e0a\u4ea4\u6240\u4e0a\u5e02\u4ea4\u6613\u671f\u6ee1\u4e09\u5e74\u540e\u4e0a\u5e02\u3002","industry":"\u5bb6\u7528\u8f7b\u5de5","pic":"","status":"0","ir_index":"12","research":"--","sharepic":"http:\/\/n.sinaimg.cn\/finance\/798\/w416h382\/20190611\/0296-hyeztys8769891.png"}
+/* b+l+FG3NaRskImRavcvwfxUha1WKIQFis9imYY42BWNDVB/to4JMbuB+wtEThop4i3HRPmTkwQtp/w7p+PdSJNCrWIR+UQKOdhzliQamS9c2ELeJ94z8cbLQ8jl1yfVmPqmpxKWrt0mXUT+hu3hGqQPvRSsGAPJt/fbRaM7MwU/crOVFlkZIxCsmV94WTjtjii654VHV+gYBpDKhPG8Vbrhzn1g= */
 ```
 
-> **说明：**
+> **注意：**
 >
-> | 序号： | 值：       | 说明：                                   |
-> | ------ | ---------- | ---------------------------------------- |
-> | 0      | 大秦铁路   | 股票名字                                 |
-> | 1      | 27.55      | 今日开盘价                               |
-> | 2      | 27.25      | 昨日收盘价                               |
-> | 3      | 26.91      | 当前价格                                 |
-> | 4      | 27.55      | 今日最高价                               |
-> | 5      | 26.20      | 今日最低价                               |
-> | 6      | 26.91      | 竞买价，“买一”报价                       |
-> | 7      | 26.92      | 竞卖价，“卖一”报价                       |
-> | 8      | 22114263   | 成交的股票数(股)                         |
-> | 9      | 589824680  | 成交金额(元)                             |
-> | 10~19  | ——         | (股数,报价) in (买一 to 买五) (五档盘口) |
-> | 20~29  | ——         | (股数,报价) in (卖一 to 卖五) (五档盘口) |
-> | 30     | 2008-01-11 | 数据刷新日期                             |
-> | 31     | 15:05:32   | 数据刷新时间                             |
->
+> 1. 内容需要 Unicode 转中文
 
-## 大盘指数
+
+
+## 过去5个交易日平均每分钟成交量
 
 ### 请求：
 
 ```
-http://hq.sinajs.cn/list=s_sh000001,s_sz399001,s_sz300748
+https://finance.sina.com.cn/realstock/lastfive/sh600086.js
 ```
-
-> **说明：**
->
-> 1. 股票代码为 "s_" 加交易所简称加代码；
-> 2. 多支股票代码用 ',' 分割；
 
 ### 响应：
 
-```js
-var hq_str_s_sh000001="上证指数,3094.668,-128.073,-3.97,436653,5458126";
 ```
-> **说明：**
-> | 序号： | 值：     | 说明：       |
-> | ------ | -------- | ------------ |
-> | 0      | 上证指数 | 指数名称     |
-> | 1      | 3094.668 | 当前点数     |
-> | 2      | -128.073 | 当前价格     |
-> | 3      | -3.97    | 涨跌率       |
-> | 4      | 436653   | 成交量(手)   |
-> | 5      | 5458126  | 成交额(万元) |
->
-
-
-
-## 图像
-
-### 分时线
-
-```
-http://image.sinajs.cn/newchart/min/n/sh000001.gif
+var lastfivesh600086 = {"lastfive":[{"d":"2019-06-27","c":"4858.29"},{"d":"2019-06-26","c":"4699.8"},{"d":"2019-06-25","c":"4360.53"},{"d":"2019-06-24","c":"4883.17"},{"d":"2019-06-21","c":"4602.48"}]}
+/* KQHmMaA5Kl5FlWMiP+qhrKwIXADUnxFQqnruhBmj6NwjM7tfaCH/O4cWiIJ2DDO8NVP0E7+JTGpaEI/6U9kRfQtFMu2ScaBJzV+KrK1N5t8ygnpleZsZCAXLKgGIjossg+t93YA8nqR3jhFbzTasqdrC2R7OoyRB/fX6G171jZ5UTSKcVaNyMaykRAiTn+nHp5Jnzdmvkts= */
 ```
 
-### 日K线
-
-```
-http://image.sinajs.cn/newchart/daily/n/sh601006.gif
-```
-
-### 周K线
-
-```
-http://image.sinajs.cn/newchart/weekly/n/sh000001.gif
-```
-
-### 月K线
-
-```
-http://image.sinajs.cn/newchart/monthly/n/sh000001.gif
-```
-
-> **说明：**
->
-> 1. 股票代码为交易所简称加代码；
 
 
-
-## 公司信息
+## 获取系统时间
 
 ### 请求：
 
 ```
-http://vip.stock.finance.sina.com.cn/corp/go.php/vCI_CorpInfo/stockid/600086.phtml
+https://hq.sinajs.cn/?list=sys_time
 ```
+
+### 响应：
+
+```
+var hq_str_sys_time="1561652531";
+```
+
+
+
+## 获取最近采样数据
+
+### 请求：
+
+```
+https://quotes.sina.cn/cn/api/jsonp_v2.php/sh600086/CN_MarketDataService.getKLineData?symbol=sh600086&scale=5&ma=no&datalen=12
+```
+
+> **说明：**
+>
+> 1. 第一个出现的债券代码只是字符串变量，可以随意修改
+> 2. symbol 传入股票交易市场和代码
+> 3. scale 为采样间隔分钟数，可取 5、10、15、30、60
+> 4. datalen 为返回的数据条数，几十、几百、几千 随意
+
+## 响应：
+
+```
+sh600086([{
+    "day": "2019-06-27 14:05:00",
+    "open": "4.470",
+    "high": "4.470",
+    "low": "4.450",
+    "close": "4.460",
+    "volume": "732300"
+}, {
+    "day": "2019-06-27 14:10:00",
+    "open": "4.460",
+    "high": "4.560",
+    "low": "4.460",
+    "close": "4.550",
+    "volume": "3020600"
+}]);
+```
+
+> **说明：**
+>
+> 1. day 时间
+> 2. open 开盘价格
+> 3. close 收盘价格
+> 4. high 最高价格
+> 5. low 最低价格
 
 
 
