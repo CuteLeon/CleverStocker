@@ -14,17 +14,42 @@ namespace CleverStocker.Common.Extensions
         private const int CSDROPSHADOW = 0x20000;
         private const int GCLSTYLE = -26;
 
+        /// <summary>
+        /// SetClassLong
+        /// </summary>
+        /// <param name="hwnd"></param>
+        /// <param name="nIndex"></param>
+        /// <param name="dwNewLong"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int SetClassLong(IntPtr hwnd, int nIndex, int dwNewLong);
+        private static extern int SetClassLong(IntPtr hwnd, int nIndex, int dwNewLong);
 
+        /// <summary>
+        /// GetClassLong
+        /// </summary>
+        /// <param name="hwnd"></param>
+        /// <param name="nIndex"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern int GetClassLong(IntPtr hwnd, int nIndex);
+        private static extern int GetClassLong(IntPtr hwnd, int nIndex);
 
+        /// <summary>
+        /// SendMessage
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="msg"></param>
+        /// <param name="wParam"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
+        /// <summary>
+        /// ReleaseCapture
+        /// </summary>
+        /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern bool ReleaseCapture();
+        private static extern bool ReleaseCapture();
 
         /// <summary>
         /// 设置窗口阴影
