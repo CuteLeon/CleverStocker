@@ -164,6 +164,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="System.Threading.Tasks.Dataflow">
+      <Version>4.9.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon.ico" />
