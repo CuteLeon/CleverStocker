@@ -50,13 +50,14 @@ namespace CleverStocker.Client
         {
             var stockService = DIContainerHelper.Resolve<IStockSpiderService>();
             var stock = stockService.GetStock(Markets.ShangHai, "600086");
+            _ = stock.Name;
 
-            using (var service = new StockService())
+            using (var service = DIContainerHelper.Resolve<IStockService>())
             {
                 service.Add(new Stock()
                 {
                     Code = "000123",
-                    Market = Markets.Unknown,
+                    Market = Markets.ShangHai,
                     Quotas = new List<Quota>()
                     {
                         new Quota() { UpdateTime = DateTime.Now },

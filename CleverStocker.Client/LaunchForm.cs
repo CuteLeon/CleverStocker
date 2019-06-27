@@ -42,7 +42,7 @@ namespace CleverStocker.Client
             Application.DoEvents();
 
             LogHelper<LaunchForm>.Debug("启动应用程序 ...");
-            DialogResult dialogResult = DialogResult.None; 
+            DialogResult dialogResult = DialogResult.None;
             try
             {
                 await this.LaunchApplication();

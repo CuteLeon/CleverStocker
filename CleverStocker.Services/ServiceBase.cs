@@ -16,7 +16,7 @@ namespace CleverStocker.Services
     /// 同步方法通过 System.Linq 内的 IQueryable<> 接口调用
     /// 服务基类封装 DbSet 和 QueryableExtensions 提供的方法
     /// </remarks>
-    public abstract class ServiceBase<TEntity> : IService
+    public abstract class ServiceBase<TEntity> : IPersistService<TEntity>
         where TEntity : class
     {
         #region 属性
@@ -34,12 +34,12 @@ namespace CleverStocker.Services
         /// <summary>
         /// Gets 数据库交互
         /// </summary>
-        protected DbContext Context { get; } = new DBContext();
+        public DbContext Context { get; } = new DBContext();
 
         /// <summary>
         /// Gets 数据库
         /// </summary>
-        protected Database Database { get; }
+        public Database Database { get; }
         #endregion
 
         #region 增加
@@ -588,6 +588,10 @@ namespace CleverStocker.Services
         #region IDisposable Support
         private bool disposedValue = false;
 
+        /// <summary>
+        /// 释放
+        /// </summary>
+        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!this.disposedValue)
@@ -601,6 +605,9 @@ namespace CleverStocker.Services
             }
         }
 
+        /// <summary>
+        /// 释放
+        /// </summary>
         public void Dispose()
         {
             this.Dispose(true);

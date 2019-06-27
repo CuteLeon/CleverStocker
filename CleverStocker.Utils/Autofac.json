@@ -9,5 +9,14 @@
       ],
       "injectProperties": true
     },
+    {
+      "type": "CleverStocker.Services.StockService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IStockService, CleverStocker.Services"
+        }
+      ],
+      "injectProperties": true
+    }
   ]
 }

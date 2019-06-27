@@ -1,9 +1,11 @@
-﻿namespace CleverStocker.Services
+﻿using CleverStocker.Model;
+
+namespace CleverStocker.Services
 {
     /// <summary>
     /// 股票接口
     /// </summary>
-    public interface IStockService
+    public interface IStockService : IPersistService<Stock>
     {
     }
 }
