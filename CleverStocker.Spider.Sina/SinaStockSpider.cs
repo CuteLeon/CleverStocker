@@ -50,7 +50,7 @@ namespace CleverStocker.Spider.Sina
         /// Gets 最近行情正则表达式
         /// </summary>
         public static Regex RecentQuotaRegex { get; } = new Regex(
-            @"\{\""day\"":\""(?<DateTime>\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\"",\""open\"":\""(?<Openning>[\d\.]+?)\"",\""high\"":\""(?<Highest>[\d\.]+?)\"",\""low\"":\""(?<Lowest>[\d\.]+?)\"",\""close\"":\""(?<Closing>[\d\.]+?)\"",\""volume\"":\""(?<Volume>\d+?)\""\}}",
+            @"\{\""day\"":\""(?<DateTime>\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\"",\""open\"":\""(?<Openning>[\d\.]+?)\"",\""high\"":\""(?<Highest>[\d\.]+?)\"",\""low\"":\""(?<Lowest>[\d\.]+?)\"",\""close\"":\""(?<Closing>[\d\.]+?)\"",\""volume\"":\""(?<Volume>\d+?)\""\}",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace CleverStocker.Spider.Sina
         /// </summary>
         /// <param name="tradeListType"></param>
         /// <returns></returns>
-        private static (Regex, Func<Match, Trade>) GetTradeListRegexDelegate(TradeListTypes tradeListType)
+        public static (Regex, Func<Match, Trade>) GetTradeListRegexConvertor(TradeListTypes tradeListType)
         {
             switch (tradeListType)
             {
@@ -529,7 +529,7 @@ namespace CleverStocker.Spider.Sina
                 return Enumerable.Empty<Trade>().ToList();
             }
 
-            var (regex, convertor) = GetTradeListRegexDelegate(tradeListType);
+            var (regex, convertor) = GetTradeListRegexConvertor(tradeListType);
             if (regex == null ||
                 convertor == null)
             {

@@ -130,7 +130,57 @@ regexflag([{""day"":""2019-06-28 14:10:00"",""open"":""4.450"",""high"":""4.450"
         [TestMethod()]
         public void GetRecentTradesTest()
         {
+            string response = @"//<script>location.href='http://sina.com.cn'; </script>
+var bill_detail_list = new Array();
+ bill_detail_list[0] = new Array('15:00:00', '1229455', '4.400', 'UP');
+ bill_detail_list[1] = new Array('14:56:47', '130900', '4.410', 'DOWN');
+ bill_detail_list[2] = new Array('14:56:32', '46600', '4.410', 'DOWN');
+ ";
 
+            var (regex, convertor) = SinaStockSpider.GetTradeListRegexConvertor(TradeListTypes.All);
+            var trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
+
+            Assert.AreEqual(3, trades.Count);
+            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].DateTime);
+            Assert.AreEqual(1229455, trades[0].Count);
+            Assert.AreEqual(4.4, trades[0].Price);
+            Assert.AreEqual(TradeTypes.Buy, trades[0].TradeType);
+            Assert.AreEqual(TradeTypes.Sell, trades[1].TradeType);
+
+            response = @"//<script>location.href='http://sina.com.cn'; </script>
+var bill_detail_list = new Array();
+ bill_detail_list[0] = new Array('15:00:00', '1229455', '4.400', 'UP');
+ bill_detail_list[1] = new Array('14:56:47', '130900', '4.410', 'DOWN');
+ bill_detail_list[2] = new Array('14:56:32', '46600', '4.410', 'DOWN');
+";
+
+            (regex, convertor) = SinaStockSpider.GetTradeListRegexConvertor(TradeListTypes.Block);
+            trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
+
+            Assert.AreEqual(3, trades.Count);
+            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].DateTime);
+            Assert.AreEqual(1229455, trades[0].Count);
+            Assert.AreEqual(4.4, trades[0].Price);
+            Assert.AreEqual(TradeTypes.Buy, trades[0].TradeType);
+            Assert.AreEqual(TradeTypes.Sell, trades[1].TradeType);
+
+            response = @"var minute_data_list = [['15:00:00', '4.4', '1229455'],['14:56:00', '4.4', '626700'],['14:55:00', '4.41', '714400']];";
+            (regex, convertor) = SinaStockSpider.GetTradeListRegexConvertor(TradeListTypes.ByMinute);
+            trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
+
+            Assert.AreEqual(3, trades.Count);
+            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].DateTime);
+            Assert.AreEqual(4.4, trades[0].Price);
+            Assert.AreEqual(1229455, trades[0].Count);
+
+            response = @"var price_statist_list = new Array(); price_statist_list[0] = new Array('4.630', '6923800', '7.86%'); price_statist_list[1] = new Array('4.620', '6428753', '7.30%'); price_statist_list[2] = new Array('4.640', '5054700', '5.74%');";
+            (regex, convertor) = SinaStockSpider.GetTradeListRegexConvertor(TradeListTypes.ByPrice);
+            trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
+
+            Assert.AreEqual(3, trades.Count);
+            Assert.AreEqual(4.63, trades[0].Price);
+            Assert.AreEqual(6923800, trades[0].Count);
+            Assert.AreEqual(7.86, trades[0].Rate);
         }
     }
 }
