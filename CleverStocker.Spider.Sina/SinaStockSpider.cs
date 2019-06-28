@@ -29,28 +29,49 @@ namespace CleverStocker.Spider.Sina
         /// Gets 大盘指数正则表达式
         /// </summary>
         public static Regex MarketQuotaRegex { get; } = new Regex(
-            $@"var\s.*\=""(?<Name>.*?),(?<Price>[\d\.]+?),(?<Range>-?[\d\.]+?),(?<Rate>-?[\d\.]+?),(?<Count>\d+?),(?<Amount>\d+?)"";",
+            @"var\s.*\=""(?<Name>.*?),(?<Price>[\d\.]+?),(?<Range>-?[\d\.]+?),(?<Rate>-?[\d\.]+?),(?<Count>\d+?),(?<Amount>\d+?)"";",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// Gets 公司信息正则表达式
         /// </summary>
         public static Regex CompanyRegex { get; } = new Regex(
-            $@"var\s.*?\""rank\""\:(?<Rank>\d+?),\""vote\""\:(?<Vote>\d+?),.*?\""name\""\:\""(?<Name>.*?)\"",\""position\""\:\""(?<Position>.*?)\"",\""summary\""\:\""(?<Summary>.*?)\"",\""corp_brief\""\:\""(?<CorpBrief>.*?)\"",\""industry\""\:\""(?<Industry>.*?)\"",.*?\""status\"":\""(?<Status>.*?)\"",.*",
+            @"var\s.*?\""rank\""\:(?<Rank>\d+?),\""vote\""\:(?<Vote>\d+?),.*?\""name\""\:\""(?<Name>.*?)\"",\""position\""\:\""(?<Position>.*?)\"",\""summary\""\:\""(?<Summary>.*?)\"",\""corp_brief\""\:\""(?<CorpBrief>.*?)\"",\""industry\""\:\""(?<Industry>.*?)\"",.*?\""status\"":\""(?<Status>.*?)\"",.*",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// Gets json 数组正则表达式
         /// </summary>
         public static Regex JsonArrayRegex { get; } = new Regex(
-            $@".*?regexflag\(\[(?<JsonArray>.*?)\]\);",
+            @".*?regexflag\(\[(?<JsonArray>.*?)\]\);",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
         /// Gets 最近行情正则表达式
         /// </summary>
         public static Regex RecentQuotaRegex { get; } = new Regex(
-            $@"\{{\""day\"":\""(?<DateTime>\d{{4}}-\d{{2}}-\d{{2}}\s\d{{2}}:\d{{2}}:\d{{2}})\"",\""open\"":\""(?<Openning>[\d\.]+?)\"",\""high\"":\""(?<Highest>[\d\.]+?)\"",\""low\"":\""(?<Lowest>[\d\.]+?)\"",\""close\"":\""(?<Closing>[\d\.]+?)\"",\""volume\"":\""(?<Volume>\d+?)\""\}}",
+            @"\{\""day\"":\""(?<DateTime>\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2})\"",\""open\"":\""(?<Openning>[\d\.]+?)\"",\""high\"":\""(?<Highest>[\d\.]+?)\"",\""low\"":\""(?<Lowest>[\d\.]+?)\"",\""close\"":\""(?<Closing>[\d\.]+?)\"",\""volume\"":\""(?<Volume>\d+?)\""\}}",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets 所有\大宗交易列表正则表达式
+        /// </summary>
+        public static Regex AllBlockTradeRegex { get; } = new Regex(
+            @"_list\[\d+\]\s=\snew\sArray\(\'(?<DateTime>\d{2}:\d{2}:\d{2})\',\s\'(?<Count>\d+?)\',\s\'(?<Price>[\d\.]+?)\',\s\'(?<Type>UP|DOWN)\'\);",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets 分时交易列表正则表达式
+        /// </summary>
+        public static Regex TradeByMinuteRegex { get; } = new Regex(
+            @"\[\'(?<DateTime>\d{2}:\d{2}:\d{2})\',\s'(?<Price>[\d\.]+?)\',\s\'(?<Count>\d+?)\'\]",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets 分价交易列表正则表达式
+        /// </summary>
+        public static Regex TradeByPriceRegex { get; } = new Regex(
+            @"_list\[\d+\]\s=\snew\sArray\(\'(?<Price>[\d\.]+?)\',\s\'(?<Count>\d+?)\',\s\'(?<Rate>[\d\.]+?)%\'\);",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
@@ -63,6 +84,49 @@ namespace CleverStocker.Spider.Sina
             { Charts.WeeklyCandlestick, @"http://image.sinajs.cn/newchart/weekly/n/{0}.gif" },
             { Charts.MonthlyCandlestick, @"http://image.sinajs.cn/newchart/monthly/n/{0}.gif" },
         };
+
+        /// <summary>
+        /// 交易列表请求路径集合
+        /// </summary>
+        private static Dictionary<TradeListTypes, string> tradeListRequestAddresses = new Dictionary<TradeListTypes, string>()
+        {
+            { TradeListTypes.All, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/CN_TransListV2.php?symbol={0}&num={1}" },
+            { TradeListTypes.Block, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/CN_BillList.php?sort=ticktime&symbol={0}&num={1}" },
+            { TradeListTypes.ByPrice, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/cn_price_list.php?symbol={0}&num={1}" },
+            { TradeListTypes.ByMinute, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/vML_DataList.php?asc=j&symbol={0}&num={1}" },
+        };
+
+        /// <summary>
+        /// 获取交易列表正则表达式
+        /// </summary>
+        /// <param name="tradeListType"></param>
+        /// <returns></returns>
+        private static (Regex, Func<Match, Trade>) GetTradeListRegexDelegate(TradeListTypes tradeListType)
+        {
+            switch (tradeListType)
+            {
+                case TradeListTypes.All:
+                case TradeListTypes.Block:
+                    {
+                        return (AllBlockTradeRegex, ConvertToTradeAllBlock);
+                    }
+
+                case TradeListTypes.ByMinute:
+                    {
+                        return (TradeByMinuteRegex, ConvertToTradeMinute);
+                    }
+
+                case TradeListTypes.ByPrice:
+                    {
+                        return (TradeByPriceRegex, ConvertToTradePrice);
+                    }
+
+                default:
+                    {
+                        return default;
+                    }
+            }
+        }
 
         /// <summary>
         /// 获取股票行情
@@ -131,29 +195,29 @@ namespace CleverStocker.Spider.Sina
             quota.DayLowPrice = match.TryGetValue("Price5", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             quota.BiddingPrice = match.TryGetValue("Price6", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             quota.AuctionPrice = match.TryGetValue("Price7", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.Count = match.TryGetValue("Amount1", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.Count = match.TryGetValue("Amount1", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.Amount = match.TryGetValue("Amount2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
 
-            quota.BuyStrand1 = match.TryGetValue("Strand1", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyStrand1 = match.TryGetValue("Strand1", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.BuyPrice1 = match.TryGetValue("Quote1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand2 = match.TryGetValue("Strand2", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyStrand2 = match.TryGetValue("Strand2", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.BuyPrice2 = match.TryGetValue("Quote2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand3 = match.TryGetValue("Strand3", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyStrand3 = match.TryGetValue("Strand3", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.BuyPrice3 = match.TryGetValue("Quote3", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand4 = match.TryGetValue("Strand4", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyStrand4 = match.TryGetValue("Strand4", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.BuyPrice4 = match.TryGetValue("Quote4", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand5 = match.TryGetValue("Strand5", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.BuyStrand5 = match.TryGetValue("Strand5", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.BuyPrice5 = match.TryGetValue("Quote5", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
 
-            quota.SellStrand1 = match.TryGetValue("Strand6", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellStrand1 = match.TryGetValue("Strand6", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.SellPrice1 = match.TryGetValue("Quote6", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand2 = match.TryGetValue("Strand7", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellStrand2 = match.TryGetValue("Strand7", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.SellPrice2 = match.TryGetValue("Quote7", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand3 = match.TryGetValue("Strand8", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellStrand3 = match.TryGetValue("Strand8", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.SellPrice3 = match.TryGetValue("Quote8", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand4 = match.TryGetValue("Strand9", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellStrand4 = match.TryGetValue("Strand9", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.SellPrice4 = match.TryGetValue("Quote9", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand5 = match.TryGetValue("Strand10", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            quota.SellStrand5 = match.TryGetValue("Strand10", out value) ? ConvertorHelper.StringToLong(value) : -1L;
             quota.SellPrice5 = match.TryGetValue("Quote10", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
             stock.UpdateTime = quota.UpdateTime;
@@ -236,8 +300,8 @@ namespace CleverStocker.Spider.Sina
             marketQuota.CurrentPrice = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             marketQuota.FluctuatingRange = match.TryGetValue("Range", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             marketQuota.FluctuatingRate = match.TryGetValue("Rate", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            marketQuota.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
-            marketQuota.Amount = match.TryGetValue("Amount", out value) ? ConvertorHelper.StringToLong(value) : long.MinValue;
+            marketQuota.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            marketQuota.Amount = match.TryGetValue("Amount", out value) ? ConvertorHelper.StringToLong(value) : -1L;
 
             marketQuota.UpdateTime = DateTime.Now;
             stock.UpdateTime = marketQuota.UpdateTime;
@@ -424,7 +488,7 @@ namespace CleverStocker.Spider.Sina
             recentQuota.HighestPrice = match.TryGetValue("Highest", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             recentQuota.LowestPrice = match.TryGetValue("Lowest", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             recentQuota.ClosingPrice = match.TryGetValue("Closing", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            recentQuota.Volume = match.TryGetValue("Volume", out value) ? ConvertorHelper.StringToLong(value) : 0;
+            recentQuota.Volume = match.TryGetValue("Volume", out value) ? ConvertorHelper.StringToLong(value) : -1L;
 
             return recentQuota;
         }
@@ -444,12 +508,99 @@ namespace CleverStocker.Spider.Sina
         /// 获取最近交易
         /// </summary>
         /// <param name="code"></param>
-        /// <param name="markets"></param>
+        /// <param name="market"></param>
         /// <param name="tradeListType"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public List<Trade> GetRecentTrades(string code, Markets markets, TradeListTypes tradeListType, int count)
+        public List<Trade> GetRecentTrades(string code, Markets market, TradeListTypes tradeListType, int count)
         {
+            string marketCode = SinaSpiderHelper.GetMarketCode(market);
+            if (!tradeListRequestAddresses.TryGetValue(tradeListType, out string request) ||
+                string.IsNullOrEmpty(marketCode) ||
+                string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException();
+            }
+
+            request = string.Format(request, $"{marketCode}{code}", count);
+            var result = this.WebClient.DownloadString(request);
+            if (string.IsNullOrEmpty(result))
+            {
+                return Enumerable.Empty<Trade>().ToList();
+            }
+
+            var (regex, convertor) = GetTradeListRegexDelegate(tradeListType);
+            if (regex == null ||
+                convertor == null)
+            {
+                return Enumerable.Empty<Trade>().ToList();
+            }
+
+            List<Trade> trades = new List<Trade>(count);
+
+            trades.AddRange(
+                regex.Matches(result).Cast<Match>()
+                .Select(convertor));
+
+            return trades;
+        }
+
+        /// <summary>
+        /// 转换匹配结果为交易
+        /// </summary>
+        /// <param name="match"></param>
+        private static Trade ConvertToTradeAllBlock(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            Trade trade = new Trade();
+            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
+            trade.Price = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            trade.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            trade.TradeType = match.TryGetValue("Type", out value) && string.Equals(value, "UP", StringComparison.OrdinalIgnoreCase) ? TradeTypes.Buy : TradeTypes.Sell;
+
+            return trade;
+        }
+
+        /// <summary>
+        /// 转换匹配结果为交易
+        /// </summary>
+        /// <param name="match"></param>
+        private static Trade ConvertToTradeMinute(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            Trade trade = new Trade();
+            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
+            trade.Price = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            trade.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+
+            return trade;
+        }
+
+        /// <summary>
+        /// 转换匹配结果为交易
+        /// </summary>
+        /// <param name="match"></param>
+        private static Trade ConvertToTradePrice(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            Trade trade = new Trade();
+            trade.Price = match.TryGetValue("Price", out string value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            trade.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            trade.Rate = match.TryGetValue("Rate", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+
+            return trade;
         }
 
         /// <summary>

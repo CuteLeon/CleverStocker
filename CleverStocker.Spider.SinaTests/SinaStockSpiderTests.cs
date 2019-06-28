@@ -126,5 +126,11 @@ regexflag([{""day"":""2019-06-28 14:10:00"",""open"":""4.450"",""high"":""4.450"
             Assert.AreEqual(4.440, recentQuota.ClosingPrice);
             Assert.AreEqual(638700, recentQuota.Volume);
         }
+
+        [TestMethod()]
+        public void GetRecentTradesTest()
+        {
+
+        }
     }
 }

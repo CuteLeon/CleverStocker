@@ -58,12 +58,12 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 成交股票数量 (单位：手)
         /// </summary>
-        public long Count { get; set; } = long.MinValue;
+        public long Count { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 成交金额 (单位：万元)
         /// </summary>
-        public long Amount { get; set; } = long.MinValue;
+        public long Amount { get; set; } = -1L;
         #endregion
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace CleverStocker.Client
         {
             try
             {
-                this.GetRecentQuotas();
+                this.GetRecentTrades();
             }
             catch (Exception ex)
             {
@@ -180,6 +180,21 @@ namespace CleverStocker.Client
             }
 
             MessageBox.Show($"获取最近行情成功：\n行情数量：{quotas.Count}\n最新时间：{quotas.LastOrDefault()?.DateTime}\n最早时间：{quotas.FirstOrDefault()?.DateTime}");
+        }
+
+        private void GetRecentTrades()
+        {
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var trades = stockSpiderService.GetRecentTrades("600086", Markets.ShangHai, TradeListTypes.ByPrice, 10);
+
+            if (trades == null ||
+                trades.Count == 0)
+            {
+                MessageBox.Show($"获取最近交易为空！");
+                return;
+            }
+
+            MessageBox.Show($"获取最近交易成功：\n交易数量：{trades.Count}\n最新时间：{trades.LastOrDefault()?.DateTime}\n最早时间：{trades.FirstOrDefault()?.DateTime}");
         }
 
         #region 主题

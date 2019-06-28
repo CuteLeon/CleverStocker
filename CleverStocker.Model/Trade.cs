@@ -26,17 +26,17 @@ namespace CleverStocker.Model
         public TradeTypes TradeType { get; set; }
 
         /// <summary>
-        /// Gets or sets 交易量
+        /// Gets or sets 交易量 (单位 股)
         /// </summary>
         public long Count { get; set; }
 
         /// <summary>
-        /// Gets or sets 交易价格
+        /// Gets or sets 交易价格 (单位 元)
         /// </summary>
         public double Price { get; set; }
 
         /// <summary>
-        /// Gets or sets 交易量占比
+        /// Gets or sets 交易量占比 (单位 %)
         /// </summary>
         public double Rate { get; set; }
     }

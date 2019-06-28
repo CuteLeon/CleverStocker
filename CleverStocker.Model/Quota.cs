@@ -78,7 +78,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 成交股票数量 (单位：股)
         /// </summary>
-        public long Count { get; set; } = long.MinValue;
+        public long Count { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 成交金额 (单位：元)
@@ -91,7 +91,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 买1股数 (单位：股)
         /// </summary>
-        public long BuyStrand1 { get; set; } = long.MinValue;
+        public long BuyStrand1 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 买1价格 (单位：元)
@@ -101,7 +101,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 买2股数 (单位：股)
         /// </summary>
-        public long BuyStrand2 { get; set; } = long.MinValue;
+        public long BuyStrand2 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 买2价格 (单位：元)
@@ -111,7 +111,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 买3股数 (单位：股)
         /// </summary>
-        public long BuyStrand3 { get; set; } = long.MinValue;
+        public long BuyStrand3 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 买3价格 (单位：元)
@@ -121,7 +121,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 买4股数 (单位：股)
         /// </summary>
-        public long BuyStrand4 { get; set; } = long.MinValue;
+        public long BuyStrand4 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 买4价格 (单位：元)
@@ -131,7 +131,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 买5股数 (单位：股)
         /// </summary>
-        public long BuyStrand5 { get; set; } = long.MinValue;
+        public long BuyStrand5 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 买5价格 (单位：元)
@@ -141,7 +141,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 卖1股数 (单位：股)
         /// </summary>
-        public long SellStrand1 { get; set; } = long.MinValue;
+        public long SellStrand1 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 卖1价格 (单位：元)
@@ -151,7 +151,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 卖2股数 (单位：股)
         /// </summary>
-        public long SellStrand2 { get; set; } = long.MinValue;
+        public long SellStrand2 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 卖2价格 (单位：元)
@@ -161,7 +161,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 卖3股数 (单位：股)
         /// </summary>
-        public long SellStrand3 { get; set; } = long.MinValue;
+        public long SellStrand3 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 卖3价格 (单位：元)
@@ -171,7 +171,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 卖4股数 (单位：股)
         /// </summary>
-        public long SellStrand4 { get; set; } = long.MinValue;
+        public long SellStrand4 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 卖4价格 (单位：元)
@@ -181,7 +181,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 卖5股数 (单位：股)
         /// </summary>
-        public long SellStrand5 { get; set; } = long.MinValue;
+        public long SellStrand5 { get; set; } = -1L;
 
         /// <summary>
         /// Gets or sets 卖5价格 (单位：元)

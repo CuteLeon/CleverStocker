@@ -101,21 +101,21 @@ namespace CleverStocker.Services
         /// 获取最近交易
         /// </summary>
         /// <param name="code"></param>
-        /// <param name="markets"></param>
+        /// <param name="market"></param>
         /// <param name="tradeListType"></param>
         /// <param name="count"></param>
         /// <returns></returns>
         /// <returns></returns>
-        List<Trade> GetRecentTrades(string code, Markets markets, TradeListTypes tradeListType, int count);
+        List<Trade> GetRecentTrades(string code, Markets market, TradeListTypes tradeListType, int count);
 
         /// <summary>
         /// 异步获取最近交易
         /// </summary>
         /// <param name="code"></param>
-        /// <param name="markets"></param>
+        /// <param name="market"></param>
         /// <param name="tradeListType"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        Task<List<Trade>> GetRecentTradesAsync(string code, Markets markets, TradeListTypes tradeListType, int count);
+        Task<List<Trade>> GetRecentTradesAsync(string code, Markets market, TradeListTypes tradeListType, int count);
     }
 }
