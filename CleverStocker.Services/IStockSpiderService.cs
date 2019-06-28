@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Threading.Tasks;
 using CleverStocker.Model;
 using static CleverStocker.Common.CommonStandard;
@@ -75,5 +76,25 @@ namespace CleverStocker.Services
         /// <param name="market"></param>
         /// <returns></returns>
         Task<Company> GetCompanyAsync(string code, Markets market);
+
+        /// <summary>
+        /// 获取最近行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="timeScale"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        List<RecentQuota> GetRecentQuotas(string code, Markets market, TimeScales timeScale, int count);
+
+        /// <summary>
+        /// 异步获取最近行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="timeScale"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        Task<List<RecentQuota>> GetRecentQuotasAsync(string code, Markets market, TimeScales timeScale, int count);
     }
 }

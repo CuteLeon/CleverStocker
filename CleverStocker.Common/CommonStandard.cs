@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.ComponentModel;
 
 namespace CleverStocker.Common
 {
@@ -56,6 +55,42 @@ namespace CleverStocker.Common
         }
 
         /// <summary>
+        /// 时间规模
+        /// </summary>
+        public enum TimeScales
+        {
+            /// <summary>
+            /// 5 分钟
+            /// </summary>
+            [AmbientValue(5)]
+            Minutes_5 = 0,
+
+            /// <summary>
+            /// 10 分钟
+            /// </summary>
+            [AmbientValue(10)]
+            Minutes_10 = 1,
+
+            /// <summary>
+            /// 15 分钟
+            /// </summary>
+            [AmbientValue(15)]
+            Minutes_15 = 2,
+
+            /// <summary>
+            /// 30 分钟
+            /// </summary>
+            [AmbientValue(30)]
+            Minutes_30 = 3,
+
+            /// <summary>
+            /// 60 分钟
+            /// </summary>
+            [AmbientValue(60)]
+            Minutes_60 = 4,
+        }
+
+        /// <summary>
         /// 图表
         /// </summary>
         public enum Charts
@@ -80,16 +115,5 @@ namespace CleverStocker.Common
             /// </summary>
             MonthlyCandlestick = 3,
         }
-
-        /// <summary>
-        /// Gets 交易市场代码和名称字典
-        /// </summary>
-        public static ReadOnlyDictionary<Markets, (string Code, string Name)> MarketDictionary { get; } =
-            new ReadOnlyDictionary<Markets, (string Code, string Name)>(
-                new Dictionary<Markets, (string Code, string Name)>()
-                {
-                    { Markets.ShangHai, ("sh", "上交所") },
-                    { Markets.ShenZhen, ("sz", "深交所") },
-                });
     }
 }

@@ -51,6 +51,7 @@
     <Compile Include="ICopyable.cs" />
     <Compile Include="MarketQuota.cs" />
     <Compile Include="Quota.cs" />
+    <Compile Include="RecentQuota.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

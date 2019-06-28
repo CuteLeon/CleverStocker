@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Client.DockForms.FloatWindows;
@@ -51,8 +52,7 @@ namespace CleverStocker.Client
         {
             try
             {
-                this.GetStockQuota();
-                this.GetCompany();
+                this.GetRecentQuotas();
             }
             catch (Exception ex)
             {
@@ -165,6 +165,21 @@ namespace CleverStocker.Client
             }
 
             MessageBox.Show($"获取公司信息成功：\n公司名称：{company.Position} - {company.Name}");
+        }
+
+        private void GetRecentQuotas()
+        {
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var quotas = stockSpiderService.GetRecentQuotas("600086", Markets.ShangHai, TimeScales.Minutes_5, 48);
+
+            if (quotas == null ||
+                quotas.Count == 0)
+            {
+                MessageBox.Show($"获取最近行情为空！");
+                return;
+            }
+
+            MessageBox.Show($"获取最近行情成功：\n行情数量：{quotas.Count}\n最新时间：{quotas.LastOrDefault()?.DateTime}\n最早时间：{quotas.FirstOrDefault()?.DateTime}");
         }
 
         #region 主题

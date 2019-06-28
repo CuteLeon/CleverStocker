@@ -1,5 +1,6 @@
-﻿using CleverStocker.Spider.Sina;
-using System;
+﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using CleverStocker.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static CleverStocker.Common.CommonStandard;
@@ -72,7 +73,7 @@ namespace CleverStocker.Spider.Sina.Tests
             Assert.AreEqual(807121, marketQuota.Count);
             Assert.AreEqual(35918, marketQuota.Amount);
             Assert.AreEqual(stock.UpdateTime, marketQuota.UpdateTime);
-            Assert.IsTrue(stock.UpdateTime.Subtract(System.DateTime.Now) < TimeSpan.FromSeconds(5));
+            Assert.IsTrue(stock.UpdateTime.Subtract(DateTime.Now) < TimeSpan.FromSeconds(5));
         }
 
         [TestMethod()]
@@ -93,6 +94,37 @@ namespace CleverStocker.Spider.Sina.Tests
             Assert.AreEqual("东方金钰", company.Position);
             Assert.AreEqual("0", company.Status);
             Assert.IsTrue(company.Summary.StartsWith("宋孝刚"));
+        }
+
+        [TestMethod()]
+        public void GetRecentQuotasTest()
+        {
+            string response = @"/*<script>location.href='//sina.com';</script>*/
+regexflag([{""day"":""2019-06-28 14:10:00"",""open"":""4.450"",""high"":""4.450"",""low"":""4.440"",""close"":""4.440"",""volume"":""638700""},{""day"":""2019-06-28 14:15:00"",""open"":""4.450"",""high"":""4.450"",""low"":""4.410"",""close"":""4.420"",""volume"":""1813900""},{""day"":""2019-06-28 14:20:00"",""open"":""4.430"",""high"":""4.430"",""low"":""4.410"",""close"":""4.430"",""volume"":""425200""}]);";
+
+            var jsonMatch = SinaStockSpider.JsonArrayRegex.Match(response);
+            Assert.IsTrue(jsonMatch.Success);
+
+            response = jsonMatch.Groups["JsonArray"].Value;
+            Assert.AreEqual(
+                @"{""day"":""2019-06-28 14:10:00"",""open"":""4.450"",""high"":""4.450"",""low"":""4.440"",""close"":""4.440"",""volume"":""638700""},{""day"":""2019-06-28 14:15:00"",""open"":""4.450"",""high"":""4.450"",""low"":""4.410"",""close"":""4.420"",""volume"":""1813900""},{""day"":""2019-06-28 14:20:00"",""open"":""4.430"",""high"":""4.430"",""low"":""4.410"",""close"":""4.430"",""volume"":""425200""}",
+                response);
+
+            var recentQuotas = SinaStockSpider.RecentQuotaRegex.Matches(response)
+                    .Cast<Match>()
+                    .Select(match => SinaStockSpider.ConvertToRecentQuota(match))
+                    .ToArray();
+
+            Assert.AreEqual(3, recentQuotas.Length);
+
+            var recentQuota = recentQuotas[0];
+
+            Assert.AreEqual(new DateTime(2019, 6, 28, 14, 10, 00), recentQuota.DateTime);
+            Assert.AreEqual(4.450, recentQuota.OpenningPrice);
+            Assert.AreEqual(4.450, recentQuota.HighestPrice);
+            Assert.AreEqual(4.440, recentQuota.LowestPrice);
+            Assert.AreEqual(4.440, recentQuota.ClosingPrice);
+            Assert.AreEqual(638700, recentQuota.Volume);
         }
     }
 }

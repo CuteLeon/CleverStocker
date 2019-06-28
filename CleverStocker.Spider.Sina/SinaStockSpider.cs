@@ -40,9 +40,23 @@ namespace CleverStocker.Spider.Sina
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
+        /// Gets json 数组正则表达式
+        /// </summary>
+        public static Regex JsonArrayRegex { get; } = new Regex(
+            $@".*?regexflag\(\[(?<JsonArray>.*?)\]\);",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets 最近行情正则表达式
+        /// </summary>
+        public static Regex RecentQuotaRegex { get; } = new Regex(
+            $@"\{{\""day\"":\""(?<DateTime>\d{{4}}-\d{{2}}-\d{{2}}\s\d{{2}}:\d{{2}}:\d{{2}})\"",\""open\"":\""(?<Openning>[\d\.]+?)\"",\""high\"":\""(?<Highest>[\d\.]+?)\"",\""low\"":\""(?<Lowest>[\d\.]+?)\"",\""close\"":\""(?<Closing>[\d\.]+?)\"",\""volume\"":\""(?<Volume>\d+?)\""\}}",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
         /// 图表请求路径集合
         /// </summary>
-        private static Dictionary<Charts, string> ChartsRequestAddresses = new Dictionary<Charts, string>()
+        private static Dictionary<Charts, string> chartsRequestAddresses = new Dictionary<Charts, string>()
         {
             { Charts.Minute, @"http://image.sinajs.cn/newchart/min/n/{0}.gif" },
             { Charts.DailyCandlestick, @"http://image.sinajs.cn/newchart/daily/n/{0}.gif" },
@@ -59,13 +73,14 @@ namespace CleverStocker.Spider.Sina
         /// <remarks>Sina 接口约每三秒更新一次</remarks>
         public (Stock stock, Quota quota) GetStockQuota(string code, Markets market)
         {
-            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
+            string marketCode = SinaSpiderHelper.GetMarketCode(market);
+            if (string.IsNullOrEmpty(marketCode) ||
                string.IsNullOrEmpty(code))
             {
                 throw new ArgumentNullException();
             }
 
-            string request = $@"http://hq.sinajs.cn/list={marketInfo.Code}{code}";
+            string request = $@"http://hq.sinajs.cn/list={marketCode}{code}";
             var result = this.WebClient.DownloadString(request);
 
             if (string.IsNullOrEmpty(result))
@@ -163,13 +178,14 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market)
         {
-            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
-               string.IsNullOrEmpty(code))
+            string marketCode = SinaSpiderHelper.GetMarketCode(market);
+            if (string.IsNullOrEmpty(marketCode) ||
+                string.IsNullOrEmpty(code))
             {
                 throw new ArgumentNullException();
             }
 
-            string request = $@"http://hq.sinajs.cn/list=s_{marketInfo.Code}{code}";
+            string request = $@"http://hq.sinajs.cn/list=s_{marketCode}{code}";
             var result = this.WebClient.DownloadString(request);
 
             if (string.IsNullOrEmpty(result))
@@ -247,22 +263,22 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public Image GetChart(string code, Markets market, Charts chart)
         {
-            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
-                !ChartsRequestAddresses.TryGetValue(chart, out string request) ||
+            string marketCode = SinaSpiderHelper.GetMarketCode(market);
+            if (!chartsRequestAddresses.TryGetValue(chart, out string request) ||
+                string.IsNullOrEmpty(marketCode) ||
                 string.IsNullOrEmpty(code))
             {
                 throw new ArgumentNullException();
             }
 
-            request = string.Format(request, $"{marketInfo.Code}{code}");
+            request = string.Format(request, $"{marketCode}{code}");
             var result = this.HttpClient.GetStreamAsync(request).Result;
             if (result == null)
             {
                 return default;
             }
 
-            Image image = Bitmap.FromStream(result);
-            Stock stock = new Stock(code, market);
+            Image image = Image.FromStream(result);
 
             return image;
         }
@@ -285,13 +301,14 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public Company GetCompany(string code, Markets market)
         {
-            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
+            string marketCode = SinaSpiderHelper.GetMarketCode(market);
+            if (string.IsNullOrEmpty(marketCode) ||
                 string.IsNullOrEmpty(code))
             {
                 throw new ArgumentNullException();
             }
 
-            string request = $@"https://finance.sina.com.cn/otc/activity/{marketInfo.Code}{code}_info.js";
+            string request = $@"https://finance.sina.com.cn/otc/activity/{marketCode}{code}_info.js";
             var result = this.WebClient.DownloadString(request);
 
             if (string.IsNullOrEmpty(result))
@@ -342,5 +359,85 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<Company> GetCompanyAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetCompany(code, market));
+
+        /// <summary>
+        /// 获取最近行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="timeScale"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<RecentQuota> GetRecentQuotas(string code, Markets market, TimeScales timeScale, int count)
+        {
+            string marketCode = SinaSpiderHelper.GetMarketCode(market);
+            if (string.IsNullOrEmpty(marketCode) ||
+                string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException();
+            }
+
+            int scale = timeScale.GetAmbientValue<int>();
+            string request = $@"https://quotes.sina.cn/cn/api/jsonp_v2.php/regexflag/CN_MarketDataService.getKLineData?symbol={marketCode}{code}&scale={scale}&ma=no&datalen={count}";
+
+            var result = this.WebClient.DownloadString(request);
+            if (string.IsNullOrEmpty(result))
+            {
+                return Enumerable.Empty<RecentQuota>().ToList();
+            }
+
+            var arrayMatch = JsonArrayRegex.Match(result);
+            if (arrayMatch.Success &&
+                arrayMatch.Groups["JsonArray"].Success)
+            {
+                result = arrayMatch.Groups["JsonArray"].Value;
+            }
+            else
+            {
+                return Enumerable.Empty<RecentQuota>().ToList();
+            }
+
+            List<RecentQuota> recentQuotas = new List<RecentQuota>(count);
+            recentQuotas.AddRange(
+                RecentQuotaRegex.Matches(result)
+                    .Cast<Match>()
+                    .Select(match => ConvertToRecentQuota(match)));
+
+            return recentQuotas;
+        }
+
+        /// <summary>
+        /// 转换正则匹配结果为最近行情
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        public static RecentQuota ConvertToRecentQuota(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            RecentQuota recentQuota = new RecentQuota();
+            recentQuota.DateTime = match.TryGetValue("DateTime", out string value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
+            recentQuota.OpenningPrice = match.TryGetValue("Openning", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            recentQuota.HighestPrice = match.TryGetValue("Highest", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            recentQuota.LowestPrice = match.TryGetValue("Lowest", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            recentQuota.ClosingPrice = match.TryGetValue("Closing", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            recentQuota.Volume = match.TryGetValue("Volume", out value) ? ConvertorHelper.StringToLong(value) : 0;
+
+            return recentQuota;
+        }
+
+        /// <summary>
+        /// 异步获取最近行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="timeScale"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public async Task<List<RecentQuota>> GetRecentQuotasAsync(string code, Markets market, TimeScales timeScale, int count)
+            => await Task.Factory.StartNew(() => this.GetRecentQuotas(code, market, timeScale, count));
     }
 }

@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonStandard.cs" />
+    <Compile Include="Extensions\AttributeValueExtension.cs" />
     <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="Extensions\MatchExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
