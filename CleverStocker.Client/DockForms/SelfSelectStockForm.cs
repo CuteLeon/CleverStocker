@@ -1,11 +1,9 @@
-﻿using WeifenLuo.WinFormsUI.Docking;
-
-namespace CleverStocker.Client.DockForms
+﻿namespace CleverStocker.Client.DockForms
 {
     /// <summary>
     /// 自选股票窗口
     /// </summary>
-    public partial class SelfSelectStockForm : DockFormBase
+    public partial class SelfSelectStockForm : ToolDockForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SelfSelectStockForm"/> class.
@@ -15,8 +13,7 @@ namespace CleverStocker.Client.DockForms
         {
             this.InitializeComponent();
 
-            this.DockAreas = DockAreas.Float | DockAreas.DockLeft | DockAreas.DockRight | DockAreas.DockTop | DockAreas.DockBottom;
-            this.ShowHint = DockState.DockLeft;
+            this.Icon = AppResource.SelfSelectIcon;
             this.HideOnClose = true;
         }
     }

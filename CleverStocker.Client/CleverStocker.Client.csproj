@@ -59,16 +59,52 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\CompanyInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\CompanyInfoForm.Designer.cs">
+      <DependentUpon>CompanyInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForms\CurrentQuotaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\CurrentQuotaForm.Designer.cs">
+      <DependentUpon>CurrentQuotaForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\DockFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DockForms\DockFormBase.Designer.cs">
       <DependentUpon>DockFormBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\DocumentDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\DocumentDockForm.Designer.cs">
+      <DependentUpon>DocumentDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\FloatWindows\FloatedWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DockForms\FloatWindows\FloatedWindowFactory.cs" />
+    <Compile Include="DockForms\MarketQuotaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\MarketQuotaForm.Designer.cs">
+      <DependentUpon>MarketQuotaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForms\RecentQuotaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\RecentQuotaForm.Designer.cs">
+      <DependentUpon>RecentQuotaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForms\RecentTradeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\RecentTradeForm.Designer.cs">
+      <DependentUpon>RecentTradeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\RecommendStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +116,12 @@
     </Compile>
     <Compile Include="DockForms\SelfSelectStockForm.Designer.cs">
       <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DockForms\ToolDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\ToolDockForm.Designer.cs">
+      <DependentUpon>ToolDockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IInitializable.cs" />
     <Compile Include="LaunchForm.cs">
@@ -100,8 +142,26 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\CompanyInfoForm.resx">
+      <DependentUpon>CompanyInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\CurrentQuotaForm.resx">
+      <DependentUpon>CurrentQuotaForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DockForms\DockFormBase.resx">
       <DependentUpon>DockFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\DocumentDockForm.resx">
+      <DependentUpon>DocumentDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\MarketQuotaForm.resx">
+      <DependentUpon>MarketQuotaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\RecentQuotaForm.resx">
+      <DependentUpon>RecentQuotaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\RecentTradeForm.resx">
+      <DependentUpon>RecentTradeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\RecommendStockForm.resx">
       <DependentUpon>RecommendStockForm.cs</DependentUpon>
@@ -186,6 +246,29 @@
   <ItemGroup>
     <None Include="Resources\BullSmall.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\CompanyInfoIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CurrentQuotaIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MarketQuotaIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RecentQuotaIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RecentTradeIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RecommendStockIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SelfSelectIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DocumentIcon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -83,6 +83,36 @@ namespace CleverStocker.Client {
         /// <summary>
         ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Icon CompanyInfoIcon {
+            get {
+                object obj = ResourceManager.GetObject("CompanyInfoIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon CurrentQuotaIcon {
+            get {
+                object obj = ResourceManager.GetObject("CurrentQuotaIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon DocumentIcon {
+            get {
+                object obj = ResourceManager.GetObject("DocumentIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Icon Icon {
             get {
                 object obj = ResourceManager.GetObject("Icon", resourceCulture);
@@ -97,6 +127,56 @@ namespace CleverStocker.Client {
             get {
                 object obj = ResourceManager.GetObject("Launcher", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon MarketQuotaIcon {
+            get {
+                object obj = ResourceManager.GetObject("MarketQuotaIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon RecentQuotaIcon {
+            get {
+                object obj = ResourceManager.GetObject("RecentQuotaIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon RecentTradeIcon {
+            get {
+                object obj = ResourceManager.GetObject("RecentTradeIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon RecommendStockIcon {
+            get {
+                object obj = ResourceManager.GetObject("RecommendStockIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Icon SelfSelectIcon {
+            get {
+                object obj = ResourceManager.GetObject("SelfSelectIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

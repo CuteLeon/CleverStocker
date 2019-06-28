@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Client.Interfaces;
 using WeifenLuo.WinFormsUI.Docking;
@@ -9,7 +10,7 @@ namespace CleverStocker.Client.DockForms
     /// 停靠窗口基类
     /// </summary>
     /// <see cref="http://docs.dockpanelsuite.com/getting-started/index.html#"/>
-    public partial class DockFormBase : DockContent, IInitializable
+    public abstract partial class DockFormBase : DockContent, IInitializable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DockFormBase"/> class.
@@ -19,8 +20,19 @@ namespace CleverStocker.Client.DockForms
         {
             this.InitializeComponent();
 
-            this.Icon = AppResource.Icon;
+            this.DockAreas = this.DefaultDockAreas;
+            this.ShowHint = this.DefaultLaunchDockState;
         }
+
+        /// <summary>
+        /// Gets or sets 默认停靠区域
+        /// </summary>
+        public abstract DockAreas DefaultDockAreas { get; set; }
+
+        /// <summary>
+        /// Gets or sets 默认首次启动停靠状态
+        /// </summary>
+        public abstract DockState DefaultLaunchDockState { get; set; }
 
         /// <summary>
         /// Gets or sets 标题

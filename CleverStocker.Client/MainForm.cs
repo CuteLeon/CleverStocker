@@ -15,6 +15,19 @@ using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client
 {
+    /* <功能布局：>
+     * 自选股票
+     * 推荐股票
+     *
+     * 文档 (线图x4)
+     *
+     * 实时行情 (3s)
+     * 大盘指数
+     * 公司信息
+     * 最近交易(列表x4)
+     * 最近行情(时间规模x5)
+     */
+
     /// <summary>
     /// 主窗口
     /// </summary>
@@ -131,13 +144,10 @@ namespace CleverStocker.Client
                 return;
             }
 
-            DockFormBase form = new DockFormBase()
+            DockFormBase form = new DocumentDockForm()
             {
                 Size = image.Size,
-                BackColor = Color.FromArgb(45, 45, 48),
                 BackgroundImage = image,
-                ShowHint = DockState.Document,
-                DockAreas = DockAreas.Float | DockAreas.Document,
                 BackgroundImageLayout = ImageLayout.Center,
             };
             form.Show(this.MainDockPanel);
@@ -319,12 +329,35 @@ namespace CleverStocker.Client
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            // TODO: 读取文件以尝试恢复布局
-            var form = DIContainerHelper.Resolve<SelfSelectStockForm>();
-            form.Show(this.MainDockPanel);
-            DIContainerHelper.Resolve<RecommendStockForm>().Show(form.Pane, DockAlignment.Bottom, 0.5);
+            if (File.Exists("CleverStocker.Layout.xml"))
+            {
+                this.LoadLayout();
+            }
+            else
+            {
+                this.PredeterminedLayout();
+            }
+        }
 
-            form.Activate();
+        /// <summary>
+        /// 预设布局
+        /// </summary>
+        private void PredeterminedLayout()
+        {
+            var recentTradeForm = DIContainerHelper.Resolve<RecentTradeForm>();
+            recentTradeForm.Show(this.MainDockPanel);
+            var recentQuotaForm = DIContainerHelper.Resolve<RecentQuotaForm>();
+            recentQuotaForm.Show(recentTradeForm.Pane, recentTradeForm);
+
+            var marketQuotaForm = DIContainerHelper.Resolve<MarketQuotaForm>();
+            marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Top, 0.5);
+            var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
+            currentQuotaForm.Show(marketQuotaForm.Pane, marketQuotaForm);
+
+            var recommendStockForm = DIContainerHelper.Resolve<RecommendStockForm>();
+            recommendStockForm.Show(this.MainDockPanel);
+            var selfSelectStockForm = DIContainerHelper.Resolve<SelfSelectStockForm>();
+            selfSelectStockForm.Show(recommendStockForm.Pane, DockAlignment.Top, 0.5);
         }
         #endregion
 
@@ -357,7 +390,14 @@ namespace CleverStocker.Client
                 throw new NullReferenceException();
             }
 
-            dockForm.Activate();
+            if (dockForm.IsHidden)
+            {
+                dockForm.Show(this.MainDockPanel);
+            }
+            else
+            {
+                dockForm.Activate();
+            }
         }
 
         private void SaveLayoutMenuItem_Click(object sender, EventArgs e)
@@ -377,10 +417,7 @@ namespace CleverStocker.Client
 
         private void LoadLayout()
         {
-            if (File.Exists("CleverStocker.Layout.xml"))
-            {
-                this.MainDockPanel.LoadFromXml("CleverStocker.Layout.xml", this.GetDockContent);
-            }
+            this.MainDockPanel.LoadFromXml("CleverStocker.Layout.xml", this.GetDockContent);
         }
 
         private IDockContent GetDockContent(string persist)

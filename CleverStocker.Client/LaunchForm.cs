@@ -134,6 +134,21 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("创建推荐股票窗口 ...");
                             this.RegisterSingleDockFormInstance<RecommendStockForm>(mainForm);
 
+                            this.UpdateProgressAsync("创建实时行情窗口 ...");
+                            this.RegisterSingleDockFormInstance<CurrentQuotaForm>(mainForm);
+
+                            this.UpdateProgressAsync("创建大盘指数窗口 ...");
+                            this.RegisterSingleDockFormInstance<MarketQuotaForm>(mainForm);
+
+                            this.UpdateProgressAsync("创建公司信息窗口 ...");
+                            this.RegisterSingleDockFormInstance<CompanyInfoForm>(mainForm);
+
+                            this.UpdateProgressAsync("创建最近交易窗口 ...");
+                            this.RegisterSingleDockFormInstance<RecentTradeForm>(mainForm);
+
+                            this.UpdateProgressAsync("创建最近行情窗口 ...");
+                            this.RegisterSingleDockFormInstance<RecentQuotaForm>(mainForm);
+
                             this.UpdateProgressAsync($"密封服务容器 ...");
                             DIContainerHelper.Build();
                         }));
