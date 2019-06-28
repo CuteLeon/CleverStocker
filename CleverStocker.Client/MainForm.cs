@@ -7,6 +7,7 @@ using CleverStocker.Client.DockForms.FloatWindows;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Services;
 using CleverStocker.Utils;
+using Humanizer;
 using WeifenLuo.WinFormsUI.Docking;
 using static CleverStocker.Common.CommonStandard;
 

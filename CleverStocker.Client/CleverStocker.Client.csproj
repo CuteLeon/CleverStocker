@@ -168,6 +168,15 @@
     <PackageReference Include="DockPanelSuite.ThemeVS2015">
       <Version>3.0.6</Version>
     </PackageReference>
+    <PackageReference Include="Humanizer">
+      <Version>2.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="Humanizer.Core">
+      <Version>2.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="Humanizer.Core.zh-CN">
+      <Version>2.6.2</Version>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.1.118</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
