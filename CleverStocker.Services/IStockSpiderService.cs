@@ -105,7 +105,6 @@ namespace CleverStocker.Services
         /// <param name="tradeListType"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        /// <returns></returns>
         List<Trade> GetRecentTrades(string code, Markets market, TradeListTypes tradeListType, int count);
 
         /// <summary>

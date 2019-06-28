@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
@@ -319,8 +320,11 @@ namespace CleverStocker.Client
         private void MainForm_Shown(object sender, EventArgs e)
         {
             // TODO: 读取文件以尝试恢复布局
-            DIContainerHelper.Resolve<SelfSelectStockForm>().Show(this.MainDockPanel);
-            DIContainerHelper.Resolve<RecommendStockForm>().Show(this.MainDockPanel.Panes[0], null);
+            var form = DIContainerHelper.Resolve<SelfSelectStockForm>();
+            form.Show(this.MainDockPanel);
+            DIContainerHelper.Resolve<RecommendStockForm>().Show(form.Pane, DockAlignment.Bottom, 0.5);
+
+            form.Activate();
         }
         #endregion
 
@@ -354,6 +358,34 @@ namespace CleverStocker.Client
             }
 
             dockForm.Activate();
+        }
+
+        private void SaveLayoutMenuItem_Click(object sender, EventArgs e)
+        {
+            this.SaveLayoute();
+        }
+
+        private void SaveLayoute()
+        {
+            this.MainDockPanel.SaveAsXml("CleverStocker.Layout.xml");
+        }
+
+        private void LoadMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LoadLayout();
+        }
+
+        private void LoadLayout()
+        {
+            if (File.Exists("CleverStocker.Layout.xml"))
+            {
+                this.MainDockPanel.LoadFromXml("CleverStocker.Layout.xml", this.GetDockContent);
+            }
+        }
+
+        private IDockContent GetDockContent(string persist)
+        {
+            return default;
         }
         #endregion
     }

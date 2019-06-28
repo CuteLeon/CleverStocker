@@ -32,19 +32,22 @@
             this.MainTopMenuStrip = new System.Windows.Forms.MenuStrip();
             this.StartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ClassicsThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.LightThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BlueThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DarkThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.TestToolItem = new System.Windows.Forms.ToolStripButton();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StateStatusItem = new System.Windows.Forms.ToolStripStatusLabel();
             this.ProgressStatusItem = new System.Windows.Forms.ToolStripProgressBar();
             this.MainDockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainTopMenuStrip.SuspendLayout();
             this.MainToolStrip.SuspendLayout();
             this.MainStatusStrip.SuspendLayout();
@@ -75,6 +78,12 @@
             this.ExitMenuItem.Size = new System.Drawing.Size(100, 22);
             this.ExitMenuItem.Text = "退出";
             // 
+            // ViewMenuItem
+            // 
+            this.ViewMenuItem.Name = "ViewMenuItem";
+            this.ViewMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.ViewMenuItem.Text = "视图";
+            // 
             // ThemeMenuItem
             // 
             this.ThemeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -82,7 +91,10 @@
             this.toolStripSeparator1,
             this.LightThemeMenuItem,
             this.BlueThemeMenuItem,
-            this.DarkThemeMenuItem});
+            this.DarkThemeMenuItem,
+            this.toolStripSeparator2,
+            this.LoadMenuItem,
+            this.SaveLayoutMenuItem});
             this.ThemeMenuItem.Name = "ThemeMenuItem";
             this.ThemeMenuItem.Size = new System.Drawing.Size(44, 21);
             this.ThemeMenuItem.Text = "主题";
@@ -90,35 +102,47 @@
             // ClassicsThemeMenuItem
             // 
             this.ClassicsThemeMenuItem.Name = "ClassicsThemeMenuItem";
-            this.ClassicsThemeMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.ClassicsThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ClassicsThemeMenuItem.Text = "经典";
             this.ClassicsThemeMenuItem.Click += new System.EventHandler(this.ClassicsThemeMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(97, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // LightThemeMenuItem
             // 
             this.LightThemeMenuItem.Name = "LightThemeMenuItem";
-            this.LightThemeMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.LightThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LightThemeMenuItem.Text = "浅色";
             this.LightThemeMenuItem.Click += new System.EventHandler(this.LightThemeMenuItem_Click);
             // 
             // BlueThemeMenuItem
             // 
             this.BlueThemeMenuItem.Name = "BlueThemeMenuItem";
-            this.BlueThemeMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.BlueThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.BlueThemeMenuItem.Text = "蓝色";
             this.BlueThemeMenuItem.Click += new System.EventHandler(this.BlueThemeMenuItem_Click);
             // 
             // DarkThemeMenuItem
             // 
             this.DarkThemeMenuItem.Name = "DarkThemeMenuItem";
-            this.DarkThemeMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.DarkThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.DarkThemeMenuItem.Text = "深色";
             this.DarkThemeMenuItem.Click += new System.EventHandler(this.DarkThemeMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SaveLayoutMenuItem
+            // 
+            this.SaveLayoutMenuItem.Name = "SaveLayoutMenuItem";
+            this.SaveLayoutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveLayoutMenuItem.Text = "保存布局";
+            this.SaveLayoutMenuItem.Click += new System.EventHandler(this.SaveLayoutMenuItem_Click);
             // 
             // MainToolStrip
             // 
@@ -162,16 +186,18 @@
             // MainDockPanel
             // 
             this.MainDockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainDockPanel.DockLeftPortion = 0.2D;
             this.MainDockPanel.Location = new System.Drawing.Point(0, 50);
             this.MainDockPanel.Name = "MainDockPanel";
             this.MainDockPanel.Size = new System.Drawing.Size(800, 378);
             this.MainDockPanel.TabIndex = 4;
             // 
-            // ViewMenuItem
+            // LoadMenuItem
             // 
-            this.ViewMenuItem.Name = "ViewMenuItem";
-            this.ViewMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.ViewMenuItem.Text = "视图";
+            this.LoadMenuItem.Name = "LoadMenuItem";
+            this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.LoadMenuItem.Text = "读取布局";
+            this.LoadMenuItem.Click += new System.EventHandler(this.LoadMenuItem_Click);
             // 
             // MainForm
             // 
@@ -216,5 +242,8 @@
         private System.Windows.Forms.ToolStripMenuItem ClassicsThemeMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ViewMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem SaveLayoutMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LoadMenuItem;
     }
 }
