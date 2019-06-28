@@ -59,5 +59,21 @@ namespace CleverStocker.Services
         /// <param name="chart"></param>
         /// <returns></returns>
         Task<Image> GetChartAsync(string code, Markets market, Charts chart);
+
+        /// <summary>
+        /// 获取公司信息
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        Company GetCompany(string code, Markets market);
+
+        /// <summary>
+        /// 异步获取公司信息
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        Task<Company> GetCompanyAsync(string code, Markets market);
     }
 }

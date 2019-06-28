@@ -1,24 +1,3 @@
-## 债券信息：
-
-### 请求：
-
-```
-https://finance.sina.com.cn/otc/activity/sh600086_info.js
-```
-
-### 响应：
-
-```
-var dongmi_info = {"id":"sh600086","stock":"sh600086","rank":1465,"vote":0,"ok":0,"nor":0,"name":"\u5b8b\u5b5d\u521a","position":"\u4e1c\u65b9\u91d1\u94b0","summary":"\u5b8b\u5b5d\u521a\uff0c\u7537\uff0c\u6c49\u65cf\uff0c1956\u5e7412\u6708\u51fa\u751f\uff0c\u4e2d\u5171\u515a\u5458\uff0c\u5927\u4e13\u6587\u5316\uff0c\u4f1a\u8ba1\u5e08\u3002\u66fe\u4efb\u89e3\u653e\u519b\u67d0\u90e8\u6218\u58eb\u3001\u6392\u957f\u3001\u526f\u8fde\u957f\u3001\u4f1a\u8ba1\uff0c\u6df1\u5733\u53d1\u5c55\u94f6\u884c\u7f57\u6e56\u5206\u7406\u5904\u4e3b\u4efb\uff0c1988\u5e74\u81f32012\u5e744\u6708\u4efb\u6df1\u5733\u5e02\u57ce\u5e02\u5efa\u8bbe\u5f00\u53d1\uff08\u96c6\u56e2\uff09\u516c\u53f8\u8d22\u52a1\u90e8\u526f\u90e8\u957f\u3001\u90e8\u957f\uff0c\u6df1\u5733\u4e16\u7eaa\u661f\u6e90\u80a1\u4efd\u6709\u9650\u516c\u53f8\u8463...","corp_brief":"    \u516c\u53f8\u7cfb\u7531\u539f\u9102\u5dde\u5e02\u670d\u88c5\u603b\u5382\u7b49\u4e8e1993\u5e744\u67082\u65e5\u5171\u540c\u53d1\u8d77\u8bbe\u7acb,\u4ee5\u5176\u7ecf\u8425\u6027\u51c0\u8d44\u4ea7\u6298\u53d1\u8d77\u4eba\u80a12860\u4e07\u80a1,\u5e76\u5b9a\u5411\u52df\u96c6\u804c\u5de5\u80a1300\u4e07\u80a1,1995\u5e746\u6708\u53ca10\u6708\u5206\u522b\u630910:3\u6bd4\u4f8b\u8fdb\u884c\u914d\u80a1\u548c\u8f6c\u589e\u80a1\u672c,1996\u5e743\u6708\u630910:4.5\u53ca10:1\u6bd4\u4f8b\u8fdb\u884c\u9001\u80a1\u548c\u8f6c\u589e,\u7ecf1997\u5e745\u670822\u65e5\u53d1\u884c\u540e,\u4e0a\u5e02\u65f6\u603b\u80a1\u672c\u8fbe11595.99\u4e07\u80a1,\u5176\u804c\u5de5\u80a1816.075\u4e07\u80a1\u5c06\u4e8e\u516c\u4f17\u80a13000\u4e07\u80a11997\u5e746\u67086\u65e5\u5728\u4e0a\u4ea4\u6240\u4e0a\u5e02\u4ea4\u6613\u671f\u6ee1\u4e09\u5e74\u540e\u4e0a\u5e02\u3002","industry":"\u5bb6\u7528\u8f7b\u5de5","pic":"","status":"0","ir_index":"12","research":"--","sharepic":"http:\/\/n.sinaimg.cn\/finance\/798\/w416h382\/20190611\/0296-hyeztys8769891.png"}
-/* b+l+FG3NaRskImRavcvwfxUha1WKIQFis9imYY42BWNDVB/to4JMbuB+wtEThop4i3HRPmTkwQtp/w7p+PdSJNCrWIR+UQKOdhzliQamS9c2ELeJ94z8cbLQ8jl1yfVmPqmpxKWrt0mXUT+hu3hGqQPvRSsGAPJt/fbRaM7MwU/crOVFlkZIxCsmV94WTjtjii654VHV+gYBpDKhPG8Vbrhzn1g= */
-```
-
-> **注意：**
->
-> 1. 内容需要 Unicode 转中文
-
-
-
 ## 过去5个交易日平均每分钟成交量
 
 ### 请求：
@@ -31,7 +10,6 @@ https://finance.sina.com.cn/realstock/lastfive/sh600086.js
 
 ```
 var lastfivesh600086 = {"lastfive":[{"d":"2019-06-27","c":"4858.29"},{"d":"2019-06-26","c":"4699.8"},{"d":"2019-06-25","c":"4360.53"},{"d":"2019-06-24","c":"4883.17"},{"d":"2019-06-21","c":"4602.48"}]}
-/* KQHmMaA5Kl5FlWMiP+qhrKwIXADUnxFQqnruhBmj6NwjM7tfaCH/O4cWiIJ2DDO8NVP0E7+JTGpaEI/6U9kRfQtFMu2ScaBJzV+KrK1N5t8ygnpleZsZCAXLKgGIjossg+t93YA8nqR3jhFbzTasqdrC2R7OoyRB/fX6G171jZ5UTSKcVaNyMaykRAiTn+nHp5Jnzdmvkts= */
 ```
 
 

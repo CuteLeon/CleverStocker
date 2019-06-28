@@ -5,9 +5,9 @@ using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Client.DockForms.FloatWindows;
 using CleverStocker.Client.Interfaces;
+using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
-using Humanizer;
 using WeifenLuo.WinFormsUI.Docking;
 using static CleverStocker.Common.CommonStandard;
 
@@ -51,7 +51,8 @@ namespace CleverStocker.Client
         {
             try
             {
-                this.GetChart();
+                this.GetStockQuota();
+                this.GetCompany();
             }
             catch (Exception ex)
             {
@@ -137,6 +138,33 @@ namespace CleverStocker.Client
                 BackgroundImageLayout = ImageLayout.Center,
             };
             form.Show(this.MainDockPanel);
+        }
+
+        private void GetCompany()
+        {
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var company = stockSpiderService.GetCompany("600086", Markets.ShangHai);
+
+            if (company == null)
+            {
+                MessageBox.Show($"获取公司信息为空！");
+                return;
+            }
+
+            using (var stockService = DIContainerHelper.Resolve<IStockService>())
+            {
+                var stock = stockService.Find("600086", Markets.ShangHai);
+
+                if (stock.Company == null)
+                {
+                    stock.Company = new Company();
+                }
+
+                company.CopyTo(stock.Company);
+                stockService.SaveChanges();
+            }
+
+            MessageBox.Show($"获取公司信息成功：\n公司名称：{company.Position} - {company.Name}");
         }
 
         #region 主题

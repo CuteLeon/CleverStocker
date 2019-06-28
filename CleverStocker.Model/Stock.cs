@@ -60,6 +60,11 @@ namespace CleverStocker.Model
         public DateTime UpdateTime { get; set; }
 
         /// <summary>
+        /// Gets or sets 公司
+        /// </summary>
+        public virtual Company Company { get; set; }
+
+        /// <summary>
         /// Gets or sets 行情
         /// </summary>
         public virtual List<Quota> Quotas { get; set; }

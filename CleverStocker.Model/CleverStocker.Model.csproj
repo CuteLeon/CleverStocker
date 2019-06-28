@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company.cs" />
     <Compile Include="Comparers\MarketQuotaComparer.cs" />
     <Compile Include="Comparers\QuotaComparer.cs" />
     <Compile Include="Comparers\StockComparer.cs" />
+    <Compile Include="ICopyable.cs" />
     <Compile Include="MarketQuota.cs" />
     <Compile Include="Quota.cs" />
     <Compile Include="Stock.cs" />

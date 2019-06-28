@@ -23,6 +23,21 @@ namespace CleverStocker.DataAccess
         public DbSet<Stock> Stocks { get; set; }
 
         /// <summary>
+        /// Gets or sets 报价
+        /// </summary>
+        public DbSet<Quota> Quotas { get; set; }
+
+        /// <summary>
+        /// Gets or sets 大盘指数
+        /// </summary>
+        public DbSet<MarketQuota> MarketQuotas { get; set; }
+
+        /// <summary>
+        /// Gets or sets 公司
+        /// </summary>
+        public DbSet<Company> Companies { get; set; }
+
+        /// <summary>
         /// 模型配置
         /// </summary>
         /// <param name="modelBuilder"></param>
@@ -31,6 +46,7 @@ namespace CleverStocker.DataAccess
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Stock>().HasIndex(stock => new { stock.Market, stock.Code }).IsUnique();
+            modelBuilder.Entity<Stock>().HasOptional(stock => stock.Company);
 
             Database.SetInitializer(new DataSeed(modelBuilder));
         }

@@ -33,6 +33,13 @@ namespace CleverStocker.Spider.Sina
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
+        /// Gets 公司信息正则表达式
+        /// </summary>
+        public static Regex CompanyRegex { get; } = new Regex(
+            $@"var\s.*?\""rank\""\:(?<Rank>\d+?),\""vote\""\:(?<Vote>\d+?),.*?\""name\""\:\""(?<Name>.*?)\"",\""position\""\:\""(?<Position>.*?)\"",\""summary\""\:\""(?<Summary>.*?)\"",\""corp_brief\""\:\""(?<CorpBrief>.*?)\"",\""industry\""\:\""(?<Industry>.*?)\"",.*?\""status\"":\""(?<Status>.*?)\"",.*",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
         /// 图表请求路径集合
         /// </summary>
         private static Dictionary<Charts, string> ChartsRequestAddresses = new Dictionary<Charts, string>()
@@ -68,7 +75,7 @@ namespace CleverStocker.Spider.Sina
 
             var match = QuotaRegex.Match(result);
             Stock stock = new Stock(code, market);
-            ConvertToQuota(match, ref stock, out Quota quota);
+            Quota quota = ConvertToQuota(match, ref stock);
 
             return (stock, quota);
         }
@@ -78,14 +85,13 @@ namespace CleverStocker.Spider.Sina
         /// </summary>
         /// <param name="match"></param>
         /// <param name="stock"></param>
-        /// <param name="quota"></param>
+        /// <returns></returns>
         /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
-        public static void ConvertToQuota(Match match, ref Stock stock, out Quota quota)
+        public static Quota ConvertToQuota(Match match, ref Stock stock)
         {
             if (!match.Success)
             {
-                quota = null;
-                return;
+                return default;
             }
 
             if (stock == null)
@@ -98,7 +104,7 @@ namespace CleverStocker.Spider.Sina
                 stock.Quotas = new List<Quota>();
             }
 
-            quota = new Quota(stock);
+            Quota quota = new Quota(stock);
             stock.Quotas.Add(quota);
 
             stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
@@ -136,6 +142,8 @@ namespace CleverStocker.Spider.Sina
             quota.SellPrice5 = match.TryGetValue("Quote10", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
             quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
             stock.UpdateTime = quota.UpdateTime;
+
+            return quota;
         }
 
         /// <summary>
@@ -171,7 +179,7 @@ namespace CleverStocker.Spider.Sina
 
             var match = MarketQuotaRegex.Match(result);
             Stock stock = new Stock(code, market);
-            ConvertToMarketQuota(match, ref stock, out MarketQuota marketQuota);
+            MarketQuota marketQuota = ConvertToMarketQuota(match, ref stock);
 
             return (stock, marketQuota);
         }
@@ -181,14 +189,13 @@ namespace CleverStocker.Spider.Sina
         /// </summary>
         /// <param name="match"></param>
         /// <param name="stock"></param>
-        /// <param name="marketQuota"></param>
+        /// <returns></returns>
         /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
-        public static void ConvertToMarketQuota(Match match, ref Stock stock, out MarketQuota marketQuota)
+        public static MarketQuota ConvertToMarketQuota(Match match, ref Stock stock)
         {
             if (!match.Success)
             {
-                marketQuota = null;
-                return;
+                return default;
             }
 
             if (stock == null)
@@ -206,7 +213,7 @@ namespace CleverStocker.Spider.Sina
                 stock.MarketQuotas = new List<MarketQuota>();
             }
 
-            marketQuota = new MarketQuota(stock);
+            MarketQuota marketQuota = new MarketQuota(stock);
             stock.MarketQuotas.Add(marketQuota);
 
             stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
@@ -218,6 +225,8 @@ namespace CleverStocker.Spider.Sina
 
             marketQuota.UpdateTime = DateTime.Now;
             stock.UpdateTime = marketQuota.UpdateTime;
+
+            return marketQuota;
         }
 
         /// <summary>
@@ -267,5 +276,71 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<Image> GetChartAsync(string code, Markets market, Charts chart)
             => await Task.Factory.StartNew(() => this.GetChart(code, market, chart));
+
+        /// <summary>
+        /// 获取公司信息
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        public Company GetCompany(string code, Markets market)
+        {
+            if (!MarketDictionary.TryGetValue(market, out var marketInfo) ||
+                string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException();
+            }
+
+            string request = $@"https://finance.sina.com.cn/otc/activity/{marketInfo.Code}{code}_info.js";
+            var result = this.WebClient.DownloadString(request);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                return default;
+            }
+
+            var match = CompanyRegex.Match(result);
+            Company company = ConvertToCompany(match);
+
+            return company;
+        }
+
+        /// <summary>
+        /// 转换正则匹配结果为公司信息
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        public static Company ConvertToCompany(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            Company company = new Company()
+            {
+                UpdateTime = DateTime.Now,
+            };
+
+            company.Name = match.TryGetValue("Name", out string value) ? Regex.Unescape(value) : string.Empty;
+            company.Position = match.TryGetValue("Position", out value) ? Regex.Unescape(value) : string.Empty;
+            company.Industry = match.TryGetValue("Industry", out value) ? Regex.Unescape(value) : string.Empty;
+            company.Rank = match.TryGetValue("Rank", out value) ? Regex.Unescape(value) : string.Empty;
+            company.Status = match.TryGetValue("Status", out value) ? Regex.Unescape(value) : string.Empty;
+            company.Summary = match.TryGetValue("Summary", out value) ? Regex.Unescape(value) : string.Empty;
+            company.Brief = match.TryGetValue("CorpBrief", out value) ? Regex.Unescape(value) : string.Empty;
+            company.Vote = match.TryGetValue("Vote", out value) ? ConvertorHelper.StringToInt(value) : 0;
+
+            return company;
+        }
+
+        /// <summary>
+        /// 异步获取公司信息
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        public async Task<Company> GetCompanyAsync(string code, Markets market)
+            => await Task.Factory.StartNew(() => this.GetCompany(code, market));
     }
 }
