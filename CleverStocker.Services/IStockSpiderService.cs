@@ -96,5 +96,26 @@ namespace CleverStocker.Services
         /// <param name="count"></param>
         /// <returns></returns>
         Task<List<RecentQuota>> GetRecentQuotasAsync(string code, Markets market, TimeScales timeScale, int count);
+
+        /// <summary>
+        /// 获取最近交易
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="markets"></param>
+        /// <param name="tradeListType"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <returns></returns>
+        List<Trade> GetRecentTrades(string code, Markets markets, TradeListTypes tradeListType, int count);
+
+        /// <summary>
+        /// 异步获取最近交易
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="markets"></param>
+        /// <param name="tradeListType"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        Task<List<Trade>> GetRecentTradesAsync(string code, Markets markets, TradeListTypes tradeListType, int count);
     }
 }

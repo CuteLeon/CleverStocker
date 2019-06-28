@@ -439,5 +439,28 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<List<RecentQuota>> GetRecentQuotasAsync(string code, Markets market, TimeScales timeScale, int count)
             => await Task.Factory.StartNew(() => this.GetRecentQuotas(code, market, timeScale, count));
+
+        /// <summary>
+        /// 获取最近交易
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="markets"></param>
+        /// <param name="tradeListType"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public List<Trade> GetRecentTrades(string code, Markets markets, TradeListTypes tradeListType, int count)
+        {
+        }
+
+        /// <summary>
+        /// 异步获取最近交易
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="markets"></param>
+        /// <param name="tradeListType"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public async Task<List<Trade>> GetRecentTradesAsync(string code, Markets markets, TradeListTypes tradeListType, int count)
+            => await Task.Factory.StartNew(() => this.GetRecentTrades(code, markets, tradeListType, count));
     }
 }

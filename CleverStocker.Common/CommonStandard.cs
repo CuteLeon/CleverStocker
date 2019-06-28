@@ -91,6 +91,48 @@ namespace CleverStocker.Common
         }
 
         /// <summary>
+        /// 交易列表类型
+        /// </summary>
+        public enum TradeListTypes
+        {
+            /// <summary>
+            /// 逐笔交易
+            /// </summary>
+            All = 0,
+
+            /// <summary>
+            /// 大单交易
+            /// </summary>
+            Block = 1,
+
+            /// <summary>
+            /// 分时交易
+            /// </summary>
+            ByMinute = 2,
+
+            /// <summary>
+            /// 分价交易
+            /// </summary>
+            ByPrice = 3,
+        }
+
+        /// <summary>
+        /// 交易方向
+        /// </summary>
+        public enum TradeTypes
+        {
+            /// <summary>
+            /// 买入
+            /// </summary>
+            Buy = 0,
+
+            /// <summary>
+            /// 卖出
+            /// </summary>
+            Sell = 1,
+        }
+
+        /// <summary>
         /// 图表
         /// </summary>
         public enum Charts
