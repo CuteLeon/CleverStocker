@@ -52,6 +52,8 @@ namespace CleverStocker.Client
         {
             try
             {
+                this.GetStockQuota();
+                this.GetChart();
                 this.GetRecentTrades();
             }
             catch (Exception ex)
@@ -185,7 +187,7 @@ namespace CleverStocker.Client
         private void GetRecentTrades()
         {
             var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
-            var trades = stockSpiderService.GetRecentTrades("600086", Markets.ShangHai, TradeListTypes.ByPrice, 10);
+            var trades = stockSpiderService.GetRecentTrades("600086", Markets.ShangHai, TradeListTypes.Block, 10);
 
             if (trades == null ||
                 trades.Count == 0)

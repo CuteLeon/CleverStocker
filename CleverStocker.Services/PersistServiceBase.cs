@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using CleverStocker.DataAccess;
+using CleverStocker.Utils;
 
 namespace CleverStocker.Services
 {
@@ -20,6 +21,14 @@ namespace CleverStocker.Services
     public abstract class PersistServiceBase<TEntity> : IPersistService<TEntity>
         where TEntity : class
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersistServiceBase{TEntity}"/> class.
+        /// </summary>
+        public PersistServiceBase()
+        {
+            LogHelper<DefaultLogSource>.Debug($"构造数据持久化服务：{this.GetType().FullName} ({this.GetHashCode().ToString("X")})");
+        }
+
         #region 属性
 
         /// <summary>
