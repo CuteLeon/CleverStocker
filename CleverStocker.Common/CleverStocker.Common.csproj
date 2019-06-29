@@ -49,6 +49,7 @@
     <Compile Include="Extensions\AttributeValueExtension.cs" />
     <Compile Include="Extensions\FormExtension.cs" />
     <Compile Include="Extensions\MatchExtension.cs" />
+    <Compile Include="MQTopics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
