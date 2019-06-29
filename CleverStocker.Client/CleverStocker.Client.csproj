@@ -168,6 +168,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\SelfSelectStockForm.resx">
       <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="LaunchForm.resx">
       <DependentUpon>LaunchForm.cs</DependentUpon>
@@ -187,6 +188,7 @@
     <None Include="..\CleverStocker.ruleset">
       <Link>CleverStocker.ruleset</Link>
     </None>
+    <None Include="Properties\DataSources\CleverStocker.Model.Stock.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

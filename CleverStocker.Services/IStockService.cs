@@ -1,4 +1,5 @@
-﻿using CleverStocker.Model;
+﻿using System.Collections.Generic;
+using CleverStocker.Model;
 
 namespace CleverStocker.Services
 {
@@ -7,5 +8,10 @@ namespace CleverStocker.Services
     /// </summary>
     public interface IStockService : IPersistService<Stock>
     {
+        /// <summary>
+        /// 获取自选股票
+        /// </summary>
+        /// <returns></returns>
+        List<Stock> GetSelfSelectStocks();
     }
 }
