@@ -60,6 +60,11 @@ namespace CleverStocker.Model
         public DateTime UpdateTime { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether 自选股票
+        /// </summary>
+        public bool IsSelfSelect { get; set; }
+
+        /// <summary>
         /// Gets or sets 公司
         /// </summary>
         public virtual Company Company { get; set; }
