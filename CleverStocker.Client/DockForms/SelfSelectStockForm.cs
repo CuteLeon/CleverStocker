@@ -30,6 +30,9 @@ namespace CleverStocker.Client.DockForms
 
             this.Icon = AppResource.SelfSelectIcon;
             this.HideOnClose = true;
+
+            this.TabPageContextMenuStrip = this.SelfSelectGridViewMenuStrip;
+            this.SelfSelectStockGridView.ContextMenuStrip = this.SelfSelectGridViewMenuStrip;
         }
 
         private void SelfSelectStockForm_Load(object sender, EventArgs e)
@@ -38,7 +41,7 @@ namespace CleverStocker.Client.DockForms
 
             this.ApplyTheme();
 
-            _ = this.StockService.GetSelfSelectStocks();
+            this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
             this.Subscriber = MQHelper.Subscribe(
                 "SelfSelectStockForm",
                 new[] { MQTopics.TopicStockSelfSelect },
@@ -51,7 +54,9 @@ namespace CleverStocker.Client.DockForms
         public override void ApplyTheme()
         {
             base.ApplyTheme();
+            ThemeHelper.CurrentTheme.ApplyTo(this.SelfSelectGridViewMenuStrip);
 
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.BackColor = this.BackColor;
             this.SelfSelectStockGridView.BackgroundColor = this.BackColor;
         }
 
