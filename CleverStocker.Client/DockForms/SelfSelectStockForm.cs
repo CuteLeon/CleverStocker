@@ -25,7 +25,7 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 源名称
         /// </summary>
-        public string SourceName { get; set; }
+        public string SourceName { get; set; } = typeof(SelfSelectStockForm).Name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SelfSelectStockForm"/> class.
@@ -47,7 +47,6 @@ namespace CleverStocker.Client.DockForms
 
             this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
 
-            this.SourceName = this.GetType().Name;
             this.Subscriber = MQHelper.Subscribe(
                 this.SourceName,
                 new[] { MQTopics.TopicStockSelfSelect },
@@ -74,18 +73,12 @@ namespace CleverStocker.Client.DockForms
         /// <param name="message"></param>
         public void MQSubscriberReceive(string source, string topic, string message)
         {
-            LogHelper<SelfSelectStockForm>.Debug($"收到 {source} 发来的消息：{topic} - {message}");
-
-            this.Invoke(new Action(() =>
-            {
-                LogHelper<SelfSelectStockForm>.Debug($"{this.SourceName} 收到来自 {source} 的消息：{topic} - {message}");
-            }));
+            LogHelper<SelfSelectStockForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
         }
 
         private void SelfSelectStockGridView_SelectionChanged(object sender, EventArgs e)
         {
-            var stock = this.SelfSelectStockGridView.CurrentRow.DataBoundItem as Stock;
-            if (stock == null)
+            if (!(this.SelfSelectStockGridView.CurrentRow.DataBoundItem is Stock stock))
             {
                 return;
             }

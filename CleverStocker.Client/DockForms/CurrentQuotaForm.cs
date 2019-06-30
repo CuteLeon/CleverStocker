@@ -19,7 +19,7 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 源名称
         /// </summary>
-        public string SourceName { get; set; }
+        public string SourceName { get; set; } = typeof(CurrentQuotaForm).Name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CurrentQuotaForm"/> class.
@@ -41,7 +41,6 @@ namespace CleverStocker.Client.DockForms
 
         private void CurrentQuotaForm_Load(object sender, System.EventArgs e)
         {
-            this.SourceName = this.GetType().Name;
             this.Subscriber = MQHelper.Subscribe(
                 this.SourceName,
                 new[] { MQTopics.TopicStockCurrentChange },
@@ -56,12 +55,11 @@ namespace CleverStocker.Client.DockForms
         /// <param name="message"></param>
         public void MQSubscriberReceive(string source, string topic, string message)
         {
-            LogHelper<SelfSelectStockForm>.Debug($"收到 {source} 发来的消息：{topic} - {message}");
+            LogHelper<CurrentQuotaForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
 
             this.Invoke(new Action(() =>
             {
                 this.MainLabel.Text = $"行情 of\n{message}";
-                LogHelper<SelfSelectStockForm>.Debug($"{this.SourceName} 收到来自 {source} 的消息：{topic} - {message}");
             }));
         }
     }

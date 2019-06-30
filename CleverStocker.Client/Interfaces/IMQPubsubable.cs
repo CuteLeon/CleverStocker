@@ -10,6 +10,7 @@ namespace CleverStocker.Client.Interfaces
         /// <summary>
         /// Gets or sets 发布者名称
         /// </summary>
+        /// <remarks>应尽早为此属性赋值</remarks>
         string SourceName { get; set; }
 
         /// <summary>
