@@ -1,0 +1,643 @@
+.Dark{
+    DockFormBackcolor:rgba(37, 37, 38, 1),
+}
+
+.Blue{
+    DockFormBackcolor:rgba(247, 249, 254, 1),
+}
+
+.Light{
+    DockFormBackcolor:rgba(245, 245, 245, 1),
+}
+
+/* VS2005Theme().ColorPalette 对象为空 */
+.Classics{
+    DockFormBackcolor:rgba(240, 240, 240, 1),
+}
+
+/* 主题名称：VS2015DarkTheme */
+VS2015DarkTheme.AutoHideStripDefault {
+	Background: rgba(45, 45, 48, 1.0);
+	Border: rgba(63, 63, 70, 1.0);
+	Text: rgba(208, 208, 208, 1.0);
+}
+VS2015DarkTheme.AutoHideStripHovered {
+	Background: rgba(45, 45, 48, 1.0);
+	Border: rgba(0, 122, 204, 1.0);
+	Text: rgba(0, 151, 251, 1.0);
+}
+VS2015DarkTheme.OverflowButtonDefault {
+	Glyph: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.OverflowButtonHovered {
+	Background: rgba(62, 62, 64, 1.0);
+	Border: rgba(62, 62, 64, 1.0);
+	Glyph: rgba(0, 122, 204, 1.0);
+}
+VS2015DarkTheme.OverflowButtonPressed {
+	Background: rgba(0, 122, 204, 1.0);
+	Border: rgba(0, 122, 204, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.TabSelectedActive {
+	Background: rgba(0, 122, 204, 1.0);
+	Button: rgba(208, 230, 245, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.TabSelectedInactive {
+	Background: rgba(63, 63, 70, 1.0);
+	Button: rgba(109, 109, 112, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.TabUnselected {
+	Background: rgba(45, 45, 48, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.TabUnselectedHovered {
+	Background: rgba(28, 151, 234, 1.0);
+	Button: rgba(208, 230, 245, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.TabButtonSelectedActiveHovered {
+	Background: rgba(28, 151, 234, 1.0);
+	Border: rgba(28, 151, 234, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.TabButtonSelectedActivePressed {
+	Background: rgba(14, 97, 152, 1.0);
+	Border: rgba(14, 97, 152, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.TabButtonSelectedInactiveHovered {
+	Background: rgba(85, 85, 85, 1.0);
+	Border: rgba(85, 85, 85, 1.0);
+	Glyph: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.TabButtonSelectedInactivePressed {
+	Background: rgba(27, 27, 28, 1.0);
+	Border: rgba(27, 27, 28, 1.0);
+	Glyph: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.TabButtonUnselectedTabHoveredButtonHovered {
+	Background: rgba(82, 176, 239, 1.0);
+	Border: rgba(82, 176, 239, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.TabButtonUnselectedTabHoveredButtonPressed {
+	Background: rgba(14, 97, 152, 1.0);
+	Border: rgba(14, 97, 152, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.MainWindowActive {
+	Background: rgba(45, 45, 48, 1.0);
+}
+VS2015DarkTheme.MainWindowStatusBarDefault {
+	Background: rgba(0, 122, 204, 1.0);
+	Highlight: rgba(0, 0, 0, 1.0);
+	HighlightText: rgba(255, 255, 255, 1.0);
+	ResizeGrip: rgba(255, 255, 255, 1.0);
+	ResizeGripAccent: rgba(0, 0, 0, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.ToolWindowCaptionActive {
+	Background: rgba(0, 122, 204, 1.0);
+	Button: rgba(255, 255, 255, 1.0);
+	Grip: rgba(89, 168, 222, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.ToolWindowCaptionInactive {
+	Background: rgba(45, 45, 48, 1.0);
+	Button: rgba(241, 241, 241, 1.0);
+	Grip: rgba(70, 70, 74, 1.0);
+	Text: rgba(208, 208, 208, 1.0);
+}
+VS2015DarkTheme.ToolWindowCaptionButtonActiveHovered {
+	Background: rgba(82, 176, 239, 1.0);
+	Border: rgba(82, 176, 239, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.ToolWindowCaptionButtonPressed {
+	Background: rgba(14, 97, 152, 1.0);
+	Border: rgba(14, 97, 152, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.ToolWindowCaptionButtonInactiveHovered {
+	Background: rgba(57, 57, 57, 1.0);
+	Border: rgba(57, 57, 57, 1.0);
+	Glyph: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.ToolWindowTabSelectedActive {
+	Background: rgba(37, 37, 38, 1.0);
+	Text: rgba(0, 151, 251, 1.0);
+}
+VS2015DarkTheme.ToolWindowTabSelectedInactive {
+	Background: rgba(37, 37, 38, 1.0);
+	Text: rgba(0, 151, 251, 1.0);
+}
+VS2015DarkTheme.ToolWindowTabUnselected {
+	Background: rgba(45, 45, 48, 1.0);
+	Text: rgba(208, 208, 208, 1.0);
+}
+VS2015DarkTheme.ToolWindowTabUnselectedHovered {
+	Background: rgba(62, 62, 64, 1.0);
+	Text: rgba(85, 170, 255, 1.0);
+}
+VS2015DarkTheme.ToolWindowBorder { color: rgba(63, 63, 70, 1.0); }
+VS2015DarkTheme.ToolWindowSeparator { color: rgba(63, 63, 70, 1.0); }
+VS2015DarkTheme.DockTarget {
+	Background: rgba(27, 27, 28, 1.0);
+	Border: rgba(51, 51, 55, 1.0);
+	ButtonBackground: rgba(37, 37, 38, 1.0);
+	ButtonBorder: rgba(37, 37, 38, 1.0);
+	GlyphBackground: rgba(37, 37, 38, 1.0);
+	GlyphArrow: rgba(241, 241, 241, 1.0);
+	GlyphBorder: rgba(0, 122, 204, 1.0);
+}
+VS2015DarkTheme.CommandBarMenuDefault {
+	Background: rgba(45, 45, 48, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.CommandBarMenuPopupDefault {
+	Arrow: rgba(153, 153, 153, 1.0);
+	BackgroundBottom: rgba(27, 27, 28, 1.0);
+	BackgroundTop: rgba(27, 27, 28, 1.0);
+	Border: rgba(51, 51, 55, 1.0);
+	Checkmark: rgba(153, 153, 153, 1.0);
+	CheckmarkBackground: rgba(45, 45, 48, 1.0);
+	IconBackground: rgba(27, 27, 28, 1.0);
+	Separator: rgba(51, 51, 55, 1.0);
+}
+VS2015DarkTheme.CommandBarMenuPopupDisabled {
+	Checkmark: rgba(101, 101, 101, 1.0);
+	CheckmarkBackground: rgba(45, 45, 48, 1.0);
+	Text: rgba(101, 101, 101, 1.0);
+}
+VS2015DarkTheme.CommandBarMenuPopupHovered {
+	Arrow: rgba(0, 122, 204, 1.0);
+	Checkmark: rgba(241, 241, 241, 1.0);
+	CheckmarkBackground: rgba(62, 62, 64, 1.0);
+	ItemBackground: rgba(51, 51, 52, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.CommandBarMenuTopLevelHeaderHovered {
+	Background: rgba(62, 62, 64, 1.0);
+	Border: rgba(45, 45, 48, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarDefault {
+	Background: rgba(45, 45, 48, 1.0);
+	Border: rgba(45, 45, 48, 1.0);
+	Grip: rgba(70, 70, 74, 1.0);
+	OverflowButtonBackground: rgba(45, 45, 48, 1.0);
+	OverflowButtonGlyph: rgba(153, 153, 153, 1.0);
+	Separator: rgba(34, 34, 34, 1.0);
+	SeparatorAccent: rgba(70, 70, 74, 1.0);
+	Tray: rgba(45, 45, 48, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarButtonChecked {
+	Background: rgba(45, 45, 48, 1.0);
+	Border: rgba(51, 153, 255, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarButtonCheckedHovered {
+	Border: rgba(51, 153, 255, 1.0);
+	Text: rgba(241, 241, 241, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarButtonDefault {
+	Arrow: rgba(153, 153, 153, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarButtonHovered {
+	Arrow: rgba(0, 122, 204, 1.0);
+	Separator: rgba(51, 51, 55, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarButtonPressed {
+	Arrow: rgba(255, 255, 255, 1.0);
+	Background: rgba(0, 122, 204, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarOverflowHovered {
+	Background: rgba(85, 85, 85, 1.0);
+	Glyph: rgba(0, 122, 204, 1.0);
+}
+VS2015DarkTheme.CommandBarToolbarOverflowPressed {
+	Background: rgba(0, 122, 204, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+——————————————
+/* 主题名称：VS2015BlueTheme */
+VS2015BlueTheme.AutoHideStripDefault {
+	Background: rgba(41, 57, 85, 1.0);
+	Border: rgba(70, 90, 125, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.AutoHideStripHovered {
+	Background: rgba(41, 57, 85, 1.0);
+	Border: rgba(155, 167, 183, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.OverflowButtonDefault {
+	Glyph: rgba(206, 212, 221, 1.0);
+}
+VS2015BlueTheme.OverflowButtonHovered {
+	Background: rgba(255, 252, 244, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.OverflowButtonPressed {
+	Background: rgba(255, 232, 166, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabSelectedActive {
+	Background: rgba(255, 242, 157, 1.0);
+	Button: rgba(117, 99, 61, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabSelectedInactive {
+	Background: rgba(77, 96, 130, 1.0);
+	Button: rgba(206, 212, 221, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.TabUnselected {
+	Background: rgba(54, 78, 111, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.TabUnselectedHovered {
+	Background: rgba(91, 113, 153, 1.0);
+	Button: rgba(206, 212, 221, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.TabButtonSelectedActiveHovered {
+	Background: rgba(255, 252, 244, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabButtonSelectedActivePressed {
+	Background: rgba(253, 244, 191, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabButtonSelectedInactiveHovered {
+	Background: rgba(255, 252, 244, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabButtonSelectedInactivePressed {
+	Background: rgba(253, 244, 191, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabButtonUnselectedTabHoveredButtonHovered {
+	Background: rgba(255, 252, 244, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.TabButtonUnselectedTabHoveredButtonPressed {
+	Background: rgba(253, 244, 191, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.MainWindowActive {
+	Background: rgba(41, 57, 85, 1.0);
+}
+VS2015BlueTheme.MainWindowStatusBarDefault {
+	Background: rgba(0, 122, 204, 1.0);
+	Highlight: rgba(0, 0, 0, 1.0);
+	HighlightText: rgba(255, 255, 255, 1.0);
+	ResizeGrip: rgba(255, 255, 255, 1.0);
+	ResizeGripAccent: rgba(0, 0, 0, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.ToolWindowCaptionActive {
+	Background: rgba(255, 242, 157, 1.0);
+	Button: rgba(117, 99, 61, 1.0);
+	Grip: rgba(255, 242, 157, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.ToolWindowCaptionInactive {
+	Background: rgba(77, 96, 130, 1.0);
+	Button: rgba(206, 212, 221, 1.0);
+	Grip: rgba(77, 96, 130, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.ToolWindowCaptionButtonActiveHovered {
+	Background: rgba(255, 252, 244, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.ToolWindowCaptionButtonPressed {
+	Background: rgba(255, 232, 166, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.ToolWindowCaptionButtonInactiveHovered {
+	Background: rgba(255, 252, 244, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Glyph: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.ToolWindowTabSelectedActive {
+	Background: rgba(255, 255, 255, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.ToolWindowTabSelectedInactive {
+	Background: rgba(255, 255, 255, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.ToolWindowTabUnselected {
+	Background: rgba(77, 96, 130, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.ToolWindowTabUnselectedHovered {
+	Background: rgba(91, 113, 153, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015BlueTheme.ToolWindowBorder { color: rgba(142, 155, 188, 1.0); }
+VS2015BlueTheme.ToolWindowSeparator { color: rgba(75, 92, 116, 1.0); }
+VS2015BlueTheme.DockTarget {
+	Background: rgba(255, 255, 255, 1.0);
+	Border: rgba(99, 104, 113, 1.0);
+	ButtonBackground: rgba(245, 248, 251, 1.0);
+	ButtonBorder: rgba(138, 145, 156, 1.0);
+	GlyphBackground: rgba(253, 232, 167, 1.0);
+	GlyphArrow: rgba(68, 88, 121, 1.0);
+	GlyphBorder: rgba(68, 88, 121, 1.0);
+}
+VS2015BlueTheme.CommandBarMenuDefault {
+	Background: rgba(214, 219, 233, 1.0);
+	Text: rgba(27, 41, 62, 1.0);
+}
+VS2015BlueTheme.CommandBarMenuPopupDefault {
+	Arrow: rgba(0, 0, 0, 1.0);
+	BackgroundBottom: rgba(234, 240, 255, 1.0);
+	BackgroundTop: rgba(234, 240, 255, 1.0);
+	Border: rgba(155, 167, 183, 1.0);
+	Checkmark: rgba(0, 0, 0, 1.0);
+	CheckmarkBackground: rgba(233, 236, 238, 1.0);
+	IconBackground: rgba(242, 244, 254, 1.0);
+	Separator: rgba(190, 195, 203, 1.0);
+}
+VS2015BlueTheme.CommandBarMenuPopupDisabled {
+	Checkmark: rgba(162, 164, 165, 1.0);
+	CheckmarkBackground: rgba(233, 236, 238, 1.0);
+	Text: rgba(128, 128, 128, 1.0);
+}
+VS2015BlueTheme.CommandBarMenuPopupHovered {
+	Arrow: rgba(0, 0, 0, 1.0);
+	Checkmark: rgba(0, 0, 0, 1.0);
+	CheckmarkBackground: rgba(255, 252, 244, 1.0);
+	ItemBackground: rgba(253, 244, 191, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015BlueTheme.CommandBarMenuTopLevelHeaderHovered {
+	Background: rgba(253, 244, 191, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarDefault {
+	Background: rgba(207, 214, 229, 1.0);
+	Border: rgba(220, 224, 236, 1.0);
+	Grip: rgba(96, 114, 140, 1.0);
+	OverflowButtonBackground: rgba(220, 224, 236, 1.0);
+	OverflowButtonGlyph: rgba(27, 41, 62, 1.0);
+	Separator: rgba(133, 145, 162, 1.0);
+	SeparatorAccent: rgba(214, 219, 233, 1.0);
+	Tray: rgba(214, 219, 233, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarButtonChecked {
+	Background: rgba(253, 244, 191, 1.0);
+	Border: rgba(229, 195, 101, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarButtonCheckedHovered {
+	Border: rgba(229, 195, 101, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarButtonDefault {
+	Arrow: rgba(27, 41, 62, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarButtonHovered {
+	Arrow: rgba(0, 0, 0, 1.0);
+	Separator: rgba(229, 195, 101, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarButtonPressed {
+	Arrow: rgba(0, 0, 0, 1.0);
+	Background: rgba(255, 242, 157, 1.0);
+	Text: rgba(0, 0, 0, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarOverflowHovered {
+	Background: rgba(253, 244, 191, 1.0);
+	Glyph: rgba(27, 41, 62, 1.0);
+}
+VS2015BlueTheme.CommandBarToolbarOverflowPressed {
+	Background: rgba(255, 242, 157, 1.0);
+	Glyph: rgba(27, 41, 62, 1.0);
+}
+——————————————
+/* 主题名称：VS2015LightTheme */
+VS2015LightTheme.AutoHideStripDefault {
+	Background: rgba(238, 238, 242, 1.0);
+	Border: rgba(204, 206, 219, 1.0);
+	Text: rgba(68, 68, 68, 1.0);
+}
+VS2015LightTheme.AutoHideStripHovered {
+	Background: rgba(238, 238, 242, 1.0);
+	Border: rgba(0, 122, 204, 1.0);
+	Text: rgba(14, 112, 192, 1.0);
+}
+VS2015LightTheme.OverflowButtonDefault {
+	Glyph: rgba(113, 113, 113, 1.0);
+}
+VS2015LightTheme.OverflowButtonHovered {
+	Background: rgba(201, 222, 245, 1.0);
+	Border: rgba(201, 222, 245, 1.0);
+	Glyph: rgba(0, 122, 204, 1.0);
+}
+VS2015LightTheme.OverflowButtonPressed {
+	Background: rgba(0, 122, 204, 1.0);
+	Border: rgba(0, 122, 204, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.TabSelectedActive {
+	Background: rgba(0, 122, 204, 1.0);
+	Button: rgba(208, 230, 245, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.TabSelectedInactive {
+	Background: rgba(204, 206, 219, 1.0);
+	Button: rgba(109, 109, 112, 1.0);
+	Text: rgba(113, 113, 113, 1.0);
+}
+VS2015LightTheme.TabUnselected {
+	Background: rgba(238, 238, 242, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.TabUnselectedHovered {
+	Background: rgba(28, 151, 234, 1.0);
+	Button: rgba(208, 230, 245, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.TabButtonSelectedActiveHovered {
+	Background: rgba(28, 151, 234, 1.0);
+	Border: rgba(28, 151, 234, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.TabButtonSelectedActivePressed {
+	Background: rgba(14, 97, 152, 1.0);
+	Border: rgba(14, 97, 152, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.TabButtonSelectedInactiveHovered {
+	Background: rgba(230, 231, 237, 1.0);
+	Border: rgba(230, 231, 237, 1.0);
+	Glyph: rgba(113, 113, 113, 1.0);
+}
+VS2015LightTheme.TabButtonSelectedInactivePressed {
+	Background: rgba(183, 185, 197, 1.0);
+	Border: rgba(183, 185, 197, 1.0);
+	Glyph: rgba(45, 45, 45, 1.0);
+}
+VS2015LightTheme.TabButtonUnselectedTabHoveredButtonHovered {
+	Background: rgba(82, 176, 239, 1.0);
+	Border: rgba(82, 176, 239, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.TabButtonUnselectedTabHoveredButtonPressed {
+	Background: rgba(14, 97, 152, 1.0);
+	Border: rgba(14, 97, 152, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.MainWindowActive {
+	Background: rgba(238, 238, 242, 1.0);
+}
+VS2015LightTheme.MainWindowStatusBarDefault {
+	Background: rgba(0, 122, 204, 1.0);
+	Highlight: rgba(0, 0, 0, 1.0);
+	HighlightText: rgba(255, 255, 255, 1.0);
+	ResizeGrip: rgba(255, 255, 255, 1.0);
+	ResizeGripAccent: rgba(0, 0, 0, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.ToolWindowCaptionActive {
+	Background: rgba(0, 122, 204, 1.0);
+	Button: rgba(255, 255, 255, 1.0);
+	Grip: rgba(89, 168, 222, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.ToolWindowCaptionInactive {
+	Background: rgba(238, 238, 242, 1.0);
+	Button: rgba(30, 30, 30, 1.0);
+	Grip: rgba(153, 153, 153, 1.0);
+	Text: rgba(68, 68, 68, 1.0);
+}
+VS2015LightTheme.ToolWindowCaptionButtonActiveHovered {
+	Background: rgba(82, 176, 239, 1.0);
+	Border: rgba(82, 176, 239, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.ToolWindowCaptionButtonPressed {
+	Background: rgba(14, 97, 152, 1.0);
+	Border: rgba(14, 97, 152, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.ToolWindowCaptionButtonInactiveHovered {
+	Background: rgba(247, 247, 249, 1.0);
+	Border: rgba(247, 247, 249, 1.0);
+	Glyph: rgba(113, 113, 113, 1.0);
+}
+VS2015LightTheme.ToolWindowTabSelectedActive {
+	Background: rgba(245, 245, 245, 1.0);
+	Text: rgba(14, 112, 192, 1.0);
+}
+VS2015LightTheme.ToolWindowTabSelectedInactive {
+	Background: rgba(245, 245, 245, 1.0);
+	Text: rgba(14, 112, 192, 1.0);
+}
+VS2015LightTheme.ToolWindowTabUnselected {
+	Background: rgba(238, 238, 242, 1.0);
+	Text: rgba(68, 68, 68, 1.0);
+}
+VS2015LightTheme.ToolWindowTabUnselectedHovered {
+	Background: rgba(201, 222, 245, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.ToolWindowBorder { color: rgba(204, 206, 219, 1.0); }
+VS2015LightTheme.ToolWindowSeparator { color: rgba(204, 206, 219, 1.0); }
+VS2015LightTheme.DockTarget {
+	Background: rgba(231, 232, 236, 1.0);
+	Border: rgba(204, 206, 219, 1.0);
+	ButtonBackground: rgba(245, 245, 245, 1.0);
+	ButtonBorder: rgba(245, 245, 245, 1.0);
+	GlyphBackground: rgba(245, 245, 245, 1.0);
+	GlyphArrow: rgba(30, 30, 30, 1.0);
+	GlyphBorder: rgba(0, 122, 204, 1.0);
+}
+VS2015LightTheme.CommandBarMenuDefault {
+	Background: rgba(238, 238, 242, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.CommandBarMenuPopupDefault {
+	Arrow: rgba(113, 113, 113, 1.0);
+	BackgroundBottom: rgba(246, 246, 246, 1.0);
+	BackgroundTop: rgba(246, 246, 246, 1.0);
+	Border: rgba(204, 206, 219, 1.0);
+	Checkmark: rgba(113, 113, 113, 1.0);
+	CheckmarkBackground: rgba(238, 238, 242, 1.0);
+	IconBackground: rgba(246, 246, 246, 1.0);
+	Separator: rgba(224, 227, 230, 1.0);
+}
+VS2015LightTheme.CommandBarMenuPopupDisabled {
+	Checkmark: rgba(162, 164, 165, 1.0);
+	CheckmarkBackground: rgba(238, 238, 242, 1.0);
+	Text: rgba(162, 164, 165, 1.0);
+}
+VS2015LightTheme.CommandBarMenuPopupHovered {
+	Arrow: rgba(0, 122, 204, 1.0);
+	Checkmark: rgba(30, 30, 30, 1.0);
+	CheckmarkBackground: rgba(201, 222, 245, 1.0);
+	ItemBackground: rgba(201, 222, 245, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.CommandBarMenuTopLevelHeaderHovered {
+	Background: rgba(201, 222, 245, 1.0);
+	Border: rgba(238, 238, 242, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarDefault {
+	Background: rgba(238, 238, 242, 1.0);
+	Border: rgba(238, 238, 242, 1.0);
+	Grip: rgba(153, 153, 153, 1.0);
+	OverflowButtonBackground: rgba(238, 238, 242, 1.0);
+	OverflowButtonGlyph: rgba(113, 113, 113, 1.0);
+	Separator: rgba(204, 206, 219, 1.0);
+	SeparatorAccent: rgba(245, 245, 245, 1.0);
+	Tray: rgba(238, 238, 242, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarButtonChecked {
+	Background: rgba(238, 238, 242, 1.0);
+	Border: rgba(51, 153, 255, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarButtonCheckedHovered {
+	Border: rgba(51, 153, 255, 1.0);
+	Text: rgba(30, 30, 30, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarButtonDefault {
+	Arrow: rgba(113, 113, 113, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarButtonHovered {
+	Arrow: rgba(30, 30, 30, 1.0);
+	Separator: rgba(238, 238, 242, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarButtonPressed {
+	Arrow: rgba(255, 255, 255, 1.0);
+	Background: rgba(0, 122, 204, 1.0);
+	Text: rgba(255, 255, 255, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarOverflowHovered {
+	Background: rgba(201, 222, 245, 1.0);
+	Glyph: rgba(0, 122, 204, 1.0);
+}
+VS2015LightTheme.CommandBarToolbarOverflowPressed {
+	Background: rgba(0, 122, 204, 1.0);
+	Glyph: rgba(255, 255, 255, 1.0);
+}
