@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.Interfaces;
+using CleverStocker.Utils;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace CleverStocker.Client.DockForms
@@ -9,7 +11,7 @@ namespace CleverStocker.Client.DockForms
     /// 停靠窗口基类
     /// </summary>
     /// <see cref="http://docs.dockpanelsuite.com/getting-started/index.html#"/>
-    public abstract partial class DockFormBase : DockContent, IInitializable
+    public abstract partial class DockFormBase : DockContent, IInitializable, IThemeAppliable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DockFormBase"/> class.
@@ -45,6 +47,24 @@ namespace CleverStocker.Client.DockForms
                 base.Text = value;
                 this.TabText = value;
             }
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public virtual void ApplyTheme()
+        {
+            if (ThemeHelper.CurrentTheme == null)
+            {
+                return;
+            }
+
+            foreach (var toolStrip in this.Controls.OfType<ToolStrip>())
+            {
+                ThemeHelper.CurrentTheme.ApplyTo(toolStrip);
+            }
+
+            this.BackColor = ThemeHelper.GetDockFormBackcolor();
         }
 
         /// <summary>

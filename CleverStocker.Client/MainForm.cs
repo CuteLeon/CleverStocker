@@ -49,7 +49,10 @@ namespace CleverStocker.Client
             this.MainDockPanel.DocumentTabStripLocation = DocumentTabStripLocation.Top;
             this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
             this.MainDockPanel.ShowDocumentIcon = true;
+        }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
             this.ClassicsThemeMenuItem.Checked = true;
             this.SwitchTheme(Themes.Dark);
         }
@@ -321,6 +324,9 @@ namespace CleverStocker.Client
 
             // 应用浮动窗口工厂
             this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
+
+            ThemeHelper.CurrentThemeType = theme;
+            ThemeHelper.CurrentTheme = this.MainDockPanel.Theme;
 
             // 应用工具条主题
             this.MainDockPanel.Theme.ApplyTo(this.MainTopMenuStrip);

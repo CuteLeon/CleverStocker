@@ -36,11 +36,23 @@ namespace CleverStocker.Client.DockForms
         {
             this.StockService = DIContainerHelper.Resolve<IStockService>();
 
-            this.stockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
+            this.ApplyTheme();
+
+            _ = this.StockService.GetSelfSelectStocks();
             this.Subscriber = MQHelper.Subscribe(
                 "SelfSelectStockForm",
                 new[] { MQTopics.TopicStockSelfSelect },
                 this.Subscriber_Receive);
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public override void ApplyTheme()
+        {
+            base.ApplyTheme();
+
+            this.SelfSelectStockGridView.BackgroundColor = this.BackColor;
         }
 
         /// <summary>

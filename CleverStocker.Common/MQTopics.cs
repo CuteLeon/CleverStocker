@@ -5,6 +5,15 @@
     /// </summary>
     public static class MQTopics
     {
+
+        #region UI
+
+        /// <summary>
+        /// 主题变化了
+        /// </summary>
+        public const string TopicThemeChanged = "Theme.Changed";
+        #endregion
+
         #region 股票主题
 
         /// <summary>
