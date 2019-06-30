@@ -1,6 +1,9 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
+using CleverStocker.Model;
 using CleverStocker.Utils;
 using SQLite.CodeFirst;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.DataAccess
 {
@@ -37,6 +40,30 @@ namespace CleverStocker.DataAccess
         {
             LogHelper<DBContext>.Debug("填充种子数据 ...");
             base.Seed(context);
+
+            context.Stocks.AddRange(new[]
+            {
+                new Stock("000001", Markets.ShangHai)
+                {
+                     Name = "上证指数",
+                     IsSelfSelect = true,
+                     UpdateTime = DateTime.Now,
+                },
+                new Stock("399001", Markets.ShenZhen)
+                {
+                     Name = "深证成指",
+                     IsSelfSelect = true,
+                     UpdateTime = DateTime.Now,
+                },
+                new Stock("399006", Markets.ShenZhen)
+                {
+                     Name = "创业板指",
+                     IsSelfSelect = true,
+                     UpdateTime = DateTime.Now,
+                },
+            });
+            context.SaveChanges();
+
             LogHelper<DBContext>.Debug("填充种子数据完成");
         }
     }
