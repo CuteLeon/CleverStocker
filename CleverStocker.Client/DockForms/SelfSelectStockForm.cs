@@ -59,7 +59,7 @@ namespace CleverStocker.Client.DockForms
         public override void ApplyTheme()
         {
             base.ApplyTheme();
-            ThemeHelper.CurrentTheme.ApplyTo(this.SelfSelectGridViewMenuStrip);
+            ThemeHelper.CurrentThemeComponent.ApplyTo(this.SelfSelectGridViewMenuStrip);
 
             this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.BackColor = this.BackColor;
             this.SelfSelectStockGridView.BackgroundColor = this.BackColor;

@@ -54,14 +54,14 @@ namespace CleverStocker.Client.DockForms
         /// </summary>
         public virtual void ApplyTheme()
         {
-            if (ThemeHelper.CurrentTheme == null)
+            if (ThemeHelper.CurrentThemeComponent == null)
             {
                 return;
             }
 
             foreach (var toolStrip in this.Controls.OfType<ToolStrip>())
             {
-                ThemeHelper.CurrentTheme.ApplyTo(toolStrip);
+                ThemeHelper.CurrentThemeComponent.ApplyTo(toolStrip);
             }
 
             this.BackColor = ThemeHelper.GetDockFormBackcolor();

@@ -13,6 +13,11 @@ namespace CleverStocker.Utils
         #region MQ配置
 
         /// <summary>
+        /// MQ 地址配置 Key
+        /// </summary>
+        private const string MQAddressKey = "MQAddress";
+
+        /// <summary>
         /// MQ 端口
         /// </summary>
         /// <remarks>
@@ -22,17 +27,17 @@ namespace CleverStocker.Utils
         /// 魔法数字：
         /// 点亮生日每个数字代表的二进制位，遇到数字重复时进一
         /// </remarks>
-        private static readonly int MQPort = 0b_0101_1100_0010;
+        private static readonly int DefaultMQPort = 0b_0101_1100_0010;
 
         /// <summary>
         /// MQ 主机
         /// </summary>
-        private static readonly string MQHost = "tcp://127.0.0.1";
+        private static readonly string DefaultMQHost = "tcp://127.0.0.1";
 
         /// <summary>
         /// MQ 地址
         /// </summary>
-        internal static readonly string MQAddress = $"{MQHost}:{MQPort}";
+        public static readonly string MQAddress;
 
         /// <summary>
         /// 消息字段分离器
@@ -53,6 +58,10 @@ namespace CleverStocker.Utils
         /// </summary>
         static MQHelper()
         {
+            LogHelper<ZSocket>.Debug($"读取 MQ 地址配置 ...");
+            MQAddress = ConfigHelper.ReadConfig(MQAddressKey, $"{DefaultMQHost}:{DefaultMQPort}");
+            LogHelper<ZSocket>.Debug($"MQ 地址: {MQAddress}");
+
             LogHelper<ZSocket>.Debug($"创建 MQ 消息发布者 ...");
 
             try

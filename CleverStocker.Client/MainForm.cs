@@ -54,7 +54,8 @@ namespace CleverStocker.Client
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.ClassicsThemeMenuItem.Checked = true;
-            this.SwitchTheme(Themes.Dark);
+
+            this.SwitchTheme(ThemeHelper.CurrentTheme);
         }
 
         /// <summary>
@@ -256,11 +257,14 @@ namespace CleverStocker.Client
         /// <param name="theme">
         public void SwitchTheme(Themes theme)
         {
-            // 框架限制：切换主题需要关闭所有的 Pane (窗格)
+            /* 框架限制：切换主题需要关闭所有的 Pane (窗格)
+             * 可以尝试：立即保存当前布局到文件，然后关闭所有 Pane ，切换主题后，再从文件读入以恢复布局
+             */
+            ThemeHelper.CurrentTheme = theme;
+
             if (this.MainDockPanel.Panes.Count > 0)
             {
-                // TODO: 立即保存当前布局到文件，然后关闭所有 Pane ，再从文件读入以恢复布局，即可解决此限制
-                MessageBox.Show("请先关闭工作区内的所有窗格后再尝试切换主题。");
+                MessageBox.Show("下次启动后将应用新主题。");
                 return;
             }
 
@@ -325,8 +329,7 @@ namespace CleverStocker.Client
             // 应用浮动窗口工厂
             this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
 
-            ThemeHelper.CurrentThemeType = theme;
-            ThemeHelper.CurrentTheme = this.MainDockPanel.Theme;
+            ThemeHelper.CurrentThemeComponent = this.MainDockPanel.Theme;
 
             // 应用工具条主题
             this.MainDockPanel.Theme.ApplyTo(this.MainTopMenuStrip);
