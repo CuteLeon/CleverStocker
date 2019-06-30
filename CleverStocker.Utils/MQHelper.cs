@@ -111,18 +111,21 @@ namespace CleverStocker.Utils
         /// <summary>
         /// 订阅
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="source"></param>
         /// <param name="topics"></param>
-        /// <param name="receiveDelegate"></param>
+        /// <param name="receiveDelegate">(发布者，主题，消息)</param>
         /// <returns></returns>
-        public static SubscriberHandler Subscribe(string name, IEnumerable<string> topics, Action<string, string> receiveDelegate)
+        /// <remarks>
+        /// source: 1.不应该出现空格；2.不应该出现重名；
+        /// </remarks>
+        public static SubscriberHandler Subscribe(string source, IEnumerable<string> topics, Action<string, string, string> receiveDelegate)
         {
             if (receiveDelegate == null)
             {
                 throw new ArgumentNullException(nameof(receiveDelegate));
             }
 
-            LogHelper<ZSocket>.Debug($"创建 MQ 消息订阅者：{name} ...");
+            LogHelper<ZSocket>.Debug($"创建 MQ 消息订阅者：{source} ...");
 
             try
             {
@@ -136,11 +139,11 @@ namespace CleverStocker.Utils
                 });
                 LogHelper<ZSocket>.Debug($"创建 MQ 消息订阅者成功");
 
-                return new SubscriberHandler(name, subSocket, receiveDelegate);
+                return new SubscriberHandler(source, subSocket, receiveDelegate);
             }
             catch (Exception ex)
             {
-                LogHelper<DefaultLogSource>.ErrorException(ex, $"创建订阅者失败 {name}：");
+                LogHelper<DefaultLogSource>.ErrorException(ex, $"创建订阅者失败 {source}：");
                 return default;
             }
         }
@@ -148,25 +151,26 @@ namespace CleverStocker.Utils
         /// <summary>
         /// 发布
         /// </summary>
-        /// <param name="name"></param>
+        /// <param name="source"></param>
         /// <param name="topic"></param>
         /// <param name="message"></param>
-        public static void Publish(string name, string topic, string message)
+        public static void Publish(string source, string topic, string message)
         {
-            LogHelper<ZSocket>.Debug($"{name} 开始发布消息：{topic} - {message}");
+            LogHelper<ZSocket>.Debug($"{source} 开始发布消息：{topic} - {message}");
 
             try
             {
-                using (var frame = new ZFrame($"{topic}{Separator[0]}{message}"))
+                // 拼接消息时应确保 topic 在第一位，否则将影响 MQ 订阅者的匹配和接收
+                using (var frame = new ZFrame($"{topic}{Separator[0]}{source}{Separator[0]}{message}"))
                 {
                     PublisherSocket.Send(frame);
                 }
 
-                LogHelper<ZSocket>.Debug($"{name} 发布消息 {topic} 成功：");
+                LogHelper<ZSocket>.Debug($"{source} 发布消息 {topic} 成功：");
             }
             catch (Exception ex)
             {
-                LogHelper<ZSocket>.ErrorException(ex, $"{name} 发布消息 {topic} 失败：");
+                LogHelper<ZSocket>.ErrorException(ex, $"{source} 发布消息 {topic} 失败：");
             }
         }
     }

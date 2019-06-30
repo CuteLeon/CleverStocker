@@ -151,6 +151,9 @@ namespace CleverStocker.Client
 
                             this.UpdateProgressAsync($"密封服务容器 ...");
                             DIContainerHelper.Build();
+
+                            this.UpdateProgressAsync($"绑定 MQ 发布者 ...");
+                            MQHelper.BindPublisher();
                         }));
 
         /// <summary>

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Client.DockForms.FloatWindows;
 using CleverStocker.Client.Interfaces;
+using CleverStocker.Common;
 using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
@@ -64,6 +65,9 @@ namespace CleverStocker.Client
 
         private void TestToolItem_Click(object sender, EventArgs e)
         {
+            MQHelper.Publish("MainForm", MQTopics.TopicStockSelfSelectAdd, "添加自选股票");
+            return;
+
             try
             {
                 this.GetStockQuota();
