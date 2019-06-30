@@ -24,7 +24,7 @@
         /// <summary>
         /// 当前选中股票变化
         /// </summary>
-        public static readonly string TopicCurrentChangeStock = "Stock.Current.Change";
+        public static readonly string TopicStockCurrentChange = "Stock.Current.Change";
 
         /// <summary>
         /// 所有股票

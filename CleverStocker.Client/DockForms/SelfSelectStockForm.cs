@@ -1,5 +1,7 @@
 ﻿using System;
+using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
+using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 
@@ -8,17 +10,22 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 自选股票窗口
     /// </summary>
-    public partial class SelfSelectStockForm : SingleToolDockForm
+    public partial class SelfSelectStockForm : SingleToolDockForm, IMQPubsubable
     {
         /// <summary>
         /// Gets or sets mQ 订阅者
         /// </summary>
-        protected SubscriberHandler Subscriber { get; set; }
+        public SubscriberHandler Subscriber { get; set; }
 
         /// <summary>
         /// Gets or sets 股票服务
         /// </summary>
         protected IStockService StockService { get; set; }
+
+        /// <summary>
+        /// Gets or sets 源名称
+        /// </summary>
+        public string SourceName { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SelfSelectStockForm"/> class.
@@ -39,10 +46,12 @@ namespace CleverStocker.Client.DockForms
             this.StockService = DIContainerHelper.Resolve<IStockService>();
 
             this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
+
+            this.SourceName = this.GetType().Name;
             this.Subscriber = MQHelper.Subscribe(
-                "SelfSelectStockForm",
+                this.SourceName,
                 new[] { MQTopics.TopicStockSelfSelect },
-                this.Subscriber_Receive);
+                this.MQSubscriberReceive);
         }
 
         /// <summary>
@@ -58,19 +67,31 @@ namespace CleverStocker.Client.DockForms
         }
 
         /// <summary>
-        /// 订阅者接收消息
+        /// MQ 订阅者接收消息
         /// </summary>
         /// <param name="source"></param>
         /// <param name="topic"></param>
         /// <param name="message"></param>
-        private void Subscriber_Receive(string source, string topic, string message)
+        public void MQSubscriberReceive(string source, string topic, string message)
         {
             LogHelper<SelfSelectStockForm>.Debug($"收到 {source} 发来的消息：{topic} - {message}");
 
             this.Invoke(new Action(() =>
             {
-                this.Text = $"消息：{message}";
+                LogHelper<SelfSelectStockForm>.Debug($"{this.SourceName} 收到来自 {source} 的消息：{topic} - {message}");
             }));
+        }
+
+        private void SelfSelectStockGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            var stock = this.SelfSelectStockGridView.CurrentRow.DataBoundItem as Stock;
+            if (stock == null)
+            {
+                return;
+            }
+
+            // 发布消息：当前股票变化
+            MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, $"{stock.Market.ToString()}{MQHelper.Separator[0]}{stock.Code}");
         }
     }
 }

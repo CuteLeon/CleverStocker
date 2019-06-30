@@ -130,6 +130,7 @@
       <DependentUpon>ToolDockForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IInitializable.cs" />
+    <Compile Include="Interfaces\IMQPubsubable.cs" />
     <Compile Include="Interfaces\IThemeAppliable.cs" />
     <Compile Include="LaunchForm.cs">
       <SubType>Form</SubType>

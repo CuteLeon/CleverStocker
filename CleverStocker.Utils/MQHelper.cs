@@ -37,7 +37,7 @@ namespace CleverStocker.Utils
         /// <summary>
         /// 消息字段分离器
         /// </summary>
-        internal static readonly char[] Separator = new[] { ' ' };
+        public static readonly char[] Separator = new[] { ' ' };
         #endregion
 
         #region MQ终端

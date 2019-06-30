@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelfSelectStockForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelfSelectStockForm));
             this.SelfSelectStockToolStrip = new System.Windows.Forms.ToolStrip();
-            this.SelfSelectStockGridView = new System.Windows.Forms.DataGridView();
-            this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
-            this.SelfSelectGridViewMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.RefreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AddToolButton = new System.Windows.Forms.ToolStripButton();
             this.RemoveToolButton = new System.Windows.Forms.ToolStripButton();
-            this.AddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SelfSelectStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
+            this.SelfSelectStockGridView = new System.Windows.Forms.DataGridView();
             this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StockMarketGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StockNameGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelfSelectStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SelfSelectGridViewMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RefreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelfSelectStockToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).BeginInit();
-            this.SelfSelectGridViewMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockBindingSource)).BeginInit();
+            this.SelfSelectGridViewMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // SelfSelectStockToolStrip
@@ -62,6 +62,33 @@
             this.SelfSelectStockToolStrip.Name = "SelfSelectStockToolStrip";
             this.SelfSelectStockToolStrip.Size = new System.Drawing.Size(254, 25);
             this.SelfSelectStockToolStrip.TabIndex = 0;
+            // 
+            // AddToolButton
+            // 
+            this.AddToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.AddToolButton.Image = ((System.Drawing.Image)(resources.GetObject("AddToolButton.Image")));
+            this.AddToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AddToolButton.Name = "AddToolButton";
+            this.AddToolButton.Size = new System.Drawing.Size(36, 22);
+            this.AddToolButton.Text = "添加";
+            // 
+            // RemoveToolButton
+            // 
+            this.RemoveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RemoveToolButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveToolButton.Image")));
+            this.RemoveToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RemoveToolButton.Name = "RemoveToolButton";
+            this.RemoveToolButton.Size = new System.Drawing.Size(36, 22);
+            this.RemoveToolButton.Text = "删除";
+            // 
+            // RefreshToolButton
+            // 
+            this.RefreshToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.RefreshToolButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshToolButton.Image")));
+            this.RefreshToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RefreshToolButton.Name = "RefreshToolButton";
+            this.RefreshToolButton.Size = new System.Drawing.Size(36, 22);
+            this.RefreshToolButton.Text = "刷新";
             // 
             // SelfSelectStockGridView
             // 
@@ -110,64 +137,7 @@
             this.SelfSelectStockGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SelfSelectStockGridView.Size = new System.Drawing.Size(254, 256);
             this.SelfSelectStockGridView.TabIndex = 1;
-            // 
-            // RefreshToolButton
-            // 
-            this.RefreshToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.RefreshToolButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshToolButton.Image")));
-            this.RefreshToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.RefreshToolButton.Name = "RefreshToolButton";
-            this.RefreshToolButton.Size = new System.Drawing.Size(36, 22);
-            this.RefreshToolButton.Text = "刷新";
-            // 
-            // SelfSelectGridViewMenuStrip
-            // 
-            this.SelfSelectGridViewMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddMenuItem,
-            this.RemoveMenuItem,
-            this.RefreshMenuItem});
-            this.SelfSelectGridViewMenuStrip.Name = "SelfSelectGridViewMenuStrip";
-            this.SelfSelectGridViewMenuStrip.Size = new System.Drawing.Size(101, 70);
-            // 
-            // RefreshMenuItem
-            // 
-            this.RefreshMenuItem.Name = "RefreshMenuItem";
-            this.RefreshMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.RefreshMenuItem.Text = "刷新";
-            // 
-            // AddToolButton
-            // 
-            this.AddToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddToolButton.Image = ((System.Drawing.Image)(resources.GetObject("AddToolButton.Image")));
-            this.AddToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.AddToolButton.Name = "AddToolButton";
-            this.AddToolButton.Size = new System.Drawing.Size(36, 22);
-            this.AddToolButton.Text = "添加";
-            // 
-            // RemoveToolButton
-            // 
-            this.RemoveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.RemoveToolButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveToolButton.Image")));
-            this.RemoveToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.RemoveToolButton.Name = "RemoveToolButton";
-            this.RemoveToolButton.Size = new System.Drawing.Size(36, 22);
-            this.RemoveToolButton.Text = "删除";
-            // 
-            // AddMenuItem
-            // 
-            this.AddMenuItem.Name = "AddMenuItem";
-            this.AddMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.AddMenuItem.Text = "添加";
-            // 
-            // RemoveMenuItem
-            // 
-            this.RemoveMenuItem.Name = "RemoveMenuItem";
-            this.RemoveMenuItem.Size = new System.Drawing.Size(100, 22);
-            this.RemoveMenuItem.Text = "移除";
-            // 
-            // SelfSelectStockBindingSource
-            // 
-            this.SelfSelectStockBindingSource.DataSource = typeof(CleverStocker.Model.Stock);
+            this.SelfSelectStockGridView.SelectionChanged += new System.EventHandler(this.SelfSelectStockGridView_SelectionChanged);
             // 
             // StockCodeGridViewColumn
             // 
@@ -191,6 +161,37 @@
             this.StockNameGridViewColumn.Name = "StockNameGridViewColumn";
             this.StockNameGridViewColumn.ReadOnly = true;
             // 
+            // SelfSelectStockBindingSource
+            // 
+            this.SelfSelectStockBindingSource.DataSource = typeof(CleverStocker.Model.Stock);
+            // 
+            // SelfSelectGridViewMenuStrip
+            // 
+            this.SelfSelectGridViewMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddMenuItem,
+            this.RemoveMenuItem,
+            this.RefreshMenuItem});
+            this.SelfSelectGridViewMenuStrip.Name = "SelfSelectGridViewMenuStrip";
+            this.SelfSelectGridViewMenuStrip.Size = new System.Drawing.Size(101, 70);
+            // 
+            // AddMenuItem
+            // 
+            this.AddMenuItem.Name = "AddMenuItem";
+            this.AddMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.AddMenuItem.Text = "添加";
+            // 
+            // RemoveMenuItem
+            // 
+            this.RemoveMenuItem.Name = "RemoveMenuItem";
+            this.RemoveMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.RemoveMenuItem.Text = "移除";
+            // 
+            // RefreshMenuItem
+            // 
+            this.RefreshMenuItem.Name = "RefreshMenuItem";
+            this.RefreshMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.RefreshMenuItem.Text = "刷新";
+            // 
             // SelfSelectStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -205,8 +206,8 @@
             this.SelfSelectStockToolStrip.ResumeLayout(false);
             this.SelfSelectStockToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).EndInit();
-            this.SelfSelectGridViewMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockBindingSource)).EndInit();
+            this.SelfSelectGridViewMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
