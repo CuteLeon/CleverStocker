@@ -32,20 +32,23 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelfSelectStockForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.SelfSelectStockToolStrip = new System.Windows.Forms.ToolStrip();
             this.AddToolButton = new System.Windows.Forms.ToolStripButton();
             this.RemoveToolButton = new System.Windows.Forms.ToolStripButton();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.SelfSelectStockGridView = new System.Windows.Forms.DataGridView();
-            this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockMarketGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockNameGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelfSelectStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SelfSelectGridViewMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockMarketGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockNameGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelfSelectStockToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockBindingSource)).BeginInit();
@@ -121,45 +124,23 @@
             this.SelfSelectStockGridView.DataSource = this.SelfSelectStockBindingSource;
             this.SelfSelectStockGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SelfSelectStockGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.SelfSelectStockGridView.GridColor = System.Drawing.Color.White;
+            this.SelfSelectStockGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
             this.SelfSelectStockGridView.Location = new System.Drawing.Point(0, 25);
             this.SelfSelectStockGridView.MultiSelect = false;
             this.SelfSelectStockGridView.Name = "SelfSelectStockGridView";
             this.SelfSelectStockGridView.ReadOnly = true;
             this.SelfSelectStockGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.SelfSelectStockGridView.RowHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            this.SelfSelectStockGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            this.SelfSelectStockGridView.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.SelfSelectStockGridView.RowTemplate.Height = 23;
             this.SelfSelectStockGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.SelfSelectStockGridView.Size = new System.Drawing.Size(254, 256);
             this.SelfSelectStockGridView.TabIndex = 1;
             this.SelfSelectStockGridView.SelectionChanged += new System.EventHandler(this.SelfSelectStockGridView_SelectionChanged);
-            // 
-            // StockCodeGridViewColumn
-            // 
-            this.StockCodeGridViewColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.StockCodeGridViewColumn.DataPropertyName = "Code";
-            this.StockCodeGridViewColumn.HeaderText = "代码";
-            this.StockCodeGridViewColumn.Name = "StockCodeGridViewColumn";
-            this.StockCodeGridViewColumn.ReadOnly = true;
-            // 
-            // StockMarketGridViewColumn
-            // 
-            this.StockMarketGridViewColumn.DataPropertyName = "Market";
-            this.StockMarketGridViewColumn.HeaderText = "市场";
-            this.StockMarketGridViewColumn.Name = "StockMarketGridViewColumn";
-            this.StockMarketGridViewColumn.ReadOnly = true;
-            // 
-            // StockNameGridViewColumn
-            // 
-            this.StockNameGridViewColumn.DataPropertyName = "Name";
-            this.StockNameGridViewColumn.HeaderText = "名称";
-            this.StockNameGridViewColumn.Name = "StockNameGridViewColumn";
-            this.StockNameGridViewColumn.ReadOnly = true;
             // 
             // SelfSelectStockBindingSource
             // 
@@ -191,6 +172,34 @@
             this.RefreshMenuItem.Name = "RefreshMenuItem";
             this.RefreshMenuItem.Size = new System.Drawing.Size(100, 22);
             this.RefreshMenuItem.Text = "刷新";
+            // 
+            // StockCodeGridViewColumn
+            // 
+            this.StockCodeGridViewColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StockCodeGridViewColumn.DataPropertyName = "Code";
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.StockCodeGridViewColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.StockCodeGridViewColumn.HeaderText = "代码";
+            this.StockCodeGridViewColumn.Name = "StockCodeGridViewColumn";
+            this.StockCodeGridViewColumn.ReadOnly = true;
+            // 
+            // StockMarketGridViewColumn
+            // 
+            this.StockMarketGridViewColumn.DataPropertyName = "Market";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.StockMarketGridViewColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.StockMarketGridViewColumn.HeaderText = "市场";
+            this.StockMarketGridViewColumn.Name = "StockMarketGridViewColumn";
+            this.StockMarketGridViewColumn.ReadOnly = true;
+            // 
+            // StockNameGridViewColumn
+            // 
+            this.StockNameGridViewColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.StockNameGridViewColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.StockNameGridViewColumn.HeaderText = "名称";
+            this.StockNameGridViewColumn.Name = "StockNameGridViewColumn";
+            this.StockNameGridViewColumn.ReadOnly = true;
             // 
             // SelfSelectStockForm
             // 
