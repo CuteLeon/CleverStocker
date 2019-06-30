@@ -5,7 +5,7 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 最近行情
     /// </summary>
-    public partial class RecentQuotaForm : ToolDockForm
+    public partial class RecentQuotaForm : SingleToolDockForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentQuotaForm"/> class.

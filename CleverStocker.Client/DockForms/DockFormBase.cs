@@ -94,5 +94,10 @@ namespace CleverStocker.Client.DockForms
 
             base.OnFormClosing(e);
         }
+
+        private void DockFormBase_Load(object sender, System.EventArgs e)
+        {
+            this.ApplyTheme();
+        }
     }
 }

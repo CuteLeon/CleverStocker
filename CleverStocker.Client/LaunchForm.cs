@@ -162,7 +162,7 @@ namespace CleverStocker.Client
         /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
         /// <param name="mainForm"></param>
         private void RegisterSingleDockFormInstance<TDockForm>(MainForm mainForm)
-            where TDockForm : DockFormBase
+            where TDockForm : SingleToolDockForm
         {
             TDockForm instance = null;
             this.Invoke(new Action(() =>

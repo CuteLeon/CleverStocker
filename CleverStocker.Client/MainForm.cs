@@ -400,7 +400,8 @@ namespace CleverStocker.Client
                 throw new NullReferenceException();
             }
 
-            if (dockForm.IsHidden)
+            if (dockForm.IsHidden ||
+                !dockForm.Visible)
             {
                 dockForm.Show(this.MainDockPanel);
             }

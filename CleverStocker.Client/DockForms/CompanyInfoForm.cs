@@ -5,7 +5,7 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 公司信息
     /// </summary>
-    public partial class CompanyInfoForm : ToolDockForm
+    public partial class CompanyInfoForm : SingleToolDockForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyInfoForm"/> class.

@@ -1,6 +1,6 @@
 ﻿namespace CleverStocker.Client.DockForms
 {
-    abstract partial class DockFormBase
+    partial class SingleToolDockForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // DockFormBase
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "DockFormBase";
-            this.Text = "DockFormBase";
-            this.Load += new System.EventHandler(this.DockFormBase_Load);
-            this.ResumeLayout(false);
-
+            this.Text = "SingleToolDockForm";
         }
 
         #endregion

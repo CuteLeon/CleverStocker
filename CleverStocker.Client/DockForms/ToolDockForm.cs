@@ -11,6 +11,7 @@ namespace CleverStocker.Client.DockForms
         /// Initializes a new instance of the <see cref="ToolDockForm"/> class.
         /// </summary>
         public ToolDockForm()
+            : base()
         {
             this.InitializeComponent();
         }

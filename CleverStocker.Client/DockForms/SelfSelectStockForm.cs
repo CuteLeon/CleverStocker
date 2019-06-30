@@ -8,7 +8,7 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 自选股票窗口
     /// </summary>
-    public partial class SelfSelectStockForm : ToolDockForm
+    public partial class SelfSelectStockForm : SingleToolDockForm
     {
         /// <summary>
         /// Gets or sets mQ 订阅者
@@ -29,7 +29,6 @@ namespace CleverStocker.Client.DockForms
             this.InitializeComponent();
 
             this.Icon = AppResource.SelfSelectIcon;
-            this.HideOnClose = true;
 
             this.TabPageContextMenuStrip = this.SelfSelectGridViewMenuStrip;
             this.SelfSelectStockGridView.ContextMenuStrip = this.SelfSelectGridViewMenuStrip;
@@ -38,8 +37,6 @@ namespace CleverStocker.Client.DockForms
         private void SelfSelectStockForm_Load(object sender, EventArgs e)
         {
             this.StockService = DIContainerHelper.Resolve<IStockService>();
-
-            this.ApplyTheme();
 
             this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
             this.Subscriber = MQHelper.Subscribe(

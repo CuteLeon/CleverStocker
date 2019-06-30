@@ -5,7 +5,7 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 大盘指数
     /// </summary>
-    public partial class MarketQuotaForm : ToolDockForm
+    public partial class MarketQuotaForm : SingleToolDockForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MarketQuotaForm"/> class.

@@ -117,6 +117,12 @@
     <Compile Include="DockForms\SelfSelectStockForm.Designer.cs">
       <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\SingleToolDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\SingleToolDockForm.Designer.cs">
+      <DependentUpon>SingleToolDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\ToolDockForm.cs">
       <SubType>Form</SubType>
     </Compile>
