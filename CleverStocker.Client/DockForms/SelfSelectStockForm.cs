@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
 using CleverStocker.Model;
+using CleverStocker.Model.Comparers;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 using static CleverStocker.Common.CommonStandard;
@@ -201,6 +204,13 @@ namespace CleverStocker.Client.DockForms
         {
             // TODO: 添加自选股票
             Stock stock = new Stock("000002", Markets.ShangHai) { Name = "测试股票" };
+
+            // 判断数据源是否已经存在此自选股票
+            if ((this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)
+                .Contains(stock, new StockComparer()))
+            {
+                return;
+            }
 
             LogHelper<SelfSelectStockForm>.Debug($"添加自选股票：{stock.Market} - {stock.Code}");
 
