@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -12,44 +13,55 @@ namespace CleverStocker.Utils.Tests
         [TestMethod()]
         public void ThemeHelperUnitTest()
         {
-            foreach (var theme in new ThemeBase[] {
+            ThemeBase[] themes = new ThemeBase[] {
                 new VS2015DarkTheme(),
                 new VS2015BlueTheme(),
                 new VS2015LightTheme(),
-            })
+            };
+            ThemeBase firstTheme = themes[0];
+            Color color;
+
+            foreach (var property in firstTheme.ColorPalette.GetType().GetProperties().OrderBy(p => p.Name))
             {
-                string themeName = theme.GetType().Name;
-                Console.WriteLine("——————————————");
-                Console.WriteLine($"/* 主题名称：{themeName} */");
-                Color color;
-
-                foreach (var property in theme.ColorPalette.GetType().GetProperties())
+                if (property.PropertyType.Name == "Color")
                 {
-
-                    if (property.PropertyType.Name == "Color")
+                    Console.WriteLine($"{property.Name} {{");
+                    foreach (var theme in themes)
                     {
                         color = (Color)property.GetValue(theme.ColorPalette);
-                        Console.WriteLine($"{themeName}.{property.Name} {{ color: rgba({color.R}, {color.G}, {color.B}, 1.0); }}");
+                        Console.WriteLine($"\t{theme.GetType().Name}: rgba({color.R}, {color.G}, {color.B}, 1.0);");
                     }
-                    else
-                    {
-                        Console.WriteLine($"{themeName}.{property.Name} {{");
+                    Console.WriteLine("}");
+                }
+                else
+                {
+                    Console.WriteLine($"{property.Name} {{");
 
-                        var value = property?.GetValue(theme.ColorPalette);
-                        var type = value?.GetType();
-                        var propertys = type?.GetProperties();
-                        if (propertys != null)
+                    foreach (var childProperty in property.PropertyType?
+                        .GetProperties()?.Where(p => p.PropertyType.Name == "Color") ??
+                        Enumerable.Empty<PropertyInfo>())
+                    {
+                        foreach (var theme in themes)
                         {
-                            foreach (var colorProperty in property?.GetValue(theme.ColorPalette)?.GetType()?.GetProperties()
-                                .Where(p => p.PropertyType.Name == "Color"))
+                            try
                             {
-                                color = (Color)colorProperty.GetValue(value);
-                                Console.WriteLine($"\t{colorProperty.Name}: rgba({color.R}, {color.G}, {color.B}, 1.0);");
+                                var value = property.GetValue(theme.ColorPalette);
+                                if (value != null)
+                                {
+                                    color = (Color)childProperty.GetValue(value);
+                                    Console.WriteLine($"\t{theme.GetType().Name}-{childProperty.Name}: rgba({color.R}, {color.G}, {color.B}, 1.0);");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"{theme.GetType().Name}-{childProperty.Name} 错误：{ex.Message}");
                             }
                         }
 
-                        Console.WriteLine("}");
+                        Console.WriteLine("");
                     }
+
+                    Console.WriteLine("}");
                 }
             }
         }
