@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelfSelectStockForm));
             this.SelfSelectStockToolStrip = new System.Windows.Forms.ToolStrip();
             this.AddToolButton = new System.Windows.Forms.ToolStripButton();
             this.RemoveToolButton = new System.Windows.Forms.ToolStripButton();
@@ -62,30 +61,31 @@
             // 
             // AddToolButton
             // 
-            this.AddToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.AddToolButton.Image = ((System.Drawing.Image)(resources.GetObject("AddToolButton.Image")));
+            this.AddToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.AddToolButton.Image = global::CleverStocker.Client.AppResource.Add;
             this.AddToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.AddToolButton.Name = "AddToolButton";
-            this.AddToolButton.Size = new System.Drawing.Size(36, 22);
+            this.AddToolButton.Size = new System.Drawing.Size(23, 22);
             this.AddToolButton.Text = "添加";
             // 
             // RemoveToolButton
             // 
-            this.RemoveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.RemoveToolButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveToolButton.Image")));
+            this.RemoveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RemoveToolButton.Image = global::CleverStocker.Client.AppResource.Remove;
             this.RemoveToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RemoveToolButton.Name = "RemoveToolButton";
-            this.RemoveToolButton.Size = new System.Drawing.Size(36, 22);
+            this.RemoveToolButton.Size = new System.Drawing.Size(23, 22);
             this.RemoveToolButton.Text = "删除";
             // 
             // RefreshToolButton
             // 
-            this.RefreshToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.RefreshToolButton.Image = ((System.Drawing.Image)(resources.GetObject("RefreshToolButton.Image")));
+            this.RefreshToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.RefreshToolButton.Image = global::CleverStocker.Client.AppResource.Refresh;
             this.RefreshToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.RefreshToolButton.Name = "RefreshToolButton";
-            this.RefreshToolButton.Size = new System.Drawing.Size(36, 22);
+            this.RefreshToolButton.Size = new System.Drawing.Size(23, 22);
             this.RefreshToolButton.Text = "刷新";
+            this.RefreshToolButton.Click += new System.EventHandler(this.RefreshToolButton_Click);
             // 
             // SelfSelectStockGridView
             // 
@@ -155,25 +155,29 @@
             this.RemoveMenuItem,
             this.RefreshMenuItem});
             this.SelfSelectGridViewMenuStrip.Name = "SelfSelectGridViewMenuStrip";
-            this.SelfSelectGridViewMenuStrip.Size = new System.Drawing.Size(101, 70);
+            this.SelfSelectGridViewMenuStrip.Size = new System.Drawing.Size(181, 92);
             // 
             // AddMenuItem
             // 
+            this.AddMenuItem.Image = global::CleverStocker.Client.AppResource.Add;
             this.AddMenuItem.Name = "AddMenuItem";
             this.AddMenuItem.Size = new System.Drawing.Size(100, 22);
             this.AddMenuItem.Text = "添加";
             // 
             // RemoveMenuItem
             // 
+            this.RemoveMenuItem.Image = global::CleverStocker.Client.AppResource.Remove;
             this.RemoveMenuItem.Name = "RemoveMenuItem";
             this.RemoveMenuItem.Size = new System.Drawing.Size(100, 22);
             this.RemoveMenuItem.Text = "移除";
             // 
             // RefreshMenuItem
             // 
+            this.RefreshMenuItem.Image = global::CleverStocker.Client.AppResource.Refresh;
             this.RefreshMenuItem.Name = "RefreshMenuItem";
-            this.RefreshMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.RefreshMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RefreshMenuItem.Text = "刷新";
+            this.RefreshMenuItem.Click += new System.EventHandler(this.RefreshMenuItem_Click);
             // 
             // SelfSelectStockForm
             // 

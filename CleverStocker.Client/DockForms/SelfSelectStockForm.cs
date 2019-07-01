@@ -29,6 +29,32 @@ namespace CleverStocker.Client.DockForms
         /// </summary>
         public string SourceName { get; set; } = typeof(SelfSelectStockForm).Name;
 
+        private Stock currentStock;
+
+        /// <summary>
+        /// Gets or sets 当前选中的股票
+        /// </summary>
+        /// <remarks>应注意减少频繁发送重复的消息</remarks>
+        public Stock CurrentStock
+        {
+            get => this.currentStock;
+            protected set
+            {
+                if (this.currentStock == value)
+                {
+                    return;
+                }
+
+                this.currentStock = value;
+
+                // 发布消息：当前股票变化
+                MQHelper.Publish(
+                    this.SourceName,
+                    MQTopics.TopicStockCurrentChange,
+                    value == null ? string.Empty : $"{value.Market.ToString()}{MQHelper.Separator[0]}{value.Code}");
+            }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SelfSelectStockForm"/> class.
         /// </summary>
@@ -47,12 +73,12 @@ namespace CleverStocker.Client.DockForms
         {
             this.StockService = DIContainerHelper.Resolve<IStockService>();
 
-            this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
-
             this.Subscriber = MQHelper.Subscribe(
                 this.SourceName,
                 new[] { MQTopics.TopicStockSelfSelect },
                 this.MQSubscriberReceive);
+
+            this.RefreshDataSource();
         }
 
         /// <summary>
@@ -101,13 +127,27 @@ namespace CleverStocker.Client.DockForms
                 return;
             }
 
-            // 发布消息：当前股票变化
-            MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, $"{stock.Market.ToString()}{MQHelper.Separator[0]}{stock.Code}");
+            this.CurrentStock = stock;
         }
 
-        private void SelfSelectStockForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        private void SelfSelectStockForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Subscriber?.Dispose();
+        }
+
+        private void RefreshToolButton_Click(object sender, EventArgs e)
+        {
+            this.RefreshDataSource();
+        }
+
+        private void RefreshMenuItem_Click(object sender, EventArgs e)
+        {
+            this.RefreshDataSource();
+        }
+
+        private void RefreshDataSource()
+        {
+            this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
         }
     }
 }
