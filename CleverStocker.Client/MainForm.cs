@@ -278,9 +278,18 @@ namespace CleverStocker.Client
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            if (File.Exists("CleverStocker.Layout.xml"))
+            if (File.Exists(ConfigHelper.GetLayoutFileName()))
             {
-                this.LoadLayout();
+                try
+                {
+                    this.LoadLayout();
+                }
+                catch (Exception ex)
+                {
+                    LogHelper<MainForm>.ErrorException(ex, "从文件恢复布局失败：");
+
+                    this.PredeterminedLayout();
+                }
             }
             else
             {
@@ -353,28 +362,44 @@ namespace CleverStocker.Client
         private void SaveLayoutMenuItem_Click(object sender, EventArgs e)
         {
             this.SaveLayoute();
+
+            MessageBox.Show($"保存布局成功，下次启动将应用此布局！", "保存布局", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void LoadMenuItem_Click(object sender, EventArgs e)
-        {
-            this.LoadLayout();
-        }
-
+        /// <summary>
+        /// 从文件加载布局
+        /// </summary>
         private void LoadLayout()
         {
-            this.MainDockPanel.LoadFromXml("CleverStocker.Layout.xml", this.GetDockContent);
+            this.MainDockPanel.LoadFromXml(ConfigHelper.GetLayoutFileName(), this.GetDockContent);
         }
 
+        /// <summary>
+        /// 保存布局到文件
+        /// </summary>
         private void SaveLayoute()
         {
-            // TODO: 保存布局
-            this.MainDockPanel.SaveAsXml("CleverStocker.Layout.xml");
+            this.MainDockPanel.SaveAsXml(ConfigHelper.GetLayoutFileName());
         }
 
+        /// <summary>
+        /// 使用持久化ID创建实例
+        /// </summary>
+        /// <param name="persist"></param>
+        /// <returns></returns>
         private IDockContent GetDockContent(string persist)
         {
-            // TODO: 恢复布局
-            return default;
+            try
+            {
+                Type type = this.GetType().Assembly.GetType(persist);
+                var dockForm = DIContainerHelper.Resolve(type) as IDockContent;
+                return dockForm;
+            }
+            catch (Exception ex)
+            {
+                LogHelper<MainForm>.ErrorException(ex, $"从持久化ID {persist} 恢复界面实例失败：");
+                return default;
+            }
         }
         #endregion
     }

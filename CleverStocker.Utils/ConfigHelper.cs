@@ -45,5 +45,12 @@ namespace CleverStocker.Utils
 
             ExeConfiguration.Save();
         }
+
+        /// <summary>
+        /// 获取布局文件名称
+        /// </summary>
+        /// <returns></returns>
+        public static string GetLayoutFileName()
+            => ReadConfig("LayoutFile", "CleverStocker.Layout.xml");
     }
 }

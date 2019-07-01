@@ -280,5 +280,10 @@
   <ItemGroup>
     <None Include="Resources\DocumentIcon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="CleverStocker.Layout.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

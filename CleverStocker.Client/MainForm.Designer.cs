@@ -34,11 +34,10 @@
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.LightThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BlueThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DarkThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LoadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
             this.TestToolItem = new System.Windows.Forms.ToolStripButton();
@@ -89,16 +88,10 @@
             this.BlueThemeMenuItem,
             this.DarkThemeMenuItem,
             this.toolStripSeparator1,
-            this.LoadMenuItem,
             this.SaveLayoutMenuItem});
             this.ThemeMenuItem.Name = "ThemeMenuItem";
             this.ThemeMenuItem.Size = new System.Drawing.Size(44, 21);
             this.ThemeMenuItem.Text = "主题";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // LightThemeMenuItem
             // 
@@ -121,12 +114,10 @@
             this.DarkThemeMenuItem.Text = "深色";
             this.DarkThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
-            // LoadMenuItem
+            // toolStripSeparator1
             // 
-            this.LoadMenuItem.Name = "LoadMenuItem";
-            this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.LoadMenuItem.Text = "读取布局";
-            this.LoadMenuItem.Click += new System.EventHandler(this.LoadMenuItem_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // SaveLayoutMenuItem
             // 
@@ -227,6 +218,5 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveLayoutMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem LoadMenuItem;
     }
 }
