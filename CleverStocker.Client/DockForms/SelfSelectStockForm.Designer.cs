@@ -67,6 +67,7 @@
             this.AddToolButton.Name = "AddToolButton";
             this.AddToolButton.Size = new System.Drawing.Size(23, 22);
             this.AddToolButton.Text = "添加";
+            this.AddToolButton.Click += new System.EventHandler(this.AddToolButton_Click);
             // 
             // RemoveToolButton
             // 
@@ -76,6 +77,7 @@
             this.RemoveToolButton.Name = "RemoveToolButton";
             this.RemoveToolButton.Size = new System.Drawing.Size(23, 22);
             this.RemoveToolButton.Text = "删除";
+            this.RemoveToolButton.Click += new System.EventHandler(this.RemoveToolButton_Click);
             // 
             // RefreshToolButton
             // 
@@ -161,21 +163,23 @@
             // 
             this.AddMenuItem.Image = global::CleverStocker.Client.AppResource.Add;
             this.AddMenuItem.Name = "AddMenuItem";
-            this.AddMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.AddMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AddMenuItem.Text = "添加";
+            this.AddMenuItem.Click += new System.EventHandler(this.AddMenuItem_Click);
             // 
             // RemoveMenuItem
             // 
             this.RemoveMenuItem.Image = global::CleverStocker.Client.AppResource.Remove;
             this.RemoveMenuItem.Name = "RemoveMenuItem";
-            this.RemoveMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.RemoveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.RemoveMenuItem.Text = "移除";
+            this.RemoveMenuItem.Click += new System.EventHandler(this.RemoveMenuItem_Click);
             // 
             // RefreshMenuItem
             // 
             this.RefreshMenuItem.Image = global::CleverStocker.Client.AppResource.Refresh;
             this.RefreshMenuItem.Name = "RefreshMenuItem";
-            this.RefreshMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RefreshMenuItem.Size = new System.Drawing.Size(100, 22);
             this.RefreshMenuItem.Text = "刷新";
             this.RefreshMenuItem.Click += new System.EventHandler(this.RefreshMenuItem_Click);
             // 

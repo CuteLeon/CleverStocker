@@ -15,5 +15,35 @@ namespace CleverStocker.Services
         /// <returns></returns>
         public List<Stock> GetSelfSelectStocks()
             => this.Context.Set<Stock>().Where(stock => stock.IsSelfSelect).ToList();
+
+        /// <summary>
+        /// 移除自选股票
+        /// </summary>
+        /// <param name="stock"></param>
+        public void RemoveSelfSelectStock(Stock stock)
+        {
+            if (stock == null)
+            {
+                return;
+            }
+
+            stock.IsSelfSelect = false;
+            this.AddOrUpdate(stock);
+        }
+
+        /// <summary>
+        /// 添加自选股票
+        /// </summary>
+        /// <param name="stock"></param>
+        public void AddSelfSelectStock(Stock stock)
+        {
+            if (stock == null)
+            {
+                return;
+            }
+
+            stock.IsSelfSelect = true;
+            this.AddOrUpdate(stock);
+        }
     }
 }

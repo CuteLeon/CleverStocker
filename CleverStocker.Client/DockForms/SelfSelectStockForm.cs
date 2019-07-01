@@ -6,6 +6,7 @@ using CleverStocker.Common;
 using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
 {
@@ -47,11 +48,20 @@ namespace CleverStocker.Client.DockForms
 
                 this.currentStock = value;
 
-                // 发布消息：当前股票变化
-                MQHelper.Publish(
-                    this.SourceName,
-                    MQTopics.TopicStockCurrentChange,
-                    value == null ? string.Empty : $"{value.Market.ToString()}{MQHelper.Separator[0]}{value.Code}");
+                if (value == null)
+                {
+                    this.RemoveMenuItem.Enabled = false;
+                    this.RemoveToolButton.Enabled = false;
+
+                    MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, string.Empty);
+                }
+                else
+                {
+                    this.RemoveMenuItem.Enabled = true;
+                    this.RemoveToolButton.Enabled = true;
+
+                    MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, $"{value.Market.ToString()}{MQHelper.Separator[0]}{value.Code}");
+                }
             }
         }
 
@@ -122,12 +132,7 @@ namespace CleverStocker.Client.DockForms
 
         private void SelfSelectStockGridView_SelectionChanged(object sender, EventArgs e)
         {
-            if (!(this.SelfSelectStockGridView.CurrentRow.DataBoundItem is Stock stock))
-            {
-                return;
-            }
-
-            this.CurrentStock = stock;
+            this.CurrentStock = this.SelfSelectStockGridView.CurrentRow?.DataBoundItem as Stock;
         }
 
         private void SelfSelectStockForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -145,9 +150,62 @@ namespace CleverStocker.Client.DockForms
             this.RefreshDataSource();
         }
 
+        /// <summary>
+        /// 刷新数据源
+        /// </summary>
         private void RefreshDataSource()
         {
             this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
+        }
+
+        private void RemoveToolButton_Click(object sender, EventArgs e)
+        {
+            this.RemoveSelfSelectStock();
+        }
+
+        private void RemoveMenuItem_Click(object sender, EventArgs e)
+        {
+            this.RemoveSelfSelectStock();
+        }
+
+        /// <summary>
+        /// 移除自选股票
+        /// </summary>
+        private void RemoveSelfSelectStock()
+        {
+            if (this.currentStock == null)
+            {
+                return;
+            }
+
+            LogHelper<SelfSelectStockForm>.Debug($"移除自选股票：{this.currentStock.Market} - {this.currentStock.Code}");
+
+            this.StockService.RemoveSelfSelectStock(this.currentStock);
+            this.SelfSelectStockBindingSource.Remove(this.currentStock);
+        }
+
+        private void AddToolButton_Click(object sender, EventArgs e)
+        {
+            this.AddSelfSelectStock();
+        }
+
+        private void AddMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AddSelfSelectStock();
+        }
+
+        /// <summary>
+        /// 添加自选股票
+        /// </summary>
+        private void AddSelfSelectStock()
+        {
+            // TODO: 添加自选股票
+            Stock stock = new Stock("000002", Markets.ShangHai) { Name = "测试股票" };
+
+            LogHelper<SelfSelectStockForm>.Debug($"添加自选股票：{stock.Market} - {stock.Code}");
+
+            this.StockService.AddSelfSelectStock(stock);
+            this.SelfSelectStockBindingSource.Add(stock);
         }
     }
 }

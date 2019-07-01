@@ -13,5 +13,17 @@ namespace CleverStocker.Services
         /// </summary>
         /// <returns></returns>
         List<Stock> GetSelfSelectStocks();
+
+        /// <summary>
+        /// 移除自选股票
+        /// </summary>
+        /// <param name="stock"></param>
+        void RemoveSelfSelectStock(Stock stock);
+
+        /// <summary>
+        /// 添加自选股票
+        /// </summary>
+        /// <param name="stock"></param>
+        void AddSelfSelectStock(Stock stock);
     }
 }
