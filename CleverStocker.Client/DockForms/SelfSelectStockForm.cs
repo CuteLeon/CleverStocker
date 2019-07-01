@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
 using CleverStocker.Model;
@@ -61,8 +63,24 @@ namespace CleverStocker.Client.DockForms
             base.ApplyTheme();
             ThemeHelper.CurrentThemeComponent.ApplyTo(this.SelfSelectGridViewMenuStrip);
 
-            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.BackColor = this.BackColor;
+            // 配置数据单元格样式：DataGridView.RowTemplate.DefaultCellStyle
             this.SelfSelectStockGridView.BackgroundColor = this.BackColor;
+            this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.BackColor = this.BackColor;
+            this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.Font = new Font("微软雅黑", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.ForeColor = ThemeHelper.GetContentForecolor();
+            this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = ThemeHelper.GetContentHighLightBackcolor();
+            this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = ThemeHelper.GetContentHighLightForecolor();
+
+            /* 配置标题单元格样式：DataGridView.ColumnHeadersDefaultCellStyle
+             * < DataGridView 需要关闭此设置才可以应用样式 >
+             */
+            this.SelfSelectStockGridView.EnableHeadersVisualStyles = false;
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.BackColor = ThemeHelper.GetTitleBackcolor();
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.ForeColor = ThemeHelper.GetTitleForecolor();
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.BackColor;
+            this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.Font = new Font(this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.Font, FontStyle.Regular);
         }
 
         /// <summary>

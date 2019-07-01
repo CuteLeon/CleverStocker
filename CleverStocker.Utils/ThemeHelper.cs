@@ -71,5 +71,40 @@ namespace CleverStocker.Utils
         /// <returns></returns>
         public static Color GetDockFormBackcolor()
             => CurrentThemeComponent.ColorPalette.ToolWindowTabSelectedActive.Background;
+
+        /// <summary>
+        /// 获取内容颜色
+        /// </summary>
+        /// <returns></returns>
+        public static Color GetContentForecolor()
+            => CurrentThemeComponent.ColorPalette.CommandBarMenuDefault.Text;
+
+        /// <summary>
+        /// 获取内容高亮背景色
+        /// </summary>
+        /// <returns></returns>
+        public static Color GetContentHighLightBackcolor()
+            => CurrentThemeComponent.ColorPalette.ToolWindowBorder;
+
+        /// <summary>
+        /// 获取内容高亮色
+        /// </summary>
+        /// <returns></returns>
+        public static Color GetContentHighLightForecolor()
+            => CurrentThemeComponent.ColorPalette.ToolWindowCaptionInactive.Text;
+
+        /// <summary>
+        /// 获取标题背景色
+        /// </summary>
+        /// <returns></returns>
+        public static Color GetTitleBackcolor()
+            => CurrentThemeComponent.ColorPalette.CommandBarToolbarDefault.Background;
+
+        /// <summary>
+        /// 获取标题色
+        /// </summary>
+        /// <returns></returns>
+        public static Color GetTitleForecolor()
+            => CurrentThemeComponent.ColorPalette.CommandBarToolbarDefault.OverflowButtonGlyph;
     }
 }
