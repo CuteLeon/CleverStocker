@@ -7,6 +7,7 @@ using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
 using CleverStocker.Model;
 using CleverStocker.Model.Comparers;
+using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 using static CleverStocker.Common.CommonStandard;
@@ -63,7 +64,7 @@ namespace CleverStocker.Client.DockForms
                     this.RemoveMenuItem.Enabled = true;
                     this.RemoveToolButton.Enabled = true;
 
-                    MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, $"{value.Market.ToString()}{MQHelper.Separator[0]}{value.Code}");
+                    MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, value.GetFullCode());
                 }
             }
         }
@@ -131,6 +132,8 @@ namespace CleverStocker.Client.DockForms
         public void MQSubscriberReceive(string source, string topic, string message)
         {
             LogHelper<SelfSelectStockForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
+            // TODO: 接收自选股票消息：添加、移除
+            var (code, market) = message.GetMarketCode();
         }
 
         private void SelfSelectStockGridView_SelectionChanged(object sender, EventArgs e)

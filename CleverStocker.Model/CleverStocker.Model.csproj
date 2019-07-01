@@ -48,6 +48,7 @@
     <Compile Include="Comparers\MarketQuotaComparer.cs" />
     <Compile Include="Comparers\QuotaComparer.cs" />
     <Compile Include="Comparers\StockComparer.cs" />
+    <Compile Include="Extensions\StockExtension.cs" />
     <Compile Include="ICopyable.cs" />
     <Compile Include="MarketQuota.cs" />
     <Compile Include="Quota.cs" />

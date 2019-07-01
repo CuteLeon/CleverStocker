@@ -50,11 +50,6 @@ namespace CleverStocker.Model
         public Markets Market { get; set; }
 
         /// <summary>
-        /// Gets 完整代码
-        /// </summary>
-        public string FullCode { get => $"{this.Code}-{this.Market}"; }
-
-        /// <summary>
         /// Gets or sets 名称
         /// </summary>
         public string Name { get; set; }
