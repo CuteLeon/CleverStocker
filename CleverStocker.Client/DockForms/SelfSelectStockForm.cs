@@ -121,6 +121,9 @@ namespace CleverStocker.Client.DockForms
             this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.ForeColor = ThemeHelper.GetTitleForecolor();
             this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.BackColor;
             this.SelfSelectStockGridView.ColumnHeadersDefaultCellStyle.Font = new Font(this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.Font, FontStyle.Regular);
+
+            this.SearchToolTextBox.BackColor = this.BackColor;
+            this.SearchToolTextBox.ForeColor = this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.ForeColor;
         }
 
         /// <summary>
@@ -161,7 +164,7 @@ namespace CleverStocker.Client.DockForms
         /// </summary>
         private void RefreshDataSource()
         {
-            this.SelfSelectStockBindingSource.DataSource = this.StockService.GetSelfSelectStocks();
+            this.SelfSelectStockBindingSource.DataSource = this.StockService.QueryStock(true);
         }
 
         private void RemoveToolButton_Click(object sender, EventArgs e)
@@ -219,6 +222,20 @@ namespace CleverStocker.Client.DockForms
 
             this.StockService.AddSelfSelectStock(stock);
             this.SelfSelectStockBindingSource.Add(stock);
+        }
+
+        private void SearchToolTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string keyWord = this.SearchToolTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(keyWord))
+            {
+                this.RefreshDataSource();
+            }
+            else
+            {
+                this.SelfSelectStockBindingSource.DataSource = this.StockService.QueryStock(true, keyWord);
+            }
         }
     }
 }

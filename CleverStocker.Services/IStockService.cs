@@ -9,12 +9,6 @@ namespace CleverStocker.Services
     public interface IStockService : IPersistService<Stock>
     {
         /// <summary>
-        /// 获取自选股票
-        /// </summary>
-        /// <returns></returns>
-        List<Stock> GetSelfSelectStocks();
-
-        /// <summary>
         /// 移除自选股票
         /// </summary>
         /// <param name="stock"></param>
@@ -25,5 +19,13 @@ namespace CleverStocker.Services
         /// </summary>
         /// <param name="stock"></param>
         void AddSelfSelectStock(Stock stock);
+
+        /// <summary>
+        /// 按值搜索股票
+        /// </summary>
+        /// <param name="isSelfSelect"></param>
+        /// <param name="keyWord"></param>
+        /// <returns></returns>
+        List<Stock> QueryStock(bool isSelfSelect = false, string keyWord = null);
     }
 }

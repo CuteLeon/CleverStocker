@@ -33,6 +33,7 @@
             this.AddToolButton = new System.Windows.Forms.ToolStripButton();
             this.RemoveToolButton = new System.Windows.Forms.ToolStripButton();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
+            this.SearchToolTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.SelfSelectStockGridView = new System.Windows.Forms.DataGridView();
             this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StockMarketGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +54,8 @@
             this.SelfSelectStockToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AddToolButton,
             this.RemoveToolButton,
-            this.RefreshToolButton});
+            this.RefreshToolButton,
+            this.SearchToolTextBox});
             this.SelfSelectStockToolStrip.Location = new System.Drawing.Point(0, 0);
             this.SelfSelectStockToolStrip.Name = "SelfSelectStockToolStrip";
             this.SelfSelectStockToolStrip.Size = new System.Drawing.Size(254, 25);
@@ -88,6 +90,15 @@
             this.RefreshToolButton.Size = new System.Drawing.Size(23, 22);
             this.RefreshToolButton.Text = "刷新";
             this.RefreshToolButton.Click += new System.EventHandler(this.RefreshToolButton_Click);
+            // 
+            // SearchToolTextBox
+            // 
+            this.SearchToolTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.SearchToolTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SearchToolTextBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.SearchToolTextBox.Name = "SearchToolTextBox";
+            this.SearchToolTextBox.Size = new System.Drawing.Size(100, 25);
+            this.SearchToolTextBox.TextChanged += new System.EventHandler(this.SearchToolTextBox_TextChanged);
             // 
             // SelfSelectStockGridView
             // 
@@ -157,13 +168,13 @@
             this.RemoveMenuItem,
             this.RefreshMenuItem});
             this.SelfSelectGridViewMenuStrip.Name = "SelfSelectGridViewMenuStrip";
-            this.SelfSelectGridViewMenuStrip.Size = new System.Drawing.Size(181, 92);
+            this.SelfSelectGridViewMenuStrip.Size = new System.Drawing.Size(101, 70);
             // 
             // AddMenuItem
             // 
             this.AddMenuItem.Image = global::CleverStocker.Client.AppResource.Add;
             this.AddMenuItem.Name = "AddMenuItem";
-            this.AddMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AddMenuItem.Size = new System.Drawing.Size(100, 22);
             this.AddMenuItem.Text = "添加";
             this.AddMenuItem.Click += new System.EventHandler(this.AddMenuItem_Click);
             // 
@@ -171,7 +182,7 @@
             // 
             this.RemoveMenuItem.Image = global::CleverStocker.Client.AppResource.Remove;
             this.RemoveMenuItem.Name = "RemoveMenuItem";
-            this.RemoveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.RemoveMenuItem.Size = new System.Drawing.Size(100, 22);
             this.RemoveMenuItem.Text = "移除";
             this.RemoveMenuItem.Click += new System.EventHandler(this.RemoveMenuItem_Click);
             // 
@@ -220,5 +231,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StockCodeGridViewColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StockMarketGridViewColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StockNameGridViewColumn;
+        private System.Windows.Forms.ToolStripTextBox SearchToolTextBox;
     }
 }
