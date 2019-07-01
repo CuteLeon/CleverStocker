@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.Client", "Cle
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{4E8E9061-1907-40FB-8A80-34BF9066699D}"
 	ProjectSection(SolutionItems) = preProject
+		Documents\16x_Images.zip = Documents\16x_Images.zip
 		Documents\Document.md = Documents\Document.md
 		Readme.md = Readme.md
 		Documents\Themes.css = Documents\Themes.css
