@@ -34,12 +34,10 @@
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ClassicsThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.LightThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BlueThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DarkThemeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.LoadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -87,67 +85,53 @@
             // ThemeMenuItem
             // 
             this.ThemeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ClassicsThemeMenuItem,
-            this.toolStripSeparator1,
             this.LightThemeMenuItem,
             this.BlueThemeMenuItem,
             this.DarkThemeMenuItem,
-            this.toolStripSeparator2,
+            this.toolStripSeparator1,
             this.LoadMenuItem,
             this.SaveLayoutMenuItem});
             this.ThemeMenuItem.Name = "ThemeMenuItem";
             this.ThemeMenuItem.Size = new System.Drawing.Size(44, 21);
             this.ThemeMenuItem.Text = "主题";
             // 
-            // ClassicsThemeMenuItem
-            // 
-            this.ClassicsThemeMenuItem.Name = "ClassicsThemeMenuItem";
-            this.ClassicsThemeMenuItem.Size = new System.Drawing.Size(124, 22);
-            this.ClassicsThemeMenuItem.Text = "经典";
-            this.ClassicsThemeMenuItem.Click += new System.EventHandler(this.ClassicsThemeMenuItem_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // LightThemeMenuItem
             // 
             this.LightThemeMenuItem.Name = "LightThemeMenuItem";
-            this.LightThemeMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.LightThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LightThemeMenuItem.Text = "浅色";
-            this.LightThemeMenuItem.Click += new System.EventHandler(this.LightThemeMenuItem_Click);
+            this.LightThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
             // BlueThemeMenuItem
             // 
             this.BlueThemeMenuItem.Name = "BlueThemeMenuItem";
-            this.BlueThemeMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.BlueThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.BlueThemeMenuItem.Text = "蓝色";
-            this.BlueThemeMenuItem.Click += new System.EventHandler(this.BlueThemeMenuItem_Click);
+            this.BlueThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
             // DarkThemeMenuItem
             // 
             this.DarkThemeMenuItem.Name = "DarkThemeMenuItem";
-            this.DarkThemeMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.DarkThemeMenuItem.Size = new System.Drawing.Size(180, 22);
             this.DarkThemeMenuItem.Text = "深色";
-            this.DarkThemeMenuItem.Click += new System.EventHandler(this.DarkThemeMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(121, 6);
+            this.DarkThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
             // LoadMenuItem
             // 
             this.LoadMenuItem.Name = "LoadMenuItem";
-            this.LoadMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.LoadMenuItem.Size = new System.Drawing.Size(180, 22);
             this.LoadMenuItem.Text = "读取布局";
             this.LoadMenuItem.Click += new System.EventHandler(this.LoadMenuItem_Click);
             // 
             // SaveLayoutMenuItem
             // 
             this.SaveLayoutMenuItem.Name = "SaveLayoutMenuItem";
-            this.SaveLayoutMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.SaveLayoutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.SaveLayoutMenuItem.Text = "保存布局";
             this.SaveLayoutMenuItem.Click += new System.EventHandler(this.SaveLayoutMenuItem_Click);
             // 
@@ -240,10 +224,8 @@
         private System.Windows.Forms.ToolStripMenuItem LightThemeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BlueThemeMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DarkThemeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ClassicsThemeMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ViewMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem SaveLayoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LoadMenuItem;
     }

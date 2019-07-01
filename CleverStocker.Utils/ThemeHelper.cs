@@ -15,50 +15,61 @@ namespace CleverStocker.Utils
         /// </summary>
         private const string ThemeConfigKey = "Theme";
 
-        private static Themes currentTheme = Enum.TryParse(
-            ConfigHelper.ReadConfig(ThemeConfigKey),
-            out currentTheme) ?
-            currentTheme : Themes.Dark;
+        static ThemeHelper()
+        {
+            CurrentTheme = Enum.TryParse(
+                ConfigHelper.ReadConfig(ThemeConfigKey),
+                out Themes currentTheme) ?
+                currentTheme : Themes.Dark;
+
+            CurrentThemeComponent = GetTheme(CurrentTheme);
+        }
 
         /// <summary>
-        /// Gets or sets 当前主题类型
+        /// Gets 当前主题类型
         /// </summary>
-        public static Themes CurrentTheme
+        public static Themes CurrentTheme { get; }
+
+        /// <summary>
+        /// Gets 当前主题
+        /// </summary>
+        public static ThemeBase CurrentThemeComponent { get; }
+
+        /// <summary>
+        /// 获取主题组件
+        /// </summary>
+        /// <param name="theme"></param>
+        /// <returns></returns>
+        public static ThemeBase GetTheme(Themes theme)
         {
-            get => currentTheme;
-            set
+            switch (theme)
             {
-                currentTheme = value;
-                ConfigHelper.WriteConfig(ThemeConfigKey, value.ToString());
+                case Themes.Dark:
+                    return new VS2015DarkTheme();
+
+                case Themes.Blue:
+                    return new VS2015BlueTheme();
+
+                case Themes.Light:
+                    return new VS2015LightTheme();
+
+                default:
+                    return new VS2015DarkTheme();
             }
         }
 
         /// <summary>
-        /// Gets or sets 当前主题
+        /// 保存下次使用的主题
         /// </summary>
-        public static ThemeBase CurrentThemeComponent { get; set; }
+        /// <param name="theme"></param>
+        public static void SaveNextTheme(Themes theme)
+            => ConfigHelper.WriteConfig(ThemeConfigKey, theme.ToString());
 
         /// <summary>
         /// 获取停靠窗口背景色
         /// </summary>
         /// <returns></returns>
         public static Color GetDockFormBackcolor()
-        {
-            switch (CurrentTheme)
-            {
-                case Themes.Light:
-                    return Color.FromArgb(255, 245, 245, 245);
-
-                case Themes.Blue:
-                    return Color.FromArgb(255, 247, 249, 254);
-
-                case Themes.Dark:
-                    return Color.FromArgb(255, 37, 37, 38);
-
-                case Themes.Classics:
-                default:
-                    return Color.FromKnownColor(KnownColor.Control);
-            }
-        }
+            => CurrentThemeComponent.ColorPalette.ToolWindowTabSelectedActive.Background;
     }
 }

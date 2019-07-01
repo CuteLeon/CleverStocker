@@ -13,11 +13,6 @@ namespace CleverStocker.Common
         public enum Themes
         {
             /// <summary>
-            /// 经典
-            /// </summary>
-            Classics = 0,
-
-            /// <summary>
             /// 浅色
             /// </summary>
             Light = 1,

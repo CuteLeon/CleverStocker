@@ -32,7 +32,7 @@ namespace CleverStocker.Client
     /// <summary>
     /// 主窗口
     /// </summary>
-    public partial class MainForm : Form, IInitializable
+    public partial class MainForm : Form, IInitializable, IThemeAppliable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -53,9 +53,7 @@ namespace CleverStocker.Client
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.ClassicsThemeMenuItem.Checked = true;
-
-            this.SwitchTheme(ThemeHelper.CurrentTheme);
+            this.ApplyTheme();
         }
 
         /// <summary>
@@ -70,7 +68,6 @@ namespace CleverStocker.Client
         private void TestToolItem_Click(object sender, EventArgs e)
         {
             MQHelper.Publish("MainForm", MQTopics.TopicStockSelfSelectAdd, "添加自选股票");
-            return;
 
             try
             {
@@ -219,117 +216,56 @@ namespace CleverStocker.Client
         }
 
         #region 主题
-        private void ClassicsThemeMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!this.ClassicsThemeMenuItem.Checked)
-            {
-                this.SwitchTheme(Themes.Classics);
-            }
-        }
 
-        private void LightThemeMenuItem_Click(object sender, EventArgs e)
+        private void ThemeMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.LightThemeMenuItem.Checked)
+            if (!(sender is ToolStripMenuItem menuItem) ||
+                menuItem.Checked)
             {
-                this.SwitchTheme(Themes.Light);
-            }
-        }
-
-        private void BlueThemeMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!this.BlueThemeMenuItem.Checked)
-            {
-                this.SwitchTheme(Themes.Blue);
-            }
-        }
-
-        private void DarkThemeMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!this.DarkThemeMenuItem.Checked)
-            {
-                this.SwitchTheme(Themes.Dark);
-            }
-        }
-
-        /// <summary>
-        /// 切换主题
-        /// </summary>
-        /// <param name="theme">
-        public void SwitchTheme(Themes theme)
-        {
-            /* 框架限制：切换主题需要关闭所有的 Pane (窗格)
-             * 可以尝试：立即保存当前布局到文件，然后关闭所有 Pane ，切换主题后，再从文件读入以恢复布局
-             */
-            ThemeHelper.CurrentTheme = theme;
-
-            if (this.MainDockPanel.Panes.Count > 0)
-            {
-                MessageBox.Show("下次启动后将应用新主题。");
                 return;
             }
 
-            switch (theme)
+            Themes theme = (Themes)menuItem.Tag;
+            ThemeHelper.SaveNextTheme(theme);
+
+            MessageBox.Show($"下次启动将使用 {theme.ToString()} 主题。", "更换主题", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public void ApplyTheme()
+        {
+            this.LightThemeMenuItem.Tag = Themes.Light;
+            this.BlueThemeMenuItem.Tag = Themes.Blue;
+            this.DarkThemeMenuItem.Tag = Themes.Dark;
+
+            switch (ThemeHelper.CurrentTheme)
             {
-                case Themes.Classics:
-                    {
-                        this.ClassicsThemeMenuItem.Checked = true;
-                        this.LightThemeMenuItem.Checked = false;
-                        this.BlueThemeMenuItem.Checked = false;
-                        this.DarkThemeMenuItem.Checked = false;
-
-                        this.MainDockPanel.Theme.Dispose();
-                        this.MainDockPanel.Theme = new VS2005Theme();
-
-                        break;
-                    }
-
                 case Themes.Light:
                     {
-                        this.ClassicsThemeMenuItem.Checked = false;
                         this.LightThemeMenuItem.Checked = true;
-                        this.BlueThemeMenuItem.Checked = false;
-                        this.DarkThemeMenuItem.Checked = false;
-
-                        this.MainDockPanel.Theme.Dispose();
-                        this.MainDockPanel.Theme = new VS2015LightTheme();
-
                         break;
                     }
 
                 case Themes.Blue:
                     {
-                        this.ClassicsThemeMenuItem.Checked = false;
-                        this.LightThemeMenuItem.Checked = false;
                         this.BlueThemeMenuItem.Checked = true;
-                        this.DarkThemeMenuItem.Checked = false;
-
-                        this.MainDockPanel.Theme.Dispose();
-                        this.MainDockPanel.Theme = new VS2015BlueTheme();
-
                         break;
                     }
 
                 case Themes.Dark:
                     {
-                        this.ClassicsThemeMenuItem.Checked = false;
-                        this.LightThemeMenuItem.Checked = false;
-                        this.BlueThemeMenuItem.Checked = false;
                         this.DarkThemeMenuItem.Checked = true;
-
-                        this.MainDockPanel.Theme.Dispose();
-                        this.MainDockPanel.Theme = new VS2015DarkTheme();
-
                         break;
                     }
-
-                default:
-                    break;
             }
+
+            // 应用主题
+            this.MainDockPanel.Theme = ThemeHelper.CurrentThemeComponent;
 
             // 应用浮动窗口工厂
             this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
-
-            ThemeHelper.CurrentThemeComponent = this.MainDockPanel.Theme;
 
             // 应用工具条主题
             this.MainDockPanel.Theme.ApplyTo(this.MainTopMenuStrip);
@@ -419,11 +355,6 @@ namespace CleverStocker.Client
             this.SaveLayoute();
         }
 
-        private void SaveLayoute()
-        {
-            this.MainDockPanel.SaveAsXml("CleverStocker.Layout.xml");
-        }
-
         private void LoadMenuItem_Click(object sender, EventArgs e)
         {
             this.LoadLayout();
@@ -434,8 +365,15 @@ namespace CleverStocker.Client
             this.MainDockPanel.LoadFromXml("CleverStocker.Layout.xml", this.GetDockContent);
         }
 
+        private void SaveLayoute()
+        {
+            // TODO: 保存布局
+            this.MainDockPanel.SaveAsXml("CleverStocker.Layout.xml");
+        }
+
         private IDockContent GetDockContent(string persist)
         {
+            // TODO: 恢复布局
             return default;
         }
         #endregion
