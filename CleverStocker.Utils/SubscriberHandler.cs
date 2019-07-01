@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using CleverStocker.Common;
 using ZeroMQ;
 
 namespace CleverStocker.Utils
@@ -13,6 +14,11 @@ namespace CleverStocker.Utils
         /// 名称
         /// </summary>
         private readonly string source;
+
+        /// <summary>
+        /// 退出指令
+        /// </summary>
+        private readonly string exitCommand;
 
         /// <summary>
         /// 订阅者
@@ -38,6 +44,7 @@ namespace CleverStocker.Utils
         public SubscriberHandler(string source, ZSocket socket, Action<string, string, string> @delegate)
         {
             this.source = source;
+            this.exitCommand = $"{MQTopics.TopicMQCommandExit}.{source}";
             this.subscriberSocket = socket;
             this.receiveDelegate = @delegate;
 
@@ -106,9 +113,18 @@ namespace CleverStocker.Utils
                             if (messages.Length == 3)
                             {
                                 // 自动过滤自己发布的消息，避免消息循环
-                                if (messages[1] == this.source)
+                                if (string.Equals(messages[1], this.source, StringComparison.OrdinalIgnoreCase))
                                 {
-                                    break;
+                                    /* 无法外部直接关闭阻塞的异步线程，在需要关闭时，需要自己通过 MQ 发布指令关闭订阅者
+                                     * 需要判断主题与退出指令相等，而不是主题以退出指令开始，否则会因为收到子主题而错误退出
+                                     */
+                                    if (string.Equals(messages[0], this.exitCommand, StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        LogHelper<SubscriberHandler>.Debug($"收到 MQ 退出指令，跳出 MQ 消息接收循环 (TaskId = {Task.CurrentId}) ...");
+                                        break;
+                                    }
+
+                                    continue;
                                 }
 
                                 try
@@ -137,6 +153,10 @@ namespace CleverStocker.Utils
         {
             try
             {
+                /* 关闭时需要此订阅者连接到发布者，否则可能错过退出指令
+                 * ZeroMQ 性能极快，如果立即连接并订阅时，可能会在订阅者 Connect() 之前发布者就 Send() 了，导致订阅者无法如期接收到退出指令
+                 */
+                MQHelper.Publish(this.source, this.exitCommand, "退出当前 MQ 指令接收线程");
                 this.Disconnect();
                 this.subscriberSocket.Close();
                 this.subscriberSocket.Dispose();

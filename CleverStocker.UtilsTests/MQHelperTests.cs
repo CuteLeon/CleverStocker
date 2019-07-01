@@ -47,8 +47,14 @@ namespace CleverStocker.Utils.Tests
 
             // 自动过滤自己发布的消息，避免消息循环
             Thread.Sleep(100);
-            MQHelper.Publish("测试订阅者", "1.6", "股票打新咯！！！-5");
+            MQHelper.Publish("测试订阅者", "1.6", "股票打新咯！！！-6");
             Thread.Sleep(100);
+
+            // 释放订阅者
+            handler.Dispose();
+
+            Thread.Sleep(100);
+            MQHelper.Publish("测试订阅者", "1.7", "股票打新咯！！！-7");
 
             Console.WriteLine($"测试结束，计数器: {counter}");
 

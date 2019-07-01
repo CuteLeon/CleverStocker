@@ -42,14 +42,14 @@
             this.RemoveToolButton = new System.Windows.Forms.ToolStripButton();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.SelfSelectStockGridView = new System.Windows.Forms.DataGridView();
+            this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockMarketGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StockNameGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelfSelectStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SelfSelectGridViewMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockMarketGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StockNameGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SelfSelectStockToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockBindingSource)).BeginInit();
@@ -163,6 +163,35 @@
             this.SelfSelectStockGridView.TabIndex = 1;
             this.SelfSelectStockGridView.SelectionChanged += new System.EventHandler(this.SelfSelectStockGridView_SelectionChanged);
             // 
+            // StockCodeGridViewColumn
+            // 
+            this.StockCodeGridViewColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StockCodeGridViewColumn.DataPropertyName = "Code";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.StockCodeGridViewColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.StockCodeGridViewColumn.HeaderText = "代码";
+            this.StockCodeGridViewColumn.Name = "StockCodeGridViewColumn";
+            this.StockCodeGridViewColumn.ReadOnly = true;
+            // 
+            // StockMarketGridViewColumn
+            // 
+            this.StockMarketGridViewColumn.DataPropertyName = "Market";
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.StockMarketGridViewColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.StockMarketGridViewColumn.HeaderText = "市场";
+            this.StockMarketGridViewColumn.Name = "StockMarketGridViewColumn";
+            this.StockMarketGridViewColumn.ReadOnly = true;
+            // 
+            // StockNameGridViewColumn
+            // 
+            this.StockNameGridViewColumn.DataPropertyName = "Name";
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.StockNameGridViewColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.StockNameGridViewColumn.HeaderText = "名称";
+            this.StockNameGridViewColumn.Name = "StockNameGridViewColumn";
+            this.StockNameGridViewColumn.ReadOnly = true;
+            // 
             // SelfSelectStockBindingSource
             // 
             this.SelfSelectStockBindingSource.DataSource = typeof(CleverStocker.Model.Stock);
@@ -194,35 +223,6 @@
             this.RefreshMenuItem.Size = new System.Drawing.Size(100, 22);
             this.RefreshMenuItem.Text = "刷新";
             // 
-            // StockCodeGridViewColumn
-            // 
-            this.StockCodeGridViewColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.StockCodeGridViewColumn.DataPropertyName = "Code";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.StockCodeGridViewColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.StockCodeGridViewColumn.HeaderText = "代码";
-            this.StockCodeGridViewColumn.Name = "StockCodeGridViewColumn";
-            this.StockCodeGridViewColumn.ReadOnly = true;
-            // 
-            // StockMarketGridViewColumn
-            // 
-            this.StockMarketGridViewColumn.DataPropertyName = "Market";
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.StockMarketGridViewColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.StockMarketGridViewColumn.HeaderText = "市场";
-            this.StockMarketGridViewColumn.Name = "StockMarketGridViewColumn";
-            this.StockMarketGridViewColumn.ReadOnly = true;
-            // 
-            // StockNameGridViewColumn
-            // 
-            this.StockNameGridViewColumn.DataPropertyName = "Name";
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.StockNameGridViewColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.StockNameGridViewColumn.HeaderText = "名称";
-            this.StockNameGridViewColumn.Name = "StockNameGridViewColumn";
-            this.StockNameGridViewColumn.ReadOnly = true;
-            // 
             // SelfSelectStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -233,6 +233,7 @@
             this.Name = "SelfSelectStockForm";
             this.TabText = "自选股票";
             this.Text = "自选股票";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelfSelectStockForm_FormClosed);
             this.Load += new System.EventHandler(this.SelfSelectStockForm_Load);
             this.SelfSelectStockToolStrip.ResumeLayout(false);
             this.SelfSelectStockToolStrip.PerformLayout();

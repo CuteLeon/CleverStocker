@@ -86,5 +86,10 @@ namespace CleverStocker.Client.DockForms
             // 发布消息：当前股票变化
             MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, $"{stock.Market.ToString()}{MQHelper.Separator[0]}{stock.Code}");
         }
+
+        private void SelfSelectStockForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            this.Subscriber?.Dispose();
+        }
     }
 }

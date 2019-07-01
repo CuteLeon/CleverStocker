@@ -5,6 +5,13 @@
     /// </summary>
     public static class MQTopics
     {
+        #region MQ指令
+
+        /// <summary>
+        /// MQ 命令退出
+        /// </summary>
+        public const string TopicMQCommandExit = "MQCommand.Exit";
+        #endregion
 
         #region UI
 
@@ -66,6 +73,5 @@
         /// </summary>
         public static readonly string TopicStockSelfSelectUpdate = $"{TopicStockSelfSelect}.Update";
         #endregion
-
     }
 }

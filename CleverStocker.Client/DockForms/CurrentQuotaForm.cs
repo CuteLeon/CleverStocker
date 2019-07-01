@@ -62,5 +62,10 @@ namespace CleverStocker.Client.DockForms
                 this.MainLabel.Text = $"行情 of\n{message}";
             }));
         }
+
+        private void CurrentQuotaForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            this.Subscriber?.Dispose();
+        }
     }
 }

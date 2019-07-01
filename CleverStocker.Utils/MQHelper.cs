@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using CleverStocker.Common;
 using ZeroMQ;
 
 namespace CleverStocker.Utils
@@ -141,7 +142,10 @@ namespace CleverStocker.Utils
                 // 创建订阅者、订阅主题、监听
                 ZSocket subSocket = new ZSocket(ZSocketType.SUB);
                 subSocket.Connect(MQAddress);
-                topics.All(topic =>
+
+                topics
+                    .Append($"{MQTopics.TopicMQCommandExit}.{source}") // 追加线程退出指令
+                    .All(topic =>
                 {
                     subSocket.Subscribe(topic);
                     return true;

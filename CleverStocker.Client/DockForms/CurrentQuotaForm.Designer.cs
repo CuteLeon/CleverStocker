@@ -52,6 +52,7 @@
             this.Name = "CurrentQuotaForm";
             this.TabText = "实时行情";
             this.Text = "实时行情";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentQuotaForm_FormClosed);
             this.Load += new System.EventHandler(this.CurrentQuotaForm_Load);
             this.ResumeLayout(false);
 
