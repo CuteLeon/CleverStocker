@@ -132,7 +132,7 @@ namespace CleverStocker.Client
                             this.RegisterSingleDockFormInstance<SelfSelectStockForm>(mainForm);
 
                             this.UpdateProgressAsync("创建所有股票窗口 ...");
-                            this.RegisterSingleDockFormInstance<RecommendStockForm>(mainForm);
+                            this.RegisterSingleDockFormInstance<AllStockForm>(mainForm);
 
                             this.UpdateProgressAsync("创建实时行情窗口 ...");
                             this.RegisterSingleDockFormInstance<CurrentQuotaForm>(mainForm);

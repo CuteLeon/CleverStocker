@@ -314,10 +314,10 @@ namespace CleverStocker.Client
             var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
             currentQuotaForm.Show(marketQuotaForm.Pane, marketQuotaForm);
 
-            var recommendStockForm = DIContainerHelper.Resolve<RecommendStockForm>();
-            recommendStockForm.Show(this.MainDockPanel);
+            var allStockForm = DIContainerHelper.Resolve<AllStockForm>();
+            allStockForm.Show(this.MainDockPanel);
             var selfSelectStockForm = DIContainerHelper.Resolve<SelfSelectStockForm>();
-            selfSelectStockForm.Show(recommendStockForm.Pane, DockAlignment.Top, 0.5);
+            selfSelectStockForm.Show(allStockForm.Pane, DockAlignment.Top, 0.5);
         }
         #endregion
 
