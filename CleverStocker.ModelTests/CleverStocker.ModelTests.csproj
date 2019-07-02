@@ -59,6 +59,7 @@
     <Compile Include="Comparers\MarketQuotaComparerTests.cs" />
     <Compile Include="Comparers\QuotaComparerTests.cs" />
     <Compile Include="Comparers\StockComparerTests.cs" />
+    <Compile Include="Extensions\StockExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -64,7 +64,7 @@ namespace CleverStocker.Utils
             }
             catch (Exception ex)
             {
-                LogHelper<ZSocket>.ErrorException(ex, $"订阅者连接失败：");
+                LogHelper<SubscriberHandler>.ErrorException(ex, $"订阅者连接失败：");
             }
         }
 
@@ -73,7 +73,7 @@ namespace CleverStocker.Utils
         /// </summary>
         public void Disconnect()
         {
-            LogHelper<ZSocket>.Debug($"断开订阅者连接：{this.source} ...");
+            LogHelper<SubscriberHandler>.Debug($"断开订阅者连接：{this.source} ...");
 
             try
             {
@@ -81,7 +81,7 @@ namespace CleverStocker.Utils
             }
             catch (Exception ex)
             {
-                LogHelper<ZSocket>.ErrorException(ex, $"断开订阅者连接失败：");
+                LogHelper<SubscriberHandler>.ErrorException(ex, $"断开订阅者连接失败：");
             }
         }
 
@@ -98,7 +98,7 @@ namespace CleverStocker.Utils
         private Task StartSubscriberReceiveTask()
             => Task.Factory.StartNew(() =>
                 {
-                    LogHelper<ZSocket>.Debug($"启动订阅者 {this.source} 接收任务 (TaskId = {Task.CurrentId}) ...");
+                    LogHelper<SubscriberHandler>.Debug($"启动订阅者 {this.source} 接收任务 (TaskId = {Task.CurrentId}) ...");
 
                     string message;
                     string[] messages;
