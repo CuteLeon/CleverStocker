@@ -71,8 +71,9 @@
             // 
             // ExitMenuItem
             // 
+            this.ExitMenuItem.Image = global::CleverStocker.Client.AppResource.Power;
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitMenuItem.Text = "退出";
             // 
             // ViewMenuItem
@@ -96,33 +97,33 @@
             // LightThemeMenuItem
             // 
             this.LightThemeMenuItem.Name = "LightThemeMenuItem";
-            this.LightThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.LightThemeMenuItem.Size = new System.Drawing.Size(124, 22);
             this.LightThemeMenuItem.Text = "浅色";
             this.LightThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
             // BlueThemeMenuItem
             // 
             this.BlueThemeMenuItem.Name = "BlueThemeMenuItem";
-            this.BlueThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.BlueThemeMenuItem.Size = new System.Drawing.Size(124, 22);
             this.BlueThemeMenuItem.Text = "蓝色";
             this.BlueThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
             // DarkThemeMenuItem
             // 
             this.DarkThemeMenuItem.Name = "DarkThemeMenuItem";
-            this.DarkThemeMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.DarkThemeMenuItem.Size = new System.Drawing.Size(124, 22);
             this.DarkThemeMenuItem.Text = "深色";
             this.DarkThemeMenuItem.Click += new System.EventHandler(this.ThemeMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
             // SaveLayoutMenuItem
             // 
             this.SaveLayoutMenuItem.Name = "SaveLayoutMenuItem";
-            this.SaveLayoutMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveLayoutMenuItem.Size = new System.Drawing.Size(124, 22);
             this.SaveLayoutMenuItem.Text = "保存布局";
             this.SaveLayoutMenuItem.Click += new System.EventHandler(this.SaveLayoutMenuItem_Click);
             // 
@@ -156,9 +157,12 @@
             // 
             // StateStatusItem
             // 
+            this.StateStatusItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.StateStatusItem.Image = global::CleverStocker.Client.AppResource.Processer;
             this.StateStatusItem.Name = "StateStatusItem";
-            this.StateStatusItem.Size = new System.Drawing.Size(32, 17);
+            this.StateStatusItem.Size = new System.Drawing.Size(16, 17);
             this.StateStatusItem.Text = "状态";
+            this.StateStatusItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             // 
             // ProgressStatusItem
             // 

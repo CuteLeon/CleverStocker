@@ -284,6 +284,9 @@
     <Content Include="CleverStocker.Layout.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Processer.png" />
+    <None Include="Resources\Power.png" />
+    <None Include="Resources\Forbidden.png" />
     <None Include="Resources\Search.png" />
     <None Include="Resources\Remove.png" />
     <None Include="Resources\Refresh.png" />
