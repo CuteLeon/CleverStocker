@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		Documents\16x_Images.zip = Documents\16x_Images.zip
 		Documents\Document.md = Documents\Document.md
 		Readme.md = Readme.md
+		Documents\Spider-API.md = Documents\Spider-API.md
 		Documents\Themes.css = Documents\Themes.css
 		Documents\全国中小企业股份转让系统-交易支持平台-数据接口规范-V1.1-20160118.doc = Documents\全国中小企业股份转让系统-交易支持平台-数据接口规范-V1.1-20160118.doc
 	EndProjectSection
