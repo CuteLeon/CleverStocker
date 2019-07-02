@@ -51,8 +51,8 @@
             this.ClientSize = new System.Drawing.Size(483, 294);
             this.Controls.Add(this.MainTablePanel);
             this.Name = "SearchStockDockForm";
-            this.TabText = "SearchStockDockForm";
-            this.Text = "SearchStockDockForm";
+            this.TabText = "搜索股票";
+            this.Text = "搜索股票";
             this.ResumeLayout(false);
 
         }

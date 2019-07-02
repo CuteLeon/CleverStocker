@@ -14,6 +14,8 @@ using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
 {
+    // TODO: 参照自选股票窗口实现（交互设计细节、代码编写细节），并将细节步骤整理为文档
+
     /// <summary>
     /// 自选股票窗口
     /// </summary>
