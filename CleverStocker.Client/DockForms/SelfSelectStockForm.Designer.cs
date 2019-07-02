@@ -43,6 +43,8 @@
             this.AddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.SelfSelectStockToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockBindingSource)).BeginInit();
@@ -55,6 +57,8 @@
             this.AddToolButton,
             this.RemoveToolButton,
             this.RefreshToolButton,
+            this.toolStripSeparator1,
+            this.toolStripLabel1,
             this.SearchToolTextBox});
             this.SelfSelectStockToolStrip.Location = new System.Drawing.Point(0, 0);
             this.SelfSelectStockToolStrip.Name = "SelfSelectStockToolStrip";
@@ -194,6 +198,19 @@
             this.RefreshMenuItem.Text = "刷新";
             this.RefreshMenuItem.Click += new System.EventHandler(this.RefreshMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripLabel1.Image = global::CleverStocker.Client.AppResource.Search;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(16, 22);
+            this.toolStripLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // SelfSelectStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -232,5 +249,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StockMarketGridViewColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StockNameGridViewColumn;
         private System.Windows.Forms.ToolStripTextBox SearchToolTextBox;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
     }
 }
