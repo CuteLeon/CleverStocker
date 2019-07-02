@@ -34,10 +34,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(309, 450);
             this.Name = "RecommendStockForm";
-            this.TabText = "推荐股票";
-            this.Text = "推荐股票";
+            this.TabText = "所有股票";
+            this.Text = "所有股票";
             this.ResumeLayout(false);
 
         }
