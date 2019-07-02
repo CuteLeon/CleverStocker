@@ -31,27 +31,7 @@
         /// <summary>
         /// 当前选中股票变化
         /// </summary>
-        public static readonly string TopicStockCurrentChange = "Stock.Current.Change";
-
-        /// <summary>
-        /// 所有股票
-        /// </summary>
-        public static readonly string TopicStockAll = $"{TopicStock}.All";
-
-        /// <summary>
-        /// 添加所有股票
-        /// </summary>
-        public static readonly string TopicStockAdd = $"{TopicStockAll}.Add";
-
-        /// <summary>
-        /// 删除所有股票
-        /// </summary>
-        public static readonly string TopicStockRemove = $"{TopicStockAll}.Remove";
-
-        /// <summary>
-        /// 更新所有股票
-        /// </summary>
-        public static readonly string TopicStockUpdate = $"{TopicStockAll}.Update";
+        public static readonly string TopicStockCurrentChange = $"{TopicStock}.Current.Change";
 
         /// <summary>
         /// 自选股票

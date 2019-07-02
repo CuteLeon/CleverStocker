@@ -19,7 +19,6 @@ namespace CleverStocker.Client
 {
     /* <功能布局：>
      * 自选股票
-     * 所有股票
      *
      * 文档 (线图x4)
      *
@@ -313,11 +312,6 @@ namespace CleverStocker.Client
             marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Top, 0.5);
             var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
             currentQuotaForm.Show(marketQuotaForm.Pane, marketQuotaForm);
-
-            var allStockForm = DIContainerHelper.Resolve<AllStockForm>();
-            allStockForm.Show(this.MainDockPanel);
-            var selfSelectStockForm = DIContainerHelper.Resolve<SelfSelectStockForm>();
-            selfSelectStockForm.Show(allStockForm.Pane, DockAlignment.Top, 0.5);
         }
         #endregion
 
