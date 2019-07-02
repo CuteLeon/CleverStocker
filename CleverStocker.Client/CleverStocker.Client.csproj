@@ -272,6 +272,35 @@
     <Content Include="CleverStocker.Layout.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\Warn.png" />
+    <None Include="Resources\Trigger.png" />
+    <None Include="Resources\Table.png" />
+    <None Include="Resources\Service.png" />
+    <None Include="Resources\Server.png" />
+    <None Include="Resources\Save.png" />
+    <None Include="Resources\Research.png" />
+    <None Include="Resources\RemoveFilter.png" />
+    <None Include="Resources\Quota.png" />
+    <None Include="Resources\Key.png" />
+    <None Include="Resources\InsightTable.png" />
+    <None Include="Resources\Insights.png" />
+    <None Include="Resources\Insight.png" />
+    <None Include="Resources\Info.png" />
+    <None Include="Resources\Home.png" />
+    <None Include="Resources\Graph.png" />
+    <None Include="Resources\Error.png" />
+    <None Include="Resources\Edit.png" />
+    <None Include="Resources\Document.png" />
+    <None Include="Resources\Context.png" />
+    <None Include="Resources\CloudSearch.png" />
+    <None Include="Resources\Clock.png" />
+    <None Include="Resources\Checked.png" />
+    <None Include="Resources\Chart.png" />
+    <None Include="Resources\Box.png" />
+    <None Include="Resources\Block.png" />
+    <None Include="Resources\ApplyFilter.png" />
+    <None Include="Resources\All.png" />
+    <None Include="Resources\SearchLabel.png" />
     <None Include="Resources\AllStockIcon.ico" />
     <None Include="Resources\Processer.png" />
     <None Include="Resources\Power.png" />
