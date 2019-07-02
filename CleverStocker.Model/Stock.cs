@@ -31,6 +31,18 @@ namespace CleverStocker.Model
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="Stock"/> class.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="name"></param>
+        public Stock(string code, Markets market, string name)
+            : this(code, market)
+        {
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets 代码
         /// </summary>
         [Key]

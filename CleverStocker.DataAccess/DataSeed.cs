@@ -43,21 +43,18 @@ namespace CleverStocker.DataAccess
 
             context.Stocks.AddRange(new[]
             {
-                new Stock("000001", Markets.ShangHai)
+                new Stock("000001", Markets.ShangHai, "上证指数")
                 {
-                     Name = "上证指数",
                      IsSelfSelect = true,
                      UpdateTime = DateTime.Now,
                 },
-                new Stock("399001", Markets.ShenZhen)
+                new Stock("399001", Markets.ShenZhen, "深证成指")
                 {
-                     Name = "深证成指",
                      IsSelfSelect = true,
                      UpdateTime = DateTime.Now,
                 },
-                new Stock("399006", Markets.ShenZhen)
+                new Stock("399006", Markets.ShenZhen, "创业板指")
                 {
-                     Name = "创业板指",
                      IsSelfSelect = true,
                      UpdateTime = DateTime.Now,
                 },

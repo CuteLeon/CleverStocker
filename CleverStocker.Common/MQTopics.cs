@@ -67,11 +67,6 @@
         /// 删除自选股票
         /// </summary>
         public static readonly string TopicStockSelfSelectRemove = $"{TopicStockSelfSelect}.Remove";
-
-        /// <summary>
-        /// 更新自选股票
-        /// </summary>
-        public static readonly string TopicStockSelfSelectUpdate = $"{TopicStockSelfSelect}.Update";
         #endregion
     }
 }

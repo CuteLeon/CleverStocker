@@ -182,6 +182,7 @@ namespace CleverStocker.Services
         /// </summary>
         /// <param name="keys"></param>
         /// <returns></returns>
+        /// <remarks>Find 方法会优先在内存中搜索是否存在已经缓存的实体，内存中不存在时才会查询数据库</remarks>
         TEntity Find(params object[] keys);
 
         /// <summary>

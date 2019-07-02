@@ -20,6 +20,11 @@ namespace CleverStocker.Client.DockForms
     public partial class SelfSelectStockForm : SingleToolDockForm, IMQPubsubable
     {
         /// <summary>
+        /// 股票比较器
+        /// </summary>
+        private readonly StockComparer stockComparer = new StockComparer();
+
+        /// <summary>
         /// Gets or sets mQ 订阅者
         /// </summary>
         public SubscriberHandler Subscriber { get; set; }
@@ -135,8 +140,35 @@ namespace CleverStocker.Client.DockForms
         public void MQSubscriberReceive(string source, string topic, string message)
         {
             LogHelper<SelfSelectStockForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
-            // TODO: 接收自选股票消息：添加、移除
-            var (code, market) = message.GetMarketCode();
+
+            var (code, market, name) = message.GetMarketCode();
+            if (string.IsNullOrWhiteSpace(code) ||
+                market == Markets.Unknown)
+            {
+                LogHelper<SelfSelectStockForm>.Warn($"无法处理 [代码={code},市场={market.ToString()},名称={name}] 的股票。");
+                return;
+            }
+
+            Stock stock = this.StockService.Find(code, market);
+            if (stock == null)
+            {
+                stock = new Stock(code, market, name);
+            }
+
+            if (string.Equals(topic, MQTopics.TopicStockSelfSelectAdd, StringComparison.OrdinalIgnoreCase))
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.AddSelfSelectStock(stock);
+                }));
+            }
+            else if (string.Equals(topic, MQTopics.TopicStockSelfSelectRemove, StringComparison.OrdinalIgnoreCase))
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.RemoveSelfSelectStock(stock);
+                }));
+            }
         }
 
         private void SelfSelectStockGridView_SelectionChanged(object sender, EventArgs e)
@@ -169,60 +201,74 @@ namespace CleverStocker.Client.DockForms
 
         private void RemoveToolButton_Click(object sender, EventArgs e)
         {
-            this.RemoveSelfSelectStock();
+            this.RemoveSelfSelectStock(this.currentStock);
         }
 
         private void RemoveMenuItem_Click(object sender, EventArgs e)
         {
-            this.RemoveSelfSelectStock();
+            this.RemoveSelfSelectStock(this.currentStock);
         }
 
         /// <summary>
         /// 移除自选股票
         /// </summary>
-        private void RemoveSelfSelectStock()
+        /// <param name="stock"></param>
+        private void RemoveSelfSelectStock(Stock stock)
         {
-            if (this.currentStock == null)
+            if (stock == null)
             {
                 return;
             }
 
             LogHelper<SelfSelectStockForm>.Debug($"移除自选股票：{this.currentStock.Market} - {this.currentStock.Code}");
+            this.StockService.RemoveSelfSelectStock(stock);
 
-            this.StockService.RemoveSelfSelectStock(this.currentStock);
-            this.SelfSelectStockBindingSource.Remove(this.currentStock);
+            if (this.CheckDataSourceContains(stock))
+            {
+                this.SelfSelectStockBindingSource.Remove(stock);
+            }
         }
 
         private void AddToolButton_Click(object sender, EventArgs e)
         {
-            this.AddSelfSelectStock();
+            // TODO: 生成股票实体
+            this.AddSelfSelectStock(new Stock("000002", Markets.ShangHai, "测试股票-2"));
         }
 
         private void AddMenuItem_Click(object sender, EventArgs e)
         {
-            this.AddSelfSelectStock();
+            // TODO: 生成股票实体
+            this.AddSelfSelectStock(new Stock("000003", Markets.ShangHai, "测试股票-3"));
         }
 
         /// <summary>
         /// 添加自选股票
         /// </summary>
-        private void AddSelfSelectStock()
+        /// <param name="stock"></param>
+        private void AddSelfSelectStock(Stock stock)
         {
-            // TODO: 添加自选股票
-            Stock stock = new Stock("000002", Markets.ShangHai) { Name = "测试股票" };
-
-            // 判断数据源是否已经存在此自选股票
-            if ((this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)
-                .Contains(stock, new StockComparer()))
+            if (stock == null)
             {
                 return;
             }
 
             LogHelper<SelfSelectStockForm>.Debug($"添加自选股票：{stock.Market} - {stock.Code}");
-
             this.StockService.AddSelfSelectStock(stock);
-            this.SelfSelectStockBindingSource.Add(stock);
+
+            if (!this.CheckDataSourceContains(stock))
+            {
+                this.SelfSelectStockBindingSource.Add(stock);
+            }
         }
+
+        /// <summary>
+        /// 检查数据源是否包含指定股票
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <returns></returns>
+        private bool CheckDataSourceContains(Stock stock)
+            => (this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)
+                .Contains(stock, this.stockComparer);
 
         private void SearchToolTextBox_TextChanged(object sender, EventArgs e)
         {
