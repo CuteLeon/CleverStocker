@@ -34,6 +34,8 @@ namespace CleverStocker.Client
     /// </summary>
     public partial class MainForm : Form, IInitializable, IThemeAppliable
     {
+        #region 初始化
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
@@ -43,16 +45,18 @@ namespace CleverStocker.Client
 
             this.Icon = AppResource.Icon;
             this.Text = Application.ProductName;
+        }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            // 这部分需要在构造时机执行
             this.IsMdiContainer = true;
             this.MainDockPanel.DocumentStyle = DocumentStyle.DockingMdi;
             this.MainDockPanel.DocumentTabStripLocation = DocumentTabStripLocation.Top;
             this.MainDockPanel.Theme.Extender.FloatWindowFactory = FloatedWindowFactory.SingleInstance;
             this.MainDockPanel.ShowDocumentIcon = true;
-        }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
+            // 这部分需要在构造时机执行
             this.ApplyTheme();
         }
 
@@ -64,6 +68,9 @@ namespace CleverStocker.Client
         {
             yield break;
         }
+        #endregion
+
+        #region 测试
 
         private void TestToolItem_Click(object sender, EventArgs e)
         {
@@ -215,6 +222,7 @@ namespace CleverStocker.Client
 
             MessageBox.Show($"获取最近交易成功：\n交易数量：{trades.Count}\n最新时间：{trades.LastOrDefault()?.DateTime}\n最早时间：{trades.FirstOrDefault()?.DateTime}");
         }
+        #endregion
 
         #region 主题
 
@@ -279,6 +287,8 @@ namespace CleverStocker.Client
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
+            Application.DoEvents();
+
             if (File.Exists(ConfigHelper.GetLayoutFileName()))
             {
                 try
@@ -312,6 +322,20 @@ namespace CleverStocker.Client
             marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Top, 0.5);
             var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
             currentQuotaForm.Show(marketQuotaForm.Pane, marketQuotaForm);
+        }
+        #endregion
+
+        #region 搜索股票
+
+        private void SearchToolButton_Click(object sender, EventArgs e)
+        {
+            SearchStockDockForm dockForm = DIContainerHelper.Resolve<SearchStockDockForm>();
+            if (dockForm == null)
+            {
+                return;
+            }
+
+            dockForm.Show(this.MainDockPanel);
         }
         #endregion
 

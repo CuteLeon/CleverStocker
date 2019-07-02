@@ -49,6 +49,16 @@ namespace CleverStocker.Client.DockForms
             }
         }
 
+        private void DockFormBase_Load(object sender, System.EventArgs e)
+        {
+            if (this.DesignMode)
+            {
+                return;
+            }
+
+            this.ApplyTheme();
+        }
+
         /// <summary>
         /// 应用主题
         /// </summary>
@@ -64,7 +74,7 @@ namespace CleverStocker.Client.DockForms
                 ThemeHelper.CurrentThemeComponent.ApplyTo(toolStrip);
             }
 
-            this.BackColor = ThemeHelper.GetDockFormBackcolor();
+            this.BackColor = ThemeHelper.GetContainerBackcolor();
         }
 
         /// <summary>
@@ -93,11 +103,6 @@ namespace CleverStocker.Client.DockForms
             }
 
             base.OnFormClosing(e);
-        }
-
-        private void DockFormBase_Load(object sender, System.EventArgs e)
-        {
-            this.ApplyTheme();
         }
     }
 }

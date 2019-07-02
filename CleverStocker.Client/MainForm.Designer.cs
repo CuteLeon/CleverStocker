@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.MainTopMenuStrip = new System.Windows.Forms.MenuStrip();
             this.StartMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +39,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainToolStrip = new System.Windows.Forms.ToolStrip();
+            this.SearchToolButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.TestToolItem = new System.Windows.Forms.ToolStripButton();
             this.MainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.StateStatusItem = new System.Windows.Forms.ToolStripStatusLabel();
@@ -73,7 +74,7 @@
             // 
             this.ExitMenuItem.Image = global::CleverStocker.Client.AppResource.Power;
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(100, 22);
             this.ExitMenuItem.Text = "退出";
             // 
             // ViewMenuItem
@@ -130,18 +131,33 @@
             // MainToolStrip
             // 
             this.MainToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SearchToolButton,
+            this.toolStripSeparator2,
             this.TestToolItem});
             this.MainToolStrip.Location = new System.Drawing.Point(0, 25);
             this.MainToolStrip.Name = "MainToolStrip";
             this.MainToolStrip.Size = new System.Drawing.Size(800, 25);
             this.MainToolStrip.TabIndex = 2;
             // 
+            // SearchToolButton
+            // 
+            this.SearchToolButton.Image = global::CleverStocker.Client.AppResource.Search;
+            this.SearchToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SearchToolButton.Name = "SearchToolButton";
+            this.SearchToolButton.Size = new System.Drawing.Size(52, 22);
+            this.SearchToolButton.Text = "搜索";
+            this.SearchToolButton.Click += new System.EventHandler(this.SearchToolButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // TestToolItem
             // 
-            this.TestToolItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.TestToolItem.Image = ((System.Drawing.Image)(resources.GetObject("TestToolItem.Image")));
+            this.TestToolItem.Image = global::CleverStocker.Client.AppResource.Research;
             this.TestToolItem.Name = "TestToolItem";
-            this.TestToolItem.Size = new System.Drawing.Size(36, 22);
+            this.TestToolItem.Size = new System.Drawing.Size(52, 22);
             this.TestToolItem.Text = "测试";
             this.TestToolItem.Click += new System.EventHandler(this.TestToolItem_Click);
             // 
@@ -222,5 +238,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveLayoutMenuItem;
+        private System.Windows.Forms.ToolStripButton SearchToolButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

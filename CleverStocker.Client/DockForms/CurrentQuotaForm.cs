@@ -41,6 +41,11 @@ namespace CleverStocker.Client.DockForms
 
         private void CurrentQuotaForm_Load(object sender, System.EventArgs e)
         {
+            if (this.DesignMode)
+            {
+                return;
+            }
+
             this.Subscriber = MQHelper.Subscribe(
                 this.SourceName,
                 new[] { MQTopics.TopicStockCurrentChange },

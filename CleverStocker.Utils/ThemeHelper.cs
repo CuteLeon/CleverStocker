@@ -66,10 +66,10 @@ namespace CleverStocker.Utils
             => ConfigHelper.WriteConfig(ThemeConfigKey, theme.ToString());
 
         /// <summary>
-        /// 获取停靠窗口背景色
+        /// 获取容器背景色
         /// </summary>
         /// <returns></returns>
-        public static Color GetDockFormBackcolor()
+        public static Color GetContainerBackcolor()
             => CurrentThemeComponent.ColorPalette.ToolWindowTabSelectedActive.Background;
 
         /// <summary>

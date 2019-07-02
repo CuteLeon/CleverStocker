@@ -105,6 +105,12 @@
     <Compile Include="DockForms\RecentTradeForm.Designer.cs">
       <DependentUpon>RecentTradeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\SearchStockDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\SearchStockDockForm.Designer.cs">
+      <DependentUpon>SearchStockDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\SelfSelectStockForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,9 +171,15 @@
     <EmbeddedResource Include="DockForms\RecentTradeForm.resx">
       <DependentUpon>RecentTradeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\SearchStockDockForm.resx">
+      <DependentUpon>SearchStockDockForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DockForms\SelfSelectStockForm.resx">
       <DependentUpon>SelfSelectStockForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\SingleToolDockForm.resx">
+      <DependentUpon>SingleToolDockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LaunchForm.resx">
       <DependentUpon>LaunchForm.cs</DependentUpon>

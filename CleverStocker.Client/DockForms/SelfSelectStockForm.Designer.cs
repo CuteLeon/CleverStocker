@@ -112,7 +112,6 @@
             // 
             this.SearchToolTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.SearchToolTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SearchToolTextBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
             this.SearchToolTextBox.Name = "SearchToolTextBox";
             this.SearchToolTextBox.Size = new System.Drawing.Size(100, 25);
             this.SearchToolTextBox.TextChanged += new System.EventHandler(this.SearchToolTextBox_TextChanged);
@@ -138,7 +137,6 @@
             this.SelfSelectStockGridView.DataSource = this.SelfSelectStockBindingSource;
             this.SelfSelectStockGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SelfSelectStockGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.SelfSelectStockGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(37)))), ((int)(((byte)(38)))));
             this.SelfSelectStockGridView.Location = new System.Drawing.Point(0, 25);
             this.SelfSelectStockGridView.MultiSelect = false;
             this.SelfSelectStockGridView.Name = "SelfSelectStockGridView";
@@ -218,6 +216,7 @@
             this.ClientSize = new System.Drawing.Size(254, 281);
             this.Controls.Add(this.SelfSelectStockGridView);
             this.Controls.Add(this.SelfSelectStockToolStrip);
+            this.DoubleBuffered = true;
             this.Name = "SelfSelectStockForm";
             this.TabText = "自选股票";
             this.Text = "自选股票";

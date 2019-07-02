@@ -129,22 +129,25 @@ namespace CleverStocker.Client
                             }
 
                             this.UpdateProgressAsync("创建自选股票窗口 ...");
-                            this.RegisterSingleDockFormInstance<SelfSelectStockForm>(mainForm);
+                            this.RegisterSingleToolDockFormInstance<SelfSelectStockForm>(mainForm);
+
+                            this.UpdateProgressAsync("创建搜索股票窗口 ...");
+                            this.RegisterToolDockForm<SearchStockDockForm>();
 
                             this.UpdateProgressAsync("创建实时行情窗口 ...");
-                            this.RegisterSingleDockFormInstance<CurrentQuotaForm>(mainForm);
+                            this.RegisterSingleToolDockFormInstance<CurrentQuotaForm>(mainForm);
 
                             this.UpdateProgressAsync("创建大盘指数窗口 ...");
-                            this.RegisterSingleDockFormInstance<MarketQuotaForm>(mainForm);
+                            this.RegisterSingleToolDockFormInstance<MarketQuotaForm>(mainForm);
 
                             this.UpdateProgressAsync("创建公司信息窗口 ...");
-                            this.RegisterSingleDockFormInstance<CompanyInfoForm>(mainForm);
+                            this.RegisterSingleToolDockFormInstance<CompanyInfoForm>(mainForm);
 
                             this.UpdateProgressAsync("创建最近交易窗口 ...");
-                            this.RegisterSingleDockFormInstance<RecentTradeForm>(mainForm);
+                            this.RegisterSingleToolDockFormInstance<RecentTradeForm>(mainForm);
 
                             this.UpdateProgressAsync("创建最近行情窗口 ...");
-                            this.RegisterSingleDockFormInstance<RecentQuotaForm>(mainForm);
+                            this.RegisterSingleToolDockFormInstance<RecentQuotaForm>(mainForm);
 
                             this.UpdateProgressAsync($"密封服务容器 ...");
                             DIContainerHelper.Build();
@@ -158,7 +161,7 @@ namespace CleverStocker.Client
         /// </summary>
         /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
         /// <param name="mainForm"></param>
-        private void RegisterSingleDockFormInstance<TDockForm>(MainForm mainForm)
+        private void RegisterSingleToolDockFormInstance<TDockForm>(MainForm mainForm)
             where TDockForm : SingleToolDockForm
         {
             TDockForm instance = null;
@@ -177,6 +180,16 @@ namespace CleverStocker.Client
             {
                 this.UpdateProgressAsync(message);
             }
+        }
+
+        /// <summary>
+        /// 注册停靠窗口
+        /// </summary>
+        /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
+        private void RegisterToolDockForm<TDockForm>()
+            where TDockForm : ToolDockForm
+        {
+            DIContainerHelper.RegisteTypeAsType<TDockForm, TDockForm>();
         }
     }
 }

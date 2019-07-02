@@ -98,6 +98,11 @@ namespace CleverStocker.Client.DockForms
 
         private void SelfSelectStockForm_Load(object sender, EventArgs e)
         {
+            if (this.DesignMode)
+            {
+                return;
+            }
+
             this.StockService = DIContainerHelper.Resolve<IStockService>();
 
             this.Subscriber = MQHelper.Subscribe(
@@ -233,14 +238,12 @@ namespace CleverStocker.Client.DockForms
 
         private void AddToolButton_Click(object sender, EventArgs e)
         {
-            // TODO: 生成股票实体
-            this.AddSelfSelectStock(new Stock("000002", Markets.ShangHai, "测试股票-2"));
+            this.ShowSearchStockDockForm();
         }
 
         private void AddMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: 生成股票实体
-            this.AddSelfSelectStock(new Stock("000003", Markets.ShangHai, "测试股票-3"));
+            this.ShowSearchStockDockForm();
         }
         #endregion
 
@@ -302,6 +305,23 @@ namespace CleverStocker.Client.DockForms
         private bool CheckDataSourceContains(Stock stock)
             => (this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)
                 .Contains(stock, this.stockComparer);
+        #endregion
+
+        #region 功能
+
+        /// <summary>
+        /// 显示搜索股票窗口
+        /// </summary>
+        private void ShowSearchStockDockForm()
+        {
+            SearchStockDockForm dockForm = DIContainerHelper.Resolve<SearchStockDockForm>();
+            if (dockForm == null)
+            {
+                return;
+            }
+
+            dockForm.Show(this.Pane, this);
+        }
         #endregion
 
         #region 释放
