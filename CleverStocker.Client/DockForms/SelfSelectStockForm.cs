@@ -19,6 +19,8 @@ namespace CleverStocker.Client.DockForms
     /// </summary>
     public partial class SelfSelectStockForm : SingleToolDockForm, IMQPubsubable
     {
+        #region 服务
+
         /// <summary>
         /// 股票比较器
         /// </summary>
@@ -33,6 +35,9 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 股票服务
         /// </summary>
         protected IStockService StockService { get; set; }
+        #endregion
+
+        #region 属性
 
         /// <summary>
         /// Gets or sets 源名称
@@ -73,6 +78,9 @@ namespace CleverStocker.Client.DockForms
                 }
             }
         }
+        #endregion
+
+        #region 初始化
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SelfSelectStockForm"/> class.
@@ -96,9 +104,16 @@ namespace CleverStocker.Client.DockForms
                 this.SourceName,
                 new[] { MQTopics.TopicStockSelfSelect },
                 this.MQSubscriberReceive);
+        }
 
+        private void SelfSelectStockForm_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
             this.RefreshDataSource();
         }
+        #endregion
+
+        #region 外观
 
         /// <summary>
         /// 应用主题
@@ -130,6 +145,9 @@ namespace CleverStocker.Client.DockForms
             this.SearchToolTextBox.BackColor = this.BackColor;
             this.SearchToolTextBox.ForeColor = this.SelfSelectStockGridView.RowTemplate.DefaultCellStyle.ForeColor;
         }
+        #endregion
+
+        #region MQ消息
 
         /// <summary>
         /// MQ 订阅者接收消息
@@ -170,15 +188,13 @@ namespace CleverStocker.Client.DockForms
                 }));
             }
         }
+        #endregion
+
+        #region 控件
 
         private void SelfSelectStockGridView_SelectionChanged(object sender, EventArgs e)
         {
             this.CurrentStock = this.SelfSelectStockGridView.CurrentRow?.DataBoundItem as Stock;
-        }
-
-        private void SelfSelectStockForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            this.Subscriber?.Dispose();
         }
 
         private void RefreshToolButton_Click(object sender, EventArgs e)
@@ -191,14 +207,6 @@ namespace CleverStocker.Client.DockForms
             this.RefreshDataSource();
         }
 
-        /// <summary>
-        /// 刷新数据源
-        /// </summary>
-        private void RefreshDataSource()
-        {
-            this.SelfSelectStockBindingSource.DataSource = this.StockService.QueryStock(true);
-        }
-
         private void RemoveToolButton_Click(object sender, EventArgs e)
         {
             this.RemoveSelfSelectStock(this.currentStock);
@@ -207,6 +215,43 @@ namespace CleverStocker.Client.DockForms
         private void RemoveMenuItem_Click(object sender, EventArgs e)
         {
             this.RemoveSelfSelectStock(this.currentStock);
+        }
+
+        private void SearchToolTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string keyWord = this.SearchToolTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(keyWord))
+            {
+                this.RefreshDataSource();
+            }
+            else
+            {
+                this.SelfSelectStockBindingSource.DataSource = this.StockService.QueryStock(true, keyWord);
+            }
+        }
+
+        private void AddToolButton_Click(object sender, EventArgs e)
+        {
+            // TODO: 生成股票实体
+            this.AddSelfSelectStock(new Stock("000002", Markets.ShangHai, "测试股票-2"));
+        }
+
+        private void AddMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: 生成股票实体
+            this.AddSelfSelectStock(new Stock("000003", Markets.ShangHai, "测试股票-3"));
+        }
+        #endregion
+
+        #region 数据
+
+        /// <summary>
+        /// 刷新数据源
+        /// </summary>
+        private void RefreshDataSource()
+        {
+            this.SelfSelectStockBindingSource.DataSource = this.StockService.QueryStock(true);
         }
 
         /// <summary>
@@ -227,18 +272,6 @@ namespace CleverStocker.Client.DockForms
             {
                 this.SelfSelectStockBindingSource.Remove(stock);
             }
-        }
-
-        private void AddToolButton_Click(object sender, EventArgs e)
-        {
-            // TODO: 生成股票实体
-            this.AddSelfSelectStock(new Stock("000002", Markets.ShangHai, "测试股票-2"));
-        }
-
-        private void AddMenuItem_Click(object sender, EventArgs e)
-        {
-            // TODO: 生成股票实体
-            this.AddSelfSelectStock(new Stock("000003", Markets.ShangHai, "测试股票-3"));
         }
 
         /// <summary>
@@ -269,19 +302,14 @@ namespace CleverStocker.Client.DockForms
         private bool CheckDataSourceContains(Stock stock)
             => (this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)
                 .Contains(stock, this.stockComparer);
+        #endregion
 
-        private void SearchToolTextBox_TextChanged(object sender, EventArgs e)
+        #region 释放
+
+        private void SelfSelectStockForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string keyWord = this.SearchToolTextBox.Text;
-
-            if (string.IsNullOrWhiteSpace(keyWord))
-            {
-                this.RefreshDataSource();
-            }
-            else
-            {
-                this.SelfSelectStockBindingSource.DataSource = this.StockService.QueryStock(true, keyWord);
-            }
+            this.Subscriber?.Dispose();
         }
+        #endregion
     }
 }

@@ -33,6 +33,8 @@
             this.AddToolButton = new System.Windows.Forms.ToolStripButton();
             this.RemoveToolButton = new System.Windows.Forms.ToolStripButton();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.SearchToolTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.SelfSelectStockGridView = new System.Windows.Forms.DataGridView();
             this.StockCodeGridViewColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,8 +45,6 @@
             this.AddMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RefreshMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.SelfSelectStockToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockBindingSource)).BeginInit();
@@ -94,6 +94,19 @@
             this.RefreshToolButton.Size = new System.Drawing.Size(23, 22);
             this.RefreshToolButton.Text = "刷新";
             this.RefreshToolButton.Click += new System.EventHandler(this.RefreshToolButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripLabel1.Image = global::CleverStocker.Client.AppResource.SearchLabel;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(16, 22);
+            this.toolStripLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // SearchToolTextBox
             // 
@@ -198,19 +211,6 @@
             this.RefreshMenuItem.Text = "刷新";
             this.RefreshMenuItem.Click += new System.EventHandler(this.RefreshMenuItem_Click);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripLabel1.Image = global::CleverStocker.Client.AppResource.Search;
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(16, 22);
-            this.toolStripLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // SelfSelectStockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -223,6 +223,7 @@
             this.Text = "自选股票";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SelfSelectStockForm_FormClosed);
             this.Load += new System.EventHandler(this.SelfSelectStockForm_Load);
+            this.Shown += new System.EventHandler(this.SelfSelectStockForm_Shown);
             this.SelfSelectStockToolStrip.ResumeLayout(false);
             this.SelfSelectStockToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SelfSelectStockGridView)).EndInit();
