@@ -5,7 +5,7 @@ namespace CleverStocker.Utils
     /// <summary>
     /// 转换器助手
     /// </summary>
-    public static class ConvertorHelper
+    public static class ConverterHelper
     {
         /// <summary>
         /// String => Double
@@ -59,5 +59,16 @@ namespace CleverStocker.Utils
         /// <returns></returns>
         public static DateTime StringToDateTime(string value, DateTime defaultDateTime)
             => DateTime.TryParse(value, out DateTime result) ? result : defaultDateTime;
+
+        /// <summary>
+        /// 字符串转枚举
+        /// </summary>
+        /// <typeparam name="TEnum">枚举类型</typeparam>
+        /// <param name="name"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static TEnum StringToEnum<TEnum>(string name, TEnum defaultValue)
+            where TEnum : struct
+            => Enum.TryParse(name, out TEnum value) ? value : defaultValue;
     }
 }

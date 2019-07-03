@@ -187,39 +187,39 @@ namespace CleverStocker.Spider.Sina
             stock.Quotas.Add(quota);
 
             stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
-            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.CurrentPrice = match.TryGetValue("Price3", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.DayHighPrice = match.TryGetValue("Price4", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.DayLowPrice = match.TryGetValue("Price5", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BiddingPrice = match.TryGetValue("Price6", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.AuctionPrice = match.TryGetValue("Price7", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.Count = match.TryGetValue("Amount1", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.Amount = match.TryGetValue("Amount2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.CurrentPrice = match.TryGetValue("Price3", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.DayHighPrice = match.TryGetValue("Price4", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.DayLowPrice = match.TryGetValue("Price5", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.BiddingPrice = match.TryGetValue("Price6", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.AuctionPrice = match.TryGetValue("Price7", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.Count = match.TryGetValue("Amount1", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.Amount = match.TryGetValue("Amount2", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
 
-            quota.BuyStrand1 = match.TryGetValue("Strand1", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.BuyPrice1 = match.TryGetValue("Quote1", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand2 = match.TryGetValue("Strand2", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.BuyPrice2 = match.TryGetValue("Quote2", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand3 = match.TryGetValue("Strand3", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.BuyPrice3 = match.TryGetValue("Quote3", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand4 = match.TryGetValue("Strand4", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.BuyPrice4 = match.TryGetValue("Quote4", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.BuyStrand5 = match.TryGetValue("Strand5", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.BuyPrice5 = match.TryGetValue("Quote5", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand1 = match.TryGetValue("Strand1", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.BuyPrice1 = match.TryGetValue("Quote1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand2 = match.TryGetValue("Strand2", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.BuyPrice2 = match.TryGetValue("Quote2", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand3 = match.TryGetValue("Strand3", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.BuyPrice3 = match.TryGetValue("Quote3", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand4 = match.TryGetValue("Strand4", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.BuyPrice4 = match.TryGetValue("Quote4", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.BuyStrand5 = match.TryGetValue("Strand5", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.BuyPrice5 = match.TryGetValue("Quote5", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
 
-            quota.SellStrand1 = match.TryGetValue("Strand6", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.SellPrice1 = match.TryGetValue("Quote6", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand2 = match.TryGetValue("Strand7", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.SellPrice2 = match.TryGetValue("Quote7", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand3 = match.TryGetValue("Strand8", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.SellPrice3 = match.TryGetValue("Quote8", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand4 = match.TryGetValue("Strand9", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.SellPrice4 = match.TryGetValue("Quote9", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.SellStrand5 = match.TryGetValue("Strand10", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            quota.SellPrice5 = match.TryGetValue("Quote10", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
+            quota.SellStrand1 = match.TryGetValue("Strand6", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.SellPrice1 = match.TryGetValue("Quote6", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand2 = match.TryGetValue("Strand7", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.SellPrice2 = match.TryGetValue("Quote7", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand3 = match.TryGetValue("Strand8", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.SellPrice3 = match.TryGetValue("Quote8", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand4 = match.TryGetValue("Strand9", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.SellPrice4 = match.TryGetValue("Quote9", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.SellStrand5 = match.TryGetValue("Strand10", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.SellPrice5 = match.TryGetValue("Quote10", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
             stock.UpdateTime = quota.UpdateTime;
 
             return quota;
@@ -297,11 +297,11 @@ namespace CleverStocker.Spider.Sina
             stock.MarketQuotas.Add(marketQuota);
 
             stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
-            marketQuota.CurrentPrice = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            marketQuota.FluctuatingRange = match.TryGetValue("Range", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            marketQuota.FluctuatingRate = match.TryGetValue("Rate", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            marketQuota.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            marketQuota.Amount = match.TryGetValue("Amount", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            marketQuota.CurrentPrice = match.TryGetValue("Price", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            marketQuota.FluctuatingRange = match.TryGetValue("Range", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            marketQuota.FluctuatingRate = match.TryGetValue("Rate", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            marketQuota.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            marketQuota.Amount = match.TryGetValue("Amount", out value) ? ConverterHelper.StringToLong(value) : -1L;
 
             marketQuota.UpdateTime = DateTime.Now;
             stock.UpdateTime = marketQuota.UpdateTime;
@@ -410,7 +410,7 @@ namespace CleverStocker.Spider.Sina
             company.Status = match.TryGetValue("Status", out value) ? Regex.Unescape(value) : string.Empty;
             company.Summary = match.TryGetValue("Summary", out value) ? Regex.Unescape(value) : string.Empty;
             company.Brief = match.TryGetValue("CorpBrief", out value) ? Regex.Unescape(value) : string.Empty;
-            company.Vote = match.TryGetValue("Vote", out value) ? ConvertorHelper.StringToInt(value) : 0;
+            company.Vote = match.TryGetValue("Vote", out value) ? ConverterHelper.StringToInt(value) : 0;
 
             return company;
         }
@@ -483,12 +483,12 @@ namespace CleverStocker.Spider.Sina
             }
 
             RecentQuota recentQuota = new RecentQuota();
-            recentQuota.DateTime = match.TryGetValue("DateTime", out string value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
-            recentQuota.OpenningPrice = match.TryGetValue("Openning", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            recentQuota.HighestPrice = match.TryGetValue("Highest", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            recentQuota.LowestPrice = match.TryGetValue("Lowest", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            recentQuota.ClosingPrice = match.TryGetValue("Closing", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            recentQuota.Volume = match.TryGetValue("Volume", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            recentQuota.DateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+            recentQuota.OpenningPrice = match.TryGetValue("Openning", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            recentQuota.HighestPrice = match.TryGetValue("Highest", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            recentQuota.LowestPrice = match.TryGetValue("Lowest", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            recentQuota.ClosingPrice = match.TryGetValue("Closing", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            recentQuota.Volume = match.TryGetValue("Volume", out value) ? ConverterHelper.StringToLong(value) : -1L;
 
             return recentQuota;
         }
@@ -557,9 +557,9 @@ namespace CleverStocker.Spider.Sina
             }
 
             Trade trade = new Trade();
-            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
-            trade.Price = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            trade.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+            trade.Price = match.TryGetValue("Price", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            trade.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
             trade.TradeType = match.TryGetValue("Type", out value) && string.Equals(value, "UP", StringComparison.OrdinalIgnoreCase) ? TradeTypes.Buy : TradeTypes.Sell;
 
             return trade;
@@ -577,9 +577,9 @@ namespace CleverStocker.Spider.Sina
             }
 
             Trade trade = new Trade();
-            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConvertorHelper.StringToDateTime(value) : DateTime.Now;
-            trade.Price = match.TryGetValue("Price", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            trade.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
+            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+            trade.Price = match.TryGetValue("Price", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            trade.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
 
             return trade;
         }
@@ -596,9 +596,9 @@ namespace CleverStocker.Spider.Sina
             }
 
             Trade trade = new Trade();
-            trade.Price = match.TryGetValue("Price", out string value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
-            trade.Count = match.TryGetValue("Count", out value) ? ConvertorHelper.StringToLong(value) : -1L;
-            trade.Rate = match.TryGetValue("Rate", out value) ? ConvertorHelper.StringToDouble(value) : double.NaN;
+            trade.Price = match.TryGetValue("Price", out string value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            trade.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            trade.Rate = match.TryGetValue("Rate", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
 
             return trade;
         }

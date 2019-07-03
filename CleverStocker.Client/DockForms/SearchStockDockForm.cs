@@ -44,6 +44,22 @@ namespace CleverStocker.Client.DockForms
         /// </summary>
         public string Code { get; set; }
 
+        /// <summary>
+        /// Gets or sets 布局持久化数据
+        /// </summary>
+        public override string PersistValue
+        {
+            get => $"{this.Code}-{this.Market}";
+            set
+            {
+                string[] values = value?.Split(new[] { '-' }, 2);
+                if (values?.Length == 2)
+                {
+                    this.Code = values[0];
+                    this.Market = ConverterHelper.StringToEnum(values[1], Markets.Unknown);
+                }
+            }
+        }
         #endregion
 
         #region 初始化

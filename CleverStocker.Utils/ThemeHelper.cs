@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using WeifenLuo.WinFormsUI.Docking;
 using static CleverStocker.Common.CommonStandard;
 
@@ -17,10 +16,9 @@ namespace CleverStocker.Utils
 
         static ThemeHelper()
         {
-            CurrentTheme = Enum.TryParse(
+            CurrentTheme = ConverterHelper.StringToEnum(
                 ConfigHelper.ReadConfig(ThemeConfigKey),
-                out Themes currentTheme) ?
-                currentTheme : Themes.Dark;
+                Themes.Dark);
 
             CurrentThemeComponent = GetTheme(CurrentTheme);
         }

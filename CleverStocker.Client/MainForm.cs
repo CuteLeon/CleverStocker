@@ -407,12 +407,22 @@ namespace CleverStocker.Client
         /// </summary>
         /// <param name="persist"></param>
         /// <returns></returns>
-        private IDockContent GetDockContent(string persist)
+        private DockFormBase GetDockContent(string persist)
         {
             try
             {
-                Type type = this.GetType().Assembly.GetType(persist);
-                var dockForm = DIContainerHelper.Resolve(type) as IDockContent;
+                string[] persists = persist.Split(new[] { '@' }, 2);
+                Type type = this.GetType().Assembly.GetType(persists[0]);
+                if (!(DIContainerHelper.Resolve(type) is DockFormBase dockForm))
+                {
+                    return default;
+                }
+
+                if (persists.Length > 1)
+                {
+                    dockForm.PersistValue = persists[1];
+                }
+
                 return dockForm;
             }
             catch (Exception ex)

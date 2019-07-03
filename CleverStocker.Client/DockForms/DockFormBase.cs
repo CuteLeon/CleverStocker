@@ -26,6 +26,12 @@ namespace CleverStocker.Client.DockForms
         }
 
         /// <summary>
+        /// Gets or sets 布局持久化数据
+        /// </summary>
+        /// <remarks>用于在恢复布局后恢复相关数据</remarks>
+        public virtual string PersistValue { get; set; } = string.Empty;
+
+        /// <summary>
         /// Gets or sets 默认停靠区域
         /// </summary>
         public abstract DockAreas DefaultDockAreas { get; set; }
@@ -103,6 +109,16 @@ namespace CleverStocker.Client.DockForms
             }
 
             base.OnFormClosing(e);
+        }
+
+        /// <summary>
+        /// 获取布局持久化标识
+        /// </summary>
+        /// <returns></returns>
+        protected override string GetPersistString()
+        {
+            string persistValue = this.PersistValue;
+            return $"{base.GetPersistString()}{(string.IsNullOrEmpty(persistValue) ? string.Empty : $"@{persistValue}")}";
         }
     }
 }
