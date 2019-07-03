@@ -482,7 +482,7 @@
             this.DeleteToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.DeleteToolButton.Name = "DeleteToolButton";
             this.DeleteToolButton.Size = new System.Drawing.Size(23, 22);
-            this.DeleteToolButton.Text = "toolStripButton1";
+            this.DeleteToolButton.Text = "删除";
             this.DeleteToolButton.Click += new System.EventHandler(this.DeleteToolButton_Click);
             // 
             // SearchStockDockForm
