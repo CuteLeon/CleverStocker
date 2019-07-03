@@ -14,8 +14,6 @@ using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
 {
-    // TODO: 参照自选股票窗口实现（交互设计细节、代码编写细节），并将细节步骤整理为文档
-
     /// <summary>
     /// 自选股票窗口
     /// </summary>
@@ -109,7 +107,7 @@ namespace CleverStocker.Client.DockForms
 
             this.Subscriber = MQHelper.Subscribe(
                 this.SourceName,
-                new[] { MQTopics.TopicStockSelfSelect },
+                new[] { MQTopics.TopicStockSelfSelect, MQTopics.TopicStockRemove },
                 this.MQSubscriberReceive);
         }
 
@@ -194,6 +192,13 @@ namespace CleverStocker.Client.DockForms
                     this.RemoveSelfSelectStock(stock);
                 }));
             }
+            else if (string.Equals(topic, MQTopics.TopicStockRemove, StringComparison.OrdinalIgnoreCase))
+            {
+                this.Invoke(new Action(() =>
+                {
+                    this.RemoveSelfSelectStockFormFace(stock);
+                }));
+            }
         }
         #endregion
 
@@ -272,6 +277,25 @@ namespace CleverStocker.Client.DockForms
 
             LogHelper<SelfSelectStockForm>.Debug($"移除自选股票：{this.currentStock.Market} - {this.currentStock.Code}");
             this.StockService.RemoveSelfSelectStock(stock);
+
+            if (this.CheckDataSourceContains(stock))
+            {
+                this.SelfSelectStockBindingSource.Remove(stock);
+            }
+        }
+
+        /// <summary>
+        /// 移除自选股票
+        /// </summary>
+        /// <param name="stock"></param>
+        private void RemoveSelfSelectStockFormFace(Stock stock)
+        {
+            if (stock == null)
+            {
+                return;
+            }
+
+            LogHelper<SelfSelectStockForm>.Debug($"从界面移除自选股票：{this.currentStock.Market} - {this.currentStock.Code}");
 
             if (this.CheckDataSourceContains(stock))
             {

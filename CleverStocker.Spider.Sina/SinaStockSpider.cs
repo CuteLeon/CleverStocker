@@ -144,19 +144,32 @@ namespace CleverStocker.Spider.Sina
                 throw new ArgumentNullException();
             }
 
-            string request = $@"http://hq.sinajs.cn/list={marketCode}{code}";
-            var result = this.WebClient.DownloadString(request);
-
-            if (string.IsNullOrEmpty(result))
+            try
             {
-                return default;
+                string request = $@"http://hq.sinajs.cn/list={marketCode}{code}";
+                var result = this.WebClient.DownloadString(request);
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    return default;
+                }
+
+                var match = QuotaRegex.Match(result);
+                if (!match.Success)
+                {
+                    return (null, null);
+                }
+
+                Stock stock = new Stock(code, market);
+                Quota quota = ConvertToQuota(match, ref stock);
+
+                return (stock, quota);
             }
-
-            var match = QuotaRegex.Match(result);
-            Stock stock = new Stock(code, market);
-            Quota quota = ConvertToQuota(match, ref stock);
-
-            return (stock, quota);
+            catch (Exception ex)
+            {
+                LogHelper<SinaStockSpider>.ErrorException(ex, $"获取股票行情失败：");
+                throw;
+            }
         }
 
         /// <summary>

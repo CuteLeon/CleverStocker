@@ -29,6 +29,16 @@
         public static readonly string TopicStock = "Stock";
 
         /// <summary>
+        /// 添加股票
+        /// </summary>
+        public static readonly string TopicStockAdd = $"{TopicStock}.Add";
+
+        /// <summary>
+        /// 移除股票
+        /// </summary>
+        public static readonly string TopicStockRemove = $"{TopicStock}.Remove";
+
+        /// <summary>
         /// 当前选中股票变化
         /// </summary>
         public static readonly string TopicStockCurrentChange = $"{TopicStock}.Current.Change";
