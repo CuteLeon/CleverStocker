@@ -9,23 +9,5 @@
       ],
       "injectProperties": true
     },
-    {
-      "type": "CleverStocker.Services.StockService, CleverStocker.Services",
-      "services": [
-        {
-          "type": "CleverStocker.Services.IStockService, CleverStocker.Services"
-        }
-      ],
-      "injectProperties": true
-    },
-    {
-      "type": "CleverStocker.Services.QuotaService, CleverStocker.Services",
-      "services": [
-        {
-          "type": "CleverStocker.Services.IQuotaService, CleverStocker.Services"
-        }
-      ],
-      "injectProperties": true
-    }
   ]
 }

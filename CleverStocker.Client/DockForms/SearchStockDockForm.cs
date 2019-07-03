@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Common;
@@ -113,6 +114,26 @@ namespace CleverStocker.Client.DockForms
             this.CodeTextBox.ForeColor = this.MarketComboBox.ForeColor;
             this.SearchButton.BackColor = ThemeHelper.GetTitleBackcolor();
             this.SearchButton.ForeColor = this.MarketComboBox.ForeColor;
+
+            this.StockNameLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.CurrentPriceLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.ClosingPriceYesterdayLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.OpeningPriceTodayLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.DayHighPriceLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.DayLowPriceLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.CountLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.AmountLabel.ForeColor = this.CodeLabel.ForeColor;
+            this.UpdateTimeLabel.ForeColor = this.CodeLabel.ForeColor;
+
+            this.StockNameValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.CurrentPriceValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.ClosingPriceYesterdayValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.OpeningPriceTodayValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.DayHighPriceValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.DayLowPriceValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.CountValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.AmountValueLabel.ForeColor = this.CodeTextBox.ForeColor;
+            this.UpdateTimeValueLabel.ForeColor = this.CodeTextBox.ForeColor;
         }
         #endregion
 
@@ -212,10 +233,36 @@ namespace CleverStocker.Client.DockForms
             if (stock == null)
             {
                 this.SearchToolStrip.Enabled = false;
+                this.StockNameValueLabel.Text = "-";
             }
             else
             {
                 this.SearchToolStrip.Enabled = true;
+                this.StockNameValueLabel.Text = stock.Name;
+            }
+
+            var quota = stock?.Quotas?.FirstOrDefault();
+            if (quota == null)
+            {
+                this.CurrentPriceValueLabel.Text = "-";
+                this.ClosingPriceYesterdayValueLabel.Text = "-";
+                this.OpeningPriceTodayValueLabel.Text = "-";
+                this.DayHighPriceValueLabel.Text = "-";
+                this.DayLowPriceValueLabel.Text = "-";
+                this.CountValueLabel.Text = "-";
+                this.AmountValueLabel.Text = "-";
+                this.UpdateTimeValueLabel.Text = "-";
+            }
+            else
+            {
+                this.CurrentPriceValueLabel.Text = quota.CurrentPrice.ToString("N4");
+                this.ClosingPriceYesterdayValueLabel.Text = quota.ClosingPriceYesterday.ToString("N4");
+                this.OpeningPriceTodayValueLabel.Text = quota.OpeningPriceToday.ToString("N4");
+                this.DayHighPriceValueLabel.Text = quota.DayHighPrice.ToString("N4");
+                this.DayLowPriceValueLabel.Text = quota.DayLowPrice.ToString("N4");
+                this.CountValueLabel.Text = quota.Count.ToString("N0");
+                this.AmountValueLabel.Text = quota.Amount.ToString("N0");
+                this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString();
             }
         }
         #endregion
