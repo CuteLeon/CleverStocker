@@ -26,6 +26,14 @@ namespace CleverStocker.Services
         /// </summary>
         public PersistServiceBase()
         {
+            this.Context = DIContainerHelper.Resolve<DBContext>();
+            if (this.Context == null)
+            {
+                throw new InvalidOperationException("数据持久化服务初始化数据库连接失败。");
+            }
+
+            this.Database = this.Context.Database;
+
             LogHelper<DefaultLogSource>.Debug($"构造数据持久化服务：{this.GetType().FullName} ({this.GetHashCode().ToString("X")})");
         }
 
@@ -44,7 +52,7 @@ namespace CleverStocker.Services
         /// <summary>
         /// Gets 数据库交互
         /// </summary>
-        public DbContext Context { get; } = new DBContext();
+        public DbContext Context { get; }
 
         /// <summary>
         /// Gets 数据库
@@ -614,36 +622,6 @@ namespace CleverStocker.Services
                     throw;
                 }
             }
-        }
-        #endregion
-
-        #region IDisposable Support
-        private bool disposedValue = false;
-
-        /// <summary>
-        /// 释放
-        /// </summary>
-        /// <param name="disposing"></param>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!this.disposedValue)
-            {
-                if (disposing)
-                {
-                    this.Context.Dispose();
-                }
-
-                this.disposedValue = true;
-            }
-        }
-
-        /// <summary>
-        /// 释放
-        /// </summary>
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
         }
         #endregion
     }

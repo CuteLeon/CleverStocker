@@ -121,10 +121,6 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
                             DIContainerHelper.RegistServicesFromConfig();
 
-                            this.UpdateProgressAsync("开始注册数据持久化服务到依赖注入容器 ...");
-                            DIContainerHelper.RegisteInstanceAsType<StockService, IStockService>(new StockService());
-                            DIContainerHelper.RegisteInstanceAsType<QuotaService, IQuotaService>(new QuotaService());
-
                             this.UpdateProgressAsync("创建主窗口 ...");
                             MainForm mainForm = (MainForm)this.Invoke(new Func<MainForm>(() => new MainForm()));
                             DIContainerHelper.RegisteInstanceAsType<MainForm, MainForm>(mainForm);

@@ -9,5 +9,32 @@
       ],
       "injectProperties": true
     },
+    {
+      "type": "CleverStocker.DataAccess.DBContext, CleverStocker.DataAccess",
+      "services": [
+        {
+          "type": "CleverStocker.DataAccess.DBContext, CleverStocker.DataAccess"
+        }
+      ],
+      "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.Services.StockService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IStockService, CleverStocker.Services"
+        }
+      ],
+      "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.Services.QuotaService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IQuotaService, CleverStocker.Services"
+        }
+      ],
+      "instanceScope": "single-instance"
+    }
   ]
 }

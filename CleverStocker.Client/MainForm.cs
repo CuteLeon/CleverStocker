@@ -75,7 +75,6 @@ namespace CleverStocker.Client
         private void TestToolItem_Click(object sender, EventArgs e)
         {
             MQHelper.Publish("MainForm", MQTopics.TopicStockSelfSelectAdd, new Stock("000004", Markets.ShangHai, "测试股票-4").GetFullCode());
-            return;
 
             try
             {
@@ -100,16 +99,14 @@ namespace CleverStocker.Client
                 return;
             }
 
-            using (var stockService = DIContainerHelper.Resolve<IStockService>())
-            {
-                stockService.AddOrUpdate(stock);
-                stock = stockService.Find(stock.Code, stock.Market);
+            var stockService = DIContainerHelper.Resolve<IStockService>();
+            stockService.AddOrUpdate(stock);
+            stock = stockService.Find(stock.Code, stock.Market);
 
-                quota.Stock = stock;
-                stock.Quotas.Add(quota);
+            quota.Stock = stock;
+            stock.Quotas.Add(quota);
 
-                stockService.SaveChanges();
-            }
+            stockService.SaveChanges();
 
             MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情ID：{quota.ID}");
         }
@@ -133,16 +130,14 @@ namespace CleverStocker.Client
                 return;
             }
 
-            using (var stockService = DIContainerHelper.Resolve<IStockService>())
-            {
-                stockService.AddOrUpdate(stock);
-                stock = stockService.Find(stock.Code, stock.Market);
+            var stockService = DIContainerHelper.Resolve<IStockService>();
+            stockService.AddOrUpdate(stock);
+            stock = stockService.Find(stock.Code, stock.Market);
 
-                marketQuote.Stock = stock;
-                stock.MarketQuotas.Add(marketQuote);
+            marketQuote.Stock = stock;
+            stock.MarketQuotas.Add(marketQuote);
 
-                stockService.SaveChanges();
-            }
+            stockService.SaveChanges();
 
             MessageBox.Show($"获取股票大盘指数成功：\n股票简称：{stock.Name}\n大盘指数ID：{marketQuote.ID}");
         }
@@ -177,18 +172,16 @@ namespace CleverStocker.Client
                 return;
             }
 
-            using (var stockService = DIContainerHelper.Resolve<IStockService>())
+            var stockService = DIContainerHelper.Resolve<IStockService>();
+            var stock = stockService.Find("600086", Markets.ShangHai);
+
+            if (stock.Company == null)
             {
-                var stock = stockService.Find("600086", Markets.ShangHai);
-
-                if (stock.Company == null)
-                {
-                    stock.Company = new Company();
-                }
-
-                company.CopyTo(stock.Company);
-                stockService.SaveChanges();
+                stock.Company = new Company();
             }
+
+            company.CopyTo(stock.Company);
+            stockService.SaveChanges();
 
             MessageBox.Show($"获取公司信息成功：\n公司名称：{company.Position} - {company.Name}");
         }
