@@ -74,8 +74,6 @@ namespace CleverStocker.Client
 
         private void TestToolItem_Click(object sender, EventArgs e)
         {
-            MQHelper.Publish("MainForm", MQTopics.TopicStockSelfSelectAdd, new Stock("000004", Markets.ShangHai, "测试股票-4").GetFullCode());
-
             try
             {
                 this.GetStockQuota();
