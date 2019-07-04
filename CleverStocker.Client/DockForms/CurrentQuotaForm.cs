@@ -74,5 +74,19 @@ namespace CleverStocker.Client.DockForms
         {
             this.Subscriber?.Dispose();
         }
+
+        #region 主题
+
+        /// <summary>
+        /// 应用主题
+        /// </summary>
+        public override void ApplyTheme()
+        {
+            base.ApplyTheme();
+
+            this.MainStockQuotaBaseControl.LabelForecolor = ThemeHelper.GetTitleForecolor();
+            this.MainStockQuotaBaseControl.ValueForecolor = ThemeHelper.GetContentForecolor();
+        }
+        #endregion
     }
 }
