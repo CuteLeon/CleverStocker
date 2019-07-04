@@ -59,6 +59,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controls\StockQuotaBaseControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StockQuotaBaseControl.Designer.cs">
+      <DependentUpon>StockQuotaBaseControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\CompanyInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +155,9 @@
     <EmbeddedResource Include="AppResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StockQuotaBaseControl.resx">
+      <DependentUpon>StockQuotaBaseControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\CompanyInfoForm.resx">
       <DependentUpon>CompanyInfoForm.cs</DependentUpon>
