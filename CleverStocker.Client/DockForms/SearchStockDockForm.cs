@@ -177,6 +177,7 @@ namespace CleverStocker.Client.DockForms
                 return;
             }
 
+            // TODO: 保存行情，以时间和股票为组合主键
             this.StockService.AddOrUpdate(this.currentStock);
         }
 

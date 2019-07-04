@@ -48,6 +48,7 @@
     <Compile Include="ConverterHelper.cs" />
     <Compile Include="DefaultLogSource.cs" />
     <Compile Include="DIContainerHelper.cs" />
+    <Compile Include="InvokeHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MQHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

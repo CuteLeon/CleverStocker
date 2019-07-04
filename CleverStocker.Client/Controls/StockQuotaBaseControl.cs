@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Model;
+using CleverStocker.Utils;
 
 namespace CleverStocker.Client.Controls
 {
@@ -30,7 +32,8 @@ namespace CleverStocker.Client.Controls
             set
             {
                 this.labelForecolor = value;
-                this.SetLabelForecolor(value);
+
+                this.InvokeIfRequired<ValueType, Action<Color>>(this.SetLabelForecolor, value);
             }
         }
 
@@ -46,7 +49,8 @@ namespace CleverStocker.Client.Controls
             set
             {
                 this.valueForecolor = value;
-                this.SetValueForecolor(value);
+
+                this.InvokeIfRequired<ValueType, Action<Color>>(this.SetValueForecolor, value);
             }
         }
 
@@ -62,7 +66,7 @@ namespace CleverStocker.Client.Controls
             {
                 this.stock = value;
 
-                this.StockToFace(value);
+                this.InvokeIfRequired<ValueType, Action<Stock>>(this.StockToFace, value);
             }
         }
 
@@ -78,7 +82,7 @@ namespace CleverStocker.Client.Controls
             {
                 this.quota = value;
 
-                this.QuotaToFace(value);
+                this.InvokeIfRequired<ValueType, Action<Quota>>(this.QuotaToFace, value);
             }
         }
 

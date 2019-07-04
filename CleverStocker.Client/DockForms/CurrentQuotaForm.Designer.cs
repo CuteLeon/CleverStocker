@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainLabel = new System.Windows.Forms.Label();
+            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaBaseControl();
             this.SuspendLayout();
             // 
-            // MainLabel
+            // MainStockQuotaBaseControl
             // 
-            this.MainLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainLabel.Font = new System.Drawing.Font("微软雅黑", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.MainLabel.ForeColor = System.Drawing.Color.DimGray;
-            this.MainLabel.Location = new System.Drawing.Point(0, 0);
-            this.MainLabel.Name = "MainLabel";
-            this.MainLabel.Size = new System.Drawing.Size(800, 450);
-            this.MainLabel.TabIndex = 0;
-            this.MainLabel.Text = "当前行情";
-            this.MainLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MainStockQuotaBaseControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainStockQuotaBaseControl.LabelForecolor = System.Drawing.Color.Empty;
+            this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(0, 0);
+            this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
+            this.MainStockQuotaBaseControl.Quota = null;
+            this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(349, 240);
+            this.MainStockQuotaBaseControl.Stock = null;
+            this.MainStockQuotaBaseControl.TabIndex = 0;
+            this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // CurrentQuotaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.MainLabel);
+            this.ClientSize = new System.Drawing.Size(349, 240);
+            this.Controls.Add(this.MainStockQuotaBaseControl);
             this.Name = "CurrentQuotaForm";
             this.TabText = "实时行情";
             this.Text = "实时行情";
@@ -60,6 +60,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label MainLabel;
+        private Controls.StockQuotaBaseControl MainStockQuotaBaseControl;
     }
 }

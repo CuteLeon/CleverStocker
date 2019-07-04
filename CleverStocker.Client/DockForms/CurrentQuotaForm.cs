@@ -1,6 +1,8 @@
-﻿using System;
+﻿using System.Linq;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
+using CleverStocker.Model.Extensions;
+using CleverStocker.Services;
 using CleverStocker.Utils;
 using WeifenLuo.WinFormsUI.Docking;
 
@@ -62,10 +64,10 @@ namespace CleverStocker.Client.DockForms
         {
             LogHelper<CurrentQuotaForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
 
-            this.Invoke(new Action(() =>
-            {
-                this.MainLabel.Text = $"行情 of\n{message}";
-            }));
+            var (code, market, _) = message.GetMarketCode();
+            var stock = DIContainerHelper.Resolve<IStockService>().Find(code, market);
+            this.MainStockQuotaBaseControl.Stock = stock;
+            this.MainStockQuotaBaseControl.Quota = stock?.Quotas?.FirstOrDefault();
         }
 
         private void CurrentQuotaForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)

@@ -47,10 +47,10 @@
             this.StockNameValueLabel = new System.Windows.Forms.Label();
             this.StockNameLabel = new System.Windows.Forms.Label();
             this.MainTablePanel = new System.Windows.Forms.TableLayoutPanel();
-            this.CodeLabel = new System.Windows.Forms.Label();
-            this.CodeValueLabel = new System.Windows.Forms.Label();
             this.MarketValueLabel = new System.Windows.Forms.Label();
             this.MarketLabel = new System.Windows.Forms.Label();
+            this.CodeValueLabel = new System.Windows.Forms.Label();
+            this.CodeLabel = new System.Windows.Forms.Label();
             this.MainTablePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -290,6 +290,7 @@
             // 
             // MainTablePanel
             // 
+            this.MainTablePanel.AutoScroll = true;
             this.MainTablePanel.ColumnCount = 2;
             this.MainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.MainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -334,32 +335,6 @@
             this.MainTablePanel.Size = new System.Drawing.Size(234, 234);
             this.MainTablePanel.TabIndex = 1;
             // 
-            // CodeLabel
-            // 
-            this.CodeLabel.AutoEllipsis = true;
-            this.CodeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CodeLabel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CodeLabel.Location = new System.Drawing.Point(0, 0);
-            this.CodeLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.CodeLabel.Name = "CodeLabel";
-            this.CodeLabel.Size = new System.Drawing.Size(90, 20);
-            this.CodeLabel.TabIndex = 27;
-            this.CodeLabel.Text = "股票代码";
-            this.CodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // CodeValueLabel
-            // 
-            this.CodeValueLabel.AutoEllipsis = true;
-            this.CodeValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CodeValueLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CodeValueLabel.Location = new System.Drawing.Point(90, 0);
-            this.CodeValueLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.CodeValueLabel.Name = "CodeValueLabel";
-            this.CodeValueLabel.Size = new System.Drawing.Size(144, 20);
-            this.CodeValueLabel.TabIndex = 28;
-            this.CodeValueLabel.Text = "-";
-            this.CodeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // MarketValueLabel
             // 
             this.MarketValueLabel.AutoEllipsis = true;
@@ -385,6 +360,32 @@
             this.MarketLabel.TabIndex = 29;
             this.MarketLabel.Text = "交易市场";
             this.MarketLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CodeValueLabel
+            // 
+            this.CodeValueLabel.AutoEllipsis = true;
+            this.CodeValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CodeValueLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CodeValueLabel.Location = new System.Drawing.Point(90, 0);
+            this.CodeValueLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.CodeValueLabel.Name = "CodeValueLabel";
+            this.CodeValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.CodeValueLabel.TabIndex = 28;
+            this.CodeValueLabel.Text = "-";
+            this.CodeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // CodeLabel
+            // 
+            this.CodeLabel.AutoEllipsis = true;
+            this.CodeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CodeLabel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CodeLabel.Location = new System.Drawing.Point(0, 0);
+            this.CodeLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.CodeLabel.Name = "CodeLabel";
+            this.CodeLabel.Size = new System.Drawing.Size(90, 20);
+            this.CodeLabel.TabIndex = 27;
+            this.CodeLabel.Text = "股票代码";
+            this.CodeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // StockQuotaBaseControl
             // 
