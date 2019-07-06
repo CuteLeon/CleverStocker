@@ -33,9 +33,21 @@ namespace CleverStocker.Model
         /// </summary>
         /// <param name="code">代码</param>
         /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
+        public StockTimelyBase(string code, Markets market, string name)
+            : base(code, market, name)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StockTimelyBase"/> class.
+        /// </summary>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
         /// <param name="updateTime">更新时间</param>
-        public StockTimelyBase(string code, Markets market, DateTime updateTime)
-            : this(code, market)
+        public StockTimelyBase(string code, Markets market, string name, DateTime updateTime)
+            : this(code, market, name)
         {
             this.UpdateTime = updateTime;
         }

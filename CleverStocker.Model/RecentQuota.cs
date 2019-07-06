@@ -19,8 +19,8 @@ namespace CleverStocker.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentQuota"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="market"></param>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
         public RecentQuota(string code, Markets market)
             : base(code, market)
         {
@@ -29,11 +29,23 @@ namespace CleverStocker.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentQuota"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="market"></param>
-        /// <param name="updateTime"></param>
-        public RecentQuota(string code, Markets market, DateTime updateTime)
-            : base(code, market, updateTime)
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
+        public RecentQuota(string code, Markets market, string name)
+            : base(code, market, name)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecentQuota"/> class.
+        /// </summary>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
+        /// <param name="updateTime">更新时间</param>
+        public RecentQuota(string code, Markets market, string name, DateTime updateTime)
+            : base(code, market, name, updateTime)
         {
         }
 

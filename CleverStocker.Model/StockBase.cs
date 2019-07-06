@@ -28,6 +28,19 @@ namespace CleverStocker.Model
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="StockBase"/> class.
+        /// </summary>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
+        public StockBase(string code, Markets market, string name)
+        {
+            this.Code = code;
+            this.Market = market;
+            this.Name = name;
+        }
+
+        /// <summary>
         /// Gets or sets 代码
         /// </summary>
         [Key]
@@ -45,5 +58,10 @@ namespace CleverStocker.Model
         [Required]
         [Range(1, int.MaxValue)]
         public virtual Markets Market { get; set; }
+
+        /// <summary>
+        /// Gets or sets 名称
+        /// </summary>
+        public virtual string Name { get; set; }
     }
 }

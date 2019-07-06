@@ -19,8 +19,8 @@ namespace CleverStocker.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Stock"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="market"></param>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
         public Stock(string code, Markets market)
             : base(code, market)
         {
@@ -29,19 +29,13 @@ namespace CleverStocker.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Stock"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="market"></param>
-        /// <param name="name"></param>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
         public Stock(string code, Markets market, string name)
-            : this(code, market)
+            : base(code, market, name)
         {
-            this.Name = name;
         }
-
-        /// <summary>
-        /// Gets or sets 名称
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets 更新时间

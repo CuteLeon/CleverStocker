@@ -6,7 +6,7 @@ namespace CleverStocker.Model
     /// <summary>
     /// 公司
     /// </summary>
-    public class Company : StockTimelyBase
+    public class Company : StockBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
@@ -19,8 +19,8 @@ namespace CleverStocker.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="market"></param>
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
         public Company(string code, Markets market)
             : base(code, market)
         {
@@ -29,13 +29,18 @@ namespace CleverStocker.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="market"></param>
-        /// <param name="updateTime"></param>
-        public Company(string code, Markets market, DateTime updateTime)
-            : base(code, market, updateTime)
+        /// <param name="code">代码</param>
+        /// <param name="market">市场</param>
+        /// <param name="name">名称</param>
+        public Company(string code, Markets market, string name)
+            : base(code, market, name)
         {
         }
+
+        /// <summary>
+        /// Gets or sets 更新时间
+        /// </summary>
+        public DateTime UpdateTime { get; set; }
 
         /// <summary>
         /// Gets or sets 评级
@@ -46,11 +51,6 @@ namespace CleverStocker.Model
         /// Gets or sets 投票
         /// </summary>
         public int Vote { get; set; }
-
-        /// <summary>
-        /// Gets or sets 名称
-        /// </summary>
-        public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets 位置
