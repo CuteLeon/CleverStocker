@@ -74,8 +74,10 @@ namespace CleverStocker.Client.DockForms
 
                     this.Invoke(new Action(() =>
                     {
-                        this.CurrentQuotaToolStrip.Enabled = true;
+                        /* 选中非空股票自动开启自动刷新行情功能
                         this.AutoRefresh = true;
+                         */
+                        this.CurrentQuotaToolStrip.Enabled = true;
                     }));
                 }
             }
@@ -92,7 +94,6 @@ namespace CleverStocker.Client.DockForms
             protected set
             {
                 this.currentQuota = value;
-
                 this.MainStockQuotaBaseControl.Quota = value;
             }
         }
@@ -221,6 +222,11 @@ namespace CleverStocker.Client.DockForms
                 var (_, quota) = await this.StockSpiderService.GetStockQuotaAsync(this.currentStock.Code, this.currentStock.Market);
 
                 this.CurrentQuota = quota;
+
+                if (quota != null)
+                {
+                    this.QuotaService.AddOrUpdate(quota);
+                }
             }
             catch (Exception ex)
             {

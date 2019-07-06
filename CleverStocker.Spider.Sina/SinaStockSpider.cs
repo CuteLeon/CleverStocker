@@ -124,7 +124,6 @@ namespace CleverStocker.Spider.Sina
             {
                 string request = $@"http://hq.sinajs.cn/list={marketCode}{code}";
                 var result = this.WebClient.DownloadString(request);
-
                 if (string.IsNullOrEmpty(result))
                 {
                     return default;
@@ -133,7 +132,7 @@ namespace CleverStocker.Spider.Sina
                 var match = QuotaRegex.Match(result);
                 if (!match.Success)
                 {
-                    return (null, null);
+                    return (default, default);
                 }
 
                 Stock stock = new Stock(code, market);
@@ -230,22 +229,34 @@ namespace CleverStocker.Spider.Sina
                 throw new ArgumentNullException();
             }
 
-            string request = $@"http://hq.sinajs.cn/list=s_{marketCode}{code}";
-            var result = this.WebClient.DownloadString(request);
-
-            if (string.IsNullOrEmpty(result))
+            try
             {
-                return default;
+                string request = $@"http://hq.sinajs.cn/list=s_{marketCode}{code}";
+                var result = this.WebClient.DownloadString(request);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return default;
+                }
+
+                var match = MarketQuotaRegex.Match(result);
+                if (!match.Success)
+                {
+                    return (default, default);
+                }
+
+                Stock stock = new Stock(code, market);
+                MarketQuota marketQuota = ConvertToMarketQuota(match);
+                stock.Name = marketQuota.Name;
+                marketQuota.Code = code;
+                marketQuota.Market = market;
+
+                return (stock, marketQuota);
             }
-
-            var match = MarketQuotaRegex.Match(result);
-            Stock stock = new Stock(code, market);
-            MarketQuota marketQuota = ConvertToMarketQuota(match);
-            stock.Name = marketQuota.Name;
-            marketQuota.Code = code;
-            marketQuota.Market = market;
-
-            return (stock, marketQuota);
+            catch (Exception ex)
+            {
+                LogHelper<SinaStockSpider>.ErrorException(ex, "获取大盘指数失败：");
+                throw;
+            }
         }
 
         /// <summary>
@@ -342,20 +353,32 @@ namespace CleverStocker.Spider.Sina
                 throw new ArgumentNullException();
             }
 
-            string request = $@"https://finance.sina.com.cn/otc/activity/{marketCode}{code}_info.js";
-            var result = this.WebClient.DownloadString(request);
-
-            if (string.IsNullOrEmpty(result))
+            try
             {
-                return default;
+                string request = $@"https://finance.sina.com.cn/otc/activity/{marketCode}{code}_info.js";
+                var result = this.WebClient.DownloadString(request);
+                if (string.IsNullOrEmpty(result))
+                {
+                    return default;
+                }
+
+                var match = CompanyRegex.Match(result);
+                if (!match.Success)
+                {
+                    return default;
+                }
+
+                Company company = ConvertToCompany(match);
+                company.Code = code;
+                company.Market = market;
+
+                return company;
             }
-
-            var match = CompanyRegex.Match(result);
-            Company company = ConvertToCompany(match);
-            company.Code = code;
-            company.Market = market;
-
-            return company;
+            catch (Exception ex)
+            {
+                LogHelper<SinaStockSpider>.ErrorException(ex, "获取公司信息失败：");
+                throw;
+            }
         }
 
         /// <summary>

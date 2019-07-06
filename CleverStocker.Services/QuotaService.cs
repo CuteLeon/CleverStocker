@@ -16,6 +16,9 @@ namespace CleverStocker.Services
         /// <param name="market"></param>
         /// <returns></returns>
         public Quota GetLastQuota(string code, Markets market)
-            => this.Context.Set<Quota>().OrderByDescending(stock => stock.UpdateTime).First();
+            => this.Context.Set<Quota>()
+                .Where(quota => quota.Code == code && quota.Market == market)
+                .OrderByDescending(stock => stock.UpdateTime)
+                .FirstOrDefault();
     }
 }
