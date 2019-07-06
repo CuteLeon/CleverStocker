@@ -75,7 +75,7 @@
             this.UpdateTimeValueLabel.Location = new System.Drawing.Point(90, 200);
             this.UpdateTimeValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.UpdateTimeValueLabel.Name = "UpdateTimeValueLabel";
-            this.UpdateTimeValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.UpdateTimeValueLabel.Size = new System.Drawing.Size(200, 20);
             this.UpdateTimeValueLabel.TabIndex = 25;
             this.UpdateTimeValueLabel.Text = "-";
             this.UpdateTimeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -101,7 +101,7 @@
             this.AmountValueLabel.Location = new System.Drawing.Point(90, 180);
             this.AmountValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.AmountValueLabel.Name = "AmountValueLabel";
-            this.AmountValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.AmountValueLabel.Size = new System.Drawing.Size(200, 20);
             this.AmountValueLabel.TabIndex = 23;
             this.AmountValueLabel.Text = "-";
             this.AmountValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -127,7 +127,7 @@
             this.CountValueLabel.Location = new System.Drawing.Point(90, 160);
             this.CountValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.CountValueLabel.Name = "CountValueLabel";
-            this.CountValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.CountValueLabel.Size = new System.Drawing.Size(200, 20);
             this.CountValueLabel.TabIndex = 21;
             this.CountValueLabel.Text = "-";
             this.CountValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,7 +153,7 @@
             this.DayLowPriceValueLabel.Location = new System.Drawing.Point(90, 140);
             this.DayLowPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.DayLowPriceValueLabel.Name = "DayLowPriceValueLabel";
-            this.DayLowPriceValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.DayLowPriceValueLabel.Size = new System.Drawing.Size(200, 20);
             this.DayLowPriceValueLabel.TabIndex = 19;
             this.DayLowPriceValueLabel.Text = "-";
             this.DayLowPriceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -179,7 +179,7 @@
             this.DayHighPriceValueLabel.Location = new System.Drawing.Point(90, 120);
             this.DayHighPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.DayHighPriceValueLabel.Name = "DayHighPriceValueLabel";
-            this.DayHighPriceValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.DayHighPriceValueLabel.Size = new System.Drawing.Size(200, 20);
             this.DayHighPriceValueLabel.TabIndex = 17;
             this.DayHighPriceValueLabel.Text = "-";
             this.DayHighPriceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,7 +192,7 @@
             this.OpeningPriceTodayValueLabel.Location = new System.Drawing.Point(90, 100);
             this.OpeningPriceTodayValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.OpeningPriceTodayValueLabel.Name = "OpeningPriceTodayValueLabel";
-            this.OpeningPriceTodayValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.OpeningPriceTodayValueLabel.Size = new System.Drawing.Size(200, 20);
             this.OpeningPriceTodayValueLabel.TabIndex = 15;
             this.OpeningPriceTodayValueLabel.Text = "-";
             this.OpeningPriceTodayValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -218,7 +218,7 @@
             this.ClosingPriceYesterdayValueLabel.Location = new System.Drawing.Point(90, 80);
             this.ClosingPriceYesterdayValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.ClosingPriceYesterdayValueLabel.Name = "ClosingPriceYesterdayValueLabel";
-            this.ClosingPriceYesterdayValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.ClosingPriceYesterdayValueLabel.Size = new System.Drawing.Size(200, 20);
             this.ClosingPriceYesterdayValueLabel.TabIndex = 13;
             this.ClosingPriceYesterdayValueLabel.Text = "-";
             this.ClosingPriceYesterdayValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -257,7 +257,7 @@
             this.CurrentPriceValueLabel.Location = new System.Drawing.Point(90, 60);
             this.CurrentPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.CurrentPriceValueLabel.Name = "CurrentPriceValueLabel";
-            this.CurrentPriceValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.CurrentPriceValueLabel.Size = new System.Drawing.Size(200, 20);
             this.CurrentPriceValueLabel.TabIndex = 11;
             this.CurrentPriceValueLabel.Text = "-";
             this.CurrentPriceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +270,7 @@
             this.StockNameValueLabel.Location = new System.Drawing.Point(90, 40);
             this.StockNameValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.StockNameValueLabel.Name = "StockNameValueLabel";
-            this.StockNameValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.StockNameValueLabel.Size = new System.Drawing.Size(200, 20);
             this.StockNameValueLabel.TabIndex = 10;
             this.StockNameValueLabel.Text = "-";
             this.StockNameValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -317,7 +317,7 @@
             this.MainTablePanel.Controls.Add(this.StockNameValueLabel, 1, 2);
             this.MainTablePanel.Controls.Add(this.StockNameLabel, 0, 2);
             this.MainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainTablePanel.Location = new System.Drawing.Point(0, 0);
+            this.MainTablePanel.Location = new System.Drawing.Point(3, 3);
             this.MainTablePanel.Name = "MainTablePanel";
             this.MainTablePanel.RowCount = 12;
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -332,7 +332,7 @@
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainTablePanel.Size = new System.Drawing.Size(234, 234);
+            this.MainTablePanel.Size = new System.Drawing.Size(290, 255);
             this.MainTablePanel.TabIndex = 1;
             // 
             // MarketValueLabel
@@ -343,7 +343,7 @@
             this.MarketValueLabel.Location = new System.Drawing.Point(90, 20);
             this.MarketValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.MarketValueLabel.Name = "MarketValueLabel";
-            this.MarketValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.MarketValueLabel.Size = new System.Drawing.Size(200, 20);
             this.MarketValueLabel.TabIndex = 30;
             this.MarketValueLabel.Text = "-";
             this.MarketValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -369,7 +369,7 @@
             this.CodeValueLabel.Location = new System.Drawing.Point(90, 0);
             this.CodeValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.CodeValueLabel.Name = "CodeValueLabel";
-            this.CodeValueLabel.Size = new System.Drawing.Size(144, 20);
+            this.CodeValueLabel.Size = new System.Drawing.Size(200, 20);
             this.CodeValueLabel.TabIndex = 28;
             this.CodeValueLabel.Text = "-";
             this.CodeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -393,7 +393,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MainTablePanel);
             this.Name = "StockQuotaBaseControl";
-            this.Size = new System.Drawing.Size(234, 234);
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(296, 261);
             this.MainTablePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
