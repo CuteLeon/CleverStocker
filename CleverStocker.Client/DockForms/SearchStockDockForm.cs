@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Common;
@@ -27,6 +26,11 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 股票爬虫服务
         /// </summary>
         protected IStockSpiderService StockSpiderService { get; set; }
+
+        /// <summary>
+        /// Gets or sets 行情服务
+        /// </summary>
+        protected IQuotaService QuotaService { get; set; }
         #endregion
 
         #region 属性
@@ -69,7 +73,21 @@ namespace CleverStocker.Client.DockForms
 
                 this.SearchToolStrip.Enabled = value != null;
                 this.MainStockQuotaBaseControl.Stock = value;
-                this.MainStockQuotaBaseControl.Quota = value?.Quotas?.FirstOrDefault();
+            }
+        }
+
+        private Quota currentQuota;
+
+        /// <summary>
+        /// Gets or sets 当前行情
+        /// </summary>
+        public Quota CurrentQuota
+        {
+            get => this.currentQuota;
+            protected set
+            {
+                this.currentQuota = value;
+                this.MainStockQuotaBaseControl.Quota = value;
             }
         }
         #endregion
@@ -96,6 +114,7 @@ namespace CleverStocker.Client.DockForms
 
             this.StockService = DIContainerHelper.Resolve<IStockService>();
             this.StockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            this.QuotaService = DIContainerHelper.Resolve<IQuotaService>();
         }
         #endregion
 
@@ -172,13 +191,15 @@ namespace CleverStocker.Client.DockForms
 
         private void SaveToolButton_Click(object sender, EventArgs e)
         {
-            if (this.currentStock == null)
+            if (this.currentStock != null)
             {
-                return;
+                this.StockService.AddOrUpdate(this.currentStock);
             }
 
-            // TODO: 保存行情，以时间和股票为组合主键
-            this.StockService.AddOrUpdate(this.currentStock);
+            if (this.currentQuota != null)
+            {
+                this.QuotaService.AddOrUpdate(this.currentQuota);
+            }
         }
 
         private void DeleteToolButton_Click(object sender, EventArgs e)
@@ -207,8 +228,10 @@ namespace CleverStocker.Client.DockForms
         /// <returns></returns>
         public async Task SearchStock(string code, Markets market)
         {
-            var (stock, _) = await this.StockSpiderService.GetStockQuotaAsync(code, market);
+            var (stock, quota) = await this.StockSpiderService.GetStockQuotaAsync(code, market);
+
             this.CurrentStock = stock;
+            this.CurrentQuota = quota;
         }
         #endregion
     }
