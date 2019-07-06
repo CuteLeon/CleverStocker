@@ -38,11 +38,6 @@ namespace CleverStocker.Model
         }
 
         /// <summary>
-        /// Gets or sets 更新时间
-        /// </summary>
-        public DateTime UpdateTime { get; set; }
-
-        /// <summary>
         /// Gets or sets 评级
         /// </summary>
         public string Rank { get; set; }

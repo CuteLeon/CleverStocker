@@ -38,11 +38,6 @@ namespace CleverStocker.Model
         }
 
         /// <summary>
-        /// Gets or sets 更新时间
-        /// </summary>
-        public DateTime UpdateTime { get; set; }
-
-        /// <summary>
         /// Gets or sets a value indicating whether 自选股票
         /// </summary>
         public bool IsSelfSelect { get; set; }
