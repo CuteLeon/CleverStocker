@@ -24,7 +24,7 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// 股票比较器
         /// </summary>
-        private readonly StockComparer stockComparer = new StockComparer();
+        private readonly StockBaseComparer<Stock> stockComparer = new StockBaseComparer<Stock>();
 
         /// <summary>
         /// Gets or sets mQ 订阅者
@@ -185,18 +185,12 @@ namespace CleverStocker.Client.DockForms
                     this.AddSelfSelectStock(stock);
                 }));
             }
-            else if (string.Equals(topic, MQTopics.TopicStockSelfSelectRemove, StringComparison.OrdinalIgnoreCase))
+            else if (string.Equals(topic, MQTopics.TopicStockSelfSelectRemove, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(topic, MQTopics.TopicStockRemove, StringComparison.OrdinalIgnoreCase))
             {
                 this.Invoke(new Action(() =>
                 {
                     this.RemoveSelfSelectStock(stock);
-                }));
-            }
-            else if (string.Equals(topic, MQTopics.TopicStockRemove, StringComparison.OrdinalIgnoreCase))
-            {
-                this.Invoke(new Action(() =>
-                {
-                    this.RemoveSelfSelectStockFormFace(stock);
                 }));
             }
         }
@@ -276,30 +270,12 @@ namespace CleverStocker.Client.DockForms
             }
 
             LogHelper<SelfSelectStockForm>.Debug($"移除自选股票：{this.currentStock.Market} - {this.currentStock.Code}");
-            this.StockService.RemoveSelfSelectStock(stock);
+            this.StockService.RemoveSelfSelectStock(stock.Code, stock.Market);
 
-            if (this.CheckDataSourceContains(stock))
+            var index = this.GetIndexInDataSource(stock);
+            if (index != null)
             {
-                this.SelfSelectStockBindingSource.Remove(stock);
-            }
-        }
-
-        /// <summary>
-        /// 移除自选股票
-        /// </summary>
-        /// <param name="stock"></param>
-        private void RemoveSelfSelectStockFormFace(Stock stock)
-        {
-            if (stock == null)
-            {
-                return;
-            }
-
-            LogHelper<SelfSelectStockForm>.Debug($"从界面移除自选股票：{this.currentStock.Market} - {this.currentStock.Code}");
-
-            if (this.CheckDataSourceContains(stock))
-            {
-                this.SelfSelectStockBindingSource.Remove(stock);
+                this.SelfSelectStockBindingSource.RemoveAt(index.Value);
             }
         }
 
@@ -329,8 +305,35 @@ namespace CleverStocker.Client.DockForms
         /// <param name="stock"></param>
         /// <returns></returns>
         private bool CheckDataSourceContains(Stock stock)
-            => (this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)
-                .Contains(stock, this.stockComparer);
+            => (this.SelfSelectStockBindingSource.DataSource as IEnumerable<Stock>)?
+                .Contains(stock, this.stockComparer) ?? false;
+
+        /// <summary>
+        /// 获取相同数据在数据源的下标
+        /// </summary>
+        /// <param name="stock"></param>
+        /// <returns></returns>
+        /// <remarks>使用下标进行数组操作可以获得O(1)时间复杂度的性能</remarks>
+        private int? GetIndexInDataSource(Stock stock)
+        {
+            if (!(this.SelfSelectStockBindingSource.DataSource is IEnumerable<Stock> sources))
+            {
+                return default;
+            }
+
+            int index = 0;
+            foreach (var current in sources)
+            {
+                if (this.stockComparer.Equals(stock, current))
+                {
+                    return index;
+                }
+
+                index++;
+            }
+
+            return default;
+        }
         #endregion
 
         #region 功能

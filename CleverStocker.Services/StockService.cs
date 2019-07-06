@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using CleverStocker.Model;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Services
 {
@@ -13,29 +14,27 @@ namespace CleverStocker.Services
         /// <summary>
         /// 移除自选股票
         /// </summary>
-        /// <param name="stock"></param>
-        public void RemoveSelfSelectStock(Stock stock)
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        public void RemoveSelfSelectStock(string code, Markets market)
         {
+            var stock = this.Find(code, market);
             if (stock == null)
             {
                 return;
             }
 
             stock.IsSelfSelect = false;
-            this.AddOrUpdate(stock);
+            this.SaveChanges();
         }
 
         /// <summary>
         /// 添加自选股票
         /// </summary>
         /// <param name="stock"></param>
+        /// <remarks>股票不存在时需要自动创建</remarks>
         public void AddSelfSelectStock(Stock stock)
         {
-            if (stock == null)
-            {
-                return;
-            }
-
             stock.IsSelfSelect = true;
             this.AddOrUpdate(stock);
         }

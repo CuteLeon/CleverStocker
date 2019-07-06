@@ -1,4 +1,5 @@
 ﻿using CleverStocker.Model;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Services
 {
@@ -7,5 +8,12 @@ namespace CleverStocker.Services
     /// </summary>
     public interface IQuotaService : IPersistService<Quota>
     {
+        /// <summary>
+        /// 获取最后一条行情
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        Quota GetLastQuota(string code, Markets market);
     }
 }

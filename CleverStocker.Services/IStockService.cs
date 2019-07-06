@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CleverStocker.Model;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Services
 {
@@ -11,8 +12,9 @@ namespace CleverStocker.Services
         /// <summary>
         /// 移除自选股票
         /// </summary>
-        /// <param name="stock"></param>
-        void RemoveSelfSelectStock(Stock stock);
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        void RemoveSelfSelectStock(string code, Markets market);
 
         /// <summary>
         /// 添加自选股票

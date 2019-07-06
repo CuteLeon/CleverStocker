@@ -7,9 +7,6 @@ using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Client.DockForms.FloatWindows;
 using CleverStocker.Client.Interfaces;
-using CleverStocker.Common;
-using CleverStocker.Model;
-using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 using WeifenLuo.WinFormsUI.Docking;
@@ -77,8 +74,11 @@ namespace CleverStocker.Client
             try
             {
                 this.GetStockQuota();
-                this.GetChart();
+                this.GetCompany();
+                this.GetStockMarketQuota();
+                this.GetRecentQuotas();
                 this.GetRecentTrades();
+                this.GetChart();
             }
             catch (Exception ex)
             {
@@ -97,28 +97,14 @@ namespace CleverStocker.Client
                 return;
             }
 
-            var stockService = DIContainerHelper.Resolve<IStockService>();
-            stockService.AddOrUpdate(stock);
-            stock = stockService.Find(stock.Code, stock.Market);
+            DIContainerHelper.Resolve<IStockService>().AddOrUpdate(stock);
+            DIContainerHelper.Resolve<IQuotaService>().AddOrUpdate(quota);
 
-            quota.Stock = stock;
-            stock.Quotas.Add(quota);
-
-            stockService.SaveChanges();
-
-            MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情ID：{quota.ID}");
+            MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情时间：{quota.UpdateTime}");
         }
 
         private void GetStockMarketQuota()
         {
-            /* <大盘指数>
-             * 上证指数：
-             * var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("000001", Markets.ShangHai);
-             * 深证成指：
-             * var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("399001", Markets.ShenZhen);
-             * 创业板指：
-             * var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("399006", Markets.ShenZhen);
-             */
             var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
             var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("600086", Markets.ShangHai);
 
@@ -128,16 +114,10 @@ namespace CleverStocker.Client
                 return;
             }
 
-            var stockService = DIContainerHelper.Resolve<IStockService>();
-            stockService.AddOrUpdate(stock);
-            stock = stockService.Find(stock.Code, stock.Market);
+            DIContainerHelper.Resolve<IStockService>().AddOrUpdate(stock);
+            DIContainerHelper.Resolve<IMarketQuotaService>().AddOrUpdate(marketQuote);
 
-            marketQuote.Stock = stock;
-            stock.MarketQuotas.Add(marketQuote);
-
-            stockService.SaveChanges();
-
-            MessageBox.Show($"获取股票大盘指数成功：\n股票简称：{stock.Name}\n大盘指数ID：{marketQuote.ID}");
+            MessageBox.Show($"获取股票大盘指数成功：\n股票简称：{stock.Name}\n大盘指数时间：{marketQuote.UpdateTime}");
         }
 
         private void GetChart()
@@ -170,16 +150,7 @@ namespace CleverStocker.Client
                 return;
             }
 
-            var stockService = DIContainerHelper.Resolve<IStockService>();
-            var stock = stockService.Find("600086", Markets.ShangHai);
-
-            if (stock.Company == null)
-            {
-                stock.Company = new Company();
-            }
-
-            company.CopyTo(stock.Company);
-            stockService.SaveChanges();
+            DIContainerHelper.Resolve<ICompanyService>().AddOrUpdate(company);
 
             MessageBox.Show($"获取公司信息成功：\n公司名称：{company.Position} - {company.Name}");
         }
@@ -196,7 +167,7 @@ namespace CleverStocker.Client
                 return;
             }
 
-            MessageBox.Show($"获取最近行情成功：\n行情数量：{quotas.Count}\n最新时间：{quotas.LastOrDefault()?.DateTime}\n最早时间：{quotas.FirstOrDefault()?.DateTime}");
+            MessageBox.Show($"获取最近行情成功：\n行情数量：{quotas.Count}\n最新时间：{quotas.LastOrDefault()?.UpdateTime}\n最早时间：{quotas.FirstOrDefault()?.UpdateTime}");
         }
 
         private void GetRecentTrades()
@@ -211,7 +182,7 @@ namespace CleverStocker.Client
                 return;
             }
 
-            MessageBox.Show($"获取最近交易成功：\n交易数量：{trades.Count}\n最新时间：{trades.LastOrDefault()?.DateTime}\n最早时间：{trades.FirstOrDefault()?.DateTime}");
+            MessageBox.Show($"获取最近交易成功：\n交易数量：{trades.Count}\n最新时间：{trades.LastOrDefault()?.UpdateTime}\n最早时间：{trades.FirstOrDefault()?.UpdateTime}");
         }
         #endregion
 
