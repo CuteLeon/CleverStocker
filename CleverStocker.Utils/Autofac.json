@@ -35,6 +35,42 @@
         }
       ],
       "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.Services.CompanyService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.ICompanyService, CleverStocker.Services"
+        }
+      ],
+      "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.Services.MarketQuotaService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IMarketQuotaService, CleverStocker.Services"
+        }
+      ],
+      "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.Services.RecentQuotaService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IRecentQuotaService, CleverStocker.Services"
+        }
+      ],
+      "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.Services.TradeService, CleverStocker.Services",
+      "services": [
+        {
+          "type": "CleverStocker.Services.ITradeService, CleverStocker.Services"
+        }
+      ],
+      "instanceScope": "single-instance"
     }
   ]
 }
