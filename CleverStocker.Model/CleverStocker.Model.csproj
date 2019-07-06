@@ -45,16 +45,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Company.cs" />
-    <Compile Include="Comparers\MarketQuotaComparer.cs" />
-    <Compile Include="Comparers\QuotaComparer.cs" />
-    <Compile Include="Comparers\StockComparer.cs" />
+    <Compile Include="Comparers\StockTimelyBaseComparer.cs" />
+    <Compile Include="Comparers\StockBaseComparer.cs" />
     <Compile Include="Extensions\StockExtension.cs" />
-    <Compile Include="ICopyable.cs" />
     <Compile Include="MarketQuota.cs" />
     <Compile Include="Quota.cs" />
     <Compile Include="RecentQuota.cs" />
     <Compile Include="Stock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockBase.cs" />
+    <Compile Include="StockTimelyBase.cs" />
     <Compile Include="Trade.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,5 +75,6 @@
       <Name>CleverStocker.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

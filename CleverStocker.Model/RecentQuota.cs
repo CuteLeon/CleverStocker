@@ -1,23 +1,41 @@
 ﻿using System;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
 {
     /// <summary>
     /// 最近行情
     /// </summary>
-    public class RecentQuota
+    public class RecentQuota : StockTimelyBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentQuota"/> class.
         /// </summary>
         public RecentQuota()
+            : base()
         {
         }
 
         /// <summary>
-        /// Gets or sets 日期时间
+        /// Initializes a new instance of the <see cref="RecentQuota"/> class.
         /// </summary>
-        public DateTime DateTime { get; set; }
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        public RecentQuota(string code, Markets market)
+            : base(code, market)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecentQuota"/> class.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="updateTime"></param>
+        public RecentQuota(string code, Markets market, DateTime updateTime)
+            : base(code, market, updateTime)
+        {
+        }
 
         /// <summary>
         /// Gets or sets 开盘价格 (元)

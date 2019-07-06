@@ -4,9 +4,11 @@ using System.Collections.Generic;
 namespace CleverStocker.Model.Comparers
 {
     /// <summary>
-    /// 股票比较器
+    /// 股票基类比较器
     /// </summary>
-    public class StockComparer : IEqualityComparer<Stock>, IComparer<Stock>
+    /// <typeparam name="TStockBase">股票基类</typeparam>
+    public class StockBaseComparer<TStockBase> : IEqualityComparer<TStockBase>, IComparer<TStockBase>
+        where TStockBase : StockBase
     {
         /// <summary>
         /// 比较大小
@@ -14,7 +16,7 @@ namespace CleverStocker.Model.Comparers
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public int Compare(Stock x, Stock y)
+        public virtual int Compare(TStockBase x, TStockBase y)
         {
             if (x?.Market == y?.Market)
             {
@@ -32,7 +34,7 @@ namespace CleverStocker.Model.Comparers
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public bool Equals(Stock x, Stock y)
+        public virtual bool Equals(TStockBase x, TStockBase y)
         => ReferenceEquals(x, y) ||
             (string.Compare(x?.Code, y?.Code, StringComparison.OrdinalIgnoreCase) == 0 &&
             x?.Market == y?.Market);
@@ -42,7 +44,7 @@ namespace CleverStocker.Model.Comparers
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public int GetHashCode(Stock obj)
+        public virtual int GetHashCode(TStockBase obj)
             => obj.GetHashCode();
     }
 }

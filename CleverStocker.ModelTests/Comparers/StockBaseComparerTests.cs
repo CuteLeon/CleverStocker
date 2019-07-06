@@ -4,12 +4,12 @@ using static CleverStocker.Common.CommonStandard;
 namespace CleverStocker.Model.Comparers.Tests
 {
     [TestClass()]
-    public class StockComparerTests
+    public class StockBaseComparerTests
     {
         [TestMethod()]
         public void EqualsTest()
         {
-            StockComparer comparer = new StockComparer();
+            var comparer = new StockBaseComparer<Stock>();
             Stock stock1 = new Stock();
             Stock stock2 = new Stock();
 

@@ -6,19 +6,36 @@ namespace CleverStocker.Model
     /// <summary>
     /// 交易
     /// </summary>
-    public class Trade
+    public class Trade : StockTimelyBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Trade"/> class.
         /// </summary>
         public Trade()
+            : base()
         {
         }
 
         /// <summary>
-        /// Gets or sets 日期时间
+        /// Initializes a new instance of the <see cref="Trade"/> class.
         /// </summary>
-        public DateTime DateTime { get; set; }
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        public Trade(string code, Markets market)
+            : base(code, market)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Trade"/> class.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="updateTime"></param>
+        public Trade(string code, Markets market, DateTime updateTime)
+            : base(code, market, updateTime)
+        {
+        }
 
         /// <summary>
         /// Gets or sets 交易方向

@@ -1,26 +1,41 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
 {
     /// <summary>
     /// 公司
     /// </summary>
-    public class Company : ICopyable<Company>
+    public class Company : StockTimelyBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
         public Company()
+            : base()
         {
         }
 
         /// <summary>
-        /// Gets or sets iD
+        /// Initializes a new instance of the <see cref="Company"/> class.
         /// </summary>
-        [Key]
-        [Required]
-        public string ID { get; set; } = Guid.NewGuid().ToString("N");
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        public Company(string code, Markets market)
+            : base(code, market)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Company"/> class.
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="updateTime"></param>
+        public Company(string code, Markets market, DateTime updateTime)
+            : base(code, market, updateTime)
+        {
+        }
 
         /// <summary>
         /// Gets or sets 评级
@@ -61,32 +76,5 @@ namespace CleverStocker.Model
         /// Gets or sets 状态
         /// </summary>
         public string Status { get; set; }
-
-        /// <summary>
-        /// Gets or sets 更新时间
-        /// </summary>
-        public DateTime UpdateTime { get; set; }
-
-        /// <summary>
-        /// 复制
-        /// </summary>
-        /// <param name="entity"></param>
-        public void CopyTo(Company entity)
-        {
-            if (entity == null)
-            {
-                entity = new Company();
-            }
-
-            entity.Brief = this.Brief;
-            entity.Industry = this.Industry;
-            entity.Name = this.Name;
-            entity.Position = this.Position;
-            entity.Rank = this.Rank;
-            entity.Status = this.Status;
-            entity.Summary = this.Summary;
-            entity.UpdateTime = this.UpdateTime;
-            entity.Vote = this.Vote;
-        }
     }
 }

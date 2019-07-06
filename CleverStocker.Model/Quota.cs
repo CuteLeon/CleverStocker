@@ -1,42 +1,41 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
 {
     /// <summary>
     /// 行情
     /// </summary>
-    public class Quota
+    public class Quota : StockTimelyBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Quota"/> class.
         /// </summary>
         public Quota()
+            : base()
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Quota"/> class.
         /// </summary>
-        /// <param name="stock"></param>
-        public Quota(Stock stock)
-            : this()
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        public Quota(string code, Markets market)
+            : base(code, market)
         {
-            this.Stock = stock;
         }
 
         /// <summary>
-        /// Gets or sets iD
+        /// Initializes a new instance of the <see cref="Quota"/> class.
         /// </summary>
-        [Key]
-        [Required]
-        public string ID { get; set; } = Guid.NewGuid().ToString("N");
-
-        /// <summary>
-        /// Gets or sets 股票
-        /// </summary>
-        [Required]
-        public virtual Stock Stock { get; set; }
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="updateTime"></param>
+        public Quota(string code, Markets market, DateTime updateTime)
+            : base(code, market, updateTime)
+        {
+        }
 
         #region 基本行情
 
@@ -188,10 +187,5 @@ namespace CleverStocker.Model
         /// </summary>
         public double SellPrice5 { get; set; } = double.NaN;
         #endregion
-
-        /// <summary>
-        /// Gets or sets 更新时间
-        /// </summary>
-        public DateTime UpdateTime { get; set; }
     }
 }

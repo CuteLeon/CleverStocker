@@ -1,42 +1,41 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
 {
     /// <summary>
     /// 大盘指数
     /// </summary>
-    public class MarketQuota
+    public class MarketQuota : StockTimelyBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MarketQuota"/> class.
         /// </summary>
         public MarketQuota()
+            : base()
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarketQuota"/> class.
         /// </summary>
-        /// <param name="stock"></param>
-        public MarketQuota(Stock stock)
-            : this()
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        public MarketQuota(string code, Markets market)
+            : base(code, market)
         {
-            this.Stock = stock;
         }
 
         /// <summary>
-        /// Gets or sets iD
+        /// Initializes a new instance of the <see cref="MarketQuota"/> class.
         /// </summary>
-        [Key]
-        [Required]
-        public string ID { get; set; } = Guid.NewGuid().ToString("N");
-
-        /// <summary>
-        /// Gets or sets 股票
-        /// </summary>
-        [Required]
-        public virtual Stock Stock { get; set; }
+        /// <param name="code"></param>
+        /// <param name="market"></param>
+        /// <param name="updateTime"></param>
+        public MarketQuota(string code, Markets market, DateTime updateTime)
+            : base(code, market, updateTime)
+        {
+        }
 
         #region 大盘指数
 
@@ -65,10 +64,5 @@ namespace CleverStocker.Model
         /// </summary>
         public long Amount { get; set; } = -1L;
         #endregion
-
-        /// <summary>
-        /// Gets or sets 更新时间
-        /// </summary>
-        public DateTime UpdateTime { get; set; }
     }
 }
