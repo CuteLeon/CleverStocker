@@ -49,6 +49,11 @@ namespace CleverStocker.Model
         {
         }
 
+        /// <summary>
+        /// Gets or sets 股票
+        /// </summary>
+        public virtual Stock Stock { get; set; }
+
         #region 大盘指数
 
         /// <summary>

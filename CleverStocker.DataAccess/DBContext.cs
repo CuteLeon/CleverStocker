@@ -43,19 +43,24 @@ namespace CleverStocker.DataAccess
         public DbSet<RecentQuota> RecentQuotas { get; set; }
 
         /// <summary>
-        /// Gets or sets 交易
-        /// </summary>
-        public DbSet<Trade> Trades { get; set; }
-
-        /// <summary>
         /// 模型配置
         /// </summary>
         /// <param name="modelBuilder"></param>
+        /// <remarks>
+        /// 为实体配置索引以加快查询速度
+        /// </remarks>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Stock>().HasIndex(stock => new { stock.Market, stock.Code }).IsUnique();
+            modelBuilder.Entity<Stock>().HasOptional(stock => stock.Company);
+            modelBuilder.Entity<Company>().HasRequired(company => company.Stock);
+
+            modelBuilder.Entity<Stock>().HasIndex(stock => new { stock.Code, stock.Market }).HasName($"{nameof(Stock)}_Index").IsUnique();
+            modelBuilder.Entity<Company>().HasIndex(company => new { company.Code, company.Market }).HasName($"{nameof(Company)}_Index").IsUnique();
+            modelBuilder.Entity<Quota>().HasIndex(quota => new { quota.Code, quota.Market, quota.UpdateTime }).HasName($"{nameof(Quota)}_Index").IsUnique();
+            modelBuilder.Entity<RecentQuota>().HasIndex(recentQuota => new { recentQuota.Code, recentQuota.Market, recentQuota.UpdateTime }).HasName($"{nameof(RecentQuota)}_Index").IsUnique();
+            modelBuilder.Entity<MarketQuota>().HasIndex(marketQuota => new { marketQuota.Code, marketQuota.Market, marketQuota.UpdateTime }).HasName($"{nameof(MarketQuota)}_Index").IsUnique();
 
             Database.SetInitializer(new DataSeed(modelBuilder));
         }

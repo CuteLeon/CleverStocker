@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
@@ -41,5 +41,28 @@ namespace CleverStocker.Model
         /// Gets or sets a value indicating whether 自选股票
         /// </summary>
         public bool IsSelfSelect { get; set; }
+
+        #region 关联实体
+
+        /// <summary>
+        /// Gets or sets 公司
+        /// </summary>
+        public virtual Company Company { get; set; }
+
+        /// <summary>
+        /// Gets or sets 行情
+        /// </summary>
+        public virtual List<Quota> Quotas { get; set; } = new List<Quota>();
+
+        /// <summary>
+        /// Gets or sets 大盘指数
+        /// </summary>
+        public virtual List<MarketQuota> MarketQuotas { get; set; } = new List<MarketQuota>();
+
+        /// <summary>
+        /// Gets or sets 最近行情
+        /// </summary>
+        public virtual List<RecentQuota> RecentQuotas { get; set; } = new List<RecentQuota>();
+        #endregion
     }
 }

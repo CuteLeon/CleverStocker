@@ -50,6 +50,11 @@ namespace CleverStocker.Model
         }
 
         /// <summary>
+        /// Gets or sets 股票
+        /// </summary>
+        public virtual Stock Stock { get; set; }
+
+        /// <summary>
         /// Gets or sets 开盘价格 (元)
         /// </summary>
         public double OpenningPrice { get; set; }

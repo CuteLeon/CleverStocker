@@ -1,5 +1,4 @@
-﻿using System;
-using static CleverStocker.Common.CommonStandard;
+﻿using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
 {
@@ -36,6 +35,11 @@ namespace CleverStocker.Model
             : base(code, market, name)
         {
         }
+
+        /// <summary>
+        /// Gets or sets 股票
+        /// </summary>
+        public virtual Stock Stock { get; set; }
 
         /// <summary>
         /// Gets or sets 评级
