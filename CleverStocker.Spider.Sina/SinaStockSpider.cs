@@ -18,6 +18,8 @@ namespace CleverStocker.Spider.Sina
     /// </summary>
     public class SinaStockSpider : SpiderClientBase, IStockSpiderService
     {
+        #region 正则表达式
+
         /// <summary>
         /// Gets 行情正则表达式
         /// </summary>
@@ -73,6 +75,9 @@ namespace CleverStocker.Spider.Sina
         public static Regex TradeByPriceRegex { get; } = new Regex(
             @"_list\[\d+\]\s=\snew\sArray\(\'(?<Price>[\d\.]+?)\',\s\'(?<Count>\d+?)\',\s\'(?<Rate>[\d\.]+?)%\'\);",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+        #endregion
+
+        #region 请求路径
 
         /// <summary>
         /// 图表请求路径集合
@@ -95,38 +100,9 @@ namespace CleverStocker.Spider.Sina
             { TradeListTypes.ByPrice, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/cn_price_list.php?symbol={0}&num={1}" },
             { TradeListTypes.ByMinute, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/vML_DataList.php?asc=j&symbol={0}&num={1}" },
         };
+        #endregion
 
-        /// <summary>
-        /// 获取交易列表正则表达式
-        /// </summary>
-        /// <param name="tradeListType"></param>
-        /// <returns></returns>
-        public static (Regex, Func<Match, Trade>) GetTradeListRegexConvertor(TradeListTypes tradeListType)
-        {
-            switch (tradeListType)
-            {
-                case TradeListTypes.All:
-                case TradeListTypes.Block:
-                    {
-                        return (AllBlockTradeRegex, ConvertToTradeAllBlock);
-                    }
-
-                case TradeListTypes.ByMinute:
-                    {
-                        return (TradeByMinuteRegex, ConvertToTradeMinute);
-                    }
-
-                case TradeListTypes.ByPrice:
-                    {
-                        return (TradeByPriceRegex, ConvertToTradePrice);
-                    }
-
-                default:
-                    {
-                        return default;
-                    }
-            }
-        }
+        #region 行情
 
         /// <summary>
         /// 获取股票行情
@@ -161,7 +137,10 @@ namespace CleverStocker.Spider.Sina
                 }
 
                 Stock stock = new Stock(code, market);
-                Quota quota = ConvertToQuota(match, ref stock);
+                Quota quota = ConvertToQuota(match);
+                stock.Name = quota.Name;
+                quota.Code = code;
+                quota.Market = market;
 
                 return (stock, quota);
             }
@@ -176,30 +155,17 @@ namespace CleverStocker.Spider.Sina
         /// 正则匹配转换为行情
         /// </summary>
         /// <param name="match"></param>
-        /// <param name="stock"></param>
         /// <returns></returns>
         /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
-        public static Quota ConvertToQuota(Match match, ref Stock stock)
+        public static Quota ConvertToQuota(Match match)
         {
             if (!match.Success)
             {
                 return default;
             }
 
-            if (stock == null)
-            {
-                throw new ArgumentNullException(nameof(stock));
-            }
-
-            if (stock.Quotas == null)
-            {
-                stock.Quotas = new List<Quota>();
-            }
-
-            Quota quota = new Quota(stock);
-            stock.Quotas.Add(quota);
-
-            stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
+            Quota quota = new Quota();
+            quota.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
             quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
@@ -233,7 +199,6 @@ namespace CleverStocker.Spider.Sina
             quota.SellStrand5 = match.TryGetValue("Strand10", out value) ? ConverterHelper.StringToLong(value) : -1L;
             quota.SellPrice5 = match.TryGetValue("Quote10", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
-            stock.UpdateTime = quota.UpdateTime;
 
             return quota;
         }
@@ -246,6 +211,9 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockQuota(code, market));
+        #endregion
+
+        #region 大盘指数
 
         /// <summary>
         /// 获取股票大盘指数
@@ -272,7 +240,10 @@ namespace CleverStocker.Spider.Sina
 
             var match = MarketQuotaRegex.Match(result);
             Stock stock = new Stock(code, market);
-            MarketQuota marketQuota = ConvertToMarketQuota(match, ref stock);
+            MarketQuota marketQuota = ConvertToMarketQuota(match);
+            stock.Name = marketQuota.Name;
+            marketQuota.Code = code;
+            marketQuota.Market = market;
 
             return (stock, marketQuota);
         }
@@ -281,43 +252,23 @@ namespace CleverStocker.Spider.Sina
         /// 正则匹配转换为大盘指数
         /// </summary>
         /// <param name="match"></param>
-        /// <param name="stock"></param>
         /// <returns></returns>
         /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
-        public static MarketQuota ConvertToMarketQuota(Match match, ref Stock stock)
+        public static MarketQuota ConvertToMarketQuota(Match match)
         {
             if (!match.Success)
             {
                 return default;
             }
 
-            if (stock == null)
-            {
-                throw new ArgumentNullException(nameof(stock));
-            }
-
-            if (stock.Quotas == null)
-            {
-                stock.Quotas = new List<Quota>();
-            }
-
-            if (stock.MarketQuotas == null)
-            {
-                stock.MarketQuotas = new List<MarketQuota>();
-            }
-
-            MarketQuota marketQuota = new MarketQuota(stock);
-            stock.MarketQuotas.Add(marketQuota);
-
-            stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
+            MarketQuota marketQuota = new MarketQuota();
+            marketQuota.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
             marketQuota.CurrentPrice = match.TryGetValue("Price", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             marketQuota.FluctuatingRange = match.TryGetValue("Range", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             marketQuota.FluctuatingRate = match.TryGetValue("Rate", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             marketQuota.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
             marketQuota.Amount = match.TryGetValue("Amount", out value) ? ConverterHelper.StringToLong(value) : -1L;
-
             marketQuota.UpdateTime = DateTime.Now;
-            stock.UpdateTime = marketQuota.UpdateTime;
 
             return marketQuota;
         }
@@ -330,6 +281,9 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockMarketQuota(code, market));
+        #endregion
+
+        #region 图表
 
         /// <summary>
         /// 获取图表
@@ -369,6 +323,9 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<Image> GetChartAsync(string code, Markets market, Charts chart)
             => await Task.Factory.StartNew(() => this.GetChart(code, market, chart));
+        #endregion
+
+        #region 公司信息
 
         /// <summary>
         /// 获取公司信息
@@ -395,6 +352,8 @@ namespace CleverStocker.Spider.Sina
 
             var match = CompanyRegex.Match(result);
             Company company = ConvertToCompany(match);
+            company.Code = code;
+            company.Market = market;
 
             return company;
         }
@@ -411,11 +370,7 @@ namespace CleverStocker.Spider.Sina
                 return default;
             }
 
-            Company company = new Company()
-            {
-                UpdateTime = DateTime.Now,
-            };
-
+            Company company = new Company();
             company.Name = match.TryGetValue("Name", out string value) ? Regex.Unescape(value) : string.Empty;
             company.Position = match.TryGetValue("Position", out value) ? Regex.Unescape(value) : string.Empty;
             company.Industry = match.TryGetValue("Industry", out value) ? Regex.Unescape(value) : string.Empty;
@@ -436,6 +391,9 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<Company> GetCompanyAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetCompany(code, market));
+        #endregion
+
+        #region 最近行情
 
         /// <summary>
         /// 获取最近行情
@@ -478,7 +436,14 @@ namespace CleverStocker.Spider.Sina
             recentQuotas.AddRange(
                 RecentQuotaRegex.Matches(result)
                     .Cast<Match>()
-                    .Select(match => ConvertToRecentQuota(match)));
+                    .Select(match => ConvertToRecentQuota(match))
+                    .Where(quota => quota != null));
+
+            recentQuotas.ForEach(quota =>
+            {
+                quota.Code = code;
+                quota.Market = market;
+            });
 
             return recentQuotas;
         }
@@ -496,7 +461,7 @@ namespace CleverStocker.Spider.Sina
             }
 
             RecentQuota recentQuota = new RecentQuota();
-            recentQuota.DateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+            recentQuota.UpdateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
             recentQuota.OpenningPrice = match.TryGetValue("Openning", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             recentQuota.HighestPrice = match.TryGetValue("Highest", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             recentQuota.LowestPrice = match.TryGetValue("Lowest", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
@@ -516,6 +481,9 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<List<RecentQuota>> GetRecentQuotasAsync(string code, Markets market, TimeScales timeScale, int count)
             => await Task.Factory.StartNew(() => this.GetRecentQuotas(code, market, timeScale, count));
+        #endregion
+
+        #region 最近交易
 
         /// <summary>
         /// 获取最近交易
@@ -553,9 +521,48 @@ namespace CleverStocker.Spider.Sina
 
             trades.AddRange(
                 regex.Matches(result).Cast<Match>()
-                .Select(convertor));
+                .Select(convertor)
+                .Where(trade => trade != null));
+
+            trades.ForEach(trade =>
+            {
+                trade.Code = code;
+                trade.Market = market;
+            });
 
             return trades;
+        }
+
+        /// <summary>
+        /// 获取交易列表正则表达式
+        /// </summary>
+        /// <param name="tradeListType"></param>
+        /// <returns></returns>
+        public static (Regex, Func<Match, Trade>) GetTradeListRegexConvertor(TradeListTypes tradeListType)
+        {
+            switch (tradeListType)
+            {
+                case TradeListTypes.All:
+                case TradeListTypes.Block:
+                    {
+                        return (AllBlockTradeRegex, ConvertToTradeAllBlock);
+                    }
+
+                case TradeListTypes.ByMinute:
+                    {
+                        return (TradeByMinuteRegex, ConvertToTradeMinute);
+                    }
+
+                case TradeListTypes.ByPrice:
+                    {
+                        return (TradeByPriceRegex, ConvertToTradePrice);
+                    }
+
+                default:
+                    {
+                        return default;
+                    }
+            }
         }
 
         /// <summary>
@@ -570,7 +577,7 @@ namespace CleverStocker.Spider.Sina
             }
 
             Trade trade = new Trade();
-            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+            trade.UpdateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
             trade.Price = match.TryGetValue("Price", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             trade.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
             trade.TradeType = match.TryGetValue("Type", out value) && string.Equals(value, "UP", StringComparison.OrdinalIgnoreCase) ? TradeTypes.Buy : TradeTypes.Sell;
@@ -590,7 +597,7 @@ namespace CleverStocker.Spider.Sina
             }
 
             Trade trade = new Trade();
-            trade.DateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+            trade.UpdateTime = match.TryGetValue("DateTime", out string value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
             trade.Price = match.TryGetValue("Price", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             trade.Count = match.TryGetValue("Count", out value) ? ConverterHelper.StringToLong(value) : -1L;
 
@@ -626,5 +633,6 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<List<Trade>> GetRecentTradesAsync(string code, Markets markets, TradeListTypes tradeListType, int count)
             => await Task.Factory.StartNew(() => this.GetRecentTrades(code, markets, tradeListType, count));
+        #endregion
     }
 }

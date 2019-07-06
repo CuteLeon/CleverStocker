@@ -18,10 +18,9 @@ namespace CleverStocker.Spider.Sina.Tests
             var match = SinaStockSpider.QuotaRegex.Match(response);
             Assert.IsTrue(match.Success);
 
-            var stock = new Stock("6000086", Markets.ShangHai);
-            Quota quota = SinaStockSpider.ConvertToQuota(match, ref stock);
+            Quota quota = SinaStockSpider.ConvertToQuota(match);
 
-            Assert.AreEqual("东方金钰", stock.Name);
+            Assert.AreEqual("东方金钰", quota.Name);
             Assert.AreEqual(4.380, quota.OpeningPriceToday);
             Assert.AreEqual(4.510, quota.ClosingPriceYesterday);
             Assert.AreEqual(4.490, quota.CurrentPrice);
@@ -64,17 +63,14 @@ namespace CleverStocker.Spider.Sina.Tests
             var match = SinaStockSpider.MarketQuotaRegex.Match(response);
             Assert.IsTrue(match.Success);
 
-            var stock = new Stock("6000086", Markets.ShangHai);
-            MarketQuota marketQuota = SinaStockSpider.ConvertToMarketQuota(match, ref stock);
+            MarketQuota marketQuota = SinaStockSpider.ConvertToMarketQuota(match);
 
-            Assert.AreEqual("东方金钰", stock.Name);
+            Assert.AreEqual("东方金钰", marketQuota.Name);
             Assert.AreEqual(4.450, marketQuota.CurrentPrice);
             Assert.AreEqual(-0.06, marketQuota.FluctuatingRange);
             Assert.AreEqual(-1.33, marketQuota.FluctuatingRate);
             Assert.AreEqual(807121, marketQuota.Count);
             Assert.AreEqual(35918, marketQuota.Amount);
-            Assert.AreEqual(stock.UpdateTime, marketQuota.UpdateTime);
-            Assert.IsTrue(stock.UpdateTime.Subtract(DateTime.Now) < TimeSpan.FromSeconds(5));
         }
 
         [TestMethod()]
@@ -120,7 +116,7 @@ regexflag([{""day"":""2019-06-28 14:10:00"",""open"":""4.450"",""high"":""4.450"
 
             var recentQuota = recentQuotas[0];
 
-            Assert.AreEqual(new DateTime(2019, 6, 28, 14, 10, 00), recentQuota.DateTime);
+            Assert.AreEqual(new DateTime(2019, 6, 28, 14, 10, 00), recentQuota.UpdateTime);
             Assert.AreEqual(4.450, recentQuota.OpenningPrice);
             Assert.AreEqual(4.450, recentQuota.HighestPrice);
             Assert.AreEqual(4.440, recentQuota.LowestPrice);
@@ -142,7 +138,7 @@ var bill_detail_list = new Array();
             var trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
 
             Assert.AreEqual(3, trades.Count);
-            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].DateTime);
+            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].UpdateTime);
             Assert.AreEqual(1229455, trades[0].Count);
             Assert.AreEqual(4.4, trades[0].Price);
             Assert.AreEqual(TradeTypes.Buy, trades[0].TradeType);
@@ -159,7 +155,7 @@ var bill_detail_list = new Array();
             trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
 
             Assert.AreEqual(3, trades.Count);
-            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].DateTime);
+            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].UpdateTime);
             Assert.AreEqual(1229455, trades[0].Count);
             Assert.AreEqual(4.4, trades[0].Price);
             Assert.AreEqual(TradeTypes.Buy, trades[0].TradeType);
@@ -170,7 +166,7 @@ var bill_detail_list = new Array();
             trades = regex.Matches(response).Cast<Match>().Select(convertor).ToList();
 
             Assert.AreEqual(3, trades.Count);
-            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].DateTime);
+            Assert.AreEqual(DateTime.Now.Date.Add(new TimeSpan(15, 0, 0)), trades[0].UpdateTime);
             Assert.AreEqual(4.4, trades[0].Price);
             Assert.AreEqual(1229455, trades[0].Count);
 
