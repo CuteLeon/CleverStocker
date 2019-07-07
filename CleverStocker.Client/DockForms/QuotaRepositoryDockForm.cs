@@ -127,6 +127,7 @@ namespace CleverStocker.Client.DockForms
             this.QuotaRepositoryGridView.BackgroundColor = this.BackColor;
             this.QuotaRepositoryGridView.RowHeadersDefaultCellStyle.BackColor = this.BackColor;
             this.QuotaRepositoryGridView.RowTemplate.DefaultCellStyle.BackColor = this.BackColor;
+            this.QuotaRepositoryGridView.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             this.QuotaRepositoryGridView.RowTemplate.DefaultCellStyle.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
             this.QuotaRepositoryGridView.RowTemplate.DefaultCellStyle.ForeColor = ThemeHelper.GetContentForecolor();
             this.QuotaRepositoryGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = ThemeHelper.GetContentHighLightBackcolor();

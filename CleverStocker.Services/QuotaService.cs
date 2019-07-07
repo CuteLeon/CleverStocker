@@ -46,6 +46,7 @@ namespace CleverStocker.Services
                 quotas = quotas.Where(quota => quota.UpdateTime <= endDate);
             }
 
+            quotas = quotas.OrderByDescending(quota => quota.UpdateTime);
             return quotas.ToList();
         }
     }
