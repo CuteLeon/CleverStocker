@@ -349,7 +349,7 @@ namespace CleverStocker.Client.DockForms
                 return;
             }
 
-            dockForm.Show(this.Pane, this);
+            dockForm.Show(this.DockPanel);
         }
         #endregion
 

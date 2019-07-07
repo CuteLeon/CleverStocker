@@ -7,7 +7,6 @@ using CleverStocker.Model;
 using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
 using CleverStocker.Utils;
-using WeifenLuo.WinFormsUI.Docking;
 
 namespace CleverStocker.Client.DockForms
 {
@@ -291,7 +290,6 @@ namespace CleverStocker.Client.DockForms
         private void CurrentQuotaForm_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
             this.AutoRefreshTimer.Stop();
-
             this.Subscriber?.Dispose();
         }
         #endregion
