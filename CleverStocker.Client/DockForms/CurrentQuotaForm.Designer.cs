@@ -33,8 +33,8 @@
             this.AutoRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.CurrentQuotaToolStrip = new System.Windows.Forms.ToolStrip();
             this.AutoRefreshToolButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
             this.CurrentQuotaToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -80,11 +80,6 @@
             this.AutoRefreshToolButton.Text = "自动刷新行情";
             this.AutoRefreshToolButton.CheckedChanged += new System.EventHandler(this.AutoRefreshToolButton_CheckedChanged);
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // RefreshToolButton
             // 
             this.RefreshToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -94,6 +89,11 @@
             this.RefreshToolButton.Size = new System.Drawing.Size(23, 22);
             this.RefreshToolButton.Text = "立即刷新行情";
             this.RefreshToolButton.Click += new System.EventHandler(this.RefreshToolButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // QuotaRepositoryToolButton
             // 
@@ -113,6 +113,7 @@
             this.Controls.Add(this.CurrentQuotaToolStrip);
             this.Controls.Add(this.MainStockQuotaBaseControl);
             this.Name = "CurrentQuotaForm";
+            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight;
             this.TabText = "实时行情";
             this.Text = "实时行情";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CurrentQuotaForm_FormClosed);

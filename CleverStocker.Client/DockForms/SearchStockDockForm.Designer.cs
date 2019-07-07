@@ -41,7 +41,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveToolButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteToolButton = new System.Windows.Forms.ToolStripButton();
-            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaControl();
+            this.MainStockQuotaControl = new CleverStocker.Client.Controls.StockQuotaControl();
             this.MainTablePanel.SuspendLayout();
             this.SearchToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,7 @@
             this.MainTablePanel.Controls.Add(this.CodeTextBox, 1, 0);
             this.MainTablePanel.Controls.Add(this.SearchButton, 0, 2);
             this.MainTablePanel.Controls.Add(this.SearchToolStrip, 0, 3);
-            this.MainTablePanel.Controls.Add(this.MainStockQuotaBaseControl, 0, 4);
+            this.MainTablePanel.Controls.Add(this.MainStockQuotaControl, 0, 4);
             this.MainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTablePanel.Location = new System.Drawing.Point(0, 0);
             this.MainTablePanel.Name = "MainTablePanel";
@@ -217,17 +217,17 @@
             this.DeleteToolButton.Text = "删除";
             this.DeleteToolButton.Click += new System.EventHandler(this.DeleteToolButton_Click);
             // 
-            // MainStockQuotaBaseControl
+            // MainStockQuotaControl
             // 
-            this.MainTablePanel.SetColumnSpan(this.MainStockQuotaBaseControl, 2);
-            this.MainStockQuotaBaseControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainStockQuotaBaseControl.LabelForecolor = System.Drawing.Color.Empty;
-            this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(3, 104);
-            this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
-            this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(282, 280);
-            this.MainStockQuotaBaseControl.TabIndex = 8;
-            this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
+            this.MainTablePanel.SetColumnSpan(this.MainStockQuotaControl, 2);
+            this.MainStockQuotaControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainStockQuotaControl.LabelForecolor = System.Drawing.Color.Empty;
+            this.MainStockQuotaControl.Location = new System.Drawing.Point(3, 104);
+            this.MainStockQuotaControl.Name = "MainStockQuotaControl";
+            this.MainStockQuotaControl.Padding = new System.Windows.Forms.Padding(3);
+            this.MainStockQuotaControl.Size = new System.Drawing.Size(282, 280);
+            this.MainStockQuotaControl.TabIndex = 8;
+            this.MainStockQuotaControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // SearchStockDockForm
             // 
@@ -235,7 +235,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(288, 387);
             this.Controls.Add(this.MainTablePanel);
+            this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)((((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom) 
+            | WeifenLuo.WinFormsUI.Docking.DockAreas.Document)));
             this.Name = "SearchStockDockForm";
+            this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Document;
             this.TabText = "搜索股票";
             this.Text = "搜索股票";
             this.Load += new System.EventHandler(this.SearchStockDockForm_Load);
@@ -262,6 +268,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton SaveToolButton;
         private System.Windows.Forms.ToolStripButton DeleteToolButton;
-        private Controls.StockQuotaControl MainStockQuotaBaseControl;
+        private Controls.StockQuotaControl MainStockQuotaControl;
     }
 }

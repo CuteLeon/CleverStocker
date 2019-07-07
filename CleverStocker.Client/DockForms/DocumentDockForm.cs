@@ -1,6 +1,4 @@
-﻿using WeifenLuo.WinFormsUI.Docking;
-
-namespace CleverStocker.Client.DockForms
+﻿namespace CleverStocker.Client.DockForms
 {
     /// <summary>
     /// 文档停靠窗口
@@ -17,15 +15,5 @@ namespace CleverStocker.Client.DockForms
 
             this.Icon = AppResource.DocumentIcon;
         }
-
-        /// <summary>
-        /// Gets or sets 默认停靠区域
-        /// </summary>
-        public override DockAreas DefaultDockAreas { get; set; } = DockAreas.Float | DockAreas.Document;
-
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public override DockState DefaultLaunchDockState { get; set; } = DockState.Document;
     }
 }

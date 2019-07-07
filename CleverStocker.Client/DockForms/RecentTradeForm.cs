@@ -16,10 +16,5 @@ namespace CleverStocker.Client.DockForms
 
             this.Icon = AppResource.RecentTradeIcon;
         }
-
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public override DockState DefaultLaunchDockState { get; set; } = DockState.DockRight;
     }
 }

@@ -1,6 +1,4 @@
-﻿using WeifenLuo.WinFormsUI.Docking;
-
-namespace CleverStocker.Client.DockForms
+﻿namespace CleverStocker.Client.DockForms
 {
     /// <summary>
     /// 公司信息
@@ -16,10 +14,5 @@ namespace CleverStocker.Client.DockForms
 
             this.Icon = AppResource.CompanyInfoIcon;
         }
-
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public override DockState DefaultLaunchDockState { get; set; } = DockState.DockRight;
     }
 }

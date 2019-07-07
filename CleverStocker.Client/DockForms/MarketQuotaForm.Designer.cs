@@ -105,7 +105,6 @@
             this.ClientSize = new System.Drawing.Size(330, 222);
             this.Controls.Add(this.MarketQuotaControl);
             this.Controls.Add(this.MarketQuotaToolStrip);
-            this.DefaultLaunchDockState = WeifenLuo.WinFormsUI.Docking.DockState.DockRight;
             this.Name = "MarketQuotaForm";
             this.TabText = "大盘指数";
             this.Text = "大盘指数";

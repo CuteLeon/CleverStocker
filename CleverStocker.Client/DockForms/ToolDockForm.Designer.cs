@@ -1,4 +1,6 @@
-﻿namespace CleverStocker.Client.DockForms
+﻿using WeifenLuo.WinFormsUI.Docking;
+
+namespace CleverStocker.Client.DockForms
 {
     partial class ToolDockForm
     {
@@ -28,6 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.DockAreas = DockAreas.Float | DockAreas.DockLeft | DockAreas.DockRight | DockAreas.DockTop | DockAreas.DockBottom;
+            this.ShowHint = DockState.DockLeft;
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);

@@ -1,4 +1,6 @@
-﻿namespace CleverStocker.Client.DockForms
+﻿using WeifenLuo.WinFormsUI.Docking;
+
+namespace CleverStocker.Client.DockForms
 {
     partial class DocumentDockForm
     {
@@ -32,6 +34,8 @@
             // 
             // DocumentDockForm
             // 
+            this.DockAreas = DockAreas.Document | DockAreas.Float;
+            this.ShowHint = DockState.Document;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
@@ -39,7 +43,6 @@
             this.TabText = "文档";
             this.Text = "文档";
             this.ResumeLayout(false);
-
         }
 
         #endregion

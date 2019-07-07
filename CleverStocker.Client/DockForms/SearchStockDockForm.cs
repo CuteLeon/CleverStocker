@@ -7,7 +7,6 @@ using CleverStocker.Model;
 using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
 using CleverStocker.Utils;
-using WeifenLuo.WinFormsUI.Docking;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
@@ -77,7 +76,7 @@ namespace CleverStocker.Client.DockForms
                 this.currentStock = value;
 
                 this.SearchToolStrip.Enabled = value != null;
-                this.MainStockQuotaBaseControl.Stock = value;
+                this.MainStockQuotaControl.Stock = value;
             }
         }
 
@@ -93,14 +92,9 @@ namespace CleverStocker.Client.DockForms
             protected set
             {
                 this.currentQuota = value;
-                this.MainStockQuotaBaseControl.AttachEntity = value;
+                this.MainStockQuotaControl.AttachEntity = value;
             }
         }
-
-        /// <summary>
-        /// Gets or sets 停靠区域
-        /// </summary>
-        public override DockAreas DefaultDockAreas { get; set; } = DockAreas.Float | DockAreas.DockLeft | DockAreas.DockRight | DockAreas.DockTop | DockAreas.DockBottom | DockAreas.Document;
         #endregion
 
         #region 初始化
@@ -148,8 +142,8 @@ namespace CleverStocker.Client.DockForms
             this.SearchButton.BackColor = ThemeHelper.GetTitleBackcolor();
             this.SearchButton.ForeColor = this.MarketComboBox.ForeColor;
 
-            this.MainStockQuotaBaseControl.LabelForecolor = this.CodeLabel.ForeColor;
-            this.MainStockQuotaBaseControl.ValueForecolor = this.CodeTextBox.ForeColor;
+            this.MainStockQuotaControl.LabelForecolor = this.CodeLabel.ForeColor;
+            this.MainStockQuotaControl.ValueForecolor = this.CodeTextBox.ForeColor;
         }
         #endregion
 

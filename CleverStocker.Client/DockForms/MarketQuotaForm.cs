@@ -1,6 +1,4 @@
-﻿using WeifenLuo.WinFormsUI.Docking;
-
-namespace CleverStocker.Client.DockForms
+﻿namespace CleverStocker.Client.DockForms
 {
     /// <summary>
     /// 大盘指数

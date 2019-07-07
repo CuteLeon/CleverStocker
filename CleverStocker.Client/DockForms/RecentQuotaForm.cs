@@ -1,6 +1,4 @@
-﻿using WeifenLuo.WinFormsUI.Docking;
-
-namespace CleverStocker.Client.DockForms
+﻿namespace CleverStocker.Client.DockForms
 {
     /// <summary>
     /// 最近行情
@@ -16,10 +14,5 @@ namespace CleverStocker.Client.DockForms
 
             this.Icon = AppResource.RecentQuotaIcon;
         }
-
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public override DockState DefaultLaunchDockState { get; set; } = DockState.DockRight;
     }
 }

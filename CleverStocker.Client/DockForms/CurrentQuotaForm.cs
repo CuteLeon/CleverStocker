@@ -163,11 +163,6 @@ namespace CleverStocker.Client.DockForms
             this.CloseButtonVisible = false;
         }
 
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public override DockState DefaultLaunchDockState { get; set; } = DockState.DockRight;
-
         private void CurrentQuotaForm_Load(object sender, System.EventArgs e)
         {
             if (this.DesignMode)

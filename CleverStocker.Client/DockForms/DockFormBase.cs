@@ -20,9 +20,6 @@ namespace CleverStocker.Client.DockForms
             : base()
         {
             this.InitializeComponent();
-
-            this.DockAreas = this.DefaultDockAreas;
-            this.ShowHint = this.DefaultLaunchDockState;
         }
 
         /// <summary>
@@ -30,16 +27,6 @@ namespace CleverStocker.Client.DockForms
         /// </summary>
         /// <remarks>用于在恢复布局后恢复相关数据</remarks>
         public virtual string PersistValue { get; set; } = string.Empty;
-
-        /// <summary>
-        /// Gets or sets 默认停靠区域
-        /// </summary>
-        public abstract DockAreas DefaultDockAreas { get; set; }
-
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public abstract DockState DefaultLaunchDockState { get; set; }
 
         /// <summary>
         /// Gets or sets 标题
