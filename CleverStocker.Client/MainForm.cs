@@ -70,51 +70,15 @@ namespace CleverStocker.Client
         {
             try
             {
-                this.GetStockQuota();
+                this.GetChart();
                 this.GetCompany();
-                this.GetStockMarketQuota();
                 this.GetRecentQuotas();
                 this.GetRecentTrades();
-                this.GetChart();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"获取股票数据失败：\n{ex.Message}");
             }
-        }
-
-        private void GetStockQuota()
-        {
-            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
-            var (stock, quota) = stockSpiderService.GetStockQuota("600086", Markets.ShangHai);
-
-            if (quota == null)
-            {
-                MessageBox.Show($"获取股票行情为空！");
-                return;
-            }
-
-            DIContainerHelper.Resolve<IStockService>().AddOrUpdate(stock);
-            DIContainerHelper.Resolve<IQuotaService>().AddOrUpdate(quota);
-
-            MessageBox.Show($"获取股票行情成功：\n股票简称：{stock.Name}\n行情时间：{quota.UpdateTime}");
-        }
-
-        private void GetStockMarketQuota()
-        {
-            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
-            var (stock, marketQuote) = stockSpiderService.GetStockMarketQuota("600086", Markets.ShangHai);
-
-            if (marketQuote == null)
-            {
-                MessageBox.Show($"获取股票大盘指数为空！");
-                return;
-            }
-
-            DIContainerHelper.Resolve<IStockService>().AddOrUpdate(stock);
-            DIContainerHelper.Resolve<IMarketQuotaService>().AddOrUpdate(marketQuote);
-
-            MessageBox.Show($"获取股票大盘指数成功：\n股票简称：{stock.Name}\n大盘指数时间：{marketQuote.UpdateTime}");
         }
 
         private void GetChart()
