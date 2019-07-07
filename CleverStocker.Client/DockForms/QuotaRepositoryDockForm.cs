@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Model;
+using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 
@@ -15,12 +16,35 @@ namespace CleverStocker.Client.DockForms
         #region 服务
 
         /// <summary>
+        /// Gets or sets 股票服务
+        /// </summary>
+        protected IStockService StockService { get; set; }
+
+        /// <summary>
         /// Gets or sets 行情服务
         /// </summary>
         protected IQuotaService QuotaService { get; set; }
         #endregion
 
         #region 属性
+
+        /// <summary>
+        /// Gets or sets 布局持久化数据
+        /// </summary>
+        public override string PersistValue
+        {
+            get => this.stock?.GetFullCode();
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    return;
+                }
+
+                var (code, market, _) = value.GetMarketCode();
+                this.Stock = this.StockService.Find(code, market);
+            }
+        }
 
         private Stock stock;
 
@@ -61,6 +85,14 @@ namespace CleverStocker.Client.DockForms
             : base()
         {
             this.InitializeComponent();
+
+            if (this.DesignMode)
+            {
+                return;
+            }
+
+            this.QuotaService = DIContainerHelper.Resolve<IQuotaService>();
+            this.StockService = DIContainerHelper.Resolve<IStockService>();
         }
 
         private void QuotaRepositoryDockForm_Load(object sender, System.EventArgs e)
@@ -69,8 +101,6 @@ namespace CleverStocker.Client.DockForms
             {
                 return;
             }
-
-            this.QuotaService = DIContainerHelper.Resolve<IQuotaService>();
 
             ToolStripControlHost startDatePickerHost = new ToolStripControlHost(this.QuotaStartDatePicker);
             ToolStripControlHost endDatePickerHost = new ToolStripControlHost(this.QuotaEndDatePicker);
