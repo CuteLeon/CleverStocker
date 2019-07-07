@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Model;
@@ -31,6 +32,8 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 布局持久化数据
         /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string PersistValue
         {
             get => this.stock?.GetFullCode();
@@ -51,6 +54,8 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 股票
         /// </summary>
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Stock Stock
         {
             get => this.stock;
@@ -112,6 +117,11 @@ namespace CleverStocker.Client.DockForms
             this.QuotaStartDatePicker.Value = DateTime.Now.AddDays(-7);
             this.QuotaEndDatePicker.Value = DateTime.Now;
         }
+
+        private void QuotaRepositoryDockForm_Shown(object sender, EventArgs e)
+        {
+            this.QueryQuotas();
+        }
         #endregion
 
         #region 主题
@@ -150,11 +160,14 @@ namespace CleverStocker.Client.DockForms
 
         private void QueryToolButton_Click(object sender, EventArgs e)
         {
-            if (this.stock == null)
-            {
-                return;
-            }
+            this.QueryQuotas();
+        }
+        #endregion
 
+        #region 功能
+
+        private void QueryQuotas()
+        {
             this.QuotaRepositoryBindingSource.DataSource = this.QuotaService.QueryQuotas(
                 this.stock.Code,
                 this.stock.Market,

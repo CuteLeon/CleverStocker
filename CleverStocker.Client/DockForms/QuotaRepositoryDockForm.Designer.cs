@@ -498,6 +498,7 @@
             this.TabText = "行情仓库";
             this.Text = "行情仓库";
             this.Load += new System.EventHandler(this.QuotaRepositoryDockForm_Load);
+            this.Shown += new System.EventHandler(this.QuotaRepositoryDockForm_Shown);
             this.QuotaRepositoryToolStrip.ResumeLayout(false);
             this.QuotaRepositoryToolStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuotaRepositoryGridView)).EndInit();

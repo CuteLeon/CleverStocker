@@ -7,6 +7,8 @@ using CleverStocker.Utils;
 
 namespace CleverStocker.Client.Controls
 {
+    // TODO: 优化控件样式，颜色、布局、字体
+
     /// <summary>
     /// 泛型股票附加数据控件
     /// </summary>
@@ -72,6 +74,7 @@ namespace CleverStocker.Client.Controls
         /// Gets or sets 股票
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual Stock Stock
         {
             get => this.stock;
@@ -92,6 +95,7 @@ namespace CleverStocker.Client.Controls
         /// Gets or sets 附加实体
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual TAttachEntity AttachEntity
         {
             get => this.attachEntity;

@@ -75,6 +75,12 @@
     <Compile Include="Controls\StockQuotaControl.Designer.cs">
       <DependentUpon>StockQuotaControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="DockForms\ChartDocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\ChartDocumentForm.Designer.cs">
+      <DependentUpon>ChartDocumentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\CompanyInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\StockQuotaControl.resx">
       <DependentUpon>StockQuotaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\ChartDocumentForm.resx">
+      <DependentUpon>ChartDocumentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\CompanyInfoForm.resx">
       <DependentUpon>CompanyInfoForm.cs</DependentUpon>

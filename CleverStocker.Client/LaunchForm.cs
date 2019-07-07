@@ -135,6 +135,9 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("注册搜索股票窗口 ...");
                             this.RegisterToolDockForm<SearchStockDockForm>();
 
+                            this.UpdateProgressAsync("注册图表文档窗口 ...");
+                            this.RegisterDocumentDockForm<ChartDocumentForm>();
+
                             this.UpdateProgressAsync("注册行情仓库窗口 ...");
                             this.RegisterDocumentDockForm<QuotaRepositoryDockForm>();
 

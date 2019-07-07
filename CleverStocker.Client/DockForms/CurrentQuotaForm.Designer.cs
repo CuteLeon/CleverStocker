@@ -36,6 +36,7 @@
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
+            this.ChartToolButton = new System.Windows.Forms.ToolStripButton();
             this.CurrentQuotaToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@
             this.AutoRefreshToolButton,
             this.RefreshToolButton,
             this.toolStripSeparator1,
+            this.ChartToolButton,
             this.QuotaRepositoryToolButton});
             this.CurrentQuotaToolStrip.Location = new System.Drawing.Point(0, 0);
             this.CurrentQuotaToolStrip.Name = "CurrentQuotaToolStrip";
@@ -105,6 +107,16 @@
             this.QuotaRepositoryToolButton.Text = "行情仓库";
             this.QuotaRepositoryToolButton.Click += new System.EventHandler(this.QuotaRepositoryToolButton_Click);
             // 
+            // ChartToolButton
+            // 
+            this.ChartToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ChartToolButton.Image = global::CleverStocker.Client.AppResource.Quota;
+            this.ChartToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ChartToolButton.Name = "ChartToolButton";
+            this.ChartToolButton.Size = new System.Drawing.Size(23, 22);
+            this.ChartToolButton.Text = "图表";
+            this.ChartToolButton.Click += new System.EventHandler(this.ChartToolButton_Click);
+            // 
             // CurrentQuotaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -134,5 +146,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton RefreshToolButton;
         private System.Windows.Forms.ToolStripButton QuotaRepositoryToolButton;
+        private System.Windows.Forms.ToolStripButton ChartToolButton;
     }
 }

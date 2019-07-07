@@ -40,12 +40,14 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 源名称
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SourceName { get; set; } = typeof(MarketQuotaForm).Name;
 
         /// <summary>
         /// Gets or sets mQ 订阅者
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public SubscriberHandler Subscriber { get; set; }
 
         private Stock currentStock;
@@ -54,6 +56,7 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 当前股票
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Stock CurrentStock
         {
             get => this.currentStock;
@@ -93,6 +96,7 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 大盘指数
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public MarketQuota CurrentQuota
         {
             get => this.currentQuota;
@@ -112,6 +116,7 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets a value indicating whether 自动刷新
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutoRefresh
         {
             get => this.AutoRefreshToolButton.Checked;

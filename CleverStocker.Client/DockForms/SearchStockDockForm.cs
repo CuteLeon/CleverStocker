@@ -40,12 +40,14 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 源名称
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SourceName { get; set; } = typeof(SearchStockDockForm).Name;
 
         /// <summary>
         /// Gets or sets 布局持久化数据
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override string PersistValue
         {
             get => this.currentStock?.GetFullCode();
@@ -68,6 +70,7 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 当前股票
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Stock CurrentStock
         {
             get => this.currentStock;
@@ -86,6 +89,7 @@ namespace CleverStocker.Client.DockForms
         /// Gets or sets 当前行情
         /// </summary>
         [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Quota CurrentQuota
         {
             get => this.currentQuota;
