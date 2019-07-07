@@ -6,6 +6,7 @@ using CleverStocker.Model;
 using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
 using CleverStocker.Utils;
+using WeifenLuo.WinFormsUI.Docking;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
@@ -90,6 +91,11 @@ namespace CleverStocker.Client.DockForms
                 this.MainStockQuotaBaseControl.Quota = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets 停靠区域
+        /// </summary>
+        public override DockAreas DefaultDockAreas { get; set; } = DockAreas.Float | DockAreas.DockLeft | DockAreas.DockRight | DockAreas.DockTop | DockAreas.DockBottom | DockAreas.Document;
         #endregion
 
         #region 初始化
