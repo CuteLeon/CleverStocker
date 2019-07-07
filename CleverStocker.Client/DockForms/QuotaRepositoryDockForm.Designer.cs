@@ -38,9 +38,9 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.QueryToolButton = new System.Windows.Forms.ToolStripButton();
             this.QuotaRepositoryGridView = new System.Windows.Forms.DataGridView();
+            this.QuotaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.QuotaStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.QuotaEndDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.QuotaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.marketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -189,6 +189,10 @@
             this.QuotaRepositoryGridView.Size = new System.Drawing.Size(562, 377);
             this.QuotaRepositoryGridView.TabIndex = 1;
             // 
+            // QuotaRepositoryBindingSource
+            // 
+            this.QuotaRepositoryBindingSource.DataSource = typeof(CleverStocker.Model.Quota);
+            // 
             // QuotaStartDatePicker
             // 
             this.QuotaStartDatePicker.CalendarFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -210,10 +214,6 @@
             this.QuotaEndDatePicker.ShowCheckBox = true;
             this.QuotaEndDatePicker.Size = new System.Drawing.Size(173, 26);
             this.QuotaEndDatePicker.TabIndex = 3;
-            // 
-            // QuotaRepositoryBindingSource
-            // 
-            this.QuotaRepositoryBindingSource.DataSource = typeof(CleverStocker.Model.Quota);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -317,10 +317,10 @@
             // buyStrand1DataGridViewTextBoxColumn
             // 
             this.buyStrand1DataGridViewTextBoxColumn.DataPropertyName = "BuyStrand1";
-            this.buyStrand1DataGridViewTextBoxColumn.HeaderText = "买一量";
+            this.buyStrand1DataGridViewTextBoxColumn.HeaderText = "买一量(股)";
             this.buyStrand1DataGridViewTextBoxColumn.Name = "buyStrand1DataGridViewTextBoxColumn";
             this.buyStrand1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.buyStrand1DataGridViewTextBoxColumn.Width = 61;
+            this.buyStrand1DataGridViewTextBoxColumn.Width = 67;
             // 
             // buyPrice1DataGridViewTextBoxColumn
             // 
@@ -333,10 +333,10 @@
             // buyStrand2DataGridViewTextBoxColumn
             // 
             this.buyStrand2DataGridViewTextBoxColumn.DataPropertyName = "BuyStrand2";
-            this.buyStrand2DataGridViewTextBoxColumn.HeaderText = "买二量";
+            this.buyStrand2DataGridViewTextBoxColumn.HeaderText = "买二量(股)";
             this.buyStrand2DataGridViewTextBoxColumn.Name = "buyStrand2DataGridViewTextBoxColumn";
             this.buyStrand2DataGridViewTextBoxColumn.ReadOnly = true;
-            this.buyStrand2DataGridViewTextBoxColumn.Width = 61;
+            this.buyStrand2DataGridViewTextBoxColumn.Width = 67;
             // 
             // buyPrice2DataGridViewTextBoxColumn
             // 
@@ -349,10 +349,10 @@
             // buyStrand3DataGridViewTextBoxColumn
             // 
             this.buyStrand3DataGridViewTextBoxColumn.DataPropertyName = "BuyStrand3";
-            this.buyStrand3DataGridViewTextBoxColumn.HeaderText = "买三量";
+            this.buyStrand3DataGridViewTextBoxColumn.HeaderText = "买三量(股)";
             this.buyStrand3DataGridViewTextBoxColumn.Name = "buyStrand3DataGridViewTextBoxColumn";
             this.buyStrand3DataGridViewTextBoxColumn.ReadOnly = true;
-            this.buyStrand3DataGridViewTextBoxColumn.Width = 61;
+            this.buyStrand3DataGridViewTextBoxColumn.Width = 67;
             // 
             // buyPrice3DataGridViewTextBoxColumn
             // 
@@ -365,10 +365,10 @@
             // buyStrand4DataGridViewTextBoxColumn
             // 
             this.buyStrand4DataGridViewTextBoxColumn.DataPropertyName = "BuyStrand4";
-            this.buyStrand4DataGridViewTextBoxColumn.HeaderText = "买四量";
+            this.buyStrand4DataGridViewTextBoxColumn.HeaderText = "买四量(股)";
             this.buyStrand4DataGridViewTextBoxColumn.Name = "buyStrand4DataGridViewTextBoxColumn";
             this.buyStrand4DataGridViewTextBoxColumn.ReadOnly = true;
-            this.buyStrand4DataGridViewTextBoxColumn.Width = 61;
+            this.buyStrand4DataGridViewTextBoxColumn.Width = 67;
             // 
             // buyPrice4DataGridViewTextBoxColumn
             // 
@@ -381,10 +381,10 @@
             // buyStrand5DataGridViewTextBoxColumn
             // 
             this.buyStrand5DataGridViewTextBoxColumn.DataPropertyName = "BuyStrand5";
-            this.buyStrand5DataGridViewTextBoxColumn.HeaderText = "买五量";
+            this.buyStrand5DataGridViewTextBoxColumn.HeaderText = "买五量(股)";
             this.buyStrand5DataGridViewTextBoxColumn.Name = "buyStrand5DataGridViewTextBoxColumn";
             this.buyStrand5DataGridViewTextBoxColumn.ReadOnly = true;
-            this.buyStrand5DataGridViewTextBoxColumn.Width = 61;
+            this.buyStrand5DataGridViewTextBoxColumn.Width = 67;
             // 
             // buyPrice5DataGridViewTextBoxColumn
             // 
@@ -397,10 +397,10 @@
             // sellStrand1DataGridViewTextBoxColumn
             // 
             this.sellStrand1DataGridViewTextBoxColumn.DataPropertyName = "SellStrand1";
-            this.sellStrand1DataGridViewTextBoxColumn.HeaderText = "卖一量";
+            this.sellStrand1DataGridViewTextBoxColumn.HeaderText = "卖一量(股)";
             this.sellStrand1DataGridViewTextBoxColumn.Name = "sellStrand1DataGridViewTextBoxColumn";
             this.sellStrand1DataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellStrand1DataGridViewTextBoxColumn.Width = 61;
+            this.sellStrand1DataGridViewTextBoxColumn.Width = 67;
             // 
             // sellPrice1DataGridViewTextBoxColumn
             // 
@@ -413,10 +413,10 @@
             // sellStrand2DataGridViewTextBoxColumn
             // 
             this.sellStrand2DataGridViewTextBoxColumn.DataPropertyName = "SellStrand2";
-            this.sellStrand2DataGridViewTextBoxColumn.HeaderText = "卖二量";
+            this.sellStrand2DataGridViewTextBoxColumn.HeaderText = "卖二量(股)";
             this.sellStrand2DataGridViewTextBoxColumn.Name = "sellStrand2DataGridViewTextBoxColumn";
             this.sellStrand2DataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellStrand2DataGridViewTextBoxColumn.Width = 61;
+            this.sellStrand2DataGridViewTextBoxColumn.Width = 67;
             // 
             // sellPrice2DataGridViewTextBoxColumn
             // 
@@ -429,10 +429,10 @@
             // sellStrand3DataGridViewTextBoxColumn
             // 
             this.sellStrand3DataGridViewTextBoxColumn.DataPropertyName = "SellStrand3";
-            this.sellStrand3DataGridViewTextBoxColumn.HeaderText = "卖三量";
+            this.sellStrand3DataGridViewTextBoxColumn.HeaderText = "卖三量(股)";
             this.sellStrand3DataGridViewTextBoxColumn.Name = "sellStrand3DataGridViewTextBoxColumn";
             this.sellStrand3DataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellStrand3DataGridViewTextBoxColumn.Width = 61;
+            this.sellStrand3DataGridViewTextBoxColumn.Width = 67;
             // 
             // sellPrice3DataGridViewTextBoxColumn
             // 
@@ -445,10 +445,10 @@
             // sellStrand4DataGridViewTextBoxColumn
             // 
             this.sellStrand4DataGridViewTextBoxColumn.DataPropertyName = "SellStrand4";
-            this.sellStrand4DataGridViewTextBoxColumn.HeaderText = "卖四量";
+            this.sellStrand4DataGridViewTextBoxColumn.HeaderText = "卖四量(股)";
             this.sellStrand4DataGridViewTextBoxColumn.Name = "sellStrand4DataGridViewTextBoxColumn";
             this.sellStrand4DataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellStrand4DataGridViewTextBoxColumn.Width = 61;
+            this.sellStrand4DataGridViewTextBoxColumn.Width = 67;
             // 
             // sellPrice4DataGridViewTextBoxColumn
             // 
@@ -461,10 +461,10 @@
             // sellStrand5DataGridViewTextBoxColumn
             // 
             this.sellStrand5DataGridViewTextBoxColumn.DataPropertyName = "SellStrand5";
-            this.sellStrand5DataGridViewTextBoxColumn.HeaderText = "卖五量";
+            this.sellStrand5DataGridViewTextBoxColumn.HeaderText = "卖五量(股)";
             this.sellStrand5DataGridViewTextBoxColumn.Name = "sellStrand5DataGridViewTextBoxColumn";
             this.sellStrand5DataGridViewTextBoxColumn.ReadOnly = true;
-            this.sellStrand5DataGridViewTextBoxColumn.Width = 61;
+            this.sellStrand5DataGridViewTextBoxColumn.Width = 67;
             // 
             // sellPrice5DataGridViewTextBoxColumn
             // 
