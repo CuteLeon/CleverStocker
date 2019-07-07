@@ -35,6 +35,7 @@
             this.AutoRefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
+            this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
             this.CurrentQuotaToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,8 +61,9 @@
             // 
             this.CurrentQuotaToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AutoRefreshToolButton,
+            this.RefreshToolButton,
             this.toolStripSeparator1,
-            this.RefreshToolButton});
+            this.QuotaRepositoryToolButton});
             this.CurrentQuotaToolStrip.Location = new System.Drawing.Point(0, 0);
             this.CurrentQuotaToolStrip.Name = "CurrentQuotaToolStrip";
             this.CurrentQuotaToolStrip.Size = new System.Drawing.Size(349, 25);
@@ -95,6 +97,16 @@
             this.RefreshToolButton.Text = "立即刷新行情";
             this.RefreshToolButton.Click += new System.EventHandler(this.RefreshToolButton_Click);
             // 
+            // QuotaRepositoryToolButton
+            // 
+            this.QuotaRepositoryToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.QuotaRepositoryToolButton.Image = global::CleverStocker.Client.AppResource.Context;
+            this.QuotaRepositoryToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.QuotaRepositoryToolButton.Name = "QuotaRepositoryToolButton";
+            this.QuotaRepositoryToolButton.Size = new System.Drawing.Size(23, 22);
+            this.QuotaRepositoryToolButton.Text = "行情仓库";
+            this.QuotaRepositoryToolButton.Click += new System.EventHandler(this.QuotaRepositoryToolButton_Click);
+            // 
             // CurrentQuotaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.ToolStripButton AutoRefreshToolButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton RefreshToolButton;
+        private System.Windows.Forms.ToolStripButton QuotaRepositoryToolButton;
     }
 }

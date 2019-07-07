@@ -224,6 +224,7 @@
             this.MainStockQuotaBaseControl.LabelForecolor = System.Drawing.Color.Empty;
             this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(3, 104);
             this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
+            this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
             this.MainStockQuotaBaseControl.Quota = null;
             this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(282, 280);
             this.MainStockQuotaBaseControl.Stock = null;

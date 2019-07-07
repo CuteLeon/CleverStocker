@@ -251,6 +251,17 @@ namespace CleverStocker.Client.DockForms
         {
             _ = this.RefreshQuota();
         }
+
+        private void QuotaRepositoryToolButton_Click(object sender, EventArgs e)
+        {
+            var form = DIContainerHelper.Resolve<QuotaRepositoryDockForm>();
+            if (form == null)
+            {
+                return;
+            }
+
+            form.Show(this.DockPanel);
+        }
         #endregion
 
         #region 主题

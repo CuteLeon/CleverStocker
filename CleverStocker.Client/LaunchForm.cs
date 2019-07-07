@@ -129,25 +129,28 @@ namespace CleverStocker.Client
                                 this.UpdateProgressAsync(message);
                             }
 
-                            this.UpdateProgressAsync("创建自选股票窗口 ...");
+                            this.UpdateProgressAsync("注册自选股票窗口 ...");
                             this.RegisterSingleToolDockFormInstance<SelfSelectStockForm>(mainForm);
 
-                            this.UpdateProgressAsync("创建搜索股票窗口 ...");
+                            this.UpdateProgressAsync("注册搜索股票窗口 ...");
                             this.RegisterToolDockForm<SearchStockDockForm>();
 
-                            this.UpdateProgressAsync("创建实时行情窗口 ...");
+                            this.UpdateProgressAsync("注册行情仓库窗口 ...");
+                            this.RegisterDocumentDockForm<QuotaRepositoryDockForm>();
+
+                            this.UpdateProgressAsync("注册实时行情窗口 ...");
                             this.RegisterSingleToolDockFormInstance<CurrentQuotaForm>(mainForm);
 
-                            this.UpdateProgressAsync("创建大盘指数窗口 ...");
+                            this.UpdateProgressAsync("注册大盘指数窗口 ...");
                             this.RegisterSingleToolDockFormInstance<MarketQuotaForm>(mainForm);
 
-                            this.UpdateProgressAsync("创建公司信息窗口 ...");
+                            this.UpdateProgressAsync("注册公司信息窗口 ...");
                             this.RegisterSingleToolDockFormInstance<CompanyInfoForm>(mainForm);
 
-                            this.UpdateProgressAsync("创建最近交易窗口 ...");
+                            this.UpdateProgressAsync("注册最近交易窗口 ...");
                             this.RegisterSingleToolDockFormInstance<RecentTradeForm>(mainForm);
 
-                            this.UpdateProgressAsync("创建最近行情窗口 ...");
+                            this.UpdateProgressAsync("注册最近行情窗口 ...");
                             this.RegisterSingleToolDockFormInstance<RecentQuotaForm>(mainForm);
 
                             this.UpdateProgressAsync($"密封服务容器 ...");
@@ -184,11 +187,21 @@ namespace CleverStocker.Client
         }
 
         /// <summary>
-        /// 注册停靠窗口
+        /// 注册工具停靠窗口
         /// </summary>
         /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
         private void RegisterToolDockForm<TDockForm>()
             where TDockForm : ToolDockForm
+        {
+            DIContainerHelper.RegisteTypeAsType<TDockForm, TDockForm>();
+        }
+
+        /// <summary>
+        /// 注册文档停靠窗口
+        /// </summary>
+        /// <typeparam name="TDockForm">停靠窗口类型</typeparam>
+        private void RegisterDocumentDockForm<TDockForm>()
+            where TDockForm : DocumentDockForm
         {
             DIContainerHelper.RegisteTypeAsType<TDockForm, TDockForm>();
         }
