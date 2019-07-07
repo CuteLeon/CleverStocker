@@ -38,9 +38,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.QueryToolButton = new System.Windows.Forms.ToolStripButton();
             this.QuotaRepositoryGridView = new System.Windows.Forms.DataGridView();
-            this.QuotaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.QuotaStartDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.QuotaEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.marketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +71,9 @@
             this.sellStrand5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sellPrice5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuotaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.QuotaStartDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.QuotaEndDatePicker = new System.Windows.Forms.DateTimePicker();
             this.QuotaRepositoryToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuotaRepositoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuotaRepositoryBindingSource)).BeginInit();
@@ -184,36 +184,11 @@
             this.QuotaRepositoryGridView.Name = "QuotaRepositoryGridView";
             this.QuotaRepositoryGridView.ReadOnly = true;
             this.QuotaRepositoryGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.QuotaRepositoryGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.QuotaRepositoryGridView.RowTemplate.Height = 23;
             this.QuotaRepositoryGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.QuotaRepositoryGridView.Size = new System.Drawing.Size(562, 377);
             this.QuotaRepositoryGridView.TabIndex = 1;
-            // 
-            // QuotaRepositoryBindingSource
-            // 
-            this.QuotaRepositoryBindingSource.DataSource = typeof(CleverStocker.Model.Quota);
-            // 
-            // QuotaStartDatePicker
-            // 
-            this.QuotaStartDatePicker.CalendarFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.QuotaStartDatePicker.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.QuotaStartDatePicker.Location = new System.Drawing.Point(94, 166);
-            this.QuotaStartDatePicker.Margin = new System.Windows.Forms.Padding(0);
-            this.QuotaStartDatePicker.Name = "QuotaStartDatePicker";
-            this.QuotaStartDatePicker.ShowCheckBox = true;
-            this.QuotaStartDatePicker.Size = new System.Drawing.Size(173, 26);
-            this.QuotaStartDatePicker.TabIndex = 2;
-            // 
-            // QuotaEndDatePicker
-            // 
-            this.QuotaEndDatePicker.CalendarFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.QuotaEndDatePicker.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.QuotaEndDatePicker.Location = new System.Drawing.Point(281, 166);
-            this.QuotaEndDatePicker.Margin = new System.Windows.Forms.Padding(0);
-            this.QuotaEndDatePicker.Name = "QuotaEndDatePicker";
-            this.QuotaEndDatePicker.ShowCheckBox = true;
-            this.QuotaEndDatePicker.Size = new System.Drawing.Size(173, 26);
-            this.QuotaEndDatePicker.TabIndex = 3;
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -222,7 +197,7 @@
             this.codeDataGridViewTextBoxColumn.HeaderText = "代码";
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
             this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 54;
+            this.codeDataGridViewTextBoxColumn.Width = 51;
             // 
             // marketDataGridViewTextBoxColumn
             // 
@@ -231,7 +206,7 @@
             this.marketDataGridViewTextBoxColumn.HeaderText = "市场";
             this.marketDataGridViewTextBoxColumn.Name = "marketDataGridViewTextBoxColumn";
             this.marketDataGridViewTextBoxColumn.ReadOnly = true;
-            this.marketDataGridViewTextBoxColumn.Width = 54;
+            this.marketDataGridViewTextBoxColumn.Width = 51;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -240,7 +215,7 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "名称";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 54;
+            this.nameDataGridViewTextBoxColumn.Width = 51;
             // 
             // openingPriceTodayDataGridViewTextBoxColumn
             // 
@@ -483,6 +458,32 @@
             this.updateTimeDataGridViewTextBoxColumn.Name = "updateTimeDataGridViewTextBoxColumn";
             this.updateTimeDataGridViewTextBoxColumn.ReadOnly = true;
             this.updateTimeDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // QuotaRepositoryBindingSource
+            // 
+            this.QuotaRepositoryBindingSource.DataSource = typeof(CleverStocker.Model.Quota);
+            // 
+            // QuotaStartDatePicker
+            // 
+            this.QuotaStartDatePicker.CalendarFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.QuotaStartDatePicker.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.QuotaStartDatePicker.Location = new System.Drawing.Point(94, 166);
+            this.QuotaStartDatePicker.Margin = new System.Windows.Forms.Padding(0);
+            this.QuotaStartDatePicker.Name = "QuotaStartDatePicker";
+            this.QuotaStartDatePicker.ShowCheckBox = true;
+            this.QuotaStartDatePicker.Size = new System.Drawing.Size(173, 26);
+            this.QuotaStartDatePicker.TabIndex = 2;
+            // 
+            // QuotaEndDatePicker
+            // 
+            this.QuotaEndDatePicker.CalendarFont = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.QuotaEndDatePicker.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.QuotaEndDatePicker.Location = new System.Drawing.Point(281, 166);
+            this.QuotaEndDatePicker.Margin = new System.Windows.Forms.Padding(0);
+            this.QuotaEndDatePicker.Name = "QuotaEndDatePicker";
+            this.QuotaEndDatePicker.ShowCheckBox = true;
+            this.QuotaEndDatePicker.Size = new System.Drawing.Size(173, 26);
+            this.QuotaEndDatePicker.TabIndex = 3;
             // 
             // QuotaRepositoryDockForm
             // 
