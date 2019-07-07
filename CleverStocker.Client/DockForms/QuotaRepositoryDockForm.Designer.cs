@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.QuotaRepositoryToolStrip = new System.Windows.Forms.ToolStrip();
             this.StockInfoToolLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -40,7 +40,6 @@
             this.QuotaRepositoryGridView = new System.Windows.Forms.DataGridView();
             this.QuotaStartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.QuotaEndDatePicker = new System.Windows.Forms.DateTimePicker();
-            this.QuotaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.marketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +73,7 @@
             this.sellStrand5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sellPrice5DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuotaRepositoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.QuotaRepositoryToolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.QuotaRepositoryGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuotaRepositoryBindingSource)).BeginInit();
@@ -96,6 +96,7 @@
             // 
             // StockInfoToolLabel
             // 
+            this.StockInfoToolLabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.StockInfoToolLabel.Name = "StockInfoToolLabel";
             this.StockInfoToolLabel.Size = new System.Drawing.Size(0, 22);
             // 
@@ -209,10 +210,6 @@
             this.QuotaEndDatePicker.ShowCheckBox = true;
             this.QuotaEndDatePicker.Size = new System.Drawing.Size(173, 26);
             this.QuotaEndDatePicker.TabIndex = 3;
-            // 
-            // QuotaRepositoryBindingSource
-            // 
-            this.QuotaRepositoryBindingSource.DataSource = typeof(CleverStocker.Model.Quota);
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -476,12 +473,16 @@
             // updateTimeDataGridViewTextBoxColumn
             // 
             this.updateTimeDataGridViewTextBoxColumn.DataPropertyName = "UpdateTime";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm:ss";
-            this.updateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Format = "yyyy-MM-dd HH:mm:ss";
+            this.updateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.updateTimeDataGridViewTextBoxColumn.HeaderText = "更新时间";
             this.updateTimeDataGridViewTextBoxColumn.Name = "updateTimeDataGridViewTextBoxColumn";
             this.updateTimeDataGridViewTextBoxColumn.ReadOnly = true;
             this.updateTimeDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // QuotaRepositoryBindingSource
+            // 
+            this.QuotaRepositoryBindingSource.DataSource = typeof(CleverStocker.Model.Quota);
             // 
             // QuotaRepositoryDockForm
             // 

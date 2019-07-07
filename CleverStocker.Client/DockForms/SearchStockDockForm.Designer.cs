@@ -83,7 +83,7 @@
             // 
             this.MarketComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MarketComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.MarketComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MarketComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.MarketComboBox.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.MarketComboBox.FormattingEnabled = true;
             this.MarketComboBox.Location = new System.Drawing.Point(90, 23);
