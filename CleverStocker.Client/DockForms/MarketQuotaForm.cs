@@ -9,6 +9,8 @@ using CleverStocker.Utils;
 
 namespace CleverStocker.Client.DockForms
 {
+    // TODO: 测试交易时间内大盘行情的更新频率：行情数据不包含更新时间，非交易时间会在DB产生大量无效数据（或可取消自动刷新功能）；
+
     /// <summary>
     /// 大盘指数
     /// </summary>
