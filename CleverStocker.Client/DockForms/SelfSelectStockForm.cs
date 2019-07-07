@@ -118,7 +118,7 @@ namespace CleverStocker.Client.DockForms
         }
         #endregion
 
-        #region 外观
+        #region 主题
 
         /// <summary>
         /// 应用主题
