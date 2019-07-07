@@ -59,11 +59,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResource.resx</DependentUpon>
     </Compile>
-    <Compile Include="Controls\StockQuotaBaseControl.cs">
+    <Compile Include="Controls\IStockAttachControlBaseGeneric.cs" />
+    <Compile Include="Controls\MarketQuotaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\StockQuotaBaseControl.Designer.cs">
-      <DependentUpon>StockQuotaBaseControl.cs</DependentUpon>
+    <Compile Include="Controls\MarketQuotaControl.Designer.cs">
+      <DependentUpon>MarketQuotaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StockAttachControlBaseGeneric.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StockQuotaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\StockQuotaControl.Designer.cs">
+      <DependentUpon>StockQuotaControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DockForms\CompanyInfoForm.cs">
       <SubType>Form</SubType>
@@ -162,8 +172,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AppResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\StockQuotaBaseControl.resx">
-      <DependentUpon>StockQuotaBaseControl.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\MarketQuotaControl.resx">
+      <DependentUpon>MarketQuotaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\StockQuotaControl.resx">
+      <DependentUpon>StockQuotaControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\CompanyInfoForm.resx">
       <DependentUpon>CompanyInfoForm.cs</DependentUpon>

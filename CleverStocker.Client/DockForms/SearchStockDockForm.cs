@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Common;
@@ -39,11 +40,13 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 源名称
         /// </summary>
+        [Browsable(false)]
         public string SourceName { get; set; } = typeof(SearchStockDockForm).Name;
 
         /// <summary>
         /// Gets or sets 布局持久化数据
         /// </summary>
+        [Browsable(false)]
         public override string PersistValue
         {
             get => this.currentStock?.GetFullCode();
@@ -65,6 +68,7 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 当前股票
         /// </summary>
+        [Browsable(false)]
         public Stock CurrentStock
         {
             get => this.currentStock;
@@ -82,13 +86,14 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 当前行情
         /// </summary>
+        [Browsable(false)]
         public Quota CurrentQuota
         {
             get => this.currentQuota;
             protected set
             {
                 this.currentQuota = value;
-                this.MainStockQuotaBaseControl.Quota = value;
+                this.MainStockQuotaBaseControl.AttachEntity = value;
             }
         }
 

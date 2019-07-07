@@ -1,96 +1,26 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Drawing;
 using CleverStocker.Model;
-using CleverStocker.Utils;
 
 namespace CleverStocker.Client.Controls
 {
     /// <summary>
     /// 股票行情基本控件
     /// </summary>
-    public partial class StockQuotaBaseControl : UserControl
+    public partial class StockQuotaControl : StockAttachControlBaseGeneric<Quota>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StockQuotaBaseControl"/> class.
+        /// Initializes a new instance of the <see cref="StockQuotaControl"/> class.
         /// </summary>
-        public StockQuotaBaseControl()
+        public StockQuotaControl()
         {
             this.InitializeComponent();
-        }
-
-        private Color labelForecolor;
-
-        /// <summary>
-        /// Gets or sets 标签前景色
-        /// </summary>
-        [Browsable(true)]
-        public Color LabelForecolor
-        {
-            get => this.labelForecolor;
-            set
-            {
-                this.labelForecolor = value;
-
-                this.InvokeIfRequired<ValueType, Action<Color>>(this.SetLabelForecolor, value);
-            }
-        }
-
-        private Color valueForecolor;
-
-        /// <summary>
-        /// Gets or sets 值前景色
-        /// </summary>
-        [Browsable(true)]
-        public Color ValueForecolor
-        {
-            get => this.valueForecolor;
-            set
-            {
-                this.valueForecolor = value;
-
-                this.InvokeIfRequired<ValueType, Action<Color>>(this.SetValueForecolor, value);
-            }
-        }
-
-        private Stock stock;
-
-        /// <summary>
-        /// Gets or sets 股票
-        /// </summary>
-        public Stock Stock
-        {
-            get => this.stock;
-            set
-            {
-                this.stock = value;
-
-                this.InvokeIfRequired<ValueType, Action<Stock>>(this.StockToFace, value);
-            }
-        }
-
-        private Quota quota;
-
-        /// <summary>
-        /// Gets or sets 行情
-        /// </summary>
-        public Quota Quota
-        {
-            get => this.quota;
-            set
-            {
-                this.quota = value;
-
-                this.InvokeIfRequired<ValueType, Action<Quota>>(this.QuotaToFace, value);
-            }
         }
 
         /// <summary>
         /// 设置标签前景色
         /// </summary>
         /// <param name="color"></param>
-        protected void SetLabelForecolor(Color color)
+        public override void SetLabelForecolor(Color color)
         {
             this.CodeLabel.ForeColor = color;
             this.MarketLabel.ForeColor = color;
@@ -109,7 +39,7 @@ namespace CleverStocker.Client.Controls
         /// 设置值前景色
         /// </summary>
         /// <param name="color"></param>
-        protected void SetValueForecolor(Color color)
+        public override void SetValueForecolor(Color color)
         {
             this.CodeValueLabel.ForeColor = color;
             this.MarketValueLabel.ForeColor = color;
@@ -128,7 +58,7 @@ namespace CleverStocker.Client.Controls
         /// 应用股票数据到界面
         /// </summary>
         /// <param name="stock"></param>
-        protected void StockToFace(Stock stock)
+        public override void StockToFace(Stock stock)
         {
             if (stock == null)
             {
@@ -147,8 +77,8 @@ namespace CleverStocker.Client.Controls
         /// <summary>
         /// 应用行情数据到界面
         /// </summary>
-        /// <param name="stock"></param>
-        protected void QuotaToFace(Quota quota)
+        /// <param name="quota"></param>
+        public override void AttachEntityToFace(Quota quota)
         {
             if (quota == null)
             {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaBaseControl();
+            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaControl();
             this.AutoRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.CurrentQuotaToolStrip = new System.Windows.Forms.ToolStrip();
             this.AutoRefreshToolButton = new System.Windows.Forms.ToolStripButton();
@@ -46,9 +46,7 @@
             this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(0, 0);
             this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
             this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaBaseControl.Quota = null;
             this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(349, 240);
-            this.MainStockQuotaBaseControl.Stock = null;
             this.MainStockQuotaBaseControl.TabIndex = 0;
             this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
@@ -128,7 +126,7 @@
 
         #endregion
 
-        private Controls.StockQuotaBaseControl MainStockQuotaBaseControl;
+        private Controls.StockQuotaControl MainStockQuotaBaseControl;
         private System.Windows.Forms.Timer AutoRefreshTimer;
         private System.Windows.Forms.ToolStrip CurrentQuotaToolStrip;
         private System.Windows.Forms.ToolStripButton AutoRefreshToolButton;

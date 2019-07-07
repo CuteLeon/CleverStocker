@@ -17,9 +17,19 @@ namespace CleverStocker.Client.DockForms
             this.Icon = AppResource.MarketQuotaIcon;
         }
 
-        /// <summary>
-        /// Gets or sets 默认首次启动停靠状态
-        /// </summary>
-        public override DockState DefaultLaunchDockState { get; set; } = DockState.DockRight;
+        #region 控件
+
+        private void AutoRefreshToolButton_CheckedChanged(object sender, System.EventArgs e)
+        {
+        }
+
+        private void RefreshToolButton_Click(object sender, System.EventArgs e)
+        {
+        }
+
+        private void MarketQuotaRepositoryToolButton_Click(object sender, System.EventArgs e)
+        {
+        }
+        #endregion
     }
 }

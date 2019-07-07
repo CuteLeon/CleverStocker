@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
@@ -38,11 +39,13 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 源名称
         /// </summary>
+        [Browsable(false)]
         public string SourceName { get; set; } = typeof(CurrentQuotaForm).Name;
 
         /// <summary>
         /// Gets or sets mQ 订阅者
         /// </summary>
+        [Browsable(false)]
         public SubscriberHandler Subscriber { get; set; }
 
         private Stock currentStock;
@@ -50,6 +53,7 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 当前股票
         /// </summary>
+        [Browsable(false)]
         public Stock CurrentStock
         {
             get => this.currentStock;
@@ -88,13 +92,14 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets 当前行情
         /// </summary>
+        [Browsable(false)]
         public Quota CurrentQuota
         {
             get => this.currentQuota;
             protected set
             {
                 this.currentQuota = value;
-                this.MainStockQuotaBaseControl.Quota = value;
+                this.MainStockQuotaBaseControl.AttachEntity = value;
             }
         }
 
@@ -106,6 +111,7 @@ namespace CleverStocker.Client.DockForms
         /// <summary>
         /// Gets or sets a value indicating whether 自动刷新
         /// </summary>
+        [Browsable(false)]
         public bool AutoRefresh
         {
             get => this.AutoRefreshToolButton.Checked;

@@ -41,7 +41,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveToolButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteToolButton = new System.Windows.Forms.ToolStripButton();
-            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaBaseControl();
+            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaControl();
             this.MainTablePanel.SuspendLayout();
             this.SearchToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -225,9 +225,7 @@
             this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(3, 104);
             this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
             this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaBaseControl.Quota = null;
             this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(282, 280);
-            this.MainStockQuotaBaseControl.Stock = null;
             this.MainStockQuotaBaseControl.TabIndex = 8;
             this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
@@ -264,6 +262,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton SaveToolButton;
         private System.Windows.Forms.ToolStripButton DeleteToolButton;
-        private Controls.StockQuotaBaseControl MainStockQuotaBaseControl;
+        private Controls.StockQuotaControl MainStockQuotaBaseControl;
     }
 }
