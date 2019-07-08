@@ -107,25 +107,25 @@
             this.QuotaRepositoryToolButton.Text = "行情仓库";
             this.QuotaRepositoryToolButton.Click += new System.EventHandler(this.QuotaRepositoryToolButton_Click);
             // 
-            // MainStockQuotaBaseControl
+            // MainStockQuotaControl
             // 
             this.MainStockQuotaControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.MainStockQuotaControl.LabelForecolor = System.Drawing.Color.Empty;
             this.MainStockQuotaControl.Location = new System.Drawing.Point(0, 25);
-            this.MainStockQuotaControl.Name = "MainStockQuotaBaseControl";
+            this.MainStockQuotaControl.Name = "MainStockQuotaControl";
             this.MainStockQuotaControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaControl.Size = new System.Drawing.Size(349, 215);
+            this.MainStockQuotaControl.Size = new System.Drawing.Size(349, 238);
             this.MainStockQuotaControl.TabIndex = 2;
             this.MainStockQuotaControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // MainFiveGearControl
             // 
-            this.MainFiveGearControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MainFiveGearControl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MainFiveGearControl.LabelForecolor = System.Drawing.Color.Empty;
             this.MainFiveGearControl.Location = new System.Drawing.Point(0, 240);
             this.MainFiveGearControl.Name = "MainFiveGearControl";
             this.MainFiveGearControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainFiveGearControl.Size = new System.Drawing.Size(349, 172);
+            this.MainFiveGearControl.Size = new System.Drawing.Size(349, 169);
             this.MainFiveGearControl.TabIndex = 3;
             this.MainFiveGearControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
