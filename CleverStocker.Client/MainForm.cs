@@ -15,6 +15,7 @@ using static CleverStocker.Common.CommonStandard;
 namespace CleverStocker.Client
 {
     /* <功能布局：>
+     * 五档盘口 竞卖价 竞卖价
      * 公司信息
      * 最近交易(列表x4)
      * 最近行情(时间规模x5)
