@@ -35,6 +35,13 @@ namespace CleverStocker.Spider.Sina
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
+        /// Gets 热门股票正则表达式
+        /// </summary>
+        public static Regex HotStocksRegex { get; } = new Regex(
+            "\\[\\\"(?<Market>[a-zA-Z]*)(?<Code>\\d*)\\\",\\\"(?<Name>.*?)\\\",.*?\\]",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
         /// Gets 公司信息正则表达式
         /// </summary>
         public static Regex CompanyRegex { get; } = new Regex(
@@ -657,6 +664,60 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<List<Trade>> GetRecentTradesAsync(string code, Markets markets, TradeListTypes tradeListType, int count)
             => await Task.Factory.StartNew(() => this.GetRecentTrades(code, markets, tradeListType, count));
+        #endregion
+
+        #region 热门股票
+
+        /// <summary>
+        /// 获取热门股票
+        /// </summary>
+        /// <returns></returns>
+        public List<Stock> GetHotStocks()
+        {
+            string request = "http://finance.sina.com.cn/realstock/company/hotstock_daily_a.js";
+
+            var result = this.WebClient.DownloadString(request);
+            if (string.IsNullOrEmpty(result))
+            {
+                return Enumerable.Empty<Stock>().ToList();
+            }
+
+            var matchs = HotStocksRegex.Matches(result);
+            List<Stock> recentQuotas = new List<Stock>(matchs.Count);
+            recentQuotas.AddRange(
+                matchs.Cast<Match>()
+                    .Select(match => ConvertToHotStock(match))
+                    .Where(stock => stock != null));
+
+            return recentQuotas;
+        }
+
+        /// <summary>
+        /// 转换为热门股票
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        public static Stock ConvertToHotStock(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            Stock stock = new Stock();
+            stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
+            stock.Code = match.TryGetValue("Code", out value) ? value : string.Empty;
+            stock.Market = match.TryGetValue("Market", out value) ? SinaSpiderHelper.GetMarket(value) : Markets.Unknown;
+
+            return stock;
+        }
+
+        /// <summary>
+        /// 异步获取热门股票
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Stock>> GetHotStocksAsync()
+            => await Task.Factory.StartNew(() => this.GetHotStocks());
         #endregion
     }
 }

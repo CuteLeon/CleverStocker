@@ -25,5 +25,23 @@ namespace CleverStocker.Spider.Sina
                     return string.Empty;
             }
         }
+
+        /// <summary>
+        /// 获取市场
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static Markets GetMarket(string code)
+        {
+            switch (code)
+            {
+                case "sh":
+                    return Markets.ShangHai;
+                case "sz":
+                    return Markets.ShenZhen;
+                default:
+                    return Markets.Unknown;
+            }
+        }
     }
 }
