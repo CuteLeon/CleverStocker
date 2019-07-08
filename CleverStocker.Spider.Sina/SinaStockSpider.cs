@@ -220,6 +220,7 @@ namespace CleverStocker.Spider.Sina
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
+        /// <remarks>Sina 接口约每五秒更新一次，但大盘行情不包含更新时间字段</remarks>
         public (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market)
         {
             string marketCode = SinaSpiderHelper.GetMarketCode(market);

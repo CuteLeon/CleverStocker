@@ -79,18 +79,20 @@
             // 
             // MainMarketQuotaControl
             // 
+            this.MainMarketQuotaControl.AttachEntity = null;
             this.MainMarketQuotaControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainMarketQuotaControl.LabelForecolor = System.Drawing.Color.Empty;
             this.MainMarketQuotaControl.Location = new System.Drawing.Point(0, 25);
             this.MainMarketQuotaControl.Name = "MainMarketQuotaControl";
             this.MainMarketQuotaControl.Padding = new System.Windows.Forms.Padding(3);
             this.MainMarketQuotaControl.Size = new System.Drawing.Size(330, 197);
+            this.MainMarketQuotaControl.Stock = null;
             this.MainMarketQuotaControl.TabIndex = 3;
             this.MainMarketQuotaControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // AutoRefreshTimer
             // 
-            this.AutoRefreshTimer.Interval = 3000;
+            this.AutoRefreshTimer.Interval = 5000;
             this.AutoRefreshTimer.Tick += new System.EventHandler(this.AutoRefreshTimer_Tick);
             // 
             // MarketQuotaForm
