@@ -104,5 +104,13 @@ namespace CleverStocker.Utils
         /// <returns></returns>
         public static Color GetTitleForecolor()
             => CurrentThemeComponent.ColorPalette.CommandBarToolbarDefault.OverflowButtonGlyph;
+
+        /// <summary>
+        /// 获取行情前景颜色
+        /// </summary>
+        /// <param name="quota"></param>
+        /// <returns></returns>
+        public static Color GetQuotaForecolor(double quota)
+            => quota > 0.0 ? Color.Crimson : Color.LimeGreen;
     }
 }

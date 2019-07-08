@@ -7,8 +7,6 @@ using CleverStocker.Utils;
 
 namespace CleverStocker.Client.Controls
 {
-    // TODO: 优化控件样式，颜色、布局、字体
-
     /// <summary>
     /// 泛型股票附加数据控件
     /// </summary>

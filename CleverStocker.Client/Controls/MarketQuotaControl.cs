@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using CleverStocker.Model;
+using CleverStocker.Utils;
 
 namespace CleverStocker.Client.Controls
 {
@@ -22,15 +23,13 @@ namespace CleverStocker.Client.Controls
         /// <param name="color"></param>
         public override void SetLabelForecolor(Color color)
         {
-            this.CodeLabel.ForeColor = color;
-            this.MarketLabel.ForeColor = color;
-            this.StockNameLabel.ForeColor = color;
-            this.CurrentPriceLabel.ForeColor = color;
-            this.FluctuatingRangeLabel.ForeColor = color;
-            this.FluctuatingRateLabel.ForeColor = color;
             this.CountLabel.ForeColor = color;
             this.AmountLabel.ForeColor = color;
             this.UpdateTimeLabel.ForeColor = color;
+            this.CodeValueLabel.ForeColor = color;
+            this.MarketValueLabel.ForeColor = color;
+            this.StockNameValueLabel.ForeColor = color;
+            this.UpdateTimeValueLabel.ForeColor = color;
         }
 
         /// <summary>
@@ -39,15 +38,11 @@ namespace CleverStocker.Client.Controls
         /// <param name="color"></param>
         public override void SetValueForecolor(Color color)
         {
-            this.CodeValueLabel.ForeColor = color;
-            this.MarketValueLabel.ForeColor = color;
-            this.StockNameValueLabel.ForeColor = color;
             this.CurrentPriceValueLabel.ForeColor = color;
             this.FluctuatingRangeValueLabel.ForeColor = color;
             this.FluctuatingRateValueLabel.ForeColor = color;
             this.CountValueLabel.ForeColor = color;
             this.AmountValueLabel.ForeColor = color;
-            this.UpdateTimeValueLabel.ForeColor = color;
         }
 
         /// <summary>
@@ -78,6 +73,10 @@ namespace CleverStocker.Client.Controls
         {
             if (quota == null)
             {
+                this.CurrentPriceValueLabel.ForeColor = this.ValueForecolor;
+                this.FluctuatingRangeValueLabel.ForeColor = this.ValueForecolor;
+                this.FluctuatingRateValueLabel.ForeColor = this.ValueForecolor;
+
                 this.CurrentPriceValueLabel.Text = "-";
                 this.FluctuatingRangeValueLabel.Text = "-";
                 this.FluctuatingRateValueLabel.Text = "-";
@@ -87,12 +86,17 @@ namespace CleverStocker.Client.Controls
             }
             else
             {
+                Color quotaForecolor = ThemeHelper.GetQuotaForecolor(quota.FluctuatingRange);
+                this.CurrentPriceValueLabel.ForeColor = quotaForecolor;
+                this.FluctuatingRangeValueLabel.ForeColor = quotaForecolor;
+                this.FluctuatingRateValueLabel.ForeColor = quotaForecolor;
+
                 this.CurrentPriceValueLabel.Text = quota.CurrentPrice.ToString("N4");
                 this.FluctuatingRangeValueLabel.Text = quota.FluctuatingRange.ToString("N4");
-                this.FluctuatingRateValueLabel.Text = quota.FluctuatingRate.ToString("N4");
+                this.FluctuatingRateValueLabel.Text = $"{quota.FluctuatingRate.ToString("N4")} %";
                 this.CountValueLabel.Text = quota.Count.ToString("N0");
                 this.AmountValueLabel.Text = quota.Amount.ToString("N0");
-                this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString();
+                this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString("HH:mm:ss");
             }
         }
     }
