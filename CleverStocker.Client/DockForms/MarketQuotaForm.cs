@@ -226,7 +226,7 @@ namespace CleverStocker.Client.DockForms
 
                 if (quota != null)
                 {
-                    // TODO: 请求的数据不包含源更新时间，导致数据库将积压大量无效数据
+                    // TODO: [问题] 请求的数据不包含源更新时间，导致数据库将积压大量无效数据
                     this.MarketQuotaService.AddOrUpdate(quota);
                 }
             }
