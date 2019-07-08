@@ -36,7 +36,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ChartToolButton = new System.Windows.Forms.ToolStripButton();
             this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
-            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaControl();
+            this.MainStockQuotaControl = new CleverStocker.Client.Controls.StockQuotaControl();
+            this.MainFiveGearControl = new CleverStocker.Client.Controls.StockQuotaFiveGearControl();
             this.CurrentQuotaToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,23 +109,33 @@
             // 
             // MainStockQuotaBaseControl
             // 
-            this.MainStockQuotaBaseControl.AttachEntity = null;
-            this.MainStockQuotaBaseControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainStockQuotaBaseControl.LabelForecolor = System.Drawing.Color.Empty;
-            this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(0, 25);
-            this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
-            this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(349, 215);
-            this.MainStockQuotaBaseControl.Stock = null;
-            this.MainStockQuotaBaseControl.TabIndex = 2;
-            this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
+            this.MainStockQuotaControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MainStockQuotaControl.LabelForecolor = System.Drawing.Color.Empty;
+            this.MainStockQuotaControl.Location = new System.Drawing.Point(0, 25);
+            this.MainStockQuotaControl.Name = "MainStockQuotaBaseControl";
+            this.MainStockQuotaControl.Padding = new System.Windows.Forms.Padding(3);
+            this.MainStockQuotaControl.Size = new System.Drawing.Size(349, 215);
+            this.MainStockQuotaControl.TabIndex = 2;
+            this.MainStockQuotaControl.ValueForecolor = System.Drawing.Color.Empty;
+            // 
+            // MainFiveGearControl
+            // 
+            this.MainFiveGearControl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MainFiveGearControl.LabelForecolor = System.Drawing.Color.Empty;
+            this.MainFiveGearControl.Location = new System.Drawing.Point(0, 240);
+            this.MainFiveGearControl.Name = "MainFiveGearControl";
+            this.MainFiveGearControl.Padding = new System.Windows.Forms.Padding(3);
+            this.MainFiveGearControl.Size = new System.Drawing.Size(349, 172);
+            this.MainFiveGearControl.TabIndex = 3;
+            this.MainFiveGearControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // CurrentQuotaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 240);
-            this.Controls.Add(this.MainStockQuotaBaseControl);
+            this.ClientSize = new System.Drawing.Size(349, 409);
+            this.Controls.Add(this.MainFiveGearControl);
+            this.Controls.Add(this.MainStockQuotaControl);
             this.Controls.Add(this.CurrentQuotaToolStrip);
             this.Name = "CurrentQuotaForm";
             this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight;
@@ -147,6 +158,7 @@
         private System.Windows.Forms.ToolStripButton RefreshToolButton;
         private System.Windows.Forms.ToolStripButton QuotaRepositoryToolButton;
         private System.Windows.Forms.ToolStripButton ChartToolButton;
-        private Controls.StockQuotaControl MainStockQuotaBaseControl;
+        private Controls.StockQuotaControl MainStockQuotaControl;
+        private Controls.StockQuotaFiveGearControl MainFiveGearControl;
     }
 }

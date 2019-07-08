@@ -62,7 +62,9 @@ namespace CleverStocker.Client.DockForms
             protected set
             {
                 this.currentStock = value;
-                this.MainStockQuotaBaseControl.Stock = value;
+
+                this.MainStockQuotaControl.Stock = value;
+                this.MainFiveGearControl.Stock = value;
 
                 if (value == null)
                 {
@@ -102,7 +104,9 @@ namespace CleverStocker.Client.DockForms
             protected set
             {
                 this.currentQuota = value;
-                this.MainStockQuotaBaseControl.AttachEntity = value;
+
+                this.MainStockQuotaControl.AttachEntity = value;
+                this.MainFiveGearControl.AttachEntity = value;
             }
         }
 
@@ -302,8 +306,12 @@ namespace CleverStocker.Client.DockForms
             base.ApplyTheme();
 
             ThemeHelper.CurrentThemeComponent.ApplyTo(this.CurrentQuotaToolStrip);
-            this.MainStockQuotaBaseControl.LabelForecolor = ThemeHelper.GetTitleForecolor();
-            this.MainStockQuotaBaseControl.ValueForecolor = ThemeHelper.GetContentForecolor();
+
+            this.MainStockQuotaControl.LabelForecolor = ThemeHelper.GetTitleForecolor();
+            this.MainStockQuotaControl.ValueForecolor = ThemeHelper.GetContentForecolor();
+
+            this.MainFiveGearControl.LabelForecolor = this.MainStockQuotaControl.LabelForecolor;
+            this.MainFiveGearControl.ValueForecolor = this.MainStockQuotaControl.ValueForecolor;
         }
         #endregion
 
