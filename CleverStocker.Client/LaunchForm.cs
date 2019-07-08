@@ -132,6 +132,9 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("注册自选股票窗口 ...");
                             this.RegisterSingleToolDockFormInstance<SelfSelectStockForm>(mainForm);
 
+                            this.UpdateProgressAsync("注册热门股票窗口 ...");
+                            this.RegisterSingleToolDockFormInstance<HotStockDockForm>(mainForm);
+
                             this.UpdateProgressAsync("注册搜索股票窗口 ...");
                             this.RegisterToolDockForm<SearchStockDockForm>();
 

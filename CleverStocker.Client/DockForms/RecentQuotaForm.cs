@@ -3,7 +3,7 @@
     /// <summary>
     /// 最近行情
     /// </summary>
-    public partial class RecentQuotaForm : SingleToolDockForm
+    public partial class RecentQuotaForm : SingleToolDockForm //, IMQPubsubable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentQuotaForm"/> class.

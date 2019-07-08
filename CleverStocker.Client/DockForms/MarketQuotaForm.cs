@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using CleverStocker.Client.Interfaces;
 using CleverStocker.Common;
 using CleverStocker.Model;
 using CleverStocker.Model.Extensions;
@@ -12,7 +13,7 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 大盘指数
     /// </summary>
-    public partial class MarketQuotaForm : SingleToolDockForm
+    public partial class MarketQuotaForm : SingleToolDockForm, IMQPubsubable
     {
         #region 服务
 

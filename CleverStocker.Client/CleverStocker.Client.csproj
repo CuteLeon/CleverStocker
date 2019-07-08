@@ -115,6 +115,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DockForms\FloatWindows\FloatedWindowFactory.cs" />
+    <Compile Include="DockForms\HotStockDockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DockForms\HotStockDockForm.Designer.cs">
+      <DependentUpon>HotStockDockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DockForms\MarketQuotaForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\DocumentDockForm.resx">
       <DependentUpon>DocumentDockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DockForms\HotStockDockForm.resx">
+      <DependentUpon>HotStockDockForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\MarketQuotaForm.resx">
       <DependentUpon>MarketQuotaForm.cs</DependentUpon>
@@ -334,6 +343,7 @@
     <Content Include="CleverStocker.Layout.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\HotIcon.ico" />
     <None Include="Resources\ServiceFabric.png" />
     <None Include="Resources\Delete.png" />
     <None Include="Resources\SearchIcon.ico" />
