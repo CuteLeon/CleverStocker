@@ -29,27 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaControl();
             this.AutoRefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.CurrentQuotaToolStrip = new System.Windows.Forms.ToolStrip();
             this.AutoRefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
             this.ChartToolButton = new System.Windows.Forms.ToolStripButton();
+            this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
+            this.MainStockQuotaBaseControl = new CleverStocker.Client.Controls.StockQuotaControl();
             this.CurrentQuotaToolStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // MainStockQuotaBaseControl
-            // 
-            this.MainStockQuotaBaseControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainStockQuotaBaseControl.LabelForecolor = System.Drawing.Color.Empty;
-            this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(0, 0);
-            this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
-            this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(349, 240);
-            this.MainStockQuotaBaseControl.TabIndex = 0;
-            this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // AutoRefreshTimer
             // 
@@ -97,16 +86,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // QuotaRepositoryToolButton
-            // 
-            this.QuotaRepositoryToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.QuotaRepositoryToolButton.Image = global::CleverStocker.Client.AppResource.Context;
-            this.QuotaRepositoryToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.QuotaRepositoryToolButton.Name = "QuotaRepositoryToolButton";
-            this.QuotaRepositoryToolButton.Size = new System.Drawing.Size(23, 22);
-            this.QuotaRepositoryToolButton.Text = "行情仓库";
-            this.QuotaRepositoryToolButton.Click += new System.EventHandler(this.QuotaRepositoryToolButton_Click);
-            // 
             // ChartToolButton
             // 
             this.ChartToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -117,13 +96,36 @@
             this.ChartToolButton.Text = "图表";
             this.ChartToolButton.Click += new System.EventHandler(this.ChartToolButton_Click);
             // 
+            // QuotaRepositoryToolButton
+            // 
+            this.QuotaRepositoryToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.QuotaRepositoryToolButton.Image = global::CleverStocker.Client.AppResource.Context;
+            this.QuotaRepositoryToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.QuotaRepositoryToolButton.Name = "QuotaRepositoryToolButton";
+            this.QuotaRepositoryToolButton.Size = new System.Drawing.Size(23, 22);
+            this.QuotaRepositoryToolButton.Text = "行情仓库";
+            this.QuotaRepositoryToolButton.Click += new System.EventHandler(this.QuotaRepositoryToolButton_Click);
+            // 
+            // MainStockQuotaBaseControl
+            // 
+            this.MainStockQuotaBaseControl.AttachEntity = null;
+            this.MainStockQuotaBaseControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainStockQuotaBaseControl.LabelForecolor = System.Drawing.Color.Empty;
+            this.MainStockQuotaBaseControl.Location = new System.Drawing.Point(0, 25);
+            this.MainStockQuotaBaseControl.Name = "MainStockQuotaBaseControl";
+            this.MainStockQuotaBaseControl.Padding = new System.Windows.Forms.Padding(3);
+            this.MainStockQuotaBaseControl.Size = new System.Drawing.Size(349, 215);
+            this.MainStockQuotaBaseControl.Stock = null;
+            this.MainStockQuotaBaseControl.TabIndex = 2;
+            this.MainStockQuotaBaseControl.ValueForecolor = System.Drawing.Color.Empty;
+            // 
             // CurrentQuotaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(349, 240);
-            this.Controls.Add(this.CurrentQuotaToolStrip);
             this.Controls.Add(this.MainStockQuotaBaseControl);
+            this.Controls.Add(this.CurrentQuotaToolStrip);
             this.Name = "CurrentQuotaForm";
             this.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.DockRight;
             this.TabText = "实时行情";
@@ -138,8 +140,6 @@
         }
 
         #endregion
-
-        private Controls.StockQuotaControl MainStockQuotaBaseControl;
         private System.Windows.Forms.Timer AutoRefreshTimer;
         private System.Windows.Forms.ToolStrip CurrentQuotaToolStrip;
         private System.Windows.Forms.ToolStripButton AutoRefreshToolButton;
@@ -147,5 +147,6 @@
         private System.Windows.Forms.ToolStripButton RefreshToolButton;
         private System.Windows.Forms.ToolStripButton QuotaRepositoryToolButton;
         private System.Windows.Forms.ToolStripButton ChartToolButton;
+        private Controls.StockQuotaControl MainStockQuotaBaseControl;
     }
 }
