@@ -70,8 +70,6 @@ namespace CleverStocker.Client
         {
             try
             {
-                this.GetHotStocks();
-                return;
                 this.GetChart();
                 this.GetCompany();
                 this.GetRecentQuotas();
@@ -131,21 +129,6 @@ namespace CleverStocker.Client
             }
 
             MessageBox.Show($"获取最近行情成功：\n行情数量：{quotas.Count}\n最新时间：{quotas.LastOrDefault()?.UpdateTime}\n最早时间：{quotas.FirstOrDefault()?.UpdateTime}");
-        }
-
-        private void GetHotStocks()
-        {
-            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
-            var stocks = stockSpiderService.GetHotStocks();
-
-            if (stocks == null ||
-                stocks.Count == 0)
-            {
-                MessageBox.Show($"获取热门股票为空！");
-                return;
-            }
-
-            MessageBox.Show($"获取热门股票成功：\n热门股票数量：{stocks.Count}\n{string.Join("\n", stocks.Select(s => s.Name))}");
         }
 
         private void GetRecentTrades()
@@ -257,11 +240,16 @@ namespace CleverStocker.Client
             recentTradeForm.Show(this.MainDockPanel);
             var recentQuotaForm = DIContainerHelper.Resolve<RecentQuotaForm>();
             recentQuotaForm.Show(recentTradeForm.Pane, recentTradeForm);
+            var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
+            currentQuotaForm.Show(recentQuotaForm.Pane, recentQuotaForm);
 
             var marketQuotaForm = DIContainerHelper.Resolve<MarketQuotaForm>();
-            marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Top, 0.5);
-            var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
-            currentQuotaForm.Show(marketQuotaForm.Pane, marketQuotaForm);
+            marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Bottom, 0.3);
+
+            var hotStockForm = DIContainerHelper.Resolve<HotStockDockForm>();
+            hotStockForm.Show(this.MainDockPanel);
+            var selfSelectForm = DIContainerHelper.Resolve<SelfSelectStockForm>();
+            selfSelectForm.Show(hotStockForm.Pane, hotStockForm);
         }
         #endregion
 
