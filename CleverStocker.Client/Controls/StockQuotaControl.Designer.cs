@@ -47,7 +47,6 @@
             this.UpdateTimeValueLabel = new System.Windows.Forms.Label();
             this.MarketValueLabel = new System.Windows.Forms.Label();
             this.CodeValueLabel = new System.Windows.Forms.Label();
-            this.SeparatorLabel2 = new System.Windows.Forms.Label();
             this.MainTablePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,8 +194,8 @@
             this.CurrentPriceValueLabel.Location = new System.Drawing.Point(0, 0);
             this.CurrentPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.CurrentPriceValueLabel.Name = "CurrentPriceValueLabel";
-            this.MainTablePanel.SetRowSpan(this.CurrentPriceValueLabel, 3);
-            this.CurrentPriceValueLabel.Size = new System.Drawing.Size(203, 72);
+            this.MainTablePanel.SetRowSpan(this.CurrentPriceValueLabel, 2);
+            this.CurrentPriceValueLabel.Size = new System.Drawing.Size(203, 48);
             this.CurrentPriceValueLabel.TabIndex = 11;
             this.CurrentPriceValueLabel.Text = "-";
             this.CurrentPriceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -221,11 +220,10 @@
             this.MainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.MainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.MainTablePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.MainTablePanel.Controls.Add(this.SeparatorLabel2, 0, 10);
             this.MainTablePanel.Controls.Add(this.DayLowPriceLabel, 1, 4);
             this.MainTablePanel.Controls.Add(this.DayHighPriceLabel, 0, 4);
             this.MainTablePanel.Controls.Add(this.SeparatorLabel1, 0, 3);
-            this.MainTablePanel.Controls.Add(this.UpdateTimeValueLabel, 1, 11);
+            this.MainTablePanel.Controls.Add(this.UpdateTimeValueLabel, 0, 2);
             this.MainTablePanel.Controls.Add(this.MarketValueLabel, 2, 1);
             this.MainTablePanel.Controls.Add(this.CodeValueLabel, 2, 0);
             this.MainTablePanel.Controls.Add(this.AmountLabel, 1, 8);
@@ -243,7 +241,7 @@
             this.MainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTablePanel.Location = new System.Drawing.Point(3, 3);
             this.MainTablePanel.Name = "MainTablePanel";
-            this.MainTablePanel.RowCount = 13;
+            this.MainTablePanel.RowCount = 11;
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
@@ -254,10 +252,9 @@
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.MainTablePanel.Size = new System.Drawing.Size(290, 252);
+            this.MainTablePanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.MainTablePanel.Size = new System.Drawing.Size(290, 229);
             this.MainTablePanel.TabIndex = 1;
             // 
             // DayLowPriceLabel
@@ -304,14 +301,14 @@
             this.UpdateTimeValueLabel.AutoEllipsis = true;
             this.MainTablePanel.SetColumnSpan(this.UpdateTimeValueLabel, 2);
             this.UpdateTimeValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UpdateTimeValueLabel.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.UpdateTimeValueLabel.Location = new System.Drawing.Point(145, 214);
+            this.UpdateTimeValueLabel.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.UpdateTimeValueLabel.Location = new System.Drawing.Point(0, 48);
             this.UpdateTimeValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.UpdateTimeValueLabel.Name = "UpdateTimeValueLabel";
-            this.UpdateTimeValueLabel.Size = new System.Drawing.Size(145, 20);
+            this.UpdateTimeValueLabel.Size = new System.Drawing.Size(203, 24);
             this.UpdateTimeValueLabel.TabIndex = 34;
             this.UpdateTimeValueLabel.Text = "-";
-            this.UpdateTimeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.UpdateTimeValueLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // MarketValueLabel
             // 
@@ -339,18 +336,6 @@
             this.CodeValueLabel.Text = "-";
             this.CodeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // SeparatorLabel2
-            // 
-            this.SeparatorLabel2.AutoSize = true;
-            this.SeparatorLabel2.BackColor = System.Drawing.Color.Gray;
-            this.MainTablePanel.SetColumnSpan(this.SeparatorLabel2, 3);
-            this.SeparatorLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SeparatorLabel2.Location = new System.Drawing.Point(10, 211);
-            this.SeparatorLabel2.Margin = new System.Windows.Forms.Padding(10, 2, 10, 2);
-            this.SeparatorLabel2.Name = "SeparatorLabel2";
-            this.SeparatorLabel2.Size = new System.Drawing.Size(270, 1);
-            this.SeparatorLabel2.TabIndex = 38;
-            // 
             // StockQuotaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -358,7 +343,7 @@
             this.Controls.Add(this.MainTablePanel);
             this.Name = "StockQuotaControl";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(296, 258);
+            this.Size = new System.Drawing.Size(296, 235);
             this.MainTablePanel.ResumeLayout(false);
             this.MainTablePanel.PerformLayout();
             this.ResumeLayout(false);
@@ -385,6 +370,5 @@
         private System.Windows.Forms.Label SeparatorLabel1;
         private System.Windows.Forms.Label DayHighPriceLabel;
         private System.Windows.Forms.Label DayLowPriceLabel;
-        private System.Windows.Forms.Label SeparatorLabel2;
     }
 }
