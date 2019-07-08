@@ -114,18 +114,18 @@
             this.MainStockQuotaControl.Location = new System.Drawing.Point(0, 25);
             this.MainStockQuotaControl.Name = "MainStockQuotaControl";
             this.MainStockQuotaControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainStockQuotaControl.Size = new System.Drawing.Size(349, 238);
+            this.MainStockQuotaControl.Size = new System.Drawing.Size(349, 185);
             this.MainStockQuotaControl.TabIndex = 2;
             this.MainStockQuotaControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
             // MainFiveGearControl
             // 
-            this.MainFiveGearControl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MainFiveGearControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.MainFiveGearControl.LabelForecolor = System.Drawing.Color.Empty;
-            this.MainFiveGearControl.Location = new System.Drawing.Point(0, 240);
+            this.MainFiveGearControl.Location = new System.Drawing.Point(0, 210);
             this.MainFiveGearControl.Name = "MainFiveGearControl";
             this.MainFiveGearControl.Padding = new System.Windows.Forms.Padding(3);
-            this.MainFiveGearControl.Size = new System.Drawing.Size(349, 169);
+            this.MainFiveGearControl.Size = new System.Drawing.Size(349, 152);
             this.MainFiveGearControl.TabIndex = 3;
             this.MainFiveGearControl.ValueForecolor = System.Drawing.Color.Empty;
             // 
@@ -133,7 +133,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 409);
+            this.ClientSize = new System.Drawing.Size(349, 361);
             this.Controls.Add(this.MainFiveGearControl);
             this.Controls.Add(this.MainStockQuotaControl);
             this.Controls.Add(this.CurrentQuotaToolStrip);
