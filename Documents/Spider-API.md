@@ -12,7 +12,7 @@ http://quotes.money.163.com/service/chddata.html?code=0600086&end=20190101&field
 >
 > 1. 获取股票从上市到指定结束日期每个交易日的行情数据；
 > 2. 省略 end 字段时，将返回至今的全部行情数据
->
+> 3. 可以通过 fields 指定字段
 
 ### 响应
 
