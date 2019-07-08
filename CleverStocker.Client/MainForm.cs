@@ -18,6 +18,8 @@ namespace CleverStocker.Client
      * 公司信息
      * 最近交易(列表x4)
      * 最近行情(时间规模x5)
+     * 资金流向
+     * 智能分析：ML.NET=> 1.长线分析(东方财富爬虫/本地CSV文件导入)；2.短线分析(数据库行情)
      */
 
     /// <summary>
