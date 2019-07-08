@@ -11,6 +11,8 @@ using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
 {
+    // TODO: 股票相关功能按钮加入到搜索窗口工具栏
+
     /// <summary>
     /// 搜索股票窗口
     /// </summary>
