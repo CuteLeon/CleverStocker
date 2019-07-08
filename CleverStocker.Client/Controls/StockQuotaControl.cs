@@ -29,13 +29,10 @@ namespace CleverStocker.Client.Controls
             this.OpeningPriceTodayLabel.ForeColor = color;
             this.CountLabel.ForeColor = color;
             this.AmountLabel.ForeColor = color;
-            this.UpdateDateLabel.ForeColor = color;
-            this.UpdateTimeLabel.ForeColor = color;
 
             this.CodeValueLabel.ForeColor = color;
             this.MarketValueLabel.ForeColor = color;
             this.StockNameValueLabel.ForeColor = color;
-            this.UpdateDateValueLabel.ForeColor = color;
             this.UpdateTimeValueLabel.ForeColor = color;
         }
 
@@ -83,6 +80,8 @@ namespace CleverStocker.Client.Controls
             if (quota == null)
             {
                 this.CurrentPriceValueLabel.ForeColor = this.ValueForecolor;
+                this.OpeningPriceTodayValueLabel.ForeColor = this.ValueForecolor;
+                this.ClosingPriceYesterdayValueLabel.ForeColor = this.ValueForecolor;
 
                 this.CurrentPriceValueLabel.Text = "-";
                 this.ClosingPriceYesterdayValueLabel.Text = "-";
@@ -91,12 +90,22 @@ namespace CleverStocker.Client.Controls
                 this.DayLowPriceValueLabel.Text = "-";
                 this.CountValueLabel.Text = "-";
                 this.AmountValueLabel.Text = "-";
-                this.UpdateDateValueLabel.Text = "-";
                 this.UpdateTimeValueLabel.Text = "-";
             }
             else
             {
                 this.CurrentPriceValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(quota.CurrentPrice - quota.OpeningPriceToday);
+
+                if (quota.OpeningPriceToday > quota.ClosingPriceYesterday)
+                {
+                    this.OpeningPriceTodayValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(1);
+                    this.ClosingPriceYesterdayValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(-1);
+                }
+                else
+                {
+                    this.OpeningPriceTodayValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(-1);
+                    this.ClosingPriceYesterdayValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(1);
+                }
 
                 this.CurrentPriceValueLabel.Text = quota.CurrentPrice.ToString("N4");
                 this.ClosingPriceYesterdayValueLabel.Text = quota.ClosingPriceYesterday.ToString("N4");
@@ -105,8 +114,7 @@ namespace CleverStocker.Client.Controls
                 this.DayLowPriceValueLabel.Text = quota.DayLowPrice.ToString("N4");
                 this.CountValueLabel.Text = quota.Count.ToString("N0");
                 this.AmountValueLabel.Text = quota.Amount.ToString("N0");
-                this.UpdateDateValueLabel.Text = quota.UpdateTime.ToString("yyyy-MM-dd");
-                this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString("HH:mm:ss");
+                this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString();
             }
         }
     }
