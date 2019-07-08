@@ -23,6 +23,8 @@ namespace CleverStocker.Client.Controls
         /// <param name="color"></param>
         public override void SetLabelForecolor(Color color)
         {
+            this.DayHighPriceLabel.ForeColor = color;
+            this.DayLowPriceLabel.ForeColor = color;
             this.ClosingPriceYesterdayLabel.ForeColor = color;
             this.OpeningPriceTodayLabel.ForeColor = color;
             this.CountLabel.ForeColor = color;
@@ -89,6 +91,7 @@ namespace CleverStocker.Client.Controls
                 this.DayLowPriceValueLabel.Text = "-";
                 this.CountValueLabel.Text = "-";
                 this.AmountValueLabel.Text = "-";
+                this.UpdateDateValueLabel.Text = "-";
                 this.UpdateTimeValueLabel.Text = "-";
             }
             else
@@ -102,7 +105,7 @@ namespace CleverStocker.Client.Controls
                 this.DayLowPriceValueLabel.Text = quota.DayLowPrice.ToString("N4");
                 this.CountValueLabel.Text = quota.Count.ToString("N0");
                 this.AmountValueLabel.Text = quota.Amount.ToString("N0");
-                this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString("yyyy-MM-dd");
+                this.UpdateDateValueLabel.Text = quota.UpdateTime.ToString("yyyy-MM-dd");
                 this.UpdateTimeValueLabel.Text = quota.UpdateTime.ToString("HH:mm:ss");
             }
         }
