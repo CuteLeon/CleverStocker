@@ -142,7 +142,7 @@ namespace CleverStocker.Client
                             this.RegisterDocumentDockForm<ChartDocumentForm>();
 
                             this.UpdateProgressAsync("注册行情仓库窗口 ...");
-                            this.RegisterDocumentDockForm<QuotaRepositoryDockForm>();
+                            this.RegisterDocumentDockForm<QuotaRepositoryDocumentForm>();
 
                             this.UpdateProgressAsync("注册实时行情窗口 ...");
                             this.RegisterSingleToolDockFormInstance<CurrentQuotaForm>(mainForm);

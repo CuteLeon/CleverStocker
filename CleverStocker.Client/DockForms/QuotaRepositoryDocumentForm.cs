@@ -12,7 +12,7 @@ namespace CleverStocker.Client.DockForms
     /// <summary>
     /// 行情仓库停靠窗口
     /// </summary>
-    public partial class QuotaRepositoryDockForm : DocumentDockForm
+    public partial class QuotaRepositoryDocumentForm : DocumentDockForm
     {
         #region 服务
 
@@ -84,9 +84,9 @@ namespace CleverStocker.Client.DockForms
         #region 初始化
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QuotaRepositoryDockForm"/> class.
+        /// Initializes a new instance of the <see cref="QuotaRepositoryDocumentForm"/> class.
         /// </summary>
-        public QuotaRepositoryDockForm()
+        public QuotaRepositoryDocumentForm()
             : base()
         {
             this.InitializeComponent();

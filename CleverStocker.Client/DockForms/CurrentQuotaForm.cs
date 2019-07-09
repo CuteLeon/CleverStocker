@@ -268,7 +268,7 @@ namespace CleverStocker.Client.DockForms
                 return;
             }
 
-            var form = DIContainerHelper.Resolve<QuotaRepositoryDockForm>();
+            var form = DIContainerHelper.Resolve<QuotaRepositoryDocumentForm>();
             if (form == null)
             {
                 return;

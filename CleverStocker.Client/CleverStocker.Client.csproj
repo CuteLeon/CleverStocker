@@ -127,11 +127,11 @@
     <Compile Include="DockForms\MarketQuotaForm.Designer.cs">
       <DependentUpon>MarketQuotaForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DockForms\QuotaRepositoryDockForm.cs">
+    <Compile Include="DockForms\QuotaRepositoryDocumentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DockForms\QuotaRepositoryDockForm.Designer.cs">
-      <DependentUpon>QuotaRepositoryDockForm.cs</DependentUpon>
+    <Compile Include="DockForms\QuotaRepositoryDocumentForm.Designer.cs">
+      <DependentUpon>QuotaRepositoryDocumentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DockForms\RecentQuotaForm.cs">
       <SubType>Form</SubType>
@@ -220,8 +220,8 @@
     <EmbeddedResource Include="DockForms\MarketQuotaForm.resx">
       <DependentUpon>MarketQuotaForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DockForms\QuotaRepositoryDockForm.resx">
-      <DependentUpon>QuotaRepositoryDockForm.cs</DependentUpon>
+    <EmbeddedResource Include="DockForms\QuotaRepositoryDocumentForm.resx">
+      <DependentUpon>QuotaRepositoryDocumentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\RecentQuotaForm.resx">
       <DependentUpon>RecentQuotaForm.cs</DependentUpon>

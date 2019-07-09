@@ -1,6 +1,6 @@
 ﻿namespace CleverStocker.Client.DockForms
 {
-    partial class QuotaRepositoryDockForm
+    partial class QuotaRepositoryDocumentForm
     {
         /// <summary>
         /// Required designer variable.
