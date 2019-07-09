@@ -200,6 +200,40 @@ namespace CleverStocker.Client.DockForms
             _ = this.SearchStock(this.currentStock.Code, this.currentStock.Market);
         }
 
+        private void ChartToolButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentStock == null)
+            {
+                return;
+            }
+
+            var form = DIContainerHelper.Resolve<ChartDocumentForm>();
+            if (form == null)
+            {
+                return;
+            }
+
+            form.Stock = this.currentStock;
+            form.Show(this.DockPanel);
+        }
+
+        private void QuotaRepositoryToolButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentStock == null)
+            {
+                return;
+            }
+
+            var form = DIContainerHelper.Resolve<QuotaRepositoryDockForm>();
+            if (form == null)
+            {
+                return;
+            }
+
+            form.Stock = this.currentStock;
+            form.Show(this.DockPanel);
+        }
+
         private void SaveToolButton_Click(object sender, EventArgs e)
         {
             if (this.currentStock != null)

@@ -39,9 +39,12 @@
             this.RemoveSelfSelectToolButton = new System.Windows.Forms.ToolStripButton();
             this.RefreshToolButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ChartToolButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.SaveToolButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteToolButton = new System.Windows.Forms.ToolStripButton();
             this.MainStockQuotaControl = new CleverStocker.Client.Controls.StockQuotaControl();
+            this.QuotaRepositoryToolButton = new System.Windows.Forms.ToolStripButton();
             this.MainTablePanel.SuspendLayout();
             this.SearchToolStrip.SuspendLayout();
             this.SuspendLayout();
@@ -154,6 +157,9 @@
             this.RemoveSelfSelectToolButton,
             this.RefreshToolButton,
             this.toolStripSeparator1,
+            this.ChartToolButton,
+            this.QuotaRepositoryToolButton,
+            this.toolStripSeparator2,
             this.SaveToolButton,
             this.DeleteToolButton});
             this.SearchToolStrip.Location = new System.Drawing.Point(0, 76);
@@ -197,6 +203,21 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // ChartToolButton
+            // 
+            this.ChartToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ChartToolButton.Image = global::CleverStocker.Client.AppResource.Chart;
+            this.ChartToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ChartToolButton.Name = "ChartToolButton";
+            this.ChartToolButton.Size = new System.Drawing.Size(23, 22);
+            this.ChartToolButton.Text = "图表";
+            this.ChartToolButton.Click += new System.EventHandler(this.ChartToolButton_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // SaveToolButton
             // 
             this.SaveToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -219,6 +240,7 @@
             // 
             // MainStockQuotaControl
             // 
+            this.MainStockQuotaControl.AttachEntity = null;
             this.MainTablePanel.SetColumnSpan(this.MainStockQuotaControl, 2);
             this.MainStockQuotaControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainStockQuotaControl.LabelForecolor = System.Drawing.Color.Empty;
@@ -226,8 +248,19 @@
             this.MainStockQuotaControl.Name = "MainStockQuotaControl";
             this.MainStockQuotaControl.Padding = new System.Windows.Forms.Padding(3);
             this.MainStockQuotaControl.Size = new System.Drawing.Size(282, 280);
+            this.MainStockQuotaControl.Stock = null;
             this.MainStockQuotaControl.TabIndex = 8;
             this.MainStockQuotaControl.ValueForecolor = System.Drawing.Color.Empty;
+            // 
+            // QuotaRepositoryToolButton
+            // 
+            this.QuotaRepositoryToolButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.QuotaRepositoryToolButton.Image = global::CleverStocker.Client.AppResource.Context;
+            this.QuotaRepositoryToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.QuotaRepositoryToolButton.Name = "QuotaRepositoryToolButton";
+            this.QuotaRepositoryToolButton.Size = new System.Drawing.Size(23, 22);
+            this.QuotaRepositoryToolButton.Text = "行情仓库";
+            this.QuotaRepositoryToolButton.Click += new System.EventHandler(this.QuotaRepositoryToolButton_Click);
             // 
             // SearchStockDockForm
             // 
@@ -269,5 +302,8 @@
         private System.Windows.Forms.ToolStripButton SaveToolButton;
         private System.Windows.Forms.ToolStripButton DeleteToolButton;
         private Controls.StockQuotaControl MainStockQuotaControl;
+        private System.Windows.Forms.ToolStripButton ChartToolButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton QuotaRepositoryToolButton;
     }
 }
