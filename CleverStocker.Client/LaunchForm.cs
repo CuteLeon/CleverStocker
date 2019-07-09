@@ -141,6 +141,9 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync("注册图表文档窗口 ...");
                             this.RegisterDocumentDockForm<ChartDocumentForm>();
 
+                            this.UpdateProgressAsync("注册最近行情窗口 ...");
+                            this.RegisterDocumentDockForm<RecentQuotaDocumentForm>();
+
                             this.UpdateProgressAsync("注册行情仓库窗口 ...");
                             this.RegisterDocumentDockForm<QuotaRepositoryDocumentForm>();
 
@@ -155,9 +158,6 @@ namespace CleverStocker.Client
 
                             this.UpdateProgressAsync("注册最近交易窗口 ...");
                             this.RegisterSingleToolDockFormInstance<RecentTradeForm>(mainForm);
-
-                            this.UpdateProgressAsync("注册最近行情窗口 ...");
-                            this.RegisterSingleToolDockFormInstance<RecentQuotaForm>(mainForm);
 
                             this.UpdateProgressAsync($"密封服务容器 ...");
                             DIContainerHelper.Build();

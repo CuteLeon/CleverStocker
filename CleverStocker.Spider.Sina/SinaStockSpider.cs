@@ -468,7 +468,8 @@ namespace CleverStocker.Spider.Sina
                 RecentQuotaRegex.Matches(result)
                     .Cast<Match>()
                     .Select(match => ConvertToRecentQuota(match))
-                    .Where(quota => quota != null));
+                    .Where(quota => quota != null)
+                    .OrderByDescending(quota => quota.UpdateTime));
 
             recentQuotas.ForEach(quota =>
             {

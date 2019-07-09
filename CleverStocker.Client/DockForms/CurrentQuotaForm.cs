@@ -294,6 +294,23 @@ namespace CleverStocker.Client.DockForms
             form.Stock = this.currentStock;
             form.Show(this.DockPanel);
         }
+
+        private void RecentQuotaToolButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentStock == null)
+            {
+                return;
+            }
+
+            var form = DIContainerHelper.Resolve<RecentQuotaDocumentForm>();
+            if (form == null)
+            {
+                return;
+            }
+
+            form.Stock = this.currentStock;
+            form.Show(this.DockPanel);
+        }
         #endregion
 
         #region 主题

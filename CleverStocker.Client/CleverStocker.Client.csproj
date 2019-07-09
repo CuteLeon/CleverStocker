@@ -133,11 +133,11 @@
     <Compile Include="DockForms\QuotaRepositoryDocumentForm.Designer.cs">
       <DependentUpon>QuotaRepositoryDocumentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DockForms\RecentQuotaForm.cs">
+    <Compile Include="DockForms\RecentQuotaDocumentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DockForms\RecentQuotaForm.Designer.cs">
-      <DependentUpon>RecentQuotaForm.cs</DependentUpon>
+    <Compile Include="DockForms\RecentQuotaDocumentForm.Designer.cs">
+      <DependentUpon>RecentQuotaDocumentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DockForms\RecentTradeForm.cs">
       <SubType>Form</SubType>
@@ -223,8 +223,8 @@
     <EmbeddedResource Include="DockForms\QuotaRepositoryDocumentForm.resx">
       <DependentUpon>QuotaRepositoryDocumentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DockForms\RecentQuotaForm.resx">
-      <DependentUpon>RecentQuotaForm.cs</DependentUpon>
+    <EmbeddedResource Include="DockForms\RecentQuotaDocumentForm.resx">
+      <DependentUpon>RecentQuotaDocumentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DockForms\RecentTradeForm.resx">
       <DependentUpon>RecentTradeForm.cs</DependentUpon>
@@ -258,6 +258,7 @@
       <Link>CleverStocker.ruleset</Link>
     </None>
     <None Include="Properties\DataSources\CleverStocker.Model.Quota.datasource" />
+    <None Include="Properties\DataSources\CleverStocker.Model.RecentQuota.datasource" />
     <None Include="Properties\DataSources\CleverStocker.Model.Stock.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

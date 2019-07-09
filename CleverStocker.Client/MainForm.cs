@@ -237,10 +237,8 @@ namespace CleverStocker.Client
         {
             var recentTradeForm = DIContainerHelper.Resolve<RecentTradeForm>();
             recentTradeForm.Show(this.MainDockPanel);
-            var recentQuotaForm = DIContainerHelper.Resolve<RecentQuotaForm>();
-            recentQuotaForm.Show(recentTradeForm.Pane, recentTradeForm);
             var currentQuotaForm = DIContainerHelper.Resolve<CurrentQuotaForm>();
-            currentQuotaForm.Show(recentQuotaForm.Pane, recentQuotaForm);
+            currentQuotaForm.Show(recentTradeForm.Pane, recentTradeForm);
 
             var marketQuotaForm = DIContainerHelper.Resolve<MarketQuotaForm>();
             marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Bottom, 0.3);
