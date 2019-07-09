@@ -14,9 +14,8 @@ using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client
 {
-    /* <功能布局：>
+    /* TODO: 功能布局
      * 公司信息
-     * 热门股票
      * 最近交易(列表x4)
      * 最近行情(时间规模x5)
      * 资金流向
