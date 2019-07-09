@@ -12,6 +12,7 @@ namespace CleverStocker.Spider.Sina
         /// </summary>
         /// <param name="market"></param>
         /// <returns></returns>
+        /// <remarks>switch 语句会生成分支转跳表，在常量匹配场景下，性能优于 if else if ，同 Dictionary 的 O(1) 时间复杂度</remarks>
         public static string GetMarketCode(Markets market)
         {
             switch (market)
