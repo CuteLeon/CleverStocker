@@ -261,6 +261,23 @@ namespace CleverStocker.Client.DockForms
                 MQHelper.Publish(this.SourceName, MQTopics.TopicStockRemove, stock.GetFullCode());
             }
         }
+
+        private void RecentToolStripButton_Click(object sender, EventArgs e)
+        {
+            if (this.currentStock == null)
+            {
+                return;
+            }
+
+            var form = DIContainerHelper.Resolve<RecentQuotaDocumentForm>();
+            if (form == null)
+            {
+                return;
+            }
+
+            form.Stock = this.currentStock;
+            form.Show(this.DockPanel);
+        }
         #endregion
 
         #region 功能
