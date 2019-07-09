@@ -66,8 +66,9 @@
             // 
             this.StartMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExitMenuItem});
+            this.StartMenuItem.Image = global::CleverStocker.Client.AppResource.Home;
             this.StartMenuItem.Name = "StartMenuItem";
-            this.StartMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.StartMenuItem.Size = new System.Drawing.Size(60, 21);
             this.StartMenuItem.Text = "开始";
             // 
             // ExitMenuItem
@@ -79,8 +80,9 @@
             // 
             // ViewMenuItem
             // 
+            this.ViewMenuItem.Image = global::CleverStocker.Client.AppResource.View;
             this.ViewMenuItem.Name = "ViewMenuItem";
-            this.ViewMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.ViewMenuItem.Size = new System.Drawing.Size(60, 21);
             this.ViewMenuItem.Text = "视图";
             // 
             // ThemeMenuItem
@@ -91,8 +93,9 @@
             this.DarkThemeMenuItem,
             this.toolStripSeparator1,
             this.SaveLayoutMenuItem});
+            this.ThemeMenuItem.Image = global::CleverStocker.Client.AppResource.Theme;
             this.ThemeMenuItem.Name = "ThemeMenuItem";
-            this.ThemeMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.ThemeMenuItem.Size = new System.Drawing.Size(60, 21);
             this.ThemeMenuItem.Text = "主题";
             // 
             // LightThemeMenuItem
