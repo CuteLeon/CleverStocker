@@ -384,7 +384,6 @@
     <None Include="Resources\ApplyFilter.png" />
     <None Include="Resources\All.png" />
     <None Include="Resources\SearchLabel.png" />
-    <None Include="Resources\AllStockIcon.ico" />
     <None Include="Resources\Processer.png" />
     <None Include="Resources\Power.png" />
     <None Include="Resources\Forbidden.png" />
