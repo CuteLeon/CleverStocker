@@ -3,8 +3,6 @@ using NLog;
 
 namespace CleverStocker.Utils
 {
-    // TODO: [问题] 并发场景下，NLog 出现文件被另一进程占用的问题；
-
     /// <summary>
     /// 日志助手
     /// </summary>

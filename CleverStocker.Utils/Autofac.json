@@ -15,8 +15,7 @@
         {
           "type": "CleverStocker.DataAccess.DBContext, CleverStocker.DataAccess"
         }
-      ],
-      "instanceScope": "single-instance"
+      ]
     },
     {
       "type": "CleverStocker.Services.StockService, CleverStocker.Services",
