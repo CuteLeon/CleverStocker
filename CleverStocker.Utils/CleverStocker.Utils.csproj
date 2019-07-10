@@ -52,6 +52,7 @@
     <Compile Include="LogHelper.cs" />
     <Compile Include="MQHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializerHelper.cs" />
     <Compile Include="SubscriberHandler.cs" />
     <Compile Include="ThemeHelper.cs" />
   </ItemGroup>
