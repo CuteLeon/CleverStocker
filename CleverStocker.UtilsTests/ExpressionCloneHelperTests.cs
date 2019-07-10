@@ -1,13 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CleverStocker.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CleverStocker.Model;
-using static CleverStocker.Common.CommonStandard;
+﻿using System;
 using System.Diagnostics;
+using CleverStocker.Model;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Utils.Tests
 {
@@ -105,6 +100,11 @@ namespace CleverStocker.Utils.Tests
 
             Stopwatch expresssionWatch = new Stopwatch();
             expresssionWatch.Start();
+            _ = ExpressionCloneHelper<Quota, Quota>.Clone(quota);
+            expresssionWatch.Stop();
+            Console.WriteLine($"首次运行耗时：{expresssionWatch.ElapsedMilliseconds} ms");
+
+            expresssionWatch.Restart();
             for (int index = 0; index < 10000; index++)
             {
                 _ = ExpressionCloneHelper<Quota, Quota>.Clone(quota);
