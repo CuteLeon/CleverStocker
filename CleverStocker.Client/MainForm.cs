@@ -15,6 +15,8 @@ using static CleverStocker.Common.CommonStandard;
 namespace CleverStocker.Client
 {
     /* TODO: 功能布局
+     * 将股票行情固定为小浮窗（订阅[某]股票行情刷新消息，取行情以绘制）
+     * 实时行情窗口，价格标签显示上升(红)下降(绿)图标
      * 公司信息
      * 最近交易(列表x4)
      * 资金流向
