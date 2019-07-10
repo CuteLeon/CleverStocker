@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
@@ -47,21 +48,25 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 公司
         /// </summary>
+        [XmlIgnore]
         public virtual Company Company { get; set; }
 
         /// <summary>
         /// Gets or sets 行情
         /// </summary>
+        [XmlIgnore]
         public virtual List<Quota> Quotas { get; set; } = new List<Quota>();
 
         /// <summary>
         /// Gets or sets 大盘指数
         /// </summary>
+        [XmlIgnore]
         public virtual List<MarketQuota> MarketQuotas { get; set; } = new List<MarketQuota>();
 
         /// <summary>
         /// Gets or sets 最近行情
         /// </summary>
+        [XmlIgnore]
         public virtual List<RecentQuota> RecentQuotas { get; set; } = new List<RecentQuota>();
         #endregion
     }

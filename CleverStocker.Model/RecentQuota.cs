@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Serialization;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Model
@@ -52,6 +53,7 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 股票
         /// </summary>
+        [XmlIgnore]
         public virtual Stock Stock { get; set; }
 
         /// <summary>

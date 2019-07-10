@@ -7,6 +7,7 @@ namespace CleverStocker.Model
     /// <summary>
     /// 股票基类
     /// </summary>
+    /// <remarks>模型类需要给部分引用成员增加 [XmlIgnore] 特性以避免序列化异常</remarks>
     public abstract class StockBase
     {
         /// <summary>
