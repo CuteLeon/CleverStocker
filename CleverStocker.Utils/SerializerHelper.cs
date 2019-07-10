@@ -7,6 +7,7 @@ namespace CleverStocker.Utils
     /// <summary>
     /// 序列化助手
     /// </summary>
+    /// <remarks>序列化 System.Data.Entity.DynamicProxies 相关类型异常时，需要使用克隆助手克隆后再尝试序列化</remarks>
     public static class SerializerHelper
     {
         /// <summary>
