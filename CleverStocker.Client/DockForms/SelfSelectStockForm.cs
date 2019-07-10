@@ -74,7 +74,10 @@ namespace CleverStocker.Client.DockForms
                     this.RemoveMenuItem.Enabled = true;
                     this.RemoveToolButton.Enabled = true;
 
-                    MQHelper.Publish(this.SourceName, MQTopics.TopicStockCurrentChange, value.GetFullCode());
+                    MQHelper.Publish(
+                        this.SourceName,
+                        MQTopics.TopicStockCurrentChange,
+                        SerializerHelper.Serialize(ExpressionCloneHelper<Stock, Stock>.Clone(value)));
                 }
             }
         }
@@ -178,20 +181,29 @@ namespace CleverStocker.Client.DockForms
                 stock = new Stock(code, market, name);
             }
 
-            if (string.Equals(topic, MQTopics.TopicStockSelfSelectAdd, StringComparison.OrdinalIgnoreCase))
+            switch (topic)
             {
-                this.Invoke(new Action(() =>
-                {
-                    this.AddSelfSelectStock(stock);
-                }));
-            }
-            else if (string.Equals(topic, MQTopics.TopicStockSelfSelectRemove, StringComparison.OrdinalIgnoreCase) ||
-                string.Equals(topic, MQTopics.TopicStockRemove, StringComparison.OrdinalIgnoreCase))
-            {
-                this.Invoke(new Action(() =>
-                {
-                    this.RemoveSelfSelectStock(stock);
-                }));
+                case MQTopics.TopicStockSelfSelectAdd:
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            this.AddSelfSelectStock(stock);
+                        }));
+                        break;
+                    }
+
+                case MQTopics.TopicStockRemove:
+                case MQTopics.TopicStockSelfSelectRemove:
+                    {
+                        this.Invoke(new Action(() =>
+                        {
+                            this.RemoveSelfSelectStock(stock);
+                        }));
+                        break;
+                    }
+
+                default:
+                    break;
             }
         }
         #endregion

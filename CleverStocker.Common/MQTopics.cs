@@ -3,6 +3,7 @@
     /// <summary>
     /// MQ 主题
     /// </summary>
+    /// <remarks>使用 switch 匹配主题常量能获得比一组 if else if 更好的性能</remarks>
     public static class MQTopics
     {
         #region MQ指令
@@ -26,37 +27,37 @@
         /// <summary>
         /// 股票
         /// </summary>
-        public static readonly string TopicStock = "Stock";
+        public const string TopicStock = "Stock";
 
         /// <summary>
         /// 添加股票
         /// </summary>
-        public static readonly string TopicStockAdd = $"{TopicStock}.Add";
+        public const string TopicStockAdd = "Stock.Add";
 
         /// <summary>
         /// 移除股票
         /// </summary>
-        public static readonly string TopicStockRemove = $"{TopicStock}.Remove";
+        public const string TopicStockRemove = "Stock.Remove";
 
         /// <summary>
         /// 当前选中股票变化
         /// </summary>
-        public static readonly string TopicStockCurrentChange = $"{TopicStock}.Current.Change";
+        public const string TopicStockCurrentChange = "Stock.Current.Change";
 
         /// <summary>
         /// 自选股票
         /// </summary>
-        public static readonly string TopicStockSelfSelect = $"{TopicStock}.SelfSelect";
+        public const string TopicStockSelfSelect = "Stock.SelfSelect";
 
         /// <summary>
         /// 添加自选股票
         /// </summary>
-        public static readonly string TopicStockSelfSelectAdd = $"{TopicStockSelfSelect}.Add";
+        public const string TopicStockSelfSelectAdd = "Stock.SelfSelect.Add";
 
         /// <summary>
         /// 删除自选股票
         /// </summary>
-        public static readonly string TopicStockSelfSelectRemove = $"{TopicStockSelfSelect}.Remove";
+        public const string TopicStockSelfSelectRemove = "Stock.SelfSelect.Remove";
         #endregion
     }
 }

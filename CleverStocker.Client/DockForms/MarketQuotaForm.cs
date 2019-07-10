@@ -196,19 +196,9 @@ namespace CleverStocker.Client.DockForms
         {
             LogHelper<MarketQuotaForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
 
-            var (code, market, _) = message.GetMarketCode();
-
-            if (string.Equals(this.currentStock?.Code, code, StringComparison.OrdinalIgnoreCase) &&
-                this.currentStock?.Market == market)
-            {
-                return;
-            }
-            else
-            {
-                var stock = this.StockService.Find(code, market);
-                this.CurrentStock = stock;
-                this.CurrentQuota = this.MarketQuotaService?.GetLastMarketQuota(code, market);
-            }
+            var stock = SerializerHelper.Deserialize<Stock>(message);
+            this.CurrentStock = stock;
+            this.CurrentQuota = stock == null ? null : this.MarketQuotaService?.GetLastMarketQuota(stock.Code, stock.Market);
         }
 
         /// <summary>
