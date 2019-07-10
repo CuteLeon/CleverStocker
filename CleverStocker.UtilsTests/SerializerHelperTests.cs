@@ -101,8 +101,7 @@ namespace CleverStocker.Utils.Tests
             Console.WriteLine($"序列化 10000 次耗时：{stopwatch.ElapsedMilliseconds} ms");
             Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000);
 
-            stopwatch.Reset();
-            stopwatch.Start();
+            stopwatch.Restart();
             for (int index = 0; index < 10000; index++)
             {
                 _ = SerializerHelper.Deserialize<Quota>(content);
