@@ -134,7 +134,7 @@ namespace CleverStocker.Utils
                                 catch (Exception ex)
                                 {
                                     // 仅输出日志，不要继续上抛异常，否则将中断 Task
-                                    LogHelper<SubscriberHandler>.ErrorException(ex, $"{this.source} 处理 {message[0]} 发来的消息失败 {messages[1]}：");
+                                    LogHelper<SubscriberHandler>.ErrorException(ex, $"{this.source} 处理 {messages[1]} 发来的消息失败 {messages[0]}：");
                                 }
                             }
                             else
