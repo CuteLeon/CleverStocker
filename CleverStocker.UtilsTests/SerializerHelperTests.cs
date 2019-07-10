@@ -1,11 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CleverStocker.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
 using CleverStocker.Model;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Utils.Tests
@@ -61,8 +57,59 @@ namespace CleverStocker.Utils.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(content));
 
             var newQuota = SerializerHelper.Deserialize<Quota>(content);
+            Assert.AreEqual(quota.Amount, newQuota.Amount);
+            Assert.AreEqual(quota.AuctionPrice, newQuota.AuctionPrice);
+            Assert.AreEqual(quota.BiddingPrice, newQuota.BiddingPrice);
+            Assert.AreEqual(quota.BuyPrice1, newQuota.BuyPrice1);
+            Assert.AreEqual(quota.BuyPrice2, newQuota.BuyPrice2);
+            Assert.AreEqual(quota.BuyPrice3, newQuota.BuyPrice3);
+            Assert.AreEqual(quota.BuyPrice4, newQuota.BuyPrice4);
+            Assert.AreEqual(quota.BuyPrice5, newQuota.BuyPrice5);
+            Assert.AreEqual(quota.BuyStrand1, newQuota.BuyStrand1);
+            Assert.AreEqual(quota.BuyStrand2, newQuota.BuyStrand2);
+            Assert.AreEqual(quota.BuyStrand3, newQuota.BuyStrand3);
+            Assert.AreEqual(quota.BuyStrand4, newQuota.BuyStrand4);
+            Assert.AreEqual(quota.BuyStrand5, newQuota.BuyStrand5);
+            Assert.AreEqual(quota.ClosingPriceYesterday, newQuota.ClosingPriceYesterday);
+            Assert.AreEqual(quota.Code, newQuota.Code);
+            Assert.AreEqual(quota.Count, newQuota.Count);
+            Assert.AreEqual(quota.CurrentPrice, newQuota.CurrentPrice);
+            Assert.AreEqual(quota.DayHighPrice, newQuota.DayHighPrice);
+            Assert.AreEqual(quota.DayLowPrice, newQuota.DayLowPrice);
+            Assert.AreEqual(quota.Market, newQuota.Market);
+            Assert.AreEqual(quota.Name, newQuota.Name);
+            Assert.AreEqual(quota.OpeningPriceToday, newQuota.OpeningPriceToday);
+            Assert.AreEqual(quota.SellPrice1, newQuota.SellPrice1);
+            Assert.AreEqual(quota.SellPrice2, newQuota.SellPrice2);
+            Assert.AreEqual(quota.SellPrice3, newQuota.SellPrice3);
+            Assert.AreEqual(quota.SellPrice4, newQuota.SellPrice4);
+            Assert.AreEqual(quota.SellPrice5, newQuota.SellPrice5);
+            Assert.AreEqual(quota.SellStrand1, newQuota.SellStrand1);
+            Assert.AreEqual(quota.SellStrand2, newQuota.SellStrand2);
+            Assert.AreEqual(quota.SellStrand3, newQuota.SellStrand3);
+            Assert.AreEqual(quota.SellStrand4, newQuota.SellStrand4);
+            Assert.AreEqual(quota.SellStrand5, newQuota.SellStrand5);
+            Assert.AreEqual(quota.UpdateTime, newQuota.UpdateTime);
 
-            // TODO: 需要验证数据并测试性能
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            for (int index = 0; index < 10000; index++)
+            {
+                _ = SerializerHelper.Serialize(quota);
+            }
+            stopwatch.Stop();
+            Console.WriteLine($"序列化 10000 次耗时：{stopwatch.ElapsedMilliseconds} ms");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000);
+
+            stopwatch.Reset();
+            stopwatch.Start();
+            for (int index = 0; index < 10000; index++)
+            {
+                _ = SerializerHelper.Deserialize<Quota>(content);
+            }
+            stopwatch.Stop();
+            Console.WriteLine($"反序列化 10000 次耗时：{stopwatch.ElapsedMilliseconds} ms");
+            Assert.IsTrue(stopwatch.ElapsedMilliseconds < 1000);
         }
     }
 }
