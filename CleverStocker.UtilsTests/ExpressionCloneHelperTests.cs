@@ -98,6 +98,7 @@ namespace CleverStocker.Utils.Tests
             nativeWatch.Stop();
             Console.WriteLine($"原生方法耗时：{nativeWatch.ElapsedMilliseconds} ms");
 
+            // System.Core 4.0.0.0 首次生成表达式树性能略差，但后续调用表达式树将达到原生方法性能；
             Stopwatch expresssionWatch = new Stopwatch();
             expresssionWatch.Start();
             _ = ExpressionCloneHelper<Quota, Quota>.Clone(quota);
