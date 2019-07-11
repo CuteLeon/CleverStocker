@@ -64,5 +64,12 @@ namespace CleverStocker.Model
         /// Gets or sets 名称
         /// </summary>
         public virtual string Name { get; set; }
+
+        /// <summary>
+        /// ToString()
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+            => $"{this.Name} ({this.Market}-{this.Code})";
     }
 }

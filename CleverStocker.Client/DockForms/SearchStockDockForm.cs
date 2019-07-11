@@ -11,12 +11,10 @@ using static CleverStocker.Common.CommonStandard;
 
 namespace CleverStocker.Client.DockForms
 {
-    // TODO: 股票相关功能按钮加入到搜索窗口工具栏
-
     /// <summary>
     /// 搜索股票窗口
     /// </summary>
-    public partial class SearchStockDockForm : ToolDockForm
+    public partial class SearchStockDockForm : SingleToolDockForm
     {
         #region 服务
 
@@ -44,27 +42,6 @@ namespace CleverStocker.Client.DockForms
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string SourceName { get; set; } = typeof(SearchStockDockForm).Name;
-
-        /// <summary>
-        /// Gets or sets 布局持久化数据
-        /// </summary>
-        [Browsable(false)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override string PersistValue
-        {
-            get => this.currentStock?.GetFullCode();
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    return;
-                }
-
-                var (code, market, _) = value.GetMarketCode();
-                this.CodeTextBox.Text = code;
-                this.MarketComboBox.SelectedItem = market.ToString();
-            }
-        }
 
         private Stock currentStock;
 
@@ -113,7 +90,6 @@ namespace CleverStocker.Client.DockForms
             this.InitializeComponent();
 
             this.Icon = AppResource.SearchIcon;
-            this.MarketComboBox.Items.AddRange(Enum.GetNames(typeof(Markets)));
         }
 
         private void SearchStockDockForm_Load(object sender, EventArgs e)
@@ -139,36 +115,15 @@ namespace CleverStocker.Client.DockForms
             base.ApplyTheme();
 
             ThemeHelper.CurrentThemeComponent.ApplyTo(this.SearchToolStrip);
-            this.CodeLabel.ForeColor = ThemeHelper.GetTitleForecolor();
-            this.MarketLabel.ForeColor = this.CodeLabel.ForeColor;
-            this.MarketComboBox.BackColor = this.BackColor;
-            this.MarketComboBox.ForeColor = ThemeHelper.GetContentForecolor();
-            this.CodeTextBox.BackColor = this.BackColor;
-            this.CodeTextBox.ForeColor = this.MarketComboBox.ForeColor;
-            this.SearchButton.BackColor = ThemeHelper.GetTitleBackcolor();
-            this.SearchButton.ForeColor = this.MarketComboBox.ForeColor;
+            this.StockComboBox.BackColor = this.BackColor;
+            this.StockComboBox.ForeColor = ThemeHelper.GetContentForecolor();
 
-            this.MainStockQuotaControl.LabelForecolor = this.CodeLabel.ForeColor;
-            this.MainStockQuotaControl.ValueForecolor = this.CodeTextBox.ForeColor;
+            this.MainStockQuotaControl.LabelForecolor = ThemeHelper.GetTitleForecolor();
+            this.MainStockQuotaControl.ValueForecolor = this.StockComboBox.ForeColor;
         }
         #endregion
 
         #region 控件
-
-        private void SearchButton_Click(object sender, EventArgs e)
-        {
-            string code = this.CodeTextBox.Text;
-            Markets market = ConverterHelper.StringToEnum(this.MarketComboBox.Text, Markets.Unknown);
-
-            if (string.IsNullOrWhiteSpace(code) ||
-                market == Markets.Unknown)
-            {
-                MessageBox.Show("请输入有效的股票代码和交易市场！", "数据有误", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            _ = this.SearchStock(code, market);
-        }
 
         private void AddSelfSelectToolButton_Click(object sender, EventArgs e)
         {
@@ -281,6 +236,58 @@ namespace CleverStocker.Client.DockForms
         #endregion
 
         #region 功能
+
+        /// <summary>
+        /// 回车键搜索
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void StockComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 非回车键或已经弹出下拉框时不处理
+            if (e.KeyCode != Keys.Enter ||
+                this.StockComboBox.DroppedDown)
+            {
+                return;
+            }
+
+            string keyword = this.StockComboBox.Text.Trim();
+            this.StockComboBox.Items.Clear();
+
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                this.CurrentStock = null;
+                this.CurrentQuota = null;
+            }
+            else
+            {
+                _ = this.GetSearchStocks(keyword);
+            }
+        }
+
+        /// <summary>
+        /// 获取搜索股票
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public async Task GetSearchStocks(string keyword)
+        {
+            this.StockComboBox.Items.AddRange((await this.StockSpiderService.GetSearchStocksAsync(keyword)).ToArray());
+            this.StockComboBox.DroppedDown = true;
+        }
+
+        private void StockComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!(this.StockComboBox.SelectedItem is Stock stock))
+            {
+                this.CurrentStock = null;
+                this.CurrentQuota = null;
+            }
+            else
+            {
+                _ = this.SearchStock(stock.Code, stock.Market);
+            }
+        }
 
         /// <summary>
         /// 搜索股票
