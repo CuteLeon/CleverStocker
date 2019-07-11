@@ -75,8 +75,9 @@
             // 
             this.ExitMenuItem.Image = global::CleverStocker.Client.AppResource.Power;
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitMenuItem.Text = "退出";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_Click);
             // 
             // ViewMenuItem
             // 

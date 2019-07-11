@@ -252,8 +252,9 @@ namespace CleverStocker.Client.DockForms
             }
 
             string keyword = this.StockComboBox.Text.Trim();
-            this.StockComboBox.Items.Clear();
+            LogHelper<SearchStockDockForm>.Debug($"搜索股票关键字：{keyword}");
 
+            this.StockComboBox.Items.Clear();
             if (string.IsNullOrWhiteSpace(keyword))
             {
                 this.CurrentStock = null;

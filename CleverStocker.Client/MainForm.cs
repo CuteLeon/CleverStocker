@@ -255,8 +255,10 @@ namespace CleverStocker.Client
             var marketQuotaForm = DIContainerHelper.Resolve<MarketQuotaForm>();
             marketQuotaForm.Show(recentTradeForm.Pane, DockAlignment.Bottom, 0.3);
 
+            var searchStockForm = DIContainerHelper.Resolve<SearchStockDockForm>();
+            searchStockForm.Show(this.MainDockPanel);
             var hotStockForm = DIContainerHelper.Resolve<HotStockDockForm>();
-            hotStockForm.Show(this.MainDockPanel);
+            hotStockForm.Show(searchStockForm.Pane, DockAlignment.Top, 0.56);
             var selfSelectForm = DIContainerHelper.Resolve<SelfSelectStockForm>();
             selfSelectForm.Show(hotStockForm.Pane, hotStockForm);
         }
@@ -273,6 +275,24 @@ namespace CleverStocker.Client
             }
 
             dockForm.Show(this.MainDockPanel);
+        }
+        #endregion
+
+        #region 开始菜单
+
+        private void ExitMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(
+                "确认要退出系统吗？",
+                "确认要退出",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question)
+                != DialogResult.OK)
+            {
+                return;
+            }
+
+            Application.Exit();
         }
         #endregion
 

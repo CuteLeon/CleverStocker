@@ -111,7 +111,7 @@ namespace CleverStocker.Client.DockForms
             // 配置数据单元格样式：DataGridView.RowTemplate.DefaultCellStyle
             this.HotStocksGridView.BackgroundColor = this.BackColor;
             this.HotStocksGridView.RowTemplate.DefaultCellStyle.BackColor = this.BackColor;
-            this.HotStocksGridView.RowTemplate.DefaultCellStyle.Font = new Font("微软雅黑", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            this.HotStocksGridView.RowTemplate.DefaultCellStyle.Font = new Font("微软雅黑", 10.5F, FontStyle.Regular, GraphicsUnit.Point, 134);
             this.HotStocksGridView.RowTemplate.DefaultCellStyle.ForeColor = ThemeHelper.GetContentForecolor();
             this.HotStocksGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = ThemeHelper.GetContentHighLightBackcolor();
             this.HotStocksGridView.RowTemplate.DefaultCellStyle.SelectionForeColor = ThemeHelper.GetContentHighLightForecolor();
