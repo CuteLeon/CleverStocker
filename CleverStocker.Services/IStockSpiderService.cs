@@ -128,5 +128,19 @@ namespace CleverStocker.Services
         /// </summary>
         /// <returns></returns>
         Task<List<Stock>> GetHotStocksAsync();
+
+        /// <summary>
+        /// 使用关键字搜索股票
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        List<Stock> GetSearchStocks(string keyword);
+
+        /// <summary>
+        /// 异步使用关键字搜索股票
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        Task<List<Stock>> GetSearchStocksAsync(string keyword);
     }
 }

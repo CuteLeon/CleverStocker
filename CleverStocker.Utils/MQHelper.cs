@@ -169,7 +169,7 @@ namespace CleverStocker.Utils
         /// <param name="message"></param>
         public static void Publish(string source, string topic, string message)
         {
-            LogHelper<ZSocket>.Debug($"{source} 开始发布消息：{topic} - {message}");
+            LogHelper<ZSocket>.Debug($"{source} 开始发布消息：{topic}");
 
             try
             {

@@ -201,7 +201,7 @@ namespace CleverStocker.Client.DockForms
         /// <param name="message"></param>
         public void MQSubscriberReceive(string source, string topic, string message)
         {
-            LogHelper<CurrentQuotaForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
+            LogHelper<CurrentQuotaForm>.Debug($"收到来自 {source} 的消息：{topic}");
 
             var stock = SerializerHelper.Deserialize<Stock>(message);
             this.CurrentStock = stock;

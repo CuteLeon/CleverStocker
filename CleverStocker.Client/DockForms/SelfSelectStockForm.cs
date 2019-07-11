@@ -165,7 +165,7 @@ namespace CleverStocker.Client.DockForms
         /// <param name="message"></param>
         public void MQSubscriberReceive(string source, string topic, string message)
         {
-            LogHelper<SelfSelectStockForm>.Debug($"收到来自 {source} 的消息：{topic} - {message}");
+            LogHelper<SelfSelectStockForm>.Debug($"收到来自 {source} 的消息：{topic}");
 
             var (code, market, name) = message.GetMarketCode();
             if (string.IsNullOrWhiteSpace(code) ||

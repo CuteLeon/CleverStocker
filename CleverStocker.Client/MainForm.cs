@@ -70,10 +70,13 @@ namespace CleverStocker.Client
         {
             try
             {
+                this.GetSearchStocks();
+                /*
                 this.GetChart();
                 this.GetCompany();
                 this.GetRecentQuotas();
                 this.GetRecentTrades();
+                 */
             }
             catch (Exception ex)
             {
@@ -98,6 +101,14 @@ namespace CleverStocker.Client
                 BackgroundImageLayout = ImageLayout.Center,
             };
             form.Show(this.MainDockPanel);
+        }
+
+        private void GetSearchStocks()
+        {
+            var stockSpiderService = DIContainerHelper.Resolve<IStockSpiderService>();
+            var stocks = stockSpiderService.GetSearchStocks("中信");
+
+            MessageBox.Show($"获取公司信息成功：\n总数：{stocks.Count}\n{string.Join("\n", stocks.Select(s => s.Name))}");
         }
 
         private void GetCompany()

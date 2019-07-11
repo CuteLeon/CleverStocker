@@ -56,6 +56,13 @@ namespace CleverStocker.Spider.Sina
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
+        /// Gets 搜索股票正则表达式
+        /// </summary>
+        public static Regex SearchStock { get; } = new Regex(
+            @"(?<Name>.*?),\d*?,.*?,(?<Market>[a-zA-Z]*?)(?<Code>\d*?),.*",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
         /// Gets 最近行情正则表达式
         /// </summary>
         public static Regex RecentQuotaRegex { get; } = new Regex(
@@ -687,18 +694,18 @@ namespace CleverStocker.Spider.Sina
             List<Stock> recentQuotas = new List<Stock>(matchs.Count);
             recentQuotas.AddRange(
                 matchs.Cast<Match>()
-                    .Select(match => ConvertToHotStock(match))
+                    .Select(match => ConvertToStock(match))
                     .Where(stock => stock != null));
 
             return recentQuotas;
         }
 
         /// <summary>
-        /// 转换为热门股票
+        /// 转换为股票
         /// </summary>
         /// <param name="match"></param>
         /// <returns></returns>
-        public static Stock ConvertToHotStock(Match match)
+        public static Stock ConvertToStock(Match match)
         {
             if (!match.Success)
             {
@@ -719,6 +726,56 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public async Task<List<Stock>> GetHotStocksAsync()
             => await Task.Factory.StartNew(() => this.GetHotStocks());
+        #endregion
+
+        #region 搜索股票
+
+        /// <summary>
+        /// 使用关键字搜索股票
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public List<Stock> GetSearchStocks(string keyword)
+        {
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                throw new ArgumentException("message", nameof(keyword));
+            }
+
+            string request = $"https://suggest3.sinajs.cn/suggest/key={keyword}";
+
+            var result = this.WebClient.DownloadString(request);
+            if (string.IsNullOrEmpty(result))
+            {
+                return Enumerable.Empty<Stock>().ToList();
+            }
+
+            result = result.Substring(result.IndexOf("\"") + 1);
+            var results = result.Split(';');
+            if (results == null ||
+                results.Length == 0)
+            {
+                return Enumerable.Empty<Stock>().ToList();
+            }
+
+            return new List<Stock>(
+                results
+                .Select(res => SearchStock.Match(res))
+                .Select(match => ConvertToStock(match))
+                .Where(stock =>
+                    stock != null &&
+                    stock.Market != Markets.Unknown &&
+                    !string.IsNullOrWhiteSpace(stock.Code))
+                .OrderBy(stock => stock.Name));
+        }
+
+        /// <summary>
+        /// 异步使用关键字搜索股票
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
+        public async Task<List<Stock>> GetSearchStocksAsync(string keyword)
+            => await Task.Factory.StartNew(() => this.GetSearchStocks(keyword));
         #endregion
     }
 }
