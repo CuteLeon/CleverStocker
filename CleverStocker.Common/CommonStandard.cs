@@ -8,6 +8,17 @@ namespace CleverStocker.Common
     public static class CommonStandard
     {
         /// <summary>
+        /// 默认双精度值
+        /// </summary>
+        /// <remarks>使用 double.Nan 将存 null 入数据库，而 EF6 取值时因为 null 转换为 double 失败而报错</remarks>
+        public const double DefaultDouble = 0D;
+
+        /// <summary>
+        /// 默认长整型值
+        /// </summary>
+        public const long DefaultLong = 0L;
+
+        /// <summary>
         /// 上海交易所代码
         /// </summary>
         public const string ShangHaiMarketCode = "sh";

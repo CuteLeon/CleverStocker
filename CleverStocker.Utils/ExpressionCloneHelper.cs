@@ -34,13 +34,14 @@ namespace CleverStocker.Utils
         /// <typeparam name="TSource"></typeparam>
         /// <typeparam name="TTarget"></typeparam>
         /// <returns></returns>
+        /// <remarks>克隆时将忽略虚拟属性，以免克隆大量 EF6 导航属性数据</remarks>
         public static Func<TSource, TTarget> CreateMapExpression()
         {
             ParameterExpression parameterExpression = Expression.Parameter(typeof(TSource), "source");
             List<MemberBinding> memberBindingList = new List<MemberBinding>();
 
             foreach (var targetProperty in typeof(TTarget).GetProperties()
-                .Where(p => p.CanWrite))
+                .Where(p => p.CanWrite && !p.GetSetMethod().IsVirtual))
             {
                 MemberExpression propertyExpression = Expression.Property(
                     parameterExpression,

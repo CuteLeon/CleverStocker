@@ -61,27 +61,27 @@ namespace CleverStocker.Model
         /// <summary>
         /// Gets or sets 当前价格 (单位：元)
         /// </summary>
-        public double CurrentPrice { get; set; } = double.NaN;
+        public double CurrentPrice { get; set; }
 
         /// <summary>
         /// Gets or sets 涨跌幅度（单位：元）
         /// </summary>
-        public double FluctuatingRange { get; set; } = double.NaN;
+        public double FluctuatingRange { get; set; }
 
         /// <summary>
         /// Gets or sets 涨跌比率（单位：%）
         /// </summary>
-        public double FluctuatingRate { get; set; } = double.NaN;
+        public double FluctuatingRate { get; set; }
 
         /// <summary>
         /// Gets or sets 成交股票数量 (单位：手)
         /// </summary>
-        public long Count { get; set; } = -1L;
+        public long Count { get; set; }
 
         /// <summary>
         /// Gets or sets 成交金额 (单位：万元)
         /// </summary>
-        public long Amount { get; set; } = -1L;
+        public long Amount { get; set; }
         #endregion
     }
 }

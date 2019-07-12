@@ -13,7 +13,7 @@ namespace CleverStocker.Utils
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static double StringToDouble(string value, double defaultValue = double.NaN)
+        public static double StringToDouble(string value, double defaultValue = 0D)
             => double.TryParse(value, out double result) ? result : defaultValue;
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace CleverStocker.Utils
         /// <param name="value"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static long StringToLong(string value, long defaultValue = 0)
+        public static long StringToLong(string value, long defaultValue = 0L)
             => long.TryParse(value, out long result) ? result : defaultValue;
 
         /// <summary>
