@@ -15,10 +15,10 @@ namespace CleverStocker.Spider.Sina.Tests
         {
             // 尾部 00 和 '"' 之间不确定地会出现一个 ',' 需要正则兼容
             string response = @"var hq_str_sh600086=""东方金钰,4.380,4.510,4.490,4.570,4.320,4.480,4.490,49796325,220884386.000,210200,4.480,665700,4.470,203900,4.460,346700,4.450,400100,4.440,8700,4.490,48900,4.500,99619,4.510,41400,4.520,67300,4.530,2019-06-27,11:30:00,00,"";";
-            var match = SinaStockSpider.QuotaRegex.Match(response);
+            var match = SinaStockSpider.SHSZ_QuotaRegex.Match(response);
             Assert.IsTrue(match.Success);
 
-            Quota quota = SinaStockSpider.ConvertToQuota(match);
+            Quota quota = SinaStockSpider.ConvertToSHSZQuota(match);
 
             Assert.AreEqual("东方金钰", quota.Name);
             Assert.AreEqual(4.380, quota.OpeningPriceToday);
@@ -54,6 +54,22 @@ namespace CleverStocker.Spider.Sina.Tests
             Assert.AreEqual(4.530, quota.SellPrice5);
 
             Assert.AreEqual(new DateTime(2019, 6, 27, 11, 30, 00), quota.UpdateTime);
+
+            response = @"var hq_str_hk01072=""DONGFANG ELEC,东方电气,4.790,4.800,4.970,4.770,4.930,-0.130,-2.708,4.920,4.930,4971969,1017200,11.682,0.000,7.700,3.810,2019/07/12,16:08"";";
+            match = SinaStockSpider.HK_QuotaRegex.Match(response);
+            Assert.IsTrue(match.Success);
+
+            quota = SinaStockSpider.ConvertToHKQuota(match);
+
+            Assert.AreEqual("东方电气", quota.Name);
+            Assert.AreEqual(4.790, quota.OpeningPriceToday);
+            Assert.AreEqual(4.800, quota.ClosingPriceYesterday);
+            Assert.AreEqual(4.970, quota.DayHighPrice);
+            Assert.AreEqual(4.770, quota.DayLowPrice);
+            Assert.AreEqual(4.930, quota.CurrentPrice);
+            Assert.AreEqual(4971969, quota.Amount);
+            Assert.AreEqual(1017200, quota.Count);
+            Assert.AreEqual(new DateTime(2019, 07, 12, 16, 08, 0), quota.UpdateTime);
         }
 
         [TestMethod()]

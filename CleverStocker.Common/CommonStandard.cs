@@ -8,6 +8,26 @@ namespace CleverStocker.Common
     public static class CommonStandard
     {
         /// <summary>
+        /// 上海交易所代码
+        /// </summary>
+        public const string ShangHaiMarketCode = "sh";
+
+        /// <summary>
+        /// 深交所代码
+        /// </summary>
+        private const string ShenZhenMarketCode = "sz";
+
+        /// <summary>
+        /// 空字符串
+        /// </summary>
+        private const string EmptyString = "";
+
+        /// <summary>
+        /// 港交所代码
+        /// </summary>
+        private const string HongKongMarketCode = "hk";
+
+        /// <summary>
         /// 主题
         /// </summary>
         public enum Themes
@@ -47,6 +67,12 @@ namespace CleverStocker.Common
             /// 深交所
             /// </summary>
             ShenZhen = 2,
+
+            /// <summary>
+            /// 港交所
+            /// </summary>
+            /// <remarks>五位代码，无市场编码</remarks>
+            HongKong = 3,
         }
 
         /// <summary>
@@ -151,6 +177,57 @@ namespace CleverStocker.Common
             /// 月K
             /// </summary>
             MonthlyCandlestick = 3,
+        }
+
+        /// <summary>
+        /// 获取市场代码
+        /// </summary>
+        /// <param name="market"></param>
+        /// <returns></returns>
+        /// <remarks>switch 语句会生成分支转跳表，在常量匹配场景下，性能优于 if else if ，同 Dictionary 的 O(1) 时间复杂度</remarks>
+        public static string GetMarketCode(Markets market)
+        {
+            switch (market)
+            {
+                case Markets.ShangHai:
+                    return ShangHaiMarketCode;
+
+                case Markets.ShenZhen:
+                    return ShenZhenMarketCode;
+
+                case Markets.HongKong:
+                    return HongKongMarketCode;
+
+                case Markets.Unknown:
+                default:
+                    return EmptyString;
+            }
+        }
+
+        /// <summary>
+        /// 获取市场
+        /// </summary>
+        /// <param name="marketCode"></param>
+        /// <param name="stockCode"></param>
+        /// <returns></returns>
+        public static Markets GetMarket(string marketCode, string stockCode = EmptyString)
+        {
+            switch (marketCode)
+            {
+                case ShangHaiMarketCode:
+                    return Markets.ShangHai;
+
+                case ShenZhenMarketCode:
+                    return Markets.ShenZhen;
+
+                case HongKongMarketCode:
+                case null when stockCode?.Length == 5:
+                case EmptyString when stockCode?.Length == 5:
+                    return Markets.HongKong;
+
+                default:
+                    return Markets.Unknown;
+            }
         }
     }
 }

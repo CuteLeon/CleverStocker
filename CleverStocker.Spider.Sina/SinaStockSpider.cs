@@ -21,10 +21,17 @@ namespace CleverStocker.Spider.Sina
         #region 正则表达式
 
         /// <summary>
-        /// Gets 行情正则表达式
+        /// Gets 沪深行情正则表达式
         /// </summary>
-        public static Regex QuotaRegex { get; } = new Regex(
+        public static Regex SHSZ_QuotaRegex { get; } = new Regex(
             $@"var\s.*\=""(?<Name>.*?),{string.Join(",", Enumerable.Range(1, 7).Select(index => $@"(?<Price{index}>[\d\.]+?)"))},(?<Amount1>\d+?),(?<Amount2>[\d\.]+?),{string.Join(",", Enumerable.Range(1, 10).Select(index => $@"(?<Strand{index}>\d+?),(?<Quote{index}>[\d\.]+?)"))},(?<DateTime>\d{{4}}-\d{{2}}-\d{{2}},\d{{2}}:\d{{2}}:\d{{2}}),00,?"";",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+
+        /// <summary>
+        /// Gets 港交所行情正则表达式
+        /// </summary>
+        public static Regex HK_QuotaRegex { get; } = new Regex(
+            "var\\s.*=\\\".*?,(?<Name>.*?),(?<Price1>[\\d\\.]*),(?<Price2>[\\d\\.]*),(?<Price3>[\\d\\.]*),(?<Price4>[\\d\\.]*),(?<Price5>[\\d\\.]*),-?[\\d\\.]*,-?[\\d\\.]*,[\\d\\.]*,[\\d\\.]*,(?<Amount1>\\d*),(?<Amount2>\\d*),.*?,(?<DateTime>[\\d{4}/:,]*)\\\";",
             RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
 
         /// <summary>
@@ -127,12 +134,7 @@ namespace CleverStocker.Spider.Sina
         /// <remarks>Sina 接口约每三秒更新一次</remarks>
         public (Stock stock, Quota quota) GetStockQuota(string code, Markets market)
         {
-            string marketCode = SinaSpiderHelper.GetMarketCode(market);
-            if (string.IsNullOrEmpty(marketCode) ||
-               string.IsNullOrEmpty(code))
-            {
-                throw new ArgumentNullException();
-            }
+            string marketCode = GetMarketCode(market);
 
             try
             {
@@ -143,14 +145,40 @@ namespace CleverStocker.Spider.Sina
                     return default;
                 }
 
-                var match = QuotaRegex.Match(result);
-                if (!match.Success)
+                Stock stock = new Stock(code, market);
+                Quota quota = default;
+
+                switch (market)
                 {
-                    return (default, default);
+                    case Markets.ShangHai:
+                    case Markets.ShenZhen:
+                        {
+                            var match = SHSZ_QuotaRegex.Match(result);
+                            if (!match.Success)
+                            {
+                                return (default, default);
+                            }
+
+                            quota = ConvertToSHSZQuota(match);
+                            break;
+                        }
+
+                    case Markets.HongKong:
+                        {
+                            var match = HK_QuotaRegex.Match(result);
+                            if (!match.Success)
+                            {
+                                return (default, default);
+                            }
+
+                            quota = ConvertToHKQuota(match);
+                            break;
+                        }
+
+                    default:
+                        break;
                 }
 
-                Stock stock = new Stock(code, market);
-                Quota quota = ConvertToQuota(match);
                 stock.Name = quota.Name;
                 quota.Code = code;
                 quota.Market = market;
@@ -170,7 +198,7 @@ namespace CleverStocker.Spider.Sina
         /// <param name="match"></param>
         /// <returns></returns>
         /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
-        public static Quota ConvertToQuota(Match match)
+        public static Quota ConvertToSHSZQuota(Match match)
         {
             if (!match.Success)
             {
@@ -179,7 +207,6 @@ namespace CleverStocker.Spider.Sina
 
             Quota quota = new Quota();
             quota.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
-            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
             quota.CurrentPrice = match.TryGetValue("Price3", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
@@ -217,6 +244,33 @@ namespace CleverStocker.Spider.Sina
         }
 
         /// <summary>
+        /// 正则匹配转换为行情
+        /// </summary>
+        /// <param name="match"></param>
+        /// <returns></returns>
+        /// <remarks>如果场景需要，可以将此转换方法重构为适配器模式</remarks>
+        public static Quota ConvertToHKQuota(Match match)
+        {
+            if (!match.Success)
+            {
+                return default;
+            }
+
+            Quota quota = new Quota();
+            quota.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
+            quota.OpeningPriceToday = match.TryGetValue("Price1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.ClosingPriceYesterday = match.TryGetValue("Price2", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.DayHighPrice = match.TryGetValue("Price3", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.DayLowPrice = match.TryGetValue("Price4", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.CurrentPrice = match.TryGetValue("Price5", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.Amount = match.TryGetValue("Amount1", out value) ? ConverterHelper.StringToDouble(value) : double.NaN;
+            quota.Count = match.TryGetValue("Amount2", out value) ? ConverterHelper.StringToLong(value) : -1L;
+            quota.UpdateTime = match.TryGetValue("DateTime", out value) ? ConverterHelper.StringToDateTime(value) : DateTime.Now;
+
+            return quota;
+        }
+
+        /// <summary>
         /// 异步获取股票行情
         /// </summary>
         /// <param name="code"></param>
@@ -237,12 +291,7 @@ namespace CleverStocker.Spider.Sina
         /// <remarks>Sina 接口约每五秒更新一次，但大盘行情不包含更新时间字段</remarks>
         public (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market)
         {
-            string marketCode = SinaSpiderHelper.GetMarketCode(market);
-            if (string.IsNullOrEmpty(marketCode) ||
-                string.IsNullOrEmpty(code))
-            {
-                throw new ArgumentNullException();
-            }
+            string marketCode = GetMarketCode(market);
 
             try
             {
@@ -320,10 +369,8 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public Image GetChart(string code, Markets market, Charts chart)
         {
-            string marketCode = SinaSpiderHelper.GetMarketCode(market);
-            if (!chartsRequestAddresses.TryGetValue(chart, out string request) ||
-                string.IsNullOrEmpty(marketCode) ||
-                string.IsNullOrEmpty(code))
+            string marketCode = GetMarketCode(market);
+            if (!chartsRequestAddresses.TryGetValue(chart, out string request))
             {
                 throw new ArgumentNullException();
             }
@@ -335,9 +382,17 @@ namespace CleverStocker.Spider.Sina
                 return default;
             }
 
-            Image image = Image.FromStream(result);
+            try
+            {
+                Image image = Image.FromStream(result);
+                return image;
+            }
+            catch (Exception ex)
+            {
+                LogHelper<SinaStockSpider>.ErrorException(ex, "获取图像失败：");
 
-            return image;
+                return default;
+            }
         }
 
         /// <summary>
@@ -361,12 +416,7 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public Company GetCompany(string code, Markets market)
         {
-            string marketCode = SinaSpiderHelper.GetMarketCode(market);
-            if (string.IsNullOrEmpty(marketCode) ||
-                string.IsNullOrEmpty(code))
-            {
-                throw new ArgumentNullException();
-            }
+            string marketCode = GetMarketCode(market);
 
             try
             {
@@ -443,12 +493,7 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public List<RecentQuota> GetRecentQuotas(string code, Markets market, TimeScales timeScale, int count)
         {
-            string marketCode = SinaSpiderHelper.GetMarketCode(market);
-            if (string.IsNullOrEmpty(marketCode) ||
-                string.IsNullOrEmpty(code))
-            {
-                throw new ArgumentNullException();
-            }
+            string marketCode = GetMarketCode(market);
 
             int scale = timeScale.GetAmbientValue<int>();
             string request = $@"https://quotes.sina.cn/cn/api/jsonp_v2.php/regexflag/CN_MarketDataService.getKLineData?symbol={marketCode}{code}&scale={scale}&ma=no&datalen={count}";
@@ -534,10 +579,8 @@ namespace CleverStocker.Spider.Sina
         /// <returns></returns>
         public List<Trade> GetRecentTrades(string code, Markets market, TradeListTypes tradeListType, int count)
         {
-            string marketCode = SinaSpiderHelper.GetMarketCode(market);
-            if (!tradeListRequestAddresses.TryGetValue(tradeListType, out string request) ||
-                string.IsNullOrEmpty(marketCode) ||
-                string.IsNullOrEmpty(code))
+            string marketCode = GetMarketCode(market);
+            if (!tradeListRequestAddresses.TryGetValue(tradeListType, out string request))
             {
                 throw new ArgumentNullException();
             }
@@ -715,7 +758,7 @@ namespace CleverStocker.Spider.Sina
             Stock stock = new Stock();
             stock.Name = match.TryGetValue("Name", out string value) ? value : string.Empty;
             stock.Code = match.TryGetValue("Code", out value) ? value : string.Empty;
-            stock.Market = match.TryGetValue("Market", out value) ? SinaSpiderHelper.GetMarket(value) : Markets.Unknown;
+            stock.Market = match.TryGetValue("Market", out value) ? GetMarket(value, stock.Code) : Markets.Unknown;
 
             return stock;
         }

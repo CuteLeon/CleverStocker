@@ -46,9 +46,9 @@ namespace CleverStocker.Model
         /// </summary>
         [Key]
         [Column(Order = 0)]
-        [Required]
-        [MinLength(6)]
-        [MaxLength(6)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "股票代码不允许为空")]
+        [MinLength(5, ErrorMessage = "股票代码长度不允许少于5位")]
+        [MaxLength(6, ErrorMessage = "股票代码长度不允许多于6位")]
         public virtual string Code { get; set; }
 
         /// <summary>
@@ -56,8 +56,8 @@ namespace CleverStocker.Model
         /// </summary>
         [Key]
         [Column(Order = 1)]
-        [Required]
-        [Range(1, int.MaxValue)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "股票市场不允许为空")]
+        [Range(1, int.MaxValue, ErrorMessage = "不允许保存未知市场的股票")]
         public virtual Markets Market { get; set; }
 
         /// <summary>

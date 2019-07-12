@@ -57,7 +57,7 @@ namespace CleverStocker.Model
         /// </summary>
         [Key]
         [Column(Order = 2)]
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "股票相关信息需要确定的更新时间")]
         public DateTime UpdateTime { get; set; }
     }
 }
