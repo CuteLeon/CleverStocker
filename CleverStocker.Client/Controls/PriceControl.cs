@@ -89,6 +89,11 @@ namespace CleverStocker.Client.Controls
 
         #region 价格属性
 
+        /// <summary>
+        /// 上次价格
+        /// </summary>
+        private double lastPrice = double.NaN;
+
         private byte accuracy = 4;
         private string priceFormat = "N4";
 
@@ -139,11 +144,9 @@ namespace CleverStocker.Client.Controls
             get => this.price;
             set
             {
-                if (this.price != value)
-                {
-                    this.price = value;
-                    this.RefreshPrice();
-                }
+                this.lastPrice = this.price;
+                this.price = value;
+                this.RefreshPrice();
             }
         }
         #endregion
@@ -153,6 +156,7 @@ namespace CleverStocker.Client.Controls
         /// </summary>
         public void ClearPrice()
         {
+            this.lastPrice = double.NaN;
             this.Price = double.NaN;
         }
 
@@ -161,6 +165,7 @@ namespace CleverStocker.Client.Controls
         /// </summary>
         public void RefreshPrice()
         {
+            Console.WriteLine($"刷新界面，价格 = {this.Price}");
             if (double.IsNaN(this.Price))
             {
                 this.Text = "-";
@@ -170,22 +175,8 @@ namespace CleverStocker.Client.Controls
             else
             {
                 this.Text = this.Price.ToString(this.priceFormat);
-
-                if (this.Price > this.BasePrice)
-                {
-                    this.ForeColor = this.RiseForeColor;
-                    this.ImageIndex = 1;
-                }
-                else if (this.Price < this.BasePrice)
-                {
-                    this.ForeColor = this.FallForeColor;
-                    this.ImageIndex = 2;
-                }
-                else
-                {
-                    this.ForeColor = this.StaticForecolor;
-                    this.ImageIndex = 0;
-                }
+                this.ForeColor = this.Price > this.BasePrice ? this.RiseForeColor : this.Price < this.BasePrice ? this.FallForeColor : this.StaticForecolor;
+                this.ImageIndex = double.IsNaN(this.lastPrice) ? 0 : this.Price > this.lastPrice ? 1 : this.Price < this.lastPrice ? 2 : 0;
             }
         }
     }

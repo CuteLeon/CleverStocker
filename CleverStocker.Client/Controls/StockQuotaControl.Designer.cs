@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.AmountLabel = new System.Windows.Forms.Label();
             this.AmountValueLabel = new System.Windows.Forms.Label();
             this.CountLabel = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.ClosingPriceYesterdayLabel = new System.Windows.Forms.Label();
             this.ClosingPriceYesterdayValueLabel = new System.Windows.Forms.Label();
             this.OpeningPriceTodayLabel = new System.Windows.Forms.Label();
-            this.CurrentPriceValueLabel = new System.Windows.Forms.Label();
             this.StockNameValueLabel = new System.Windows.Forms.Label();
             this.MainTablePanel = new System.Windows.Forms.TableLayoutPanel();
             this.DayLowPriceLabel = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@
             this.UpdateTimeValueLabel = new System.Windows.Forms.Label();
             this.MarketValueLabel = new System.Windows.Forms.Label();
             this.CodeValueLabel = new System.Windows.Forms.Label();
+            this.CurrentPriceValueLabel = new CleverStocker.Client.Controls.PriceControl();
             this.MainTablePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -185,22 +186,6 @@
             this.OpeningPriceTodayLabel.Text = "今日开盘价(元)";
             this.OpeningPriceTodayLabel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // CurrentPriceValueLabel
-            // 
-            this.CurrentPriceValueLabel.AutoEllipsis = true;
-            this.MainTablePanel.SetColumnSpan(this.CurrentPriceValueLabel, 2);
-            this.CurrentPriceValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CurrentPriceValueLabel.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Bold);
-            this.CurrentPriceValueLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.CurrentPriceValueLabel.Location = new System.Drawing.Point(0, 0);
-            this.CurrentPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.CurrentPriceValueLabel.Name = "CurrentPriceValueLabel";
-            this.MainTablePanel.SetRowSpan(this.CurrentPriceValueLabel, 2);
-            this.CurrentPriceValueLabel.Size = new System.Drawing.Size(203, 40);
-            this.CurrentPriceValueLabel.TabIndex = 11;
-            this.CurrentPriceValueLabel.Text = "-";
-            this.CurrentPriceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // StockNameValueLabel
             // 
             this.StockNameValueLabel.AutoEllipsis = true;
@@ -237,8 +222,8 @@
             this.MainTablePanel.Controls.Add(this.OpeningPriceTodayValueLabel, 1, 7);
             this.MainTablePanel.Controls.Add(this.ClosingPriceYesterdayLabel, 0, 6);
             this.MainTablePanel.Controls.Add(this.ClosingPriceYesterdayValueLabel, 0, 7);
-            this.MainTablePanel.Controls.Add(this.CurrentPriceValueLabel, 0, 0);
             this.MainTablePanel.Controls.Add(this.StockNameValueLabel, 2, 2);
+            this.MainTablePanel.Controls.Add(this.CurrentPriceValueLabel, 0, 0);
             this.MainTablePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainTablePanel.Location = new System.Drawing.Point(3, 3);
             this.MainTablePanel.Name = "MainTablePanel";
@@ -337,6 +322,30 @@
             this.CodeValueLabel.Text = "-";
             this.CodeValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // CurrentPriceValueLabel
+            // 
+            this.CurrentPriceValueLabel.Accuracy = ((byte)(4));
+            this.CurrentPriceValueLabel.AutoEllipsis = true;
+            this.CurrentPriceValueLabel.AutoSize = true;
+            this.CurrentPriceValueLabel.BasePrice = 0D;
+            this.MainTablePanel.SetColumnSpan(this.CurrentPriceValueLabel, 2);
+            this.CurrentPriceValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CurrentPriceValueLabel.FallForeColor = System.Drawing.Color.LimeGreen;
+            this.CurrentPriceValueLabel.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Bold);
+            this.CurrentPriceValueLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CurrentPriceValueLabel.ImageIndex = 0;
+            this.CurrentPriceValueLabel.Location = new System.Drawing.Point(0, 0);
+            this.CurrentPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.CurrentPriceValueLabel.Name = "CurrentPriceValueLabel";
+            this.CurrentPriceValueLabel.Price = double.NaN;
+            this.CurrentPriceValueLabel.RiseForeColor = System.Drawing.Color.Crimson;
+            this.MainTablePanel.SetRowSpan(this.CurrentPriceValueLabel, 2);
+            this.CurrentPriceValueLabel.Size = new System.Drawing.Size(203, 40);
+            this.CurrentPriceValueLabel.StaticForecolor = System.Drawing.Color.Black;
+            this.CurrentPriceValueLabel.TabIndex = 38;
+            this.CurrentPriceValueLabel.Text = "-";
+            this.CurrentPriceValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // StockQuotaControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -362,7 +371,6 @@
         private System.Windows.Forms.Label ClosingPriceYesterdayLabel;
         private System.Windows.Forms.Label ClosingPriceYesterdayValueLabel;
         private System.Windows.Forms.Label OpeningPriceTodayLabel;
-        private System.Windows.Forms.Label CurrentPriceValueLabel;
         private System.Windows.Forms.Label StockNameValueLabel;
         private System.Windows.Forms.TableLayoutPanel MainTablePanel;
         private System.Windows.Forms.Label MarketValueLabel;
@@ -371,5 +379,6 @@
         private System.Windows.Forms.Label SeparatorLabel1;
         private System.Windows.Forms.Label DayHighPriceLabel;
         private System.Windows.Forms.Label DayLowPriceLabel;
+        private PriceControl CurrentPriceValueLabel;
     }
 }

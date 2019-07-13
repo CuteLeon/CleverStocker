@@ -28,12 +28,7 @@ namespace CleverStocker.Client.Controls
         /// <summary>
         /// 股票比较器
         /// </summary>
-        protected readonly StockBaseComparer<TAttachEntity> stockComparer = new StockBaseComparer<TAttachEntity>();
-
-        /// <summary>
-        /// 上一个附加实体
-        /// </summary>
-        protected TAttachEntity lastAttachEntity = default;
+        protected readonly StockBaseComparer<Stock> stockComparer = new StockBaseComparer<Stock>();
         #endregion
 
         #region 属性
@@ -86,6 +81,7 @@ namespace CleverStocker.Client.Controls
         /// <summary>
         /// Gets or sets 股票
         /// </summary>
+        /// <remarks>仅在股票不相等时触发股票更新事件</remarks>
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual Stock Stock
@@ -93,9 +89,12 @@ namespace CleverStocker.Client.Controls
             get => this.stock;
             set
             {
-                this.stock = value;
+                if (!this.stockComparer.Equals(this.stock, value))
+                {
+                    this.stock = value;
 
-                this.InvokeIfRequired<ValueType, Action<Stock>>(this.StockToFace, value);
+                    this.InvokeIfRequired<ValueType, Action<Stock>>(this.StockToFace, value);
+                }
             }
         }
 
@@ -114,7 +113,6 @@ namespace CleverStocker.Client.Controls
             get => this.attachEntity;
             set
             {
-                this.lastAttachEntity = this.attachEntity;
                 this.attachEntity = value;
 
                 this.InvokeIfRequired<ValueType, Action<TAttachEntity>>(this.AttachEntityToFace, value);

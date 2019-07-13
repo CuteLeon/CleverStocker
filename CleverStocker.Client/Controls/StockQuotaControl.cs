@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
 using CleverStocker.Model;
 using CleverStocker.Utils;
 
@@ -21,11 +20,6 @@ namespace CleverStocker.Client.Controls
             {
                 return;
             }
-
-            this.CurrentPriceValueLabel.ImageList = new ImageList();
-            this.CurrentPriceValueLabel.ImageList.Images.Add(AppResource.StaticStatus);
-            this.CurrentPriceValueLabel.ImageList.Images.Add(AppResource.UpArrow);
-            this.CurrentPriceValueLabel.ImageList.Images.Add(AppResource.DownArrow);
         }
 
         /// <summary>
@@ -53,7 +47,7 @@ namespace CleverStocker.Client.Controls
         /// <param name="color"></param>
         public override void SetValueForecolor(Color color)
         {
-            this.CurrentPriceValueLabel.ForeColor = color;
+            this.CurrentPriceValueLabel.StaticForecolor = color;
             this.ClosingPriceYesterdayValueLabel.ForeColor = color;
             this.OpeningPriceTodayValueLabel.ForeColor = color;
             this.DayHighPriceValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(1);
@@ -66,8 +60,11 @@ namespace CleverStocker.Client.Controls
         /// 应用股票数据到界面
         /// </summary>
         /// <param name="stock"></param>
+        /// <remarks>股票变化时，需要清除价格控件的价格数据，以避免不同股票的价格比较</remarks>
         public override void StockToFace(Stock stock)
         {
+            this.CurrentPriceValueLabel.ClearPrice();
+
             if (stock == null)
             {
                 this.CodeValueLabel.Text = "-";
@@ -90,12 +87,10 @@ namespace CleverStocker.Client.Controls
         {
             if (quota == null)
             {
-                this.CurrentPriceValueLabel.ImageIndex = -1;
-                this.CurrentPriceValueLabel.ForeColor = this.ValueForecolor;
+                this.CurrentPriceValueLabel.Price = double.NaN;
                 this.OpeningPriceTodayValueLabel.ForeColor = this.ValueForecolor;
                 this.ClosingPriceYesterdayValueLabel.ForeColor = this.ValueForecolor;
 
-                this.CurrentPriceValueLabel.Text = "-";
                 this.ClosingPriceYesterdayValueLabel.Text = "-";
                 this.OpeningPriceTodayValueLabel.Text = "-";
                 this.DayHighPriceValueLabel.Text = "-";
@@ -106,17 +101,6 @@ namespace CleverStocker.Client.Controls
             }
             else
             {
-                this.CurrentPriceValueLabel.ImageIndex =
-                    this.stockComparer.Equals(quota, this.lastAttachEntity) ?
-                        quota.CurrentPrice > this.lastAttachEntity.CurrentPrice ?
-                            1 : // 价格上涨显示向上箭头
-                            quota.CurrentPrice < this.lastAttachEntity.CurrentPrice ?
-                                2 : // 价格下跌，显示向下箭头
-                                0 : // 价格无变动，不显示箭头
-                            0; // 不是同一股票，不显示箭头
-
-                this.CurrentPriceValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(quota.CurrentPrice - quota.OpeningPriceToday);
-
                 if (quota.OpeningPriceToday > quota.ClosingPriceYesterday)
                 {
                     this.OpeningPriceTodayValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(1);
@@ -128,7 +112,8 @@ namespace CleverStocker.Client.Controls
                     this.ClosingPriceYesterdayValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(1);
                 }
 
-                this.CurrentPriceValueLabel.Text = quota.CurrentPrice.ToString("N4");
+                this.CurrentPriceValueLabel.BasePrice = quota.OpeningPriceToday;
+                this.CurrentPriceValueLabel.Price = quota.CurrentPrice;
                 this.ClosingPriceYesterdayValueLabel.Text = quota.ClosingPriceYesterday.ToString("N4");
                 this.OpeningPriceTodayValueLabel.Text = quota.OpeningPriceToday.ToString("N4");
                 this.DayHighPriceValueLabel.Text = quota.DayHighPrice.ToString("N4");
