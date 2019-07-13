@@ -66,6 +66,9 @@
     <Compile Include="Controls\MarketQuotaControl.Designer.cs">
       <DependentUpon>MarketQuotaControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PriceControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\StockAttachControlBaseGeneric.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -344,6 +347,7 @@
     <Content Include="CleverStocker.Layout.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\StaticStatus.png" />
     <None Include="Resources\UpArrow.png" />
     <None Include="Resources\DownArrow.png" />
     <None Include="Resources\Exchange.png" />

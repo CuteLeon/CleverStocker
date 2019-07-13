@@ -23,6 +23,7 @@ namespace CleverStocker.Client.Controls
             }
 
             this.CurrentPriceValueLabel.ImageList = new ImageList();
+            this.CurrentPriceValueLabel.ImageList.Images.Add(AppResource.StaticStatus);
             this.CurrentPriceValueLabel.ImageList.Images.Add(AppResource.UpArrow);
             this.CurrentPriceValueLabel.ImageList.Images.Add(AppResource.DownArrow);
         }
@@ -108,11 +109,11 @@ namespace CleverStocker.Client.Controls
                 this.CurrentPriceValueLabel.ImageIndex =
                     this.stockComparer.Equals(quota, this.lastAttachEntity) ?
                         quota.CurrentPrice > this.lastAttachEntity.CurrentPrice ?
-                            0 : // 价格上涨显示向上箭头
+                            1 : // 价格上涨显示向上箭头
                             quota.CurrentPrice < this.lastAttachEntity.CurrentPrice ?
-                                1 : // 价格下跌，显示向下箭头
-                                -1 : // 价格无变动，不显示箭头
-                            -1; // 不是同一股票，不显示箭头
+                                2 : // 价格下跌，显示向下箭头
+                                0 : // 价格无变动，不显示箭头
+                            0; // 不是同一股票，不显示箭头
 
                 this.CurrentPriceValueLabel.ForeColor = ThemeHelper.GetQuotaForecolor(quota.CurrentPrice - quota.OpeningPriceToday);
 
