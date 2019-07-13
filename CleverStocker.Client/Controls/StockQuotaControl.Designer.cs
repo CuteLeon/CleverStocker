@@ -191,6 +191,7 @@
             this.MainTablePanel.SetColumnSpan(this.CurrentPriceValueLabel, 2);
             this.CurrentPriceValueLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CurrentPriceValueLabel.Font = new System.Drawing.Font("微软雅黑", 20F, System.Drawing.FontStyle.Bold);
+            this.CurrentPriceValueLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.CurrentPriceValueLabel.Location = new System.Drawing.Point(0, 0);
             this.CurrentPriceValueLabel.Margin = new System.Windows.Forms.Padding(0);
             this.CurrentPriceValueLabel.Name = "CurrentPriceValueLabel";

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CleverStocker.Model;
+using CleverStocker.Model.Comparers;
 using CleverStocker.Utils;
 
 namespace CleverStocker.Client.Controls
@@ -12,6 +13,7 @@ namespace CleverStocker.Client.Controls
     /// </summary>
     /// <typeparam name="TAttachEntity">附加实体类型</typeparam>
     public class StockAttachControlBaseGeneric<TAttachEntity> : UserControl, IStockAttachControlBaseGeneric<TAttachEntity>
+        where TAttachEntity : StockBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StockAttachControlBaseGeneric{TAttachEntity}"/> class.
@@ -20,6 +22,19 @@ namespace CleverStocker.Client.Controls
             : base()
         {
         }
+
+        #region 变量
+
+        /// <summary>
+        /// 股票比较器
+        /// </summary>
+        protected readonly StockBaseComparer<TAttachEntity> stockComparer = new StockBaseComparer<TAttachEntity>();
+
+        /// <summary>
+        /// 上一个附加实体
+        /// </summary>
+        protected TAttachEntity lastAttachEntity = default;
+        #endregion
 
         #region 属性
 
@@ -99,6 +114,7 @@ namespace CleverStocker.Client.Controls
             get => this.attachEntity;
             set
             {
+                this.lastAttachEntity = this.attachEntity;
                 this.attachEntity = value;
 
                 this.InvokeIfRequired<ValueType, Action<TAttachEntity>>(this.AttachEntityToFace, value);

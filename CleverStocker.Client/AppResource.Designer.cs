@@ -233,6 +233,16 @@ namespace CleverStocker.Client {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap DownArrow {
+            get {
+                object obj = ResourceManager.GetObject("DownArrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Edit {
             get {
                 object obj = ResourceManager.GetObject("Edit", resourceCulture);
@@ -616,6 +626,16 @@ namespace CleverStocker.Client {
         internal static System.Drawing.Bitmap Trigger {
             get {
                 object obj = ResourceManager.GetObject("Trigger", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap UpArrow {
+            get {
+                object obj = ResourceManager.GetObject("UpArrow", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
