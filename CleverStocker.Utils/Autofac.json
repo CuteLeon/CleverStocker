@@ -1,5 +1,16 @@
 {
   "components": [
+    /*
+    {
+      "type": "CleverStocker.Spider.DebugStockSpider, CleverStocker.Spider",
+      "services": [
+        {
+          "type": "CleverStocker.Services.IStockSpiderService, CleverStocker.Services"
+        }
+      ],
+      "injectProperties": true
+    },
+    */
     {
       "type": "CleverStocker.Spider.Sina.SinaStockSpider, CleverStocker.Spider.Sina",
       "services": [

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DebugStockSpider.cs" />
     <Compile Include="SpiderClients\SpiderClient.cs" />
     <Compile Include="SpiderClients\SpiderClientBase.cs" />
     <Compile Include="SpiderClients\ISpiderClient.cs" />
@@ -63,6 +65,20 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CleverStocker.Common\CleverStocker.Common.csproj">
+      <Project>{199F6003-92B5-4726-8E80-6A470D8C7F58}</Project>
+      <Name>CleverStocker.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
+      <Project>{55376275-2E0E-400C-A06E-E36DD181D763}</Project>
+      <Name>CleverStocker.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.Services\CleverStocker.Services.csproj">
+      <Project>{886675D5-9316-4561-80B8-9325681ABD95}</Project>
+      <Name>CleverStocker.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

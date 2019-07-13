@@ -165,7 +165,6 @@ namespace CleverStocker.Client.Controls
         /// </summary>
         public void RefreshPrice()
         {
-            Console.WriteLine($"刷新界面，价格 = {this.Price}");
             if (double.IsNaN(this.Price))
             {
                 this.Text = "-";
