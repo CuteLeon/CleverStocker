@@ -111,6 +111,6 @@ namespace CleverStocker.Utils
         /// <param name="quota"></param>
         /// <returns></returns>
         public static Color GetQuotaForecolor(double quota)
-            => quota > 0.0 ? Color.Crimson : Color.LimeGreen;
+            => quota >= 0.0 ? Color.Crimson : Color.LimeGreen;
     }
 }
