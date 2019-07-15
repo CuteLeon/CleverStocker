@@ -20,27 +20,27 @@ namespace CleverStocker.DataAccess
         /// <summary>
         /// Gets or sets 股票
         /// </summary>
-        public DbSet<Stock> Stocks { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
 
         /// <summary>
         /// Gets or sets 报价
         /// </summary>
-        public DbSet<Quota> Quotas { get; set; }
+        public virtual DbSet<Quota> Quotas { get; set; }
 
         /// <summary>
         /// Gets or sets 大盘指数
         /// </summary>
-        public DbSet<MarketQuota> MarketQuotas { get; set; }
+        public virtual DbSet<MarketQuota> MarketQuotas { get; set; }
 
         /// <summary>
         /// Gets or sets 公司
         /// </summary>
-        public DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
 
         /// <summary>
         /// Gets or sets 最近行情
         /// </summary>
-        public DbSet<RecentQuota> RecentQuotas { get; set; }
+        public virtual DbSet<RecentQuota> RecentQuotas { get; set; }
 
         /// <summary>
         /// 模型配置
