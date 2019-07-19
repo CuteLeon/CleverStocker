@@ -157,7 +157,9 @@ namespace CleverStocker.Client.Controls
         public void ClearPrice()
         {
             this.lastPrice = double.NaN;
-            this.Price = double.NaN;
+            this.price = double.NaN;
+
+            this.RefreshPrice();
         }
 
         /// <summary>
