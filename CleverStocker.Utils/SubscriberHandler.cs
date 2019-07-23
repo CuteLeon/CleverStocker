@@ -91,9 +91,9 @@ namespace CleverStocker.Utils
         /// <returns></returns>
         /// <remarks>
         /// 需要给每个 MQ 订阅者实现一个接收消息的异步线程，且这个线程大部分时间是被阻塞的。
-        /// Windows 系统没每个进程分配 2GB 的用户态内存，每个线程的默认栈代销为 1024KB (1MB)，
+        /// Windows 系统每个进程分配 2GB 的用户态内存，每个线程的默认栈大小为 1024KB (1MB)，
         /// 所以每个进程最多拥有不超过 2048 个线程。
-        /// 可以在日志中每个接受者的输出日志，得知此消息接收任务所在线程。
+        /// 可以在日志中输出每个接受者的日志，得知此消息接收任务所在线程。
         /// </remarks>
         private Task StartSubscriberReceiveTask()
             => Task.Factory.StartNew(() =>
