@@ -57,31 +57,31 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
-      <Version>4.9.3</Version>
+      <Version>4.9.4</Version>
     </PackageReference>
     <PackageReference Include="Autofac.Configuration">
       <Version>4.1.0</Version>
     </PackageReference>
     <PackageReference Include="DockPanelSuite">
-      <Version>3.0.6</Version>
+      <Version>3.1.0-beta3</Version>
     </PackageReference>
     <PackageReference Include="DockPanelSuite.ThemeVS2015">
-      <Version>3.0.6</Version>
+      <Version>3.1.0-beta3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration">
-      <Version>2.2.0</Version>
+      <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json">
-      <Version>2.2.0</Version>
+      <Version>3.1.0</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.6</Version>
+      <Version>4.6.8</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
-      <Version>1.1.118</Version>
+      <Version>1.2.0-beta.113</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
