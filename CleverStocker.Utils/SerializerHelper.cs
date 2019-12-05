@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Text;
-using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace CleverStocker.Utils
 {
@@ -21,15 +19,7 @@ namespace CleverStocker.Utils
         {
             try
             {
-                var serializer = new XmlSerializer(typeof(T));
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    using (var writer = new StreamWriter(stream, Encoding.UTF8))
-                    {
-                        serializer.Serialize(writer, source);
-                        return Encoding.UTF8.GetString(stream.GetBuffer());
-                    }
-                }
+                return JsonConvert.SerializeObject(source);
             }
             catch
             {
@@ -48,14 +38,7 @@ namespace CleverStocker.Utils
         {
             try
             {
-                var serializer = new XmlSerializer(typeof(T));
-                using (MemoryStream stream = new MemoryStream(Encoding.UTF8.GetBytes(content)))
-                {
-                    using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-                    {
-                        return serializer.Deserialize(reader) as T;
-                    }
-                }
+                return JsonConvert.DeserializeObject<T>(content);
             }
             catch
             {
