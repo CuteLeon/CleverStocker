@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Model;
@@ -189,5 +191,46 @@ namespace CleverStocker.Client.DockForms
             this.RecentQuotaService.AddOrUpdate(recentQuotas.ToArray());
         }
         #endregion
+
+        private void ExportToolButton_Click(object sender, EventArgs e)
+        {
+            if (this.stock == null)
+            {
+                return;
+            }
+
+            using (var dialog = new SaveFileDialog()
+            {
+                DefaultExt = ".txt",
+                FileName = $"{this.Stock.Name}-{this.Stock.Code}_行情",
+                Filter = "文本文件|*.txt|所有文件|*.*",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                Title = "请选择导出文件路径：",
+            })
+            {
+                if (dialog.ShowDialog() != DialogResult.OK)
+                {
+                    return;
+                }
+
+                string fileName = dialog.FileName;
+                using (var fileStream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    using (StreamWriter streamWriter = new StreamWriter(fileStream))
+                    {
+                        string line = string.Join("\t", this.RecentQuotaGridView.Columns.Cast<DataGridViewColumn>().Select(column => column.HeaderText));
+                        streamWriter.WriteLine(line);
+
+                        foreach (var row in this.RecentQuotaGridView.Rows.Cast<DataGridViewRow>())
+                        {
+                            line = string.Join("\t", row.Cells.Cast<DataGridViewCell>().Select(cell => cell.Value));
+                            streamWriter.WriteLine(line);
+                        }
+                    }
+                }
+            }
+
+            MessageBox.Show(this, $"{this.Stock.Name}-{this.Stock.Code} 行情导出成功！", "导出成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

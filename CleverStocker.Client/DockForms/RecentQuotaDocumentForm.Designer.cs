@@ -49,6 +49,8 @@
             this.QuotaLengthToolLabel = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.QueryToolButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExportToolButton = new System.Windows.Forms.ToolStripButton();
             this.QuotaLengthNumeric = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.RecentQuotaGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RecentQuotaBindingSource)).BeginInit();
@@ -181,7 +183,9 @@
             this.TimeScaleToolComboBox,
             this.QuotaLengthToolLabel,
             this.toolStripSeparator2,
-            this.QueryToolButton});
+            this.QueryToolButton,
+            this.toolStripSeparator3,
+            this.ExportToolButton});
             this.RecentQuotaToolStrip.Location = new System.Drawing.Point(0, 0);
             this.RecentQuotaToolStrip.Name = "RecentQuotaToolStrip";
             this.RecentQuotaToolStrip.Size = new System.Drawing.Size(522, 25);
@@ -207,6 +211,7 @@
             // 
             // TimeScaleToolComboBox
             // 
+            this.TimeScaleToolComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TimeScaleToolComboBox.Name = "TimeScaleToolComboBox";
             this.TimeScaleToolComboBox.Size = new System.Drawing.Size(121, 25);
             // 
@@ -230,6 +235,20 @@
             this.QueryToolButton.Size = new System.Drawing.Size(52, 22);
             this.QueryToolButton.Text = "查询";
             this.QueryToolButton.Click += new System.EventHandler(this.QueryToolButton_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // ExportToolButton
+            // 
+            this.ExportToolButton.Image = global::CleverStocker.Client.AppResource.Exchange;
+            this.ExportToolButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ExportToolButton.Name = "ExportToolButton";
+            this.ExportToolButton.Size = new System.Drawing.Size(52, 22);
+            this.ExportToolButton.Text = "导出";
+            this.ExportToolButton.Click += new System.EventHandler(this.ExportToolButton_Click);
             // 
             // QuotaLengthNumeric
             // 
@@ -304,5 +323,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn volumeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource RecentQuotaBindingSource;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton ExportToolButton;
     }
 }
