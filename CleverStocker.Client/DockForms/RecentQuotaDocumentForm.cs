@@ -218,14 +218,30 @@ namespace CleverStocker.Client.DockForms
                 {
                     using (StreamWriter streamWriter = new StreamWriter(fileStream))
                     {
-                        string line = string.Join("\t", this.RecentQuotaGridView.Columns.Cast<DataGridViewColumn>().Select(column => column.HeaderText));
+                        string line = string.Join(
+                            "\t",
+                            this.RecentQuotaGridView.Columns
+                                .Cast<DataGridViewColumn>()
+                                .Select(column => column.HeaderText)
+                                .Append("下次开盘价(元)"));
                         streamWriter.WriteLine(line);
 
-                        foreach (var row in this.RecentQuotaGridView.Rows.Cast<DataGridViewRow>())
-                        {
-                            line = string.Join("\t", row.Cells.Cast<DataGridViewCell>().Select(cell => cell.Value));
-                            streamWriter.WriteLine(line);
-                        }
+                        int targetColumnIndex = this.openningPriceDataGridViewTextBoxColumn.Index;
+
+                        this.RecentQuotaGridView.Rows
+                            .Cast<DataGridViewRow>()
+                            .Skip(1)
+                            .Select((row, index) =>
+                            {
+                                line = string.Join(
+                                    "\t",
+                                    row.Cells
+                                        .Cast<DataGridViewCell>()
+                                        .Select(cell => cell.Value)
+                                        .Append(this.RecentQuotaGridView.Rows[index].Cells[targetColumnIndex].Value));
+                                streamWriter.WriteLine(line);
+                                return line;
+                            }).Count();
                     }
                 }
             }
