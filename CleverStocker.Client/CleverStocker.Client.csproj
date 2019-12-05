@@ -284,6 +284,10 @@
       <Project>{199F6003-92B5-4726-8E80-6A470D8C7F58}</Project>
       <Name>CleverStocker.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CleverStocker.ML\CleverStocker.ML.csproj">
+      <Project>{aa29639a-16c8-4acf-ba10-f2d948e7dba7}</Project>
+      <Name>CleverStocker.ML</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CleverStocker.Model\CleverStocker.Model.csproj">
       <Project>{55376275-2E0E-400C-A06E-E36DD181D763}</Project>
       <Name>CleverStocker.Model</Name>
@@ -299,10 +303,10 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="DockPanelSuite">
-      <Version>3.1.0-beta3</Version>
+      <Version>3.0.6</Version>
     </PackageReference>
     <PackageReference Include="DockPanelSuite.ThemeVS2015">
-      <Version>3.1.0-beta3</Version>
+      <Version>3.0.6</Version>
     </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.2.0-beta.113</Version>

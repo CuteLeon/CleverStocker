@@ -40,6 +40,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.ModelTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.DataAccessTests", "CleverStocker.DataAccessTests\CleverStocker.DataAccessTests.csproj", "{7FCEDE2C-829E-47A6-8617-ED7A366E05F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.ML", "CleverStocker.ML\CleverStocker.ML.csproj", "{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{7FCEDE2C-829E-47A6-8617-ED7A366E05F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FCEDE2C-829E-47A6-8617-ED7A366E05F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FCEDE2C-829E-47A6-8617-ED7A366E05F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
