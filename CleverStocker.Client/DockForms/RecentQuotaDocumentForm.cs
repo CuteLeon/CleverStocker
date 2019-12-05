@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
@@ -199,6 +200,11 @@ namespace CleverStocker.Client.DockForms
                 return;
             }
 
+            if (this.RecentQuotaGridView.Rows.Count == 0)
+            {
+                return;
+            }
+
             using (var dialog = new SaveFileDialog()
             {
                 DefaultExt = ".txt",
@@ -218,30 +224,25 @@ namespace CleverStocker.Client.DockForms
                 {
                     using (StreamWriter streamWriter = new StreamWriter(fileStream))
                     {
-                        string line = string.Join(
-                            "\t",
-                            this.RecentQuotaGridView.Columns
-                                .Cast<DataGridViewColumn>()
-                                .Select(column => column.HeaderText)
-                                .Append("下次开盘价(元)"));
+                        string line = "代码\t市场\t名称\t开盘价(元)\t收盘价(元)\t最高价(元)\t最低价(元)\t交易量\t更新时间\t下次开盘价(元)";
                         streamWriter.WriteLine(line);
 
-                        int targetColumnIndex = this.openningPriceDataGridViewTextBoxColumn.Index;
+                        var quotas = (this.RecentQuotaBindingSource.DataSource as List<RecentQuota>)
+                            .OrderByDescending(quota => quota.UpdateTime)
+                            .ToList();
 
-                        this.RecentQuotaGridView.Rows
-                            .Cast<DataGridViewRow>()
-                            .Skip(1)
-                            .Select((row, index) =>
+                        var firstQuota = quotas.First();
+                        line = $"{firstQuota.Code}\t{firstQuota.Market}\t{firstQuota.Name}\t{firstQuota.OpenningPrice}\t{firstQuota.ClosingPrice}\t{firstQuota.HighestPrice}\t{firstQuota.LowestPrice}\t{firstQuota.Volume}\t{firstQuota.UpdateTime}\t{string.Empty}";
+                        streamWriter.WriteLine(line);
+
+                        quotas.Skip(1)
+                            .Select((quota, index) =>
                             {
-                                line = string.Join(
-                                    "\t",
-                                    row.Cells
-                                        .Cast<DataGridViewCell>()
-                                        .Select(cell => cell.Value)
-                                        .Append(this.RecentQuotaGridView.Rows[index].Cells[targetColumnIndex].Value));
+                                line = $"{quota.Code}\t{quota.Market}\t{quota.Name}\t{quota.OpenningPrice}\t{quota.ClosingPrice}\t{quota.HighestPrice}\t{quota.LowestPrice}\t{quota.Volume}\t{quota.UpdateTime}\t{quotas[index].OpenningPrice}";
                                 streamWriter.WriteLine(line);
                                 return line;
-                            }).Count();
+                            })
+                            .Count();
                     }
                 }
             }
