@@ -29,8 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.RecentQuotaGridView = new System.Windows.Forms.DataGridView();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.openningPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.closingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.highestPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lowestPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.volumeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.updateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RecentQuotaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RecentQuotaToolStrip = new System.Windows.Forms.ToolStrip();
             this.StockInfoToolLabel = new System.Windows.Forms.ToolStripLabel();
@@ -43,15 +52,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.ExportToolButton = new System.Windows.Forms.ToolStripButton();
             this.QuotaLengthNumeric = new System.Windows.Forms.NumericUpDown();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.marketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.openningPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.closingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.highestPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lowestPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.volumeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MLTransformButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.RecentQuotaGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RecentQuotaBindingSource)).BeginInit();
             this.RecentQuotaToolStrip.SuspendLayout();
@@ -93,6 +94,83 @@
             this.RecentQuotaGridView.Size = new System.Drawing.Size(522, 324);
             this.RecentQuotaGridView.TabIndex = 3;
             // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.Frozen = true;
+            this.codeDataGridViewTextBoxColumn.HeaderText = "代码";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // marketDataGridViewTextBoxColumn
+            // 
+            this.marketDataGridViewTextBoxColumn.DataPropertyName = "Market";
+            this.marketDataGridViewTextBoxColumn.Frozen = true;
+            this.marketDataGridViewTextBoxColumn.HeaderText = "市场";
+            this.marketDataGridViewTextBoxColumn.Name = "marketDataGridViewTextBoxColumn";
+            this.marketDataGridViewTextBoxColumn.ReadOnly = true;
+            this.marketDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.Frozen = true;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "名称";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // openningPriceDataGridViewTextBoxColumn
+            // 
+            this.openningPriceDataGridViewTextBoxColumn.DataPropertyName = "OpenningPrice";
+            this.openningPriceDataGridViewTextBoxColumn.HeaderText = "开盘价(元)";
+            this.openningPriceDataGridViewTextBoxColumn.Name = "openningPriceDataGridViewTextBoxColumn";
+            this.openningPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.openningPriceDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // closingPriceDataGridViewTextBoxColumn
+            // 
+            this.closingPriceDataGridViewTextBoxColumn.DataPropertyName = "ClosingPrice";
+            this.closingPriceDataGridViewTextBoxColumn.HeaderText = "收盘价(元)";
+            this.closingPriceDataGridViewTextBoxColumn.Name = "closingPriceDataGridViewTextBoxColumn";
+            this.closingPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.closingPriceDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // highestPriceDataGridViewTextBoxColumn
+            // 
+            this.highestPriceDataGridViewTextBoxColumn.DataPropertyName = "HighestPrice";
+            this.highestPriceDataGridViewTextBoxColumn.HeaderText = "最高价(元)";
+            this.highestPriceDataGridViewTextBoxColumn.Name = "highestPriceDataGridViewTextBoxColumn";
+            this.highestPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.highestPriceDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // lowestPriceDataGridViewTextBoxColumn
+            // 
+            this.lowestPriceDataGridViewTextBoxColumn.DataPropertyName = "LowestPrice";
+            this.lowestPriceDataGridViewTextBoxColumn.HeaderText = "最低价(元)";
+            this.lowestPriceDataGridViewTextBoxColumn.Name = "lowestPriceDataGridViewTextBoxColumn";
+            this.lowestPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lowestPriceDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // volumeDataGridViewTextBoxColumn
+            // 
+            this.volumeDataGridViewTextBoxColumn.DataPropertyName = "Volume";
+            this.volumeDataGridViewTextBoxColumn.HeaderText = "交易量";
+            this.volumeDataGridViewTextBoxColumn.Name = "volumeDataGridViewTextBoxColumn";
+            this.volumeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.volumeDataGridViewTextBoxColumn.Width = 66;
+            // 
+            // updateTimeDataGridViewTextBoxColumn
+            // 
+            this.updateTimeDataGridViewTextBoxColumn.DataPropertyName = "UpdateTime";
+            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm:ss";
+            this.updateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.updateTimeDataGridViewTextBoxColumn.HeaderText = "更新时间";
+            this.updateTimeDataGridViewTextBoxColumn.Name = "updateTimeDataGridViewTextBoxColumn";
+            this.updateTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.updateTimeDataGridViewTextBoxColumn.Width = 78;
+            // 
             // RecentQuotaBindingSource
             // 
             this.RecentQuotaBindingSource.DataSource = typeof(CleverStocker.Model.RecentQuota);
@@ -106,9 +184,10 @@
             this.TimeScaleToolComboBox,
             this.QuotaLengthToolLabel,
             this.toolStripSeparator2,
-            this.QueryToolButton,
+            this.ExportToolButton,
+            this.MLTransformButton,
             this.toolStripSeparator3,
-            this.ExportToolButton});
+            this.QueryToolButton});
             this.RecentQuotaToolStrip.Location = new System.Drawing.Point(0, 0);
             this.RecentQuotaToolStrip.Name = "RecentQuotaToolStrip";
             this.RecentQuotaToolStrip.Size = new System.Drawing.Size(522, 25);
@@ -202,82 +281,14 @@
             0,
             0});
             // 
-            // codeDataGridViewTextBoxColumn
+            // MLTransformButton
             // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.Frozen = true;
-            this.codeDataGridViewTextBoxColumn.HeaderText = "代码";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 54;
-            // 
-            // marketDataGridViewTextBoxColumn
-            // 
-            this.marketDataGridViewTextBoxColumn.DataPropertyName = "Market";
-            this.marketDataGridViewTextBoxColumn.Frozen = true;
-            this.marketDataGridViewTextBoxColumn.HeaderText = "市场";
-            this.marketDataGridViewTextBoxColumn.Name = "marketDataGridViewTextBoxColumn";
-            this.marketDataGridViewTextBoxColumn.ReadOnly = true;
-            this.marketDataGridViewTextBoxColumn.Width = 54;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.Frozen = true;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "名称";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 54;
-            // 
-            // openningPriceDataGridViewTextBoxColumn
-            // 
-            this.openningPriceDataGridViewTextBoxColumn.DataPropertyName = "OpenningPrice";
-            this.openningPriceDataGridViewTextBoxColumn.HeaderText = "开盘价(元)";
-            this.openningPriceDataGridViewTextBoxColumn.Name = "openningPriceDataGridViewTextBoxColumn";
-            this.openningPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.openningPriceDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // closingPriceDataGridViewTextBoxColumn
-            // 
-            this.closingPriceDataGridViewTextBoxColumn.DataPropertyName = "ClosingPrice";
-            this.closingPriceDataGridViewTextBoxColumn.HeaderText = "收盘价(元)";
-            this.closingPriceDataGridViewTextBoxColumn.Name = "closingPriceDataGridViewTextBoxColumn";
-            this.closingPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.closingPriceDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // highestPriceDataGridViewTextBoxColumn
-            // 
-            this.highestPriceDataGridViewTextBoxColumn.DataPropertyName = "HighestPrice";
-            this.highestPriceDataGridViewTextBoxColumn.HeaderText = "最高价(元)";
-            this.highestPriceDataGridViewTextBoxColumn.Name = "highestPriceDataGridViewTextBoxColumn";
-            this.highestPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.highestPriceDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // lowestPriceDataGridViewTextBoxColumn
-            // 
-            this.lowestPriceDataGridViewTextBoxColumn.DataPropertyName = "LowestPrice";
-            this.lowestPriceDataGridViewTextBoxColumn.HeaderText = "最低价(元)";
-            this.lowestPriceDataGridViewTextBoxColumn.Name = "lowestPriceDataGridViewTextBoxColumn";
-            this.lowestPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.lowestPriceDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // volumeDataGridViewTextBoxColumn
-            // 
-            this.volumeDataGridViewTextBoxColumn.DataPropertyName = "Volume";
-            this.volumeDataGridViewTextBoxColumn.HeaderText = "交易量";
-            this.volumeDataGridViewTextBoxColumn.Name = "volumeDataGridViewTextBoxColumn";
-            this.volumeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.volumeDataGridViewTextBoxColumn.Width = 66;
-            // 
-            // updateTimeDataGridViewTextBoxColumn
-            // 
-            this.updateTimeDataGridViewTextBoxColumn.DataPropertyName = "UpdateTime";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm:ss";
-            this.updateTimeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.updateTimeDataGridViewTextBoxColumn.HeaderText = "更新时间";
-            this.updateTimeDataGridViewTextBoxColumn.Name = "updateTimeDataGridViewTextBoxColumn";
-            this.updateTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.updateTimeDataGridViewTextBoxColumn.Width = 78;
+            this.MLTransformButton.Image = global::CleverStocker.Client.AppResource.Insights;
+            this.MLTransformButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.MLTransformButton.Name = "MLTransformButton";
+            this.MLTransformButton.Size = new System.Drawing.Size(70, 22);
+            this.MLTransformButton.Text = "ML训练";
+            this.MLTransformButton.Click += new System.EventHandler(this.MLTransformButton_Click);
             // 
             // RecentQuotaDocumentForm
             // 
@@ -325,5 +336,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lowestPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn volumeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updateTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripButton MLTransformButton;
     }
 }

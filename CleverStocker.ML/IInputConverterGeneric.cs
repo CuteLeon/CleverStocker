@@ -7,7 +7,7 @@ namespace CleverStocker.ML
     /// </summary>
     /// <typeparam name="TSource">源类型</typeparam>
     /// <typeparam name="TInput">输入类型</typeparam>
-    public interface IInputConverter<TSource, TInput>
+    public interface IInputConverterGeneric<TSource, TInput>
     {
         /// <summary>
         /// 转换输入模型

@@ -260,6 +260,9 @@
     <None Include="..\CleverStocker.ruleset">
       <Link>CleverStocker.ruleset</Link>
     </None>
+    <None Include="Autofac.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\CleverStocker.Model.Quota.datasource" />
     <None Include="Properties\DataSources\CleverStocker.Model.RecentQuota.datasource" />
     <None Include="Properties\DataSources\CleverStocker.Model.Stock.datasource" />

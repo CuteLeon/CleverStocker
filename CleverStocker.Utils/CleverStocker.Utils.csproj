@@ -42,6 +42,7 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapHelper.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="ConverterHelper.cs" />
     <Compile Include="DefaultLogSource.cs" />
@@ -95,9 +96,6 @@
   <ItemGroup>
     <None Include="..\CleverStocker.ruleset">
       <Link>CleverStocker.ruleset</Link>
-    </None>
-    <None Include="Autofac.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

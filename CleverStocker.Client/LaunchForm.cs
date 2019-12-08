@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CleverStocker.Client.DockForms;
 using CleverStocker.Common.Extensions;
+using CleverStocker.ML.NextOpenPrice;
+using CleverStocker.Model;
 using CleverStocker.Services;
 using CleverStocker.Utils;
 
@@ -118,6 +120,9 @@ namespace CleverStocker.Client
                     Task.Delay(1000),
                     Task.Factory.StartNew(() =>
                         {
+                            this.UpdateProgressAsync("开始初始化 AutoMap ...");
+                            this.InitAutoMap();
+
                             this.UpdateProgressAsync("开始注册服务到依赖注入容器 ...");
                             DIContainerHelper.RegistServicesFromConfig();
 
@@ -165,6 +170,17 @@ namespace CleverStocker.Client
                             this.UpdateProgressAsync($"绑定 MQ 发布者 ...");
                             MQHelper.BindPublisher();
                         }));
+
+        /// <summary>
+        /// 初始化模型映射
+        /// </summary>
+        private void InitAutoMap()
+        {
+            AutoMapHelper.ConfigMappers(new[]
+            {
+                (typeof(RecentQuota), typeof(NOPInput)),
+            });
+        }
 
         /// <summary>
         /// 注册单实例停靠窗口实例

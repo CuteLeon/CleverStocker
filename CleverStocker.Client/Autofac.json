@@ -81,6 +81,33 @@
         }
       ],
       "instanceScope": "single-instance"
+    },
+    {
+      "type": "CleverStocker.ML.NextOpenPrice.NOPStockPrediction, CleverStocker.ML.NextOpenPrice",
+      "services": [
+        {
+          "type": "CleverStocker.ML.IStockPrediction, CleverStocker.ML"
+        }
+      ],
+      "injectProperties": true
+    },
+    {
+      "type": "CleverStocker.ML.NextOpenPrice.NOPStockTransformer, CleverStocker.ML.NextOpenPrice",
+      "services": [
+        {
+          "type": "CleverStocker.ML.IStockTransformer, CleverStocker.ML"
+        }
+      ],
+      "injectProperties": true
+    },
+    {
+      "type": "CleverStocker.ML.NextOpenPrice.NOPInputConverter, CleverStocker.ML.NextOpenPrice",
+      "services": [
+        {
+          "type": "CleverStocker.ML.IInputConverterGeneric, CleverStocker.ML"
+        }
+      ],
+      "injectProperties": true
     }
   ]
 }

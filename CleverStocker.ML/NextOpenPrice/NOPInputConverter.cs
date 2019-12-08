@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using CleverStocker.Model;
+using CleverStocker.Utils;
 
 namespace CleverStocker.ML.NextOpenPrice
 {
     /// <summary>
     /// NOP输入转换器
     /// </summary>
-    public class NOPInputConverter : IInputConverter<RecentQuota, NOPInput>
+    public class NOPInputConverter : IInputConverterGeneric<RecentQuota, NOPInput>
     {
         /// <inheritdoc/>
         public IEnumerable<NOPInput> ConvertInputs(IEnumerable<RecentQuota> sources)
@@ -18,9 +19,6 @@ namespace CleverStocker.ML.NextOpenPrice
 
         /// <inheritdoc/>
         public NOPInput ConvertInput(RecentQuota source)
-        {
-            // TODO: 赋值输入模型
-            return default;
-        }
+            => AutoMapHelper.Map<NOPInput>(source);
     }
 }

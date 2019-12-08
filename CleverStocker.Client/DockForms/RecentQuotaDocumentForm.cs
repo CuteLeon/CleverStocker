@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CleverStocker.ML;
+using CleverStocker.ML.NextOpenPrice;
 using CleverStocker.Model;
 using CleverStocker.Model.Extensions;
 using CleverStocker.Services;
@@ -248,6 +250,18 @@ namespace CleverStocker.Client.DockForms
             }
 
             MessageBox.Show(this, $"{this.Stock.Name}-{this.Stock.Code} 行情导出成功！", "导出成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void MLTransformButton_Click(object sender, EventArgs e)
+        {
+            var convertor = DIContainerHelper.Resolve<IInputConverterGeneric<RecentQuota, NOPInput>>();
+            var transformer = DIContainerHelper.Resolve<IStockTransformer>();
+            var prediction = DIContainerHelper.Resolve<IStockPrediction>();
+
+            var quotas = (this.RecentQuotaBindingSource.DataSource as List<RecentQuota>)
+                .OrderByDescending(quota => quota.UpdateTime)
+                .ToList();
+            var inputs = convertor.ConvertInputs(quotas);
         }
     }
 }
