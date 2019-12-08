@@ -22,8 +22,4 @@
     <ProjectReference Include="..\CleverStocker.Utils\CleverStocker.Utils.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NextOpenPrice\" />
-  </ItemGroup>
-
 </Project>

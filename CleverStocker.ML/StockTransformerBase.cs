@@ -6,11 +6,9 @@ namespace CleverStocker.ML
     /// <summary>
     /// 训练器基类
     /// </summary>
-    /// <typeparam name="TIn">输入模型</typeparam>
-    /// <typeparam name="TOut">输出模型</typeparam>
-    public abstract class StockTransformerBase<TIn, TOut> : IStockTransformerGeneric<TIn, TOut>
-        where TIn : class
-        where TOut : class, new()
+    /// <typeparam name="TInput">输入模型</typeparam>
+    public abstract class StockTransformerBase<TInput> : IStockTransformerGeneric<TInput>
+        where TInput : class
     {
         /// <inheritdoc/>
         public MLContext MLContext { get; protected set; }
@@ -37,7 +35,7 @@ namespace CleverStocker.ML
         public abstract IEstimator<ITransformer> CreateEstimator();
 
         /// <inheritdoc/>
-        public void Fit(IEnumerable<TIn> inputs)
+        public void Fit(IEnumerable<TInput> inputs)
         {
             this.TrainingData = this.MLContext.Data.LoadFromEnumerable(inputs);
             this.Transformer = this.Estimator.Fit(this.TrainingData);

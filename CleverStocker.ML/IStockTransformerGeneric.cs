@@ -6,11 +6,9 @@ namespace CleverStocker.ML
     /// <summary>
     /// 股票训练器
     /// </summary>
-    /// <typeparam name="TIn">输入模型</typeparam>
-    /// <typeparam name="TOut">输出模型</typeparam>
-    public interface IStockTransformerGeneric<TIn, TOut> : IStockTransformer
-        where TIn : class
-        where TOut : class, new()
+    /// <typeparam name="TInput">输入模型</typeparam>
+    public interface IStockTransformerGeneric<TInput> : IStockTransformer
+        where TInput : class
     {
         /// <summary>
         /// Gets 训练数据
@@ -21,7 +19,7 @@ namespace CleverStocker.ML
         /// 训练
         /// </summary>
         /// <param name="inputs"></param>
-        void Fit(IEnumerable<TIn> inputs);
+        void Fit(IEnumerable<TInput> inputs);
 
         /// <summary>
         /// 保存模型

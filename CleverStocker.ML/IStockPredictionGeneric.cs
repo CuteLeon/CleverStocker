@@ -5,22 +5,22 @@ namespace CleverStocker.ML
     /// <summary>
     /// 股票预测器
     /// </summary>
-    /// <typeparam name="TIn">输入模型</typeparam>
-    /// <typeparam name="TOut">输出模型</typeparam>
-    public interface IStockPredictionGeneric<TIn, TOut> : IStockPrediction
-        where TIn : class
-        where TOut : class, new()
+    /// <typeparam name="TInput">输入模型</typeparam>
+    /// <typeparam name="TOutput">输出模型</typeparam>
+    public interface IStockPredictionGeneric<TInput, TOutput> : IStockPrediction
+        where TInput : class
+        where TOutput : class, new()
     {
         /// <summary>
         /// Gets 预测引擎
         /// </summary>
-        PredictionEngine<TIn, TOut> PredictionEngine { get; }
+        PredictionEngine<TInput, TOutput> PredictionEngine { get; }
 
         /// <summary>
         /// 预测
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        TOut Predict(TIn input);
+        TOutput Predict(TInput input);
     }
 }
