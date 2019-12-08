@@ -254,6 +254,7 @@ namespace CleverStocker.Client.DockForms
 
         private void MLTransformButton_Click(object sender, EventArgs e)
         {
+            // TODO: 实现 ML 业务功能；
             var convertor = DIContainerHelper.Resolve<IInputConverterGeneric<RecentQuota, NOPInput>>();
             var transformer = DIContainerHelper.Resolve<IStockTransformer>();
             var prediction = DIContainerHelper.Resolve<IStockPrediction>();
