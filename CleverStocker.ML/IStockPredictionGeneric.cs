@@ -19,8 +19,8 @@ namespace CleverStocker.ML
         /// <summary>
         /// 预测
         /// </summary>
-        /// <param name="feature"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        TOut Predict(TIn feature);
+        TOut Predict(TIn input);
     }
 }
