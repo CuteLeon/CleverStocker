@@ -83,28 +83,28 @@
       "instanceScope": "single-instance"
     },
     {
-      "type": "CleverStocker.ML.NextOpenPrice.NOPStockPrediction, CleverStocker.ML.NextOpenPrice",
+      "type": "CleverStocker.ML.NextOpenPrice.NOPStockPrediction, CleverStocker.ML",
       "services": [
         {
-          "type": "CleverStocker.ML.IStockPrediction, CleverStocker.ML"
+          "type": "CleverStocker.ML.NextOpenPrice.INOPStockPrediction, CleverStocker.ML"
         }
       ],
       "injectProperties": true
     },
     {
-      "type": "CleverStocker.ML.NextOpenPrice.NOPStockTransformer, CleverStocker.ML.NextOpenPrice",
+      "type": "CleverStocker.ML.NextOpenPrice.NOPStockTransformer, CleverStocker.ML",
       "services": [
         {
-          "type": "CleverStocker.ML.IStockTransformer, CleverStocker.ML"
+          "type": "CleverStocker.ML.NextOpenPrice.INOPStockTransformer, CleverStocker.ML"
         }
       ],
       "injectProperties": true
     },
     {
-      "type": "CleverStocker.ML.NextOpenPrice.NOPInputConverter, CleverStocker.ML.NextOpenPrice",
+      "type": "CleverStocker.ML.NextOpenPrice.NOPInputConverter, CleverStocker.ML",
       "services": [
         {
-          "type": "CleverStocker.ML.IInputConverterGeneric, CleverStocker.ML"
+          "type": "CleverStocker.ML.NextOpenPrice.INOPInputConverter, CleverStocker.ML"
         }
       ],
       "injectProperties": true

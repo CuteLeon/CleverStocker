@@ -103,7 +103,7 @@ namespace CleverStocker.Spider.Sina
         /// <summary>
         /// 图表请求路径集合
         /// </summary>
-        private static Dictionary<Charts, string> chartsRequestAddresses = new Dictionary<Charts, string>()
+        private static readonly Dictionary<Charts, string> ChartsRequestAddresses = new Dictionary<Charts, string>()
         {
             { Charts.Minute, @"http://image.sinajs.cn/newchart/min/n/{0}.gif" },
             { Charts.DailyCandlestick, @"http://image.sinajs.cn/newchart/daily/n/{0}.gif" },
@@ -114,7 +114,7 @@ namespace CleverStocker.Spider.Sina
         /// <summary>
         /// 交易列表请求路径集合
         /// </summary>
-        private static Dictionary<TradeListTypes, string> tradeListRequestAddresses = new Dictionary<TradeListTypes, string>()
+        private static readonly Dictionary<TradeListTypes, string> TradeListRequestAddresses = new Dictionary<TradeListTypes, string>()
         {
             { TradeListTypes.All, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/CN_TransListV2.php?symbol={0}&num={1}" },
             { TradeListTypes.Block, @"https://vip.stock.finance.sina.com.cn/quotes_service/view/CN_BillList.php?sort=ticktime&symbol={0}&num={1}" },
@@ -132,7 +132,7 @@ namespace CleverStocker.Spider.Sina
         /// <param name="market"></param>
         /// <returns></returns>
         /// <remarks>Sina 接口约每三秒更新一次</remarks>
-        public (Stock stock, Quota quota) GetStockQuota(string code, Markets market)
+        public (Stock Stock, Quota Quota) GetStockQuota(string code, Markets market)
         {
             string marketCode = GetMarketCode(market);
 
@@ -276,7 +276,7 @@ namespace CleverStocker.Spider.Sina
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        public async Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market)
+        public async Task<(Stock Stock, Quota Quota)> GetStockQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockQuota(code, market));
         #endregion
 
@@ -289,7 +289,7 @@ namespace CleverStocker.Spider.Sina
         /// <param name="market"></param>
         /// <returns></returns>
         /// <remarks>Sina 接口约每五秒更新一次，但大盘行情不包含更新时间字段</remarks>
-        public (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market)
+        public (Stock Stock, MarketQuota MarketQuota) GetStockMarketQuota(string code, Markets market)
         {
             string marketCode = GetMarketCode(market);
 
@@ -354,7 +354,7 @@ namespace CleverStocker.Spider.Sina
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        public async Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
+        public async Task<(Stock Stock, MarketQuota MarketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockMarketQuota(code, market));
         #endregion
 
@@ -370,7 +370,7 @@ namespace CleverStocker.Spider.Sina
         public Image GetChart(string code, Markets market, Charts chart)
         {
             string marketCode = GetMarketCode(market);
-            if (!chartsRequestAddresses.TryGetValue(chart, out string request))
+            if (!ChartsRequestAddresses.TryGetValue(chart, out string request))
             {
                 throw new ArgumentNullException();
             }
@@ -580,7 +580,7 @@ namespace CleverStocker.Spider.Sina
         public List<Trade> GetRecentTrades(string code, Markets market, TradeListTypes tradeListType, int count)
         {
             string marketCode = GetMarketCode(market);
-            if (!tradeListRequestAddresses.TryGetValue(tradeListType, out string request))
+            if (!TradeListRequestAddresses.TryGetValue(tradeListType, out string request))
             {
                 throw new ArgumentNullException();
             }
@@ -620,7 +620,7 @@ namespace CleverStocker.Spider.Sina
         /// </summary>
         /// <param name="tradeListType"></param>
         /// <returns></returns>
-        public static (Regex, Func<Match, Trade>) GetTradeListRegexConvertor(TradeListTypes tradeListType)
+        public static (Regex Regex, Func<Match, Trade> Func) GetTradeListRegexConvertor(TradeListTypes tradeListType)
         {
             switch (tradeListType)
             {

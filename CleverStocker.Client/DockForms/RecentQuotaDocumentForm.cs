@@ -167,33 +167,6 @@ namespace CleverStocker.Client.DockForms
         {
             _ = this.QueryRecentQuotas();
         }
-        #endregion
-
-        #region 功能
-
-        /// <summary>
-        /// 查询最近行情
-        /// </summary>
-        /// <returns></returns>
-        public async Task QueryRecentQuotas()
-        {
-            if (this.stock == null)
-            {
-                return;
-            }
-
-            var recentQuotas = await this.StockSpiderService.GetRecentQuotasAsync(
-                this.stock.Code,
-                this.stock.Market,
-                Enum.TryParse(this.TimeScaleToolComboBox.SelectedItem.ToString(), out TimeScales scale) ? scale : TimeScales.Minutes_5,
-                Convert.ToInt32(this.QuotaLengthNumeric.Value));
-            recentQuotas.ForEach(quota => quota.Name = this.stock.Name);
-
-            this.RecentQuotaBindingSource.DataSource = recentQuotas;
-
-            this.RecentQuotaService.AddOrUpdate(recentQuotas.ToArray());
-        }
-        #endregion
 
         private void ExportToolButton_Click(object sender, EventArgs e)
         {
@@ -254,15 +227,60 @@ namespace CleverStocker.Client.DockForms
 
         private void MLTransformButton_Click(object sender, EventArgs e)
         {
-            // TODO: 实现 ML 业务功能；
-            var convertor = DIContainerHelper.Resolve<IInputConverterGeneric<RecentQuota, NOPInput>>();
-            var transformer = DIContainerHelper.Resolve<IStockTransformer>();
-            var prediction = DIContainerHelper.Resolve<IStockPrediction>();
+            if (this.stock == null)
+            {
+                return;
+            }
 
-            var quotas = (this.RecentQuotaBindingSource.DataSource as List<RecentQuota>)
-                .OrderByDescending(quota => quota.UpdateTime)
-                .ToList();
+            if (this.RecentQuotaGridView.Rows.Count == 0)
+            {
+                return;
+            }
+
+            // TODO: 实现 ML 业务功能；
+            var convertor = DIContainerHelper.Resolve<INOPInputConverter>();
+            var transformer = DIContainerHelper.Resolve<INOPStockTransformer>();
+            var prediction = DIContainerHelper.Resolve<INOPStockPrediction>();
+
+            const string modelPath = @"D:\ML\Model.zip";
+            var quotas = this.RecentQuotaBindingSource.DataSource as List<RecentQuota>;
             var inputs = convertor.ConvertInputs(quotas);
+            transformer.InitializeEstimator();
+            transformer.Fit(inputs);
+            transformer.SaveModel(modelPath);
+
+            var quota = new RecentQuota();
+            var input = convertor.ConvertInput(quota);
+            prediction.LoadModelToPredictionEngine(modelPath);
+            var output = prediction.Predict(input);
+            MessageBox.Show($"预测结果：{output.ToString()}");
         }
+        #endregion
+
+        #region 功能
+
+        /// <summary>
+        /// 查询最近行情
+        /// </summary>
+        /// <returns></returns>
+        public async Task QueryRecentQuotas()
+        {
+            if (this.stock == null)
+            {
+                return;
+            }
+
+            var recentQuotas = await this.StockSpiderService.GetRecentQuotasAsync(
+                this.stock.Code,
+                this.stock.Market,
+                Enum.TryParse(this.TimeScaleToolComboBox.SelectedItem.ToString(), out TimeScales scale) ? scale : TimeScales.Minutes_5,
+                Convert.ToInt32(this.QuotaLengthNumeric.Value));
+            recentQuotas.ForEach(quota => quota.Name = this.stock.Name);
+
+            this.RecentQuotaBindingSource.DataSource = recentQuotas;
+
+            this.RecentQuotaService.AddOrUpdate(recentQuotas.ToArray());
+        }
+        #endregion
     }
 }

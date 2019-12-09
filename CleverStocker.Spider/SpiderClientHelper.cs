@@ -4,8 +4,8 @@ using CleverStocker.Spider.SpiderClients;
 
 namespace CleverStocker.Spider
 {
-    // TODO: 腾讯财经爬虫-实时资金流向 (http://qt.gtimg.cn/q=sz000858)
-    // TODO: 网易财经爬虫-历史所有交易日行情 (csv 格式)
+    // TODO: [非紧急] 腾讯财经爬虫-实时资金流向 (http://qt.gtimg.cn/q=sz000858)
+    // TODO: [非紧急] 网易财经爬虫-历史所有交易日行情 (csv 格式)
 
     /// <summary>
     /// 爬虫客户端助手

@@ -27,7 +27,7 @@ namespace CleverStocker.Spider
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        public (Stock stock, Quota quota) GetStockQuota(string code, Markets market)
+        public (Stock Stock, Quota Quota) GetStockQuota(string code, Markets market)
             => (new Stock(code, market, code), new Quota(code, market, code) { CurrentPrice = (this.random.NextDouble() * 5) + 15 });
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace CleverStocker.Spider
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        public async Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market)
+        public async Task<(Stock Stock, Quota Quota)> GetStockQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockQuota(code, market));
         #endregion
 
@@ -48,7 +48,7 @@ namespace CleverStocker.Spider
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        public (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market)
+        public (Stock Stock, MarketQuota MarketQuota) GetStockMarketQuota(string code, Markets market)
             => (new Stock(code, market, code), new MarketQuota(code, market, code) { CurrentPrice = (this.random.NextDouble() * 5) + 15 });
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace CleverStocker.Spider
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        public async Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
+        public async Task<(Stock Stock, MarketQuota MarketQuota)> GetStockMarketQuotaAsync(string code, Markets market)
             => await Task.Factory.StartNew(() => this.GetStockMarketQuota(code, market));
         #endregion
 

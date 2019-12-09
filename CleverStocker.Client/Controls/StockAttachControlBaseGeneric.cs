@@ -28,7 +28,7 @@ namespace CleverStocker.Client.Controls
         /// <summary>
         /// 股票比较器
         /// </summary>
-        protected readonly StockBaseComparer<Stock> stockComparer = new StockBaseComparer<Stock>();
+        protected readonly StockBaseComparer<Stock> StockComparer = new StockBaseComparer<Stock>();
         #endregion
 
         #region 属性
@@ -89,7 +89,7 @@ namespace CleverStocker.Client.Controls
             get => this.stock;
             set
             {
-                if (!this.stockComparer.Equals(this.stock, value))
+                if (!this.StockComparer.Equals(this.stock, value))
                 {
                     this.stock = value;
 

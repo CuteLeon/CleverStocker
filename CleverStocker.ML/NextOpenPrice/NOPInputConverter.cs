@@ -8,7 +8,7 @@ namespace CleverStocker.ML.NextOpenPrice
     /// <summary>
     /// NOP输入转换器
     /// </summary>
-    public class NOPInputConverter : IInputConverterGeneric<RecentQuota, NOPInput>
+    public class NOPInputConverter : INOPInputConverter
     {
         /// <inheritdoc/>
         public IEnumerable<NOPInput> ConvertInputs(IEnumerable<RecentQuota> sources)

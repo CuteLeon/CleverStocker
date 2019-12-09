@@ -17,7 +17,7 @@ namespace CleverStocker.Services
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        (Stock stock, Quota quota) GetStockQuota(string code, Markets market);
+        (Stock Stock, Quota Quota) GetStockQuota(string code, Markets market);
 
         /// <summary>
         /// 异步获取股票行情
@@ -25,7 +25,7 @@ namespace CleverStocker.Services
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        Task<(Stock stock, Quota quota)> GetStockQuotaAsync(string code, Markets market);
+        Task<(Stock Stock, Quota Quota)> GetStockQuotaAsync(string code, Markets market);
 
         /// <summary>
         /// 获取股票大盘指数
@@ -33,7 +33,7 @@ namespace CleverStocker.Services
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        (Stock stock, MarketQuota marketQuota) GetStockMarketQuota(string code, Markets market);
+        (Stock Stock, MarketQuota MarketQuota) GetStockMarketQuota(string code, Markets market);
 
         /// <summary>
         /// 异步获取股票大盘指数
@@ -41,7 +41,7 @@ namespace CleverStocker.Services
         /// <param name="code"></param>
         /// <param name="market"></param>
         /// <returns></returns>
-        Task<(Stock stock, MarketQuota marketQuota)> GetStockMarketQuotaAsync(string code, Markets market);
+        Task<(Stock Stock, MarketQuota MarketQuota)> GetStockMarketQuotaAsync(string code, Markets market);
 
         /// <summary>
         /// 获取图表

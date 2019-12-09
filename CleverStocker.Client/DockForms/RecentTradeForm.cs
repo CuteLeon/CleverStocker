@@ -3,7 +3,7 @@
     /// <summary>
     /// 最近交易
     /// </summary>
-    public partial class RecentTradeForm : SingleToolDockForm//, IMQPubsubable
+    public partial class RecentTradeForm : SingleToolDockForm// , IMQPubsubable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecentTradeForm"/> class.

@@ -23,7 +23,7 @@ namespace CleverStocker.Model.Extensions
         /// <param name="fullCode"></param>
         /// <returns></returns>
         /// <remarks>统一使用 GetMarketCode 解析股票标识信息</remarks>
-        public static (string, Markets, string) GetMarketCode(this string fullCode)
+        public static (string Code, Markets Market, string Name) GetMarketCode(this string fullCode)
         {
             var values = fullCode.Split(new[] { '-' }, 3);
             if (values.Length == 3)

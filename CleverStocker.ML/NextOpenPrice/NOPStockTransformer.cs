@@ -2,7 +2,7 @@
 
 namespace CleverStocker.ML.NextOpenPrice
 {
-    public class NOPStockTransformer : StockTransformerBase<NOPInput>
+    public class NOPStockTransformer : StockTransformerBase<NOPInput>, INOPStockTransformer
     {
         /// <inheritdoc/>
         public override IEstimator<ITransformer> CreateEstimator()

@@ -1,6 +1,6 @@
 ﻿namespace CleverStocker.ML.NextOpenPrice
 {
-    public class NOPStockPrediction : StockPredictionBase<NOPInput, NOPOutput>
+    public class NOPStockPrediction : StockPredictionBase<NOPInput, NOPOutput>, INOPStockPrediction
     {
     }
 }
