@@ -26,5 +26,7 @@ namespace CleverStocker.ML
         /// 初始化 Estimator
         /// </summary>
         void InitializeEstimator();
+
+        // TODO: 增加模型评估方法，返回模型得分
     }
 }

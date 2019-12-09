@@ -242,18 +242,22 @@ namespace CleverStocker.Client.DockForms
             var transformer = DIContainerHelper.Resolve<INOPStockTransformer>();
             var prediction = DIContainerHelper.Resolve<INOPStockPrediction>();
 
-            const string modelPath = @"D:\ML\Model.zip";
+            var modelPath = @"D:\ML\Model.zip";
             var quotas = this.RecentQuotaBindingSource.DataSource as List<RecentQuota>;
-            var inputs = convertor.ConvertInputs(quotas);
-            transformer.InitializeEstimator();
-            transformer.Fit(inputs);
-            transformer.SaveModel(modelPath);
+
+            if (!File.Exists(modelPath))
+            {
+                var inputs = convertor.ConvertInputs(quotas);
+                transformer.InitializeEstimator();
+                transformer.Fit(inputs);
+                transformer.SaveModel(modelPath);
+            }
 
             var quota = quotas.First();
             var input = convertor.ConvertInput(quota);
             prediction.LoadModelToPredictionEngine(modelPath);
             var output = prediction.Predict(input);
-            MessageBox.Show($"预测结果：{output.ToString()}");
+            MessageBox.Show($"预测结果：{output.Score}");
         }
         #endregion
 

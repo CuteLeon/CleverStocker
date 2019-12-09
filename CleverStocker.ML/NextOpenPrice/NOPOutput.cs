@@ -8,6 +8,6 @@
         /// <summary>
         /// Gets or sets 分数
         /// </summary>
-        public double Score { get; set; }
+        public float Score { get; set; }
     }
 }

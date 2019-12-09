@@ -26,10 +26,12 @@ namespace CleverStocker.ML.NextOpenPrice
             // 配置训练管道
             var dataProcessPipeline = this.MLContext.Transforms
                 .Text.FeaturizeText(updateTimeFeature, nameof(NOPInput.UpdateTime))
-                .Append(this.MLContext.Transforms.Concatenate(FeaturesName, features));
+                .Append(this.MLContext.Transforms.Concatenate(FeaturesName, features))
+                .Append(this.MLContext.Transforms.NormalizeMinMax(FeaturesName, FeaturesName))
+                .AppendCacheCheckpoint(this.MLContext);
 
             // 配置训练算法
-            var trainer = this.MLContext.Regression.Trainers.LightGbm(nameof(NOPInput.NextOpenningPrice), FeaturesName);
+            var trainer = this.MLContext.Regression.Trainers.Sdca(nameof(NOPInput.NextOpenningPrice), FeaturesName);
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 
             return trainingPipeline;
