@@ -13,8 +13,19 @@ namespace CleverStocker.ML.NextOpenPrice
         /// <inheritdoc/>
         public IEnumerable<NOPInput> ConvertInputs(IEnumerable<RecentQuota> sources)
         {
-            // TODO: 赋值下次开盘价格
-            return sources.Select(source => this.ConvertInput(source));
+            var inputs = sources
+                .OrderByDescending(quota => quota.UpdateTime)
+                .Select(source => this.ConvertInput(source))
+                .ToList();
+
+            inputs.Skip(1)
+                .Select((input, index) =>
+                {
+                    input.NextOpenningPrice = inputs[index].OpenningPrice;
+                    return input;
+                })
+                .Count();
+            return inputs;
         }
 
         /// <inheritdoc/>
