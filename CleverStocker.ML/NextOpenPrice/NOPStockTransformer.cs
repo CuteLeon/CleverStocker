@@ -1,4 +1,5 @@
-﻿using Microsoft.ML;
+﻿using System.Linq;
+using Microsoft.ML;
 
 namespace CleverStocker.ML.NextOpenPrice
 {
@@ -35,6 +36,24 @@ namespace CleverStocker.ML.NextOpenPrice
             var trainingPipeline = dataProcessPipeline.Append(trainer);
 
             return trainingPipeline;
+        }
+
+        /// <inheritdoc/>
+        public override (double L1, double L2, double RMS, double LossFunction, double R2) Evaluate()
+        {
+            var crossValidationResults = this.MLContext.Regression.CrossValidate(
+                this.TrainingData,
+                this.Estimator,
+                5,
+                nameof(NOPInput.NextOpenningPrice));
+
+            var l1 = crossValidationResults.Average(r => r.Metrics.MeanAbsoluteError);
+            var l2 = crossValidationResults.Average(r => r.Metrics.MeanSquaredError);
+            var rms = crossValidationResults.Average(r => r.Metrics.RootMeanSquaredError);
+            var lossFunction = crossValidationResults.Average(r => r.Metrics.LossFunction);
+            var r2 = crossValidationResults.Average(r => r.Metrics.RSquared);
+
+            return (l1, l2, rms, lossFunction, r2);
         }
     }
 }

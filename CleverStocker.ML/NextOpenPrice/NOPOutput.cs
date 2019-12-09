@@ -1,4 +1,6 @@
-﻿namespace CleverStocker.ML.NextOpenPrice
+﻿using Microsoft.ML.Data;
+
+namespace CleverStocker.ML.NextOpenPrice
 {
     /// <summary>
     /// NOP输出模型
@@ -8,6 +10,7 @@
         /// <summary>
         /// Gets or sets 分数
         /// </summary>
-        public float Score { get; set; }
+        [ColumnName("Score")]
+        public float NextOpenPrice { get; set; }
     }
 }

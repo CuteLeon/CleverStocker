@@ -50,6 +50,9 @@ namespace CleverStocker.ML
         }
 
         /// <inheritdoc/>
+        public abstract (double L1, double L2, double RMS, double LossFunction, double R2) Evaluate();
+
+        /// <inheritdoc/>
         public void SaveModel(string modelPath)
         {
             this.MLContext.Model.Save(this.Transformer, this.TrainingData.Schema, modelPath);

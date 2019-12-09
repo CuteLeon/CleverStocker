@@ -237,27 +237,28 @@ namespace CleverStocker.Client.DockForms
                 return;
             }
 
-            // TODO: 实现 ML 业务功能；
             var convertor = DIContainerHelper.Resolve<INOPInputConverter>();
-            var transformer = DIContainerHelper.Resolve<INOPStockTransformer>();
             var prediction = DIContainerHelper.Resolve<INOPStockPrediction>();
 
             var modelPath = @"D:\ML\Model.zip";
             var quotas = this.RecentQuotaBindingSource.DataSource as List<RecentQuota>;
 
-            if (!File.Exists(modelPath))
+            // if (!File.Exists(modelPath))
             {
+                var transformer = DIContainerHelper.Resolve<INOPStockTransformer>();
                 var inputs = convertor.ConvertInputs(quotas);
                 transformer.InitializeEstimator();
                 transformer.Fit(inputs);
                 transformer.SaveModel(modelPath);
+                var result = transformer.Evaluate();
+                MessageBox.Show($"模型评估结果：\n\tL1={result.L1}\n\tL2={result.L2}\n\tLossFunction={result.LossFunction}\n\tRMS={result.RMS}\n\tR2={result.R2}");
             }
 
             var quota = quotas.First();
             var input = convertor.ConvertInput(quota);
             prediction.LoadModelToPredictionEngine(modelPath);
             var output = prediction.Predict(input);
-            MessageBox.Show($"预测结果：{output.Score}");
+            MessageBox.Show($"预测结果：{output.NextOpenPrice}");
         }
         #endregion
 
