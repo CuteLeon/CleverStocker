@@ -33,4 +33,10 @@
     <ProjectReference Include="..\CleverStocker.Utils\CleverStocker.Utils.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="CpuMathNative.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
