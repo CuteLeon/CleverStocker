@@ -249,7 +249,7 @@ namespace CleverStocker.Client.DockForms
             transformer.Fit(inputs);
             transformer.SaveModel(modelPath);
 
-            var quota = new RecentQuota();
+            var quota = quotas.First();
             var input = convertor.ConvertInput(quota);
             prediction.LoadModelToPredictionEngine(modelPath);
             var output = prediction.Predict(input);

@@ -18,14 +18,13 @@ namespace CleverStocker.ML.NextOpenPrice
                 .Select(source => this.ConvertInput(source))
                 .ToList();
 
-            inputs.Skip(1)
+            return inputs.Skip(1)
                 .Select((input, index) =>
                 {
                     input.NextOpenningPrice = inputs[index].OpenningPrice;
                     return input;
                 })
-                .Count();
-            return inputs;
+                .ToList();
         }
 
         /// <inheritdoc/>

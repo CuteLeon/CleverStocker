@@ -22,6 +22,14 @@ namespace CleverStocker.ML
         /// <inheritdoc/>
         public IEstimator<ITransformer> Estimator { get; protected set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StockTransformerBase{TInput}"/> class.
+        /// </summary>
+        public StockTransformerBase()
+        {
+            this.MLContext = new MLContext();
+        }
+
         /// <inheritdoc/>
         public void InitializeEstimator()
         {

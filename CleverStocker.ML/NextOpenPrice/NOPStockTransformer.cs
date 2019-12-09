@@ -10,8 +10,29 @@ namespace CleverStocker.ML.NextOpenPrice
         /// <inheritdoc/>
         public override IEstimator<ITransformer> CreateEstimator()
         {
-            // TODO: 配置估算器
-            return default;
+            // 配置特征列
+            const string FeaturesName = "Features";
+            var updateTimeFeature = $"{nameof(NOPInput.UpdateTime)}_Feature";
+            var features = new[]
+            {
+                updateTimeFeature,
+                nameof(NOPInput.OpenningPrice),
+                nameof(NOPInput.ClosingPrice),
+                nameof(NOPInput.HighestPrice),
+                nameof(NOPInput.LowestPrice),
+                nameof(NOPInput.Volume),
+            };
+
+            // 配置训练管道
+            var dataProcessPipeline = this.MLContext.Transforms
+                .Text.FeaturizeText(updateTimeFeature, nameof(NOPInput.UpdateTime))
+                .Append(this.MLContext.Transforms.Concatenate(FeaturesName, features));
+
+            // 配置训练算法
+            var trainer = this.MLContext.Regression.Trainers.LightGbm(nameof(NOPInput.NextOpenningPrice), FeaturesName);
+            var trainingPipeline = dataProcessPipeline.Append(trainer);
+
+            return trainingPipeline;
         }
     }
 }

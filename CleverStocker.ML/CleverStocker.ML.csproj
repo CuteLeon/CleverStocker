@@ -5,12 +5,22 @@
     <CodeAnalysisRuleSet>..\cleverstocker.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\Build\Debug\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\Build\Release\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\CleverStocker.ruleset" Link="CleverStocker.ruleset" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="1.4.0" />
+    <PackageReference Include="Microsoft.ML.CpuMath" Version="1.4.0" />
+    <PackageReference Include="Microsoft.ML.LightGbm" Version="1.4.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
