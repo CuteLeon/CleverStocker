@@ -21,7 +21,6 @@
     <PackageReference Include="LightGBM" Version="2.2.3" />
     <PackageReference Include="Microsoft.ML" Version="1.4.0" />
     <PackageReference Include="Microsoft.ML.CpuMath" Version="1.4.0" />
-    <PackageReference Include="Microsoft.ML.LightGbm" Version="1.4.0" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.113">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
