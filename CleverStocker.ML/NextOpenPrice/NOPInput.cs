@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CleverStocker.ML.NextOpenPrice
+﻿namespace CleverStocker.ML.NextOpenPrice
 {
     public class NOPInput
     {

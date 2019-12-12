@@ -3,8 +3,6 @@ using Microsoft.ML;
 
 namespace CleverStocker.ML.NextOpenPrice
 {
-    // TODO: 自动选择最优算法 https://www.cnblogs.com/seabluescn/p/10995991.html
-
     /// <summary>
     /// 下次开盘价训练器
     /// </summary>

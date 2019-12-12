@@ -42,6 +42,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.DataAccessTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleverStocker.ML", "CleverStocker.ML\CleverStocker.ML.csproj", "{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleverStocker.MLTests", "CleverStocker.MLTests\CleverStocker.MLTests.csproj", "{C5E59982-AF97-427A-A47A-64E9D4D26B05}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -154,6 +156,14 @@ Global
 		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Release|x64.ActiveCfg = Release|x64
 		{AA29639A-16C8-4ACF-BA10-F2D948E7DBA7}.Release|x64.Build.0 = Release|x64
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Debug|x64.Build.0 = Debug|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Release|x64.ActiveCfg = Release|Any CPU
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -163,6 +173,7 @@ Global
 		{6AE3AF29-0038-4987-9547-8E9CF92A914A} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
 		{6DED632F-46C8-45A4-A549-AA4CFB064A80} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
 		{7FCEDE2C-829E-47A6-8617-ED7A366E05F0} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
+		{C5E59982-AF97-427A-A47A-64E9D4D26B05} = {BDFEF8D1-D84A-4414-B97A-7E030EF7A67D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {481A7383-9379-475F-9FD7-D8931C66D53D}
