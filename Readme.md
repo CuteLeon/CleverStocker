@@ -1,6 +1,6 @@
 <div align=center>
 
-![](./CleverStocker.Client/Resources/bull.png)
+![](https://raw.github.com/CuteLeon/CleverStocker/master/CleverStocker.Client/Resources/bull.png)
 
 </div>
 
@@ -10,7 +10,7 @@
 
 <div align=center>
 
-![](./Documents/UML.png)
+![](https://raw.github.com/CuteLeon/CleverStocker/master/Documents/UML.png)
 
 </div>
 
@@ -43,9 +43,9 @@
 ## Screen:
 
 
-![](./Documents/Screen_1.png)
+![](https://raw.github.com/CuteLeon/CleverStocker/master/Documents/Screen_1.png)
 
-![](./Documents/Screen_2.png)
+![](https://raw.github.com/CuteLeon/CleverStocker/master/Documents/Screen_2.png)
 
-![](./Documents/Screen_3.png)
+![](https://raw.github.com/CuteLeon/CleverStocker/master/Documents/Screen_3.png)
 
