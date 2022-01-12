@@ -1,3 +1,5 @@
+# Refactored to new repository: https://github.com/CuteLeon/IntelligentInvestor
+
 <div align=center>
 
 ![](https://raw.github.com/CuteLeon/CleverStocker/master/CleverStocker.Client/Resources/bull.png)
